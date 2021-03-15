@@ -1,0 +1,7 @@
+@import "~tailwindcss/base.css";
+@import "~tailwindcss/components.css";
+@import "~tailwindcss/utilities.css";
+
+    .card {
+      @apply rounded-lg bg-white p-6 m-5;
+    }
