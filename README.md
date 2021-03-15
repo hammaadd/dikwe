@@ -1,5 +1,5 @@
 # DIKWE
-<p align="center"><img src="https://ibb.co/zbCxKW1" width="600"></p>
+<p align="center"><img src="https://i.ibb.co/P4JjBsR/Dikwe.png" width="600"></p>
 
 This system is based on PHP laravel Framework. This system is used to manage bookmarks, workspaces, knowledge assets specially devloped keeping it user centric system.
 
