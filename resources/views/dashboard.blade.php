@@ -5,6 +5,9 @@
 
 
 <main class="bg-gray-100 dark:bg-gray-800 rounded-2xl relative h-screen overflow-hidden relative">
+    <div class="card">
+        <h1>Hammad</h1>
+    </div>
     <div class="flex items-start justify-between">
         <div class="h-screen hidden lg:block my-4 ml-4 shadow-lg relative w-80">
             <div class="bg-white h-full rounded-2xl dark:bg-gray-700">
