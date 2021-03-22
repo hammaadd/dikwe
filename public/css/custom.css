@@ -1,0 +1,83 @@
+@media (min-width:1024px) {
+    nav.nav-default:after {
+        content: "";
+        width: 250px;
+        position: absolute;
+        height: 4rem;
+        background-color: #eaf7f0;
+        left: -3%;
+        top: 80%;
+        transform: skewX(-30deg);
+        z-index: 2;
+    }
+    .top-banner {
+        background-image: url(/images/top-banner-bg.jpg);
+        background-position: center;
+        background-size: cover;
+    }
+    /* .top-banner:after {
+        content: '';
+        width: 50%;
+        height: 4rem;
+        position: absolute;
+        background-color: #fff;
+        right: -3%;
+        bottom: -3%;
+        transform: skewX(-30deg);
+    } */
+}
+.nav-logo {
+    left: 2%;
+    top: 40%;
+}
+.splide__arrows {
+    left: 50% !important;
+}
+.splide__arrow--prev {
+    left: -3em !important;
+    right: 1em;
+}
+.splide__arrow--next {
+    left: 1em;
+    right: 0 !important;
+}
+.splide__arrow--prev svg {
+    transform: scaleX(1) !important;
+}
+.splide__arrow {
+    background: #fff !important;
+    opacity: 1 !important;
+}
+.splide__pagination__page {
+    opacity: 1 !important;
+    width: 12px !important;
+    border-radius: 10px !important;
+    background: #fff !important;
+}
+.splide__pagination__page.is-active {
+    background: #3576A4 !important;
+    width: 24px !important;
+    transform: scale(1) !important;
+}
+div.splide__track:before {
+    content: '';
+    background-image: url(/images/left-quotes-sign.svg);
+    background-size: 40px 40px;
+    position: absolute;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    left: 8%;
+    top: 10%;
+}
+div.splide__track:after {
+    content: '';
+    background-image: url(/images/right-quotes-symbol.svg);
+    background-size: 40px 40px;
+    position: absolute;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    right: 8%;
+    bottom: 0;
+}
