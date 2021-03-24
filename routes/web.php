@@ -21,7 +21,7 @@ Route::get('register', function () {
 });
 Route::get('login', function () {
     return view('visitor.content.login');
-});
+})->name('login');
 Route::get('confirm-email', function () {
     return view('visitor.content.confirmEmail');
 });
