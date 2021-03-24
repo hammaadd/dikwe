@@ -1,7 +1,7 @@
-<nav class="nav-default flex flex-wrap relative items-center justify-between px-2 md:px-16 py-2 font-roboto text-lg bg-green-150 h-16">      
+<nav class="nav-default flex flex-wrap relative items-center justify-between px-2 md:px-16 py-2 font-roboto text-lg bg-green-150 h-16">
 <!-- logo -->
 <a href="#">
-  <img src="{{ asset('images/Dikwe2x.png')}}" class="nav-logo lg:absolute z-10 w-32 lg:w-40" alt="DIKWE Logo" />  
+  <img src="{{ asset('images/Dikwe2x.png')}}" class="nav-logo lg:absolute z-10 w-32 lg:w-40" alt="DIKWE Logo" />
 </a>
 <!-- hamburger -->
 <div class="flex md:hidden">
@@ -15,7 +15,7 @@
   </button>
 </div>
 <!-- links -->
-<div class="toggle hidden md:flex w-full md:w-auto text-center text-bold mt-5 md:mt-0">        
+<div class="toggle hidden md:flex w-full md:w-auto text-center text-bold mt-5 md:mt-0">
   <a href="#" class="active link-hover mx-4 block md:inline-block text-gray-500">Home</a>
   <a href="#" class="link-hover mx-4 block md:inline-block text-gray-500">Pricing</a>
   <a href="#" class="link-hover mx-4 block md:inline-block text-gray-500">Short URLs</a>
@@ -51,5 +51,5 @@
 
 </div>
 <!-- cta -->
-<a href="#" class="toggle hidden md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">LOGIN</a>
+<a href="{{route('login')}}" class="toggle hidden md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">LOGIN</a>
 </nav>
