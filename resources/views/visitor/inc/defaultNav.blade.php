@@ -1,6 +1,6 @@
 <nav class="nav-default flex flex-wrap relative items-center justify-between px-2 md:px-16 py-2 font-roboto text-lg bg-green-150 h-16">
 <!-- logo -->
-<a href="#">
+<a href="{{ route('home') }}">
   <img src="{{ asset('images/Dikwe2x.png')}}" class="nav-logo lg:absolute z-10 w-32 lg:w-40" alt="DIKWE Logo" />
 </a>
 <!-- hamburger -->
@@ -16,10 +16,10 @@
 </div>
 <!-- links -->
 <div class="toggle hidden md:flex w-full md:w-auto text-center text-bold mt-5 md:mt-0">
-  <a href="#" class="active link-hover mx-4 block md:inline-block text-gray-500">Home</a>
-  <a href="#" class="link-hover mx-4 block md:inline-block text-gray-500">Pricing</a>
-  <a href="#" class="link-hover mx-4 block md:inline-block text-gray-500">Short URLs</a>
-  <a href="#" class="link-hover mx-4 block md:inline-block text-gray-500">Features</a>
+  <a href="{{ route('home') }}" class="active link-hover mx-4 block md:inline-block text-gray-500">Home</a>
+  <a href="{{ route('pricing') }}" class="link-hover mx-4 block md:inline-block text-gray-500">Pricing</a>
+  <a href="{{ route('short-url-search') }}" class="link-hover mx-4 block md:inline-block text-gray-500">Short URLs</a>
+  <a href="{{ route('features') }}" class="link-hover mx-4 block md:inline-block text-gray-500">Features</a>
   <!-- <div class="relative inline-block mx-4 text-left">
     <div>
       <button type="button" class="dropdown inline-flex link-hover justify-center w-full text-gray-500 focus:outline-none" id="options-menu" aria-expanded="true" aria-haspopup="true">

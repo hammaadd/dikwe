@@ -70,7 +70,7 @@
             <div class="w-full overflow-hidden lg:w-1/2 xl:w-1/2">
                 <div class="justify-center items-center">
                     <img class="w-2/3 mx-auto pt-3 pb-4" src="{{asset('images/Mask Group 15.svg')}}" alt="Top Banner Image">
-                    <a href="#" class="md:flex w-max mx-auto btn-secondary">SIGN UP</a>
+                    <a href="{{ route('register') }}" class="md:flex w-max mx-auto btn-secondary">SIGN UP</a>
                 </div>
             </div>
         </div>

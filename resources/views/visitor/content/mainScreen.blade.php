@@ -81,7 +81,7 @@
     </div>
     <!-- Bottome Button Section -->
     <div class="text-center pt-10">
-    <a href="#" class="w-max mx-auto btn-main-large">
+    <a href="{{ route('register') }}" class="w-max mx-auto btn-main-large">
         SIGN UP  <i class="fas fa-arrow-right ml-2"></i>
     </a>
     </div>
