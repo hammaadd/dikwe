@@ -179490,6 +179490,12 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
+.active--tab{
+  --tw-border-opacity: 1;
+  border-color: rgba(6, 95, 70, var(--tw-border-opacity));
+  border-bottom-width: 4px
+}
+
 @media (min-width: 640px){
   .sm\:h--70 {
     height: 70vh;

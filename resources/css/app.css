@@ -20,18 +20,18 @@
     .separator {
         @apply flex items-center text-center
     }
-      
+
     .separator::before,
     .separator::after {
         content: '';
         flex: 1;
         border-bottom: 1px solid #3576A4;
     }
-      
+
     .separator:not(:empty)::before {
         margin-right: .25em;
     }
-      
+
     .separator:not(:empty)::after {
         margin-left: .25em;
     }
@@ -123,5 +123,9 @@ body {
 }
 .tag {
     @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl hover:bg-green-550 hover:text-white
+}
+
+.active--tab{
+   @apply border-b-4 border-green-800
 }
 
