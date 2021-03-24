@@ -99,3 +99,29 @@ body {
 .pricing-fee {
     @apply font-roboto-slab font-bold text-xl text-lightblue-650 pt-2 pb-5 text-center
 }
+.input-search {
+ @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-8 focus:border-green-550 focus:ring-green-550
+}
+.rating input {
+    @apply hidden
+}
+.rating label {
+    @apply text-xl text-gray-300 float-right transition-all
+}
+.rating input:not(:checked) ~ label:hover,
+.rating input:not(:checked) ~ label:hover ~ label {
+    @apply text-yellow-400
+}
+.rating input:checked ~ label {
+    @apply text-yellow-400
+}
+.copy-clipboard {
+    @apply ml-1 text-gray-300 hover:text-green-550 cursor-pointer
+}
+.tags-all {
+    @apply flex flex-wrap justify-start items-center mt-3 mb-1
+}
+.tag {
+    @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl hover:bg-green-550 hover:text-white
+}
+
