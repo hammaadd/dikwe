@@ -1,7 +1,9 @@
 @extends('visitor.layout.visitorLayout')
-@section('title','Dashboard')
+@section('title','Features')
+@section('headerExtra')
+<link href="{{ asset('css/visitor.css') }}" rel="stylesheet">
+@endsection
 @section('content')
-@include('visitor.inc.homeBanner')
 <div class="container mx-auto py-12">
     <!-- Page Title Section -->
     <div class="text-center">

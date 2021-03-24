@@ -1,4 +1,5 @@
 @section('headerExtra')
+<link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
 <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
 <script src="{{ asset('js/splide.min.js') }}"></script>
 @endsection

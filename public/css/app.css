@@ -179052,6 +179052,15 @@ body {
   color: rgba(53, 118, 164, var(--tw-text-opacity))
 }
 
+.page-title-secondary {
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
 .btn-main {
   --tw-bg-opacity: 1;
   background-color: rgba(47, 178, 104, var(--tw-bg-opacity))
@@ -179068,6 +179077,36 @@ body {
   border-radius: 0.75rem;
   border-width: 2px;
   font-weight: 700;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-main:hover{
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity));
+}
+
+.btn-main-large {
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity))
+}
+
+.btn-main-large:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.btn-main-large{
+  --tw-border-opacity: 1;
+  border-color: rgba(47, 178, 104, var(--tw-border-opacity));
+  border-radius: 0.75rem;
+  border-width: 2px;
+  font-weight: 700;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   padding-left: 2rem;
@@ -179077,7 +179116,7 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
-.btn-main:hover{
+.btn-main-large:hover{
   --tw-text-opacity: 1;
   color: rgba(47, 178, 104, var(--tw-text-opacity));
 }
@@ -179315,6 +179354,33 @@ body {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
+}
+
+.plan-feature {
+  font-family: Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
+.feature-icon {
+  padding-right: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity))
+}
+
+.pricing-fee {
+  font-family: "Roboto Slab", serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(53, 118, 164, var(--tw-text-opacity))
 }
 
 @media (min-width: 640px){
