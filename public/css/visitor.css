@@ -1,0 +1,42 @@
+@media (min-width:1024px) {
+    nav.nav-default:after {
+        content: "";
+        width: 250px;
+        position: absolute;
+        height: 4rem;
+        background-color: #eaf7f0;
+        left: -3%;
+        top: 80%;
+        transform: skewX(-30deg);
+        z-index: 2;
+    }
+    .visitor.container:before {
+        content: '';
+        background-image: url(/images/Group16.png);
+        background-size: 50%;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: -2;
+        top: 50vh;
+        left: -5%;
+        width: 55%;
+        height: 100%;
+    }
+    .visitor.container:after {
+        content: '';
+        background-image: url(/images/Group17.png);
+        background-size: 50%;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: -2;
+        top: 50px;
+        right: 0;
+        left: 78%;
+        width: 55%;
+        height: 100%;
+    }
+}
+.nav-logo {
+    left: 2%;
+    top: 40%;
+}
