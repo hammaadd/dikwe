@@ -88,7 +88,6 @@
             <a href="#" class="font-bold text-green-550 border-b-2 border-green-550">
                 Join Now & Browse Thousands Of Knowledge Assets
             </a>
-            <x-info-box message="Testing"/>
         </div>
     </div>
 @endsection

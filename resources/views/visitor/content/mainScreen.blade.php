@@ -1,5 +1,5 @@
 @extends('visitor.layout.visitorLayout')
-@section('title','Dashboard')
+@section('title','Homepage')
 @section('content')
 @include('visitor.inc.homeBanner')
 <div class="container mx-auto py-12">
@@ -9,7 +9,7 @@
     </div>
     <!-- 1st Row Content-->
     <div class="flex flex-wrap overflow-hidden">
-        <div class="w-full overflow-hidden lg:w-1/3 xl:w-1/3">
+        <div class="w-full overflow-hidden lg:w-1/3 xl:w-1/3 bg-">
             <!-- 1st Column Content -->
             <img src="{{asset('images/Group 512.png')}}" alt="">
             <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">

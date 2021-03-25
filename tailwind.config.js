@@ -35,6 +35,7 @@ module.exports = {
       fontWeight: ['hover', 'focus', 'active'],
       borderWidth: ['hover', 'focus', 'active'],
       fontSize: ['hover', 'focus', 'active'],
+      borderRadius: ['hover', 'focus', 'active'],
       fill: ['hover', 'focus', 'active'],
     },
   },

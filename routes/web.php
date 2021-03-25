@@ -46,3 +46,6 @@ Route::get('pricing', function () {
 Route::get('features', function () {
     return view('visitor.content.features');
 })->name('features');
+Route::get('dashboard', function () {
+    return view('user.content.dashboard');
+})->name('dashboard');

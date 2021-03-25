@@ -7,6 +7,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link href="{{ asset('css/all.min.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     @include('user.inc.styles.fonts')
     @yield('headerExtra')
 </head>

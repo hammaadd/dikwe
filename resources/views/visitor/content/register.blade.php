@@ -2,6 +2,7 @@
 @section('title','Create Your Account')
 @section('headerExtra')
 <link href="{{ asset('css/visitor.css') }}" rel="stylesheet">
+<script src="{{ asset('js/alpine.min.js') }}" defer></script>
 @endsection
 @section('content')
     <div class="visitor container mx-auto py-10">
@@ -30,29 +31,31 @@
                     </div>
                     <input type="email" name="name" id="name" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Email"/>
                 </div>
-                <div class="my-2 relative rounded-xl shadow-md">
+                <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-lock"></i>
                         </span>
                     </div>
-                    <input type="password" name="name" id="field-pass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Password"/>
+                    <input :type="show ? 'password' : 'text'" name="pass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Password"/>
                     <div class="absolute inset-y-0 right-0 pr-5 flex items-center">
                         <span class="text-xl">
-                            <i class="text-green-550 fas fa-eye" id="togglePassword"></i>
+                            <i class="text-green-550 fas fa-eye" @click="show = !show" :class="{'hidden-imp': !show, 'block':show }"></i>
+                            <i class="text-green-550 fas fa-eye-slash" @click="show = !show" :class="{'block': !show, 'hidden-imp':show }"></i>
                         </span>
                     </div>
                 </div>
-                <div class="my-2 relative rounded-xl shadow-md">
+                <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-lock"></i>
                         </span>
                     </div>
-                    <input type="password" name="name" id="field-cpass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Confirm Password"/>
+                    <input :type="show ? 'password' : 'text'" name="cpass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Confirm Password"/>
                     <div class="absolute inset-y-0 right-0 pr-5 flex items-center">
                         <span class="text-xl">
-                            <i class="text-green-550 fas fa-eye" id="cTogglePassword"></i>
+                            <i class="text-green-550 fas fa-eye" @click="show = !show" :class="{'hidden-imp': !show, 'block':show }"></i>
+                            <i class="text-green-550 fas fa-eye-slash" @click="show = !show" :class="{'block': !show, 'hidden-imp':show }"></i>
                         </span>
                     </div>
                 </div>
