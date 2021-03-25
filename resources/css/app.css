@@ -20,18 +20,18 @@
     .separator {
         @apply flex items-center text-center
     }
-      
+
     .separator::before,
     .separator::after {
         content: '';
         flex: 1;
         border-bottom: 1px solid #3576A4;
     }
-      
+
     .separator:not(:empty)::before {
         margin-right: .25em;
     }
-      
+
     .separator:not(:empty)::after {
         margin-left: .25em;
     }
@@ -147,5 +147,9 @@ body {
 }
 .tab--active {
     @apply text-white bg-green-550 rounded-r-3xl
+}
+
+.active--tab{
+   @apply border-b-4 border-green-800
 }
 

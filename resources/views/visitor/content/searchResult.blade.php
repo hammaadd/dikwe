@@ -2,7 +2,9 @@
 @section('title','Search Result Page')
 @section('headerExtra')
 <link href="{{ asset('css/visitor.css') }}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
+
 @section('content')
     <div class="container mx-auto">
         <div class="w-full md:w-3/4 lg:w-1/2 mx-auto md:px-10 md:py-10">
