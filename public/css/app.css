@@ -186090,6 +186090,89 @@ body {
   color: rgba(255, 255, 255, var(--tw-text-opacity))
 }
 
+.notification-icon {
+  --tw-bg-opacity: 1;
+  background-color: rgba(234, 247, 240, var(--tw-bg-opacity))
+}
+
+.notification-icon:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity));
+}
+
+.notification-icon{
+  border-radius: 0.75rem;
+  height: 3rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  padding: 0.5rem;
+  --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  text-align: center;
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity));
+}
+
+.notification-icon:hover{
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.notification-icon{
+  width: 3rem;
+}
+
+.dropdown-item:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity));
+}
+
+.dropdown-item{
+  display: flex;
+  align-items: center;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dropdown-item:hover{
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.dropdown-item:hover .dropdown-item-icon {
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity))
+}
+
+.dropdown-item-icon {
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity))
+}
+
+.tags-count {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity))
+}
+
+.active-tab {
+  --tw-border-opacity: 1;
+  border-color: rgba(47, 178, 104, var(--tw-border-opacity));
+  border-bottom-width: 4px
+}
+
 @media (min-width: 640px){
   .sm\:h--70 {
     height: 70vh;

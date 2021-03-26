@@ -4,7 +4,8 @@
     <body class="antialiased overflow-x-hidden">
         <div class="w-full relative">
             @include('user.inc.sidebar')
-            <div class="container pl-24">
+            <div class="pl-24">
+                @include('user.inc.topNav')
                 @yield('content')
             </div>
         </div>

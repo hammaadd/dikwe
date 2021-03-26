@@ -148,8 +148,22 @@ body {
 .tab--active {
     @apply text-white bg-green-550 rounded-r-3xl
 }
-
-.active--tab{
-   @apply border-b-4 border-green-800
+.notification-icon {
+    @apply p-2 bg-green-150 text-xl shadow-md text-green-550 w-12 h-12 text-center rounded-xl hover:bg-green-550 hover:text-white
+}
+.dropdown-item {
+    @apply flex items-center px-4 py-2 hover:bg-green-550 hover:text-white
+}
+.dropdown-item:hover .dropdown-item-icon {
+    @apply text-white
+}
+.dropdown-item-icon {
+    @apply text-green-550
+}
+.tags-count {
+    @apply py-2 px-2 font-bold text-sm bg-white text-gray-900 rounded-2xl mr-2
+}
+.active-tab {
+    @apply border-green-550 border-b-4
 }
 

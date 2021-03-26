@@ -1,0 +1,13 @@
+@media (min-width:1024px) {
+    nav.user-nav:after {
+        content: "";
+        width: 250px;
+        position: absolute;
+        height: 5rem;
+        background-color: #eaf7f0;
+        left: -3%;
+        top: 0;
+        transform: skewX(-30deg);
+        z-index: -10;
+    }
+}

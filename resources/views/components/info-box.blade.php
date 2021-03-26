@@ -14,6 +14,5 @@
                     <x-info-box-list listName="Follower name"/>
                 @endfor
             </div>
-
     </div>
 </div>
