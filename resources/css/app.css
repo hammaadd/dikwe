@@ -20,20 +20,23 @@
     .separator {
         @apply flex items-center text-center
     }
-      
+
     .separator::before,
     .separator::after {
         content: '';
         flex: 1;
         border-bottom: 1px solid #3576A4;
     }
-      
+
     .separator:not(:empty)::before {
         margin-right: .25em;
     }
-      
+
     .separator:not(:empty)::after {
         margin-left: .25em;
+    }
+    .hidden-imp {
+        display: none !important;
     }
 }
 body {
@@ -99,3 +102,68 @@ body {
 .pricing-fee {
     @apply font-roboto-slab font-bold text-xl text-lightblue-650 pt-2 pb-5 text-center
 }
+.input-search {
+ @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-8 focus:border-green-550 focus:ring-green-550
+}
+.rating input {
+    @apply hidden
+}
+.rating label {
+    @apply text-xl text-gray-300 float-right transition-all
+}
+.rating input:not(:checked) ~ label:hover,
+.rating input:not(:checked) ~ label:hover ~ label {
+    @apply text-yellow-400
+}
+.rating input:checked ~ label {
+    @apply text-yellow-400
+}
+.copy-clipboard {
+    @apply ml-1 text-gray-300 hover:text-green-550 cursor-pointer
+}
+.tags-all {
+    @apply flex flex-wrap justify-start items-center mt-3 mb-1
+}
+.tag {
+    @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl hover:bg-green-550 hover:text-white
+}
+.nav--tabs {
+    @apply my-3 py-1 pl-4 text-center text-white text-2xl hover:rounded-r-3xl hover:bg-white hover:text-green-550
+}
+.tab-active {
+    @apply bg-white text-green-550 rounded-r-3xl
+}
+.btn-outline {
+    @apply bg-transparent text-green-550 border-2 border-green-550 rounded-xl px-4 py-2 shadow-lg hover:bg-green-550 hover:text-white
+}
+.nav---tabs {
+    @apply py-2 px-6 my-1 text-gray-400 hover:text-white hover:bg-green-550 hover:rounded-r-3xl
+}
+.span-count {
+    @apply py-1 px-2 font-bold text-sm float-right bg-green-150 text-gray-900 rounded-2xl
+}
+.nav---tabs:hover .span-count {
+    @apply bg-white
+}
+.tab--active {
+    @apply text-white bg-green-550 rounded-r-3xl
+}
+.notification-icon {
+    @apply p-2 bg-green-150 text-xl shadow-md text-green-550 w-12 h-12 text-center rounded-xl hover:bg-green-550 hover:text-white
+}
+.dropdown-item {
+    @apply flex items-center px-4 py-2 hover:bg-green-550 hover:text-white
+}
+.dropdown-item:hover .dropdown-item-icon {
+    @apply text-white
+}
+.dropdown-item-icon {
+    @apply text-green-550
+}
+.tags-count {
+    @apply py-2 px-2 font-bold text-sm bg-white text-gray-900 rounded-2xl mr-2
+}
+.active-tab {
+    @apply border-green-550 border-b-4
+}
+
