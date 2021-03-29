@@ -49,3 +49,6 @@ Route::get('features', function () {
 Route::get('dashboard', function () {
     return view('user.content.dashboard');
 })->name('dashboard');
+Route::get('tags', function () {
+    return view('user.content.tags');
+})->name('tags');
