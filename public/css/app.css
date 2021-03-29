@@ -185466,6 +185466,10 @@ select {
   display: none !important;
 }
 
+.height-28 {
+  height: calc(100% - 28px);
+}
+
 body {
   font-family: Roboto, sans-serif;
   font-size: 1rem;
@@ -186171,6 +186175,96 @@ body {
   --tw-border-opacity: 1;
   border-color: rgba(47, 178, 104, var(--tw-border-opacity));
   border-bottom-width: 4px
+}
+
+.btn-dashboard {
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity))
+}
+
+.btn-dashboard:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+}
+
+.btn-dashboard{
+  --tw-border-opacity: 1;
+  border-color: rgba(47, 178, 104, var(--tw-border-opacity));
+  border-radius: 0.75rem;
+  border-width: 2px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.btn-dashboard:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.btn-dashboard{
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.btn-dashboard:hover{
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity));
+}
+
+.btn-dashboard{
+  width: 12rem;
+}
+
+.btn-dashboard-count {
+  --tw-bg-opacity: 1;
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity))
+}
+
+.group:hover .btn-dashboard-count{
+  --tw-bg-opacity: 1;
+  background-color: rgba(16, 185, 129, var(--tw-bg-opacity));
+}
+
+.btn-dashboard-count{
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(17, 24, 39, var(--tw-text-opacity));
+}
+
+.group:hover .btn-dashboard-count{
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.follow-count {
+  --tw-bg-opacity: 1;
+  background-color: rgba(234, 247, 240, var(--tw-bg-opacity));
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  margin-right: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(47, 178, 104, var(--tw-text-opacity))
 }
 
 @media (min-width: 640px){
