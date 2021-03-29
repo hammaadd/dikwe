@@ -49,3 +49,10 @@ Route::get('features', function () {
 Route::get('dashboard', function () {
     return view('user.content.dashboard');
 })->name('dashboard');
+
+
+
+
+
+// Admin Routes
+Route::get('admin/dashboard','Admin\DashboardController@index')->name('admin.dashboard');
