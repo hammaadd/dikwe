@@ -8,8 +8,8 @@
                 <i class="fas fa-plus-circle rounded-3xl shadow-xl text-3xl text-green-550 p-2 bg-green-150 bg-opacity-75 hover:bg-opacity-100"></i>
             </a>
             <ul class="mt-8 mx-auto pr-4">
-                <li class="nav--tabs tab-active"><a href="#"><i class="fas fa-home"></i></a></li>
-                <li class="nav--tabs"><a href="#"><i class="fas fa-tags fa-flip-horizontal"></i></a></li>
+                <li class="nav--tabs {{Request::is('dashboard') ? 'tab-active' : ''}}"><a href="{{route('dashboard')}}"><i class="fas fa-home"></i></a></li>
+                <li class="nav--tabs {{Request::is('tags') ? 'tab-active' : ''}}"><a href="{{route('tags')}}"><i class="fas fa-tags fa-flip-horizontal"></i></a></li>
                 <li class="nav--tabs"><a href="#"><i class="fas fa-folder"></i></a></li>
                 <li class="nav--tabs"><a href="#"><i class="fas fa-clipboard"></i></a></li>
                 <li class="nav--tabs"><a href="#"><i class="fas fa-star"></i></a></li>
@@ -49,14 +49,14 @@
                 <a href="#" class="btn-outline"><i class="fas fa-plus-circle"></i> ADD NEW</a>
             </div>
             <ul class="border-b-2 border-gray-300">
-                <li class="nav---tabs tab--active">
+                <li class="nav---tabs {{Request::is('dashboard') ? 'tab--active' : ''}} ">
                     <div>
-                        <a href="#"><i class="pr-2 fas fa-home"></i> Home</a>
+                        <a href="{{route('dashboard')}}"><i class="pr-2 fas fa-home"></i> Home</a>
                     </div>
                 </li>
-                <li class="nav---tabs">
+                <li class="nav---tabs {{Request::is('tags') ? 'tab--active' : ''}}">
                     <div>
-                        <a href="#"><i class="pl-2 fas fa-tags fa-flip-horizontal"></i> Tags</a>
+                        <a href="{{route('tags')}}"><i class="pl-2 fas fa-tags fa-flip-horizontal"></i> Tags</a>
                         <span class="span-count">120</span>
                     </div>
                 </li>
