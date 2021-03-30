@@ -49,9 +49,9 @@ Route::get('features', function () {
 Route::get('dashboard', function () {
     return view('user.content.dashboard');
 })->name('dashboard');
-
-
-
+Route::get('tags', function () {
+    return view('user.content.tags');
+})->name('tags');
 
 
 // Admin Routes
@@ -63,4 +63,4 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('homes');

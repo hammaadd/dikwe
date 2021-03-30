@@ -38,6 +38,9 @@
     .hidden-imp {
         display: none !important;
     }
+    .height-28 {
+        height: calc(100% - 28px);
+    }
 }
 body {
     @apply font-roboto text-gray-900 text-base
@@ -165,5 +168,14 @@ body {
 }
 .active-tab {
     @apply border-green-550 border-b-4
+}
+.btn-dashboard {
+    @apply bg-green-550 text-white px-5 py-3 font-bold text-lg rounded-xl mx-2 w-48 focus:outline-none border-2 border-green-550 hover:bg-white hover:text-green-550
+}
+.btn-dashboard-count {
+    @apply py-2 px-2 font-bold text-base bg-white text-gray-900 rounded-2xl mr-2 group-hover:text-white group-hover:bg-green-500
+}
+.follow-count {
+    @apply py-2 px-2 font-bold text-sm bg-green-150 text-green-550 rounded-2xl mr-2
 }
 

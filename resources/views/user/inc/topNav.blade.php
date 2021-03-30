@@ -4,7 +4,7 @@
         <div class="w-full overflow-hidden lg:w-1/4">
             <!-- Column Content -->
             <div class="dash-title px-6 py-4 text-2xl">
-                <h2 class="font-bold">Dashboard</h2>
+                <h2 class="font-bold">@yield('page-title')</h2>
             </div>
         </div>
 
