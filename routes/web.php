@@ -19,7 +19,7 @@ Route::get('/', function () {
 Route::get('register', function () {
     return view('visitor.content.register');
 })->name('register');
-Route::get('login', function () {
+Route::get('/user/login', function () {
     return view('visitor.content.login');
 })->name('login');
 Route::get('confirm-email', function () {
@@ -52,3 +52,15 @@ Route::get('dashboard', function () {
 Route::get('tags', function () {
     return view('user.content.tags');
 })->name('tags');
+
+
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard','Admin\DashboardController@index')->name('dashboard');
+    Route::get('/login','Admin\AuthController@login')->name('login.form');
+});
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('homes');
