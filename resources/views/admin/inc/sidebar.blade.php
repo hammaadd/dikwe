@@ -36,6 +36,54 @@
                     </ul>
                 </li>
 
+                <li class="sidebar-title">Content Management</li>
+
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-content') ? 'active' : ''}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-paragraph"></i>
+                        <span>Content</span>
+                    </a>
+                    <ul class="submenu" style="{{Request::is('admin/manage-content') ? 'display:block;' : ''}}">
+                        <li class="submenu-item {{Request::is('admin/manage-content') ? 'active' : ''}}">
+                            <a href="{{route('admin.manage.content')}}">Manage Content</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-paragraph"></i>
+                        <span>Slider</span>
+                    </a>
+                    <ul class="submenu " >
+                        <li class="submenu-item">
+                            <a href="{{route('admin.slider')}}">Slider Content</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="sidebar-title">Account</li>
+
+                <li class="sidebar-item has-sub {{Request::is('admin/update-profile')||Request::is('admin/change-avatar')||Request::is('admin/profile') ? 'active' : ''}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </a>
+                    <ul class="submenu " style="{{Request::is('admin/update-profile')||Request::is('admin/change-avatar')||Request::is('admin/profile') ? 'display:block;' : ''}}">
+                        <li class="submenu-item {{Request::is('admin/profile') ? 'active' : ''}}">
+                            <a href="{{route('admin.profile')}}">Visit Profile</a>
+                        </li>
+                        <li class="submenu-item {{Request::is('admin/update-profile') ? 'active' : ''}}">
+                            <a href="{{route('admin.update.profile')}}">Update Profile</a>
+                        </li>
+                        <li class="submenu-item {{Request::is('admin/change-avatar') ? 'active' : ''}}">
+                            <a href="{{route('admin.change.avatar')}}">Change Avatar</a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="sidebar-item">
                     <a  href="#"
                     onclick="event.preventDefault();

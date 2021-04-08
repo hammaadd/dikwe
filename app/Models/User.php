@@ -21,6 +21,10 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'firstname',
+        'lastname',
+        'gender',
+        'phone_no',
         'password',
     ];
 
@@ -42,4 +46,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function country(){
+        return $this->belongsTo(Country::class,'country_id');
+    }
 }

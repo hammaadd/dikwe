@@ -1,6 +1,14 @@
 @extends('admin.layout.main')
 @section('title','Dashboard')
 @section('heading','Dashboard')
+@section('desc','The dashboard to show the main highlighted content of the CMS.')
+@section('breadcrumbs')
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Dashboard</li>
+    </ol>
+</nav>
+@endsection
 @section('extraScripts')
 <script src="{{asset('adminassets/vendors/apexcharts/apexcharts.js')}}"></script>
 <script src="{{asset('adminassets/js/pages/dashboard.js')}}"></script>
