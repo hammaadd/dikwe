@@ -2,23 +2,25 @@
 <html lang="en">
     @include('admin.inc.header')
 <body>
+    <div class="preloader"></div>
     <div id="app">
         @include('admin.inc.sidebar')
-        <div id="main">
+        <div id="main" class="layout-navbar">
             <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                        <i class="bi bi-justify fs-3"></i>
-                </a>
+                @include('admin.inc.navbar')
             </header>
-            <div class="page-heading">
-                <h3>@yield('heading')</h3>
+            <div id="main-content">
+                <div class="page-heading">
+                    @include('admin.inc.breadcrumb')
+
+                    <div class="page-content">
+                        @yield('content')
+                    </div>
+                </div>
+                @include('admin.inc.footer')
             </div>
-            <div class="page-content">
-                @yield('content')
-            </div>
-            @include('admin.inc.footer')
         </div>
-        <form id="logout-form" action="#" method="POST" class="d-none">
+        <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
             @csrf
         </form>
 
