@@ -1,11 +1,11 @@
 @extends('admin.layout.main')
-@section('title','Feature Management')
-@section('heading','Feature Management')
-@section('desc','Manage features showing on the home page and features tab.')
+@section('title','FAQ Management')
+@section('heading','FAQ Management')
+@section('desc','Manage frequently asked questions.')
 @section('breadcrumbs')
 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Slides</li>
+        <li class="breadcrumb-item active" aria-current="page">FAQ's</li>
     </ol>
 </nav>
 @endsection
@@ -16,7 +16,7 @@
 <section x-data="{open: false}">
 <div class="row my-2" >
     <div class="col-12 d-flex justify-content-end">
-        <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add new feature" >Add Feature <i class="bi bi-plus-circle"></i></button>
+        <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add new faq" >Add FAQ <i class="bi bi-plus-circle"></i></button>
     </div>
 </div>
 <div class="row d-flex justify-content-center align-items-stretch" >
@@ -57,41 +57,6 @@
             </div>
         </div>
     </div>
-    @forelse($features as $feat)
-        <div class="col-md-4 col-sm-12 d-flex align-items-stretch">
-            <div class="card shdaow-sm">
-                <div class="card-content">
-                    <img src="{{asset('images/features/'.$feat->image)}}" class="card-img-top img-fluid" alt="">
-                    <div class="card-body">
-                        <h4 class="card-title">Feature # {{$feat->order}}</h4>
-                        <p class="card-text">
-                            {{$feat->text}}
-                        </p>
-                        <small class="text-muted">Last updated @if($feat->updated_at == null) {{($feat->created_at)->diffForHumans()}} @else {{($feat->updated_at)->diffForHumans()}} @endif</small>
-                        <div class="d-flex justify-content-center align-items-end">
-                            <a class="btn btn-warning btn-sm " href="{{route('admin.edit.feature',$feat)}}" data-bs-toggle="tooltip" title="Edit new feature">Edit <i class="bi bi-pen"></i></a>
-                            <a class="btn btn-danger btn-sm mx-2" href="{{route('admin.delete.feature',$feat)}}" onclick="return confirm('Do you really want to delete the feature.');" data-bs-toggle="tooltip" title="Delete feature">Delete <i class="bi bi-trash"></i></a>
-                        </div>
-                    </div>
-                    <div>
-
-                    </div>
-                
-                </div>
-            </div>
-        </div>
-    @empty
-    <div class="col-md-12 col-sm-12">
-        <div class="card shadow-sm">
-            <div class="card-content">
-                <div class="card-body">
-                    <h4 class="card-title">No features to show. <a href="#" @click=" open= !open">Add new feature</a> </h4>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-    @endforelse
 </div>
 </section>
 @endsection

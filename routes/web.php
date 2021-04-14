@@ -89,6 +89,9 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/delete-feature-image/{feature}','Admin\FeatureController@deleteImage')->name('delete.feature.image');
     Route::put('/update-feature/{feature}','Admin\FeatureController@updateFeature')->name('update.feature');
     Route::get('/delete-feature/{feature}','Admin\FeatureController@deleteFeature')->name('delete.feature');
+
+    //Frequently Asked Questions
+    Route::get('/faqs','Admin\FaqController@faqs')->name('faqs');
 });
 
 

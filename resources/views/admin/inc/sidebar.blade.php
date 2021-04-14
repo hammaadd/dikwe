@@ -64,14 +64,27 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub {{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'active' : ''}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-file-easel"></i>
+                        <i class="bi bi-brush"></i>
                         <span>Feature</span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'display:block;' : ''}}" >
-                        <li class="submenu-item {{Request::is('admin/manage-slides') ? 'active' : ''}}">
+                    <ul class="submenu" style="{{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-features') ? 'active' : ''}}">
                             <a href="{{route('admin.features')}}">Manage Features</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'active' : ''}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-brush"></i>
+                        <span>FAQ</span>
+                    </a>
+                    <ul class="submenu" style="{{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-features') ? 'active' : ''}}">
+                            <a href="{{route('admin.faqs')}}">Manage FAQ's</a>
                         </li>
 
                     </ul>
