@@ -77,7 +77,18 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::put('/update-content/{content}','Admin\ContentController@editContent')->name('update.content');
 
     //Slider conent management
-    Route::get('/slider','Admin\ContentController@slider')->name('slider');
+    Route::get('/manage-slides','Admin\ContentController@slides')->name('slides');
+    Route::post('/add-slide','Admin\ContentController@addSlide')->name('add.slide');
+    Route::get('/edit-slide/{slide}','Admin\ContentController@editSlide')->name('edit.slide');
+    Route::put('/update-slide/{slide}','Admin\ContentController@editSlide')->name('update.slide');
+
+    //Feature content Management
+    Route::get('/manage-features','Admin\FeatureController@features')->name('features');
+    Route::post('/add-feature','Admin\FeatureController@addFeature')->name('add.feature');
+    Route::get('/edit-feature/{feature}','Admin\FeatureController@editFeature')->name('edit.feature');
+    Route::get('/delete-feature-image/{feature}','Admin\FeatureController@deleteImage')->name('delete.feature.image');
+    Route::put('/update-feature/{feature}','Admin\FeatureController@updateFeature')->name('update.feature');
+    Route::get('/delete-feature/{feature}','Admin\FeatureController@deleteFeature')->name('delete.feature');
 });
 
 

@@ -21,7 +21,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{Request::is('customer/*') ? 'active' : ''}} has-sub">
+                {{-- <li class="sidebar-item {{Request::is('customer/*') ? 'active' : ''}} has-sub">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-people"></i>
                         <span>Customers</span>
@@ -34,7 +34,7 @@
                             <a href="#">All Customers</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-title">Content Management</li>
 
@@ -51,14 +51,27 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub">
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-paragraph"></i>
-                        <span>Slider</span>
+                        <i class="bi bi-file-easel"></i>
+                        <span>Slide</span>
                     </a>
-                    <ul class="submenu " >
-                        <li class="submenu-item">
-                            <a href="{{route('admin.slider')}}">Slider Content</a>
+                    <ul class="submenu" style="{{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-slides') ? 'active' : ''}}">
+                            <a href="{{route('admin.slides')}}">Manage Slides</a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'active' : ''}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-file-easel"></i>
+                        <span>Feature</span>
+                    </a>
+                    <ul class="submenu" style="{{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-slides') ? 'active' : ''}}">
+                            <a href="{{route('admin.features')}}">Manage Features</a>
                         </li>
 
                     </ul>
