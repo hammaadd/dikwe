@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContentsTable extends Migration
+class CreateSlidesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table) {
             $table->id();
-            $table->string('key')->unique();
-            $table->string('heading');
-            $table->text('content')->nullable();
+            $table->string('text')->nullable();
+            $table->smallInteger('order')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->refrences('id')->on('users');
             $table->timestamps();
@@ -31,6 +30,6 @@ class CreateContentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contents');
+        Schema::dropIfExists('slides');
     }
 }
