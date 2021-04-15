@@ -6,10 +6,10 @@
         </label>
     </div>
     <div class="flex flex-wrap items-center">
-        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 mx-3 hover:bg-green-550 hover:text-white">
+        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 mx-3 hover:bg-green-550 hover:text-white focus:outline-none">
             Undo
         </button>
-        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-3 py-1 hover:bg-green-550 hover:text-white">
+        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-3 py-1 hover:bg-green-550 hover:text-white focus:outline-none">
             <i class="fas fa-info"></i>
         </button>
     </div>
