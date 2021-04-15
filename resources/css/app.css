@@ -41,6 +41,15 @@
     .height-28 {
         height: calc(100% - 28px);
     }
+    .text-center-last {
+        text-align-last: center;
+    }
+    .br-top-left {
+        border-top-left-radius: 12px;
+    }
+    .br-top-right {
+        border-top-right-radius: 12px;
+    }
 }
 body {
     @apply font-roboto text-gray-900 text-base
@@ -177,5 +186,8 @@ body {
 }
 .follow-count {
     @apply py-2 px-2 font-bold text-sm bg-green-150 text-green-550 rounded-2xl mr-2
+}
+.tag-filter-item {
+    @apply flex items-center px-4 py-2 text-sm hover:bg-green-550 hover:text-white
 }
 
