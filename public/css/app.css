@@ -185470,6 +185470,19 @@ select {
   height: calc(100% - 28px);
 }
 
+.text-center-last {
+  -moz-text-align-last: center;
+       text-align-last: center;
+}
+
+.br-top-left {
+  border-top-left-radius: 12px;
+}
+
+.br-top-right {
+  border-top-right-radius: 12px;
+}
+
 body {
   font-family: Roboto, sans-serif;
   font-size: 1rem;
@@ -186265,6 +186278,27 @@ body {
   padding-right: 0.5rem;
   --tw-text-opacity: 1;
   color: rgba(47, 178, 104, var(--tw-text-opacity))
+}
+
+.tag-filter-item:hover{
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity));
+}
+
+.tag-filter-item{
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.tag-filter-item:hover{
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 
 @media (min-width: 640px){
