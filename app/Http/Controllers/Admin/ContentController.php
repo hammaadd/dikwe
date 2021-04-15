@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class ContentController extends Controller
@@ -86,8 +87,45 @@ class ContentController extends Controller
         
     }
 
-    public function slider(Request $request){
+    public function slides(Request $request){
+        $slides = Slide::all();
+        return view('admin.slides.all',compact('slides'));
+    }
+
+    public function addSlide(Request $request){
+        $slide = new Slide;
+        $slide->order = $request->slide_no;
+        $slide->text = $request->text;
+        $res = $slide->save();
+        if($res){
+            $request->session()->flash('success', 'Slide Added Successfully');
+
+        }else{
+            $request->session()->flash('error', 'Unable To Add Slide');
+        }
+        return back();
+    }
+
+    public function editSlide(Request $request,Slide $slide){
+        switch($request->method()){
+            case ('PUT'):
+                $slide->order = $request->slide_no;
+                $slide->text = $request->text;
+                $res = $slide->update();
+                if($res){
+                    $request->session()->flash('success', 'Slide Updated Successfully');
         
-        return view('admin.content.all',compact('contents'));
+                }else{
+                    $request->session()->flash('error', 'Unable To Update Slide');
+                }
+                return back();
+                break;
+            case ('GET'):
+                return view('admin.slides.edit',compact('slide'));
+                break;
+
+            default :
+                return back();
+        }
     }
 }
