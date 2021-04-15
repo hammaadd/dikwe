@@ -32,22 +32,19 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-body">
-                    <form action="{{route('admin.add.feature')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{route('admin.add.faq')}}" method="POST">
                         @csrf
                         <div class="form-floating my-2">
                             <input type="number" class="form-control" min="0" required name="order">
-                            <label for="">Feature Order</label>
+                            <label for="">FAQ Order</label>
                         </div>
                         <div class="form-floating my-2">
-                            <textarea class="form-control" rows="10" name="text" id="text" requried></textarea>
-                            <label for="">Text</label>
+                            <input type="text" class="form-control" name="question" id="question">
+                            <label for="">Question ?</label>
                         </div>
-                        <div class="form-group">
-                            <label for="">Image</label>
-                            <input type="file" class="form-control" required id="image" name="image">     
-                        </div>
-                        <div class="form-group">
-                            <img id="showImage" src="" alt="" style="width:100%; height:auto;">
+                        <div class="form-floating my-2">
+                            <textarea class="form-control" rows="10" name="answer" id="answer" requried></textarea>
+                            <label for="">Answer</label>
                         </div>
                         <div class="form-group d-flex justify-content-end">
                             <button class="btn btn-primary btn-sm" type="submit">Add</button>
@@ -58,22 +55,40 @@
         </div>
     </div>
 </div>
+<div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">All Frequently Asked Questions</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <div class="list-group">
+                        @forelse($faqs as $faq)
+                            <div class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{$faq->question}}</h5>
+                                    <small>Last updated @if($faq->updated_at == null) {{($faq->created_at)->diffForHumans()}} @else {{($faq->updated_at)->diffForHumans()}} @endif</small>
+                                </div>
+                                <p class="mb-1">
+                                    {{$faq->answer}}
+                                </p>
+                                <small>Order # {{$faq->order}}</small>
+                                <div class="d-flex justify-content-end">
+                                    <a href="#" class="btn btn-warning btn-sm m-2">Edit</a>
+                                    <a href="#" class="btn btn-danger btn-sm m-2">Delete</a>
+                                </div>
+                            </div>
+                        @empty
+                            <p>No Faq's to show.</p>
+
+                        @endforelse
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </section>
-@endsection
-
-
-@section('scriptCode')
-<script>
-    function fasterPreview( uploader ) {
-        if ( uploader.files && uploader.files[0] ){
-              $('#showImage').attr('src',
-                 window.URL.createObjectURL(uploader.files[0]) );
-        }
-    }
-
-    $("#image").change(function(){
-        fasterPreview( this );
-    });
-
-</script>
 @endsection

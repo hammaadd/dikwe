@@ -79,7 +79,7 @@
 
                 <li class="sidebar-item has-sub {{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-brush"></i>
+                        <i class="bi bi-patch-question"></i>
                         <span>FAQ</span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'display:block;' : ''}}" >

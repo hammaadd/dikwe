@@ -95,6 +95,8 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
 
     //Frequently Asked Questions
     Route::get('/faqs','Admin\FaqController@faqs')->name('faqs');
+    Route::post('/add-faq','Admin\FaqController@addFaq')->name('add.faq');
+    Route::get('/edit-fq/{faq}','Admin\FaqController@editFaq')->name('edit.faq');
 });
 
 
