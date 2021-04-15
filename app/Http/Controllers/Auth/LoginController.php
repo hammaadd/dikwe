@@ -57,5 +57,13 @@ class LoginController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function showLoginForm()
+    {
+        return view('visitor.content.login');
+    }
+
+
+
+
 
 }

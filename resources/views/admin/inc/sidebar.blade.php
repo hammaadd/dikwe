@@ -21,21 +21,6 @@
                     </a>
                 </li>
 
-                {{-- <li class="sidebar-item {{Request::is('customer/*') ? 'active' : ''}} has-sub">
-                    <a href="#" class="sidebar-link ">
-                        <i class="bi bi-people"></i>
-                        <span>Customers</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="#">Add Customer</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="#">All Customers</a>
-                        </li>
-                    </ul>
-                </li> --}}
-
                 <li class="sidebar-title">Content Management</li>
 
                 <li class="sidebar-item has-sub {{Request::is('admin/manage-content') ? 'active' : ''}}">
@@ -77,13 +62,13 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub {{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'active' : ''}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-faqs')||Request::is('admin/edit-faq/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-patch-question"></i>
                         <span>FAQ</span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'display:block;' : ''}}" >
-                        <li class="submenu-item {{Request::is('admin/manage-features') ? 'active' : ''}}">
+                    <ul class="submenu" style="{{Request::is('admin/manage-faqs')||Request::is('admin/edit-faq/*') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-faqs') ? 'active' : ''}}">
                             <a href="{{route('admin.faqs')}}">Manage FAQ's</a>
                         </li>
 

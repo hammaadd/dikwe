@@ -75,8 +75,8 @@
                                 </p>
                                 <small>Order # {{$faq->order}}</small>
                                 <div class="d-flex justify-content-end">
-                                    <a href="#" class="btn btn-warning btn-sm m-2">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm m-2">Delete</a>
+                                    <a href="{{route('admin.edit.faq',$faq)}}" class="btn btn-warning btn-sm m-2">Edit</a>
+                                    <a href="{{route('admin.delete.faq',$faq)}}" onclick="return confirm('Do you really want to delete FAQ');" class="btn btn-danger btn-sm m-2">Delete</a>
                                 </div>
                             </div>
                         @empty
