@@ -54,6 +54,9 @@ Route::get('dashboard', function () {
 Route::get('tags', function () {
     return view('user.content.tags');
 })->name('tags');
+Route::get('workspaces', function () {
+    return view('user.content.workspaces');
+})->name('workspaces');
 
 Auth::routes();
 // Admin Routes
