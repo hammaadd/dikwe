@@ -48,9 +48,6 @@ Route::get('pricing', function () {
 Route::get('features', function () {
     return view('visitor.content.features');
 })->name('features');
-Route::get('dashboard', function () {
-    return view('user.content.dashboard');
-})->name('dashboard');
 Route::get('tags', function () {
     return view('user.content.tags');
 })->name('tags');
@@ -62,7 +59,9 @@ Auth::routes();
 
 Route::get('u/login','Auth\LoginController@showLoginForm')->name('login.form');
 Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
-    
+    Route::get('dashboard', function () {
+        return view('user.content.dashboard');
+    })->name('dashboard');
 });
 
 // Admin Routes
