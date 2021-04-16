@@ -16,7 +16,7 @@
 <section x-data="{open: false}">
 <div class="row my-2" >
     <div class="col-12 d-flex justify-content-end">
-        <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add new feature" >Add Fetaure <i class="bi bi-plus-circle"></i></button>
+        <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add new feature" >Add Feature <i class="bi bi-plus-circle"></i></button>
     </div>
 </div>
 <div class="row d-flex justify-content-center align-items-stretch" >
@@ -68,7 +68,7 @@
                             {{$feat->text}}
                         </p>
                         <small class="text-muted">Last updated @if($feat->updated_at == null) {{($feat->created_at)->diffForHumans()}} @else {{($feat->updated_at)->diffForHumans()}} @endif</small>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center align-items-end">
                             <a class="btn btn-warning btn-sm " href="{{route('admin.edit.feature',$feat)}}" data-bs-toggle="tooltip" title="Edit new feature">Edit <i class="bi bi-pen"></i></a>
                             <a class="btn btn-danger btn-sm mx-2" href="{{route('admin.delete.feature',$feat)}}" onclick="return confirm('Do you really want to delete the feature.');" data-bs-toggle="tooltip" title="Delete feature">Delete <i class="bi bi-trash"></i></a>
                         </div>

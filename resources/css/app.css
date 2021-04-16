@@ -190,4 +190,10 @@ body {
 .tag-filter-item {
     @apply flex items-center px-4 py-2 text-sm hover:bg-green-550 hover:text-white
 }
+.field-error{
+    @apply ring-2 ring-red-600;
+}
+.field-error-message{
+    @apply text-left text-red-600;
+}
 

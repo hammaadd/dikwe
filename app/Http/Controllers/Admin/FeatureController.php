@@ -53,7 +53,7 @@ class FeatureController extends Controller
 
     public function deleteImage(Request $request, Feature $feature){
 
-        if(null!=$feature->image){
+        if($feature->image){
             $image_path = "images/features/".$feature->image;
             if(File::exists($image_path)) {
                 File::delete($image_path);

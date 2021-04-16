@@ -21,9 +21,9 @@ Route::get('/', function () {
 Route::get('register', function () {
     return view('visitor.content.register');
 })->name('register');
-Route::get('/user/login', function () {
-    return view('visitor.content.login');
-})->name('user.login');
+// Route::get('/user/login', function () {
+//     return view('visitor.content.login');
+// })->name('user.login');
 Route::get('confirm-email', function () {
     return view('visitor.content.confirmEmail');
 })->name('confirm-email');
@@ -59,6 +59,12 @@ Route::get('workspaces', function () {
 })->name('workspaces');
 
 Auth::routes();
+
+Route::get('u/login','Auth\LoginController@showLoginForm')->name('login.form');
+Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+    
+});
+
 // Admin Routes
 Route::get('admin/login','Admin\AuthController@login')->name('admin.login.form');
 //Protected admin routes.
@@ -92,6 +98,14 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/delete-feature-image/{feature}','Admin\FeatureController@deleteImage')->name('delete.feature.image');
     Route::put('/update-feature/{feature}','Admin\FeatureController@updateFeature')->name('update.feature');
     Route::get('/delete-feature/{feature}','Admin\FeatureController@deleteFeature')->name('delete.feature');
+
+    //Frequently Asked Questions
+    Route::get('/manage-faqs','Admin\FaqController@faqs')->name('faqs');
+    Route::post('/add-faq','Admin\FaqController@addFaq')->name('add.faq');
+    Route::get('/edit-faq/{faq}','Admin\FaqController@editFaq')->name('edit.faq');
+    Route::put('/update-faq/{faq}','Admin\FaqController@updateFaq')->name('update.faq');
+    Route::get('/delete-faq/{faq}','Admin\FaqController@deleteFaq')->name('delete.faq');
+
 });
 
 
