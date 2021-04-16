@@ -51,5 +51,5 @@
 
 </div>
 <!-- cta -->
-<a href="{{route('login')}}" class="toggle hidden md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">LOGIN</a>
+<a href="{{route('login.form')}}" class="toggle hidden md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">LOGIN</a>
 </nav>

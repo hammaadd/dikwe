@@ -4,7 +4,7 @@
         <div class="w-full overflow-hidden lg:w-1/4">
             <!-- Column Content -->
             <div class="dash-title px-6 py-4 text-2xl">
-                <h2 class="font-bold">Dashboard</h2>
+                <h2 class="font-bold">@yield('page-title')</h2>
             </div>
         </div>
 
@@ -73,12 +73,16 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="#" class="dropdown-item">
+                            <a href="#" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();" class="dropdown-item">
                                 <i class="fas fa-sign-out-alt dropdown-item-icon"></i>
                                 <span class="ml-2">Logout</span>
                             </a>
                         </li>
                     </ul>
+                    <form id="logout-form" action="{{route('logout')}}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>

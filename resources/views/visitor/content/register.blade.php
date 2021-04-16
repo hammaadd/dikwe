@@ -1,4 +1,4 @@
-@extends('visitor.layout.visitorLayout')
+@extends('visitor.layout.visitorLayout') 
 @section('title','Create Your Account')
 @section('headerExtra')
 <link href="{{ asset('css/visitor.css') }}" rel="stylesheet">
@@ -14,30 +14,41 @@
                 <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-twitter social-icons"></a></li>
             </ul>
             <div class="separator font-roboto text-base text-lightblue-650 my-4">OR</div>
-            <form action="" class="mt-2 flex flex-col w-9/12 mx-auto text-center">
+            <form method="POST" action="{{ route('register') }}" class="mt-2 flex flex-col w-9/12 mx-auto text-center">
+                @csrf
                 <div class="my-2 relative rounded-xl shadow-md">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-user"></i>
                         </span>
                     </div>
-                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
+                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
                 </div>
+                @error('name')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+                @enderror
                 <div class="my-2 relative rounded-xl shadow-md">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-envelope"></i>
                         </span>
                     </div>
-                    <input type="email" name="name" id="name" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Email"/>
+                    <input type="email" name="email" id="email" class="@error('email') field-error @enderror block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Email" value="{{ old('email') }}" required autocomplete="email"/>
                 </div>
+                @error('email')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+                @enderror
                 <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-lock"></i>
                         </span>
                     </div>
-                    <input :type="show ? 'password' : 'text'" name="pass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Password"/>
+                    <input :type="show ? 'password' : 'text'" name="password" class="@error('password') field-error @enderror block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Password" required autocomplete="new-password"/>
                     <div class="absolute inset-y-0 right-0 pr-5 flex items-center">
                         <span class="text-xl">
                             <i class="text-green-550 fas fa-eye" @click="show = !show" :class="{'hidden-imp': !show, 'block':show }"></i>
@@ -45,13 +56,18 @@
                         </span>
                     </div>
                 </div>
+                @error('password')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+                @enderror
                 <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
                             <i class="fas fa-lock"></i>
                         </span>
                     </div>
-                    <input :type="show ? 'password' : 'text'" name="cpass" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Confirm Password"/>
+                    <input :type="show ? 'password' : 'text'" class="block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Confirm Password" name="password_confirmation" required autocomplete="new-password" id="password-confirm"/>
                     <div class="absolute inset-y-0 right-0 pr-5 flex items-center">
                         <span class="text-xl">
                             <i class="text-green-550 fas fa-eye" @click="show = !show" :class="{'hidden-imp': !show, 'block':show }"></i>
@@ -65,7 +81,7 @@
                     </button>
                 </div>
                 <div class="text-center my-5">
-                    <p class="font-roboto text-base text-gray-900">Already Have Account? <a href="{{ route('login') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">LOGIN!</a></p>
+                    <p class="font-roboto text-base text-gray-900">Already Have Account? <a href="{{ route('login.form') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">LOGIN!</a></p>
                 </div>
                 <div class="text-center my-5">
                     <p class="font-roboto text-base text-gray-900">By creating an account, you are agreeing to our <a href="#" class=" text-green-550 hover:border-b-2 hover:border-green-550">Terms of Service</a> and <a href="#" class=" text-green-550 hover:border-b-2 hover:border-green-550">Privacy Policy</a>.</p>
