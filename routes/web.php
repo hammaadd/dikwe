@@ -15,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('visitor.content.mainScreen');
-})->name('home');
+Route::get('/', 'VisitorController@homePage')->name('home');
+
 Route::get('register', function () {
     return view('visitor.content.register');
 })->name('register');
-// Route::get('/user/login', function () {
-//     return view('visitor.content.login');
-// })->name('user.login');
 Route::get('confirm-email', function () {
     return view('visitor.content.confirmEmail');
 })->name('confirm-email');
@@ -57,7 +53,15 @@ Route::get('workspaces', function () {
 
 Auth::routes();
 
-Route::get('u/login','Auth\LoginController@showLoginForm')->name('login.form');
+Route::prefix('u')->group(function(){
+    Route::get('/login','Auth\LoginController@showLoginForm')->name('login.form');
+    Route::post('/login','Auth\LoginController@login')->name('login');
+    Route::get('/register','Auth\RegisterController@showRegistrationForm')->name('register.form');
+    Route::post('/register','Auth\RegisterController@register')->name('register');
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
+
+});
+
 Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
     Route::get('dashboard', function () {
         return view('user.content.dashboard');

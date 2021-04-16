@@ -38,6 +38,7 @@
                     <a class="btn btn-secondary btn-sm d-block mt-3" href="{{route('admin.change.avatar')}}">Update Avatar <i class="bi bi-image"></i></a>
                 </div>
                 <div class="col-md-8 border-box col-12">
+                    
                     <ul class="list-group w-100">
                         <li
                             class="list-group-item d-flex justify-content-between align-items-center">
