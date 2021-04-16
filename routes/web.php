@@ -57,12 +57,15 @@ Route::get('tags', function () {
 Route::get('workspaces', function () {
     return view('user.content.workspaces');
 })->name('workspaces');
+Route::get('user-profile', function () {
+    return view('user.content.profile');
+})->name('user-profile');
 
 Auth::routes();
 
 Route::get('u/login','Auth\LoginController@showLoginForm')->name('login.form');
 Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
-    
+
 });
 
 // Admin Routes
