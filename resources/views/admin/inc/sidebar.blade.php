@@ -74,6 +74,18 @@
 
                     </ul>
                 </li>
+                <li class="sidebar-item has-sub {{Request::is('admin/manage-users')}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-file-easel"></i>
+                        <span>Manage User </span>
+                    </a>
+                    <ul class="submenu" style="{{Request::is('admin/manage-users') ? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/manage-users') ? 'active' : ''}}">
+                            <a href="{{route('admin.subscriber.all')}}">Manage Users</a>
+                        </li>
+
+                    </ul>
+                </li>
 
                 <li class="sidebar-title">Account</li>
 
