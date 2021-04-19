@@ -197,7 +197,7 @@ body {
     @apply text-left text-red-600;
 }
 .user-social-links .link {
-    @apply border-b border-gray-500 my-5 px-5
+    @apply border-b border-gray-500 my-6 px-5
 }
 .user-profile .field {
     @apply w-full font-roboto text-base text-gray-900 border-0 border-b border-gray-500 py-2 px-6 mt-3 ring-0 focus:border-green-550 focus:ring-0
