@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Contacts;
 use Illuminate\Http\Request;
 use App\Models\Subscriber;
 class VisitorController extends Controller
@@ -27,5 +27,28 @@ class VisitorController extends Controller
             session()->flash('error', 'Unable to subscribe try Again');
         }
         return back();
+    }
+    public function contactus(Request $request)
+    {
+      
+        $request->validate([
+            
+            'email' => 'email|required',
+            'message' => 'required'
+        ]);
+        $contactus = new Contacts;
+        $contactus->name = $request->name;
+        $contactus->email = $request->email;
+        $contactus->inquiry_type = $request->type;
+        $contactus->message = $request->message;
+        $res = $contactus->save();
+        if($res){
+            session()->flash('success', 'Profile Updated Successfully.');
+        }else{
+            session()->flash('error', 'Unable To Update Profile');
+        }
+
+    return back();
+
     }
 }
