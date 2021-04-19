@@ -196,4 +196,13 @@ body {
 .field-error-message{
     @apply text-left text-red-600;
 }
+.user-social-links .link {
+    @apply border-b border-gray-500 my-5 px-5
+}
+.user-profile .field {
+    @apply w-full font-roboto text-base text-gray-900 border-0 border-b border-gray-500 py-2 px-6 mt-3 ring-0 focus:border-green-550 focus:ring-0
+}
+.cancel-btn {
+    @apply bg-gray-500 text-white font-bold font-roboto text-base px-4 py-2 rounded-xl hover:bg-green-150 hover:text-gray-500 border-2 border-gray-500
+}
 
