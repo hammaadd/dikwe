@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'VisitorController@homePage')->name('home');
-
+Route::post('/subscribe', 'VisitorController@subscribe')->name('subscribe');
 Route::get('register', function () {
     return view('visitor.content.register');
 })->name('register');
@@ -108,7 +108,17 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-faq/{faq}','Admin\FaqController@editFaq')->name('edit.faq');
     Route::put('/update-faq/{faq}','Admin\FaqController@updateFaq')->name('update.faq');
     Route::get('/delete-faq/{faq}','Admin\FaqController@deleteFaq')->name('delete.faq');
-
+    // users manage 
+    Route::get('/subscriber/all','Admin\userManageController@index')->name('subscriber.all');
+    Route::get('/subscriber/delete/{subcriber}','Admin\userManageController@delete')->name('delete.subscribe');
+    // Short Codes
+    Route::get('/short-code/all','Admin\ScodeController@codes')->name('shortcode.all');
+    Route::post('/add-code','Admin\ScodeController@addCode')->name('add.code');
+    Route::get('/edit-scode/{scode}','Admin\ScodeController@editscode')->name('edit.code');
+    Route::put('/update-scode/{scode}','Admin\ScodeController@updatecode')->name('update.code');
+    Route::get('/delete-scode/{scode}','Admin\ScodeController@deletecode')->name('delete.code');
+    
+    
 });
 
 
