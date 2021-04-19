@@ -127,7 +127,8 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     // users management 
     Route::get('users/all','Admin\UsersController@users')->name('users.all'); 
     Route::post('change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
-   
+    Route::get('user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
+    
     Route::get('delete/user/{user}','Admin\UsersController@deleteuser')->name('delete.user');
     Route::get('deleted-users','Admin\UsersController@deleteduser')->name('deleted.user');
     Route::get('activateuser/{user}','Admin\UsersController@activateuser')->name('activate.user');

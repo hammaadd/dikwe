@@ -45,7 +45,7 @@
                                                 @endif
                                                 
                                                 @if($user->email_verified_at==NULL)
-                                                <a href="" class="btn btn-success mt-3 btn-sm" ><i class="bi bi-user-check"></i>Varify Email </a>
+                                                <a href="{{route('admin.user.verifyemail',$user)}}" class="btn btn-success mt-3 btn-sm" ><i class="bi bi-user-check"></i>Varify Email </a>
                                                 @endif
                                            </div >
                                            @if ($user->hasRole('user'))

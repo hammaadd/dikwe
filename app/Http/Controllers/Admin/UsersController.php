@@ -76,5 +76,20 @@ class UsersController extends Controller
         return redirect()->route('admin.deleted.user');
         
     }
+    public function verifyemail(Request $request, User $user)
+    {
+        if($user)
+        {
+            $user->email_verified_at = now();
+            $res = $user->update();
+            if($res){
+                $request->session()->flash('success', 'Email verified  successfully');
+            }else{
+                $request->session()->flash('error', 'Unable To verify the email ');
+            }
+            
+        }
+        return redirect()->route('admin.users.all');
+    }
 }
 
