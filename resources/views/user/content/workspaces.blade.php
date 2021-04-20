@@ -274,7 +274,7 @@
                         </div>
                         <div class="mt-8">
                             @for($i=0;$i<2;$i++)
-                                <x-bookmakrs-list />
+                                <x-bookmarks-list />
                             @endfor
                         </div>
                     </div>
