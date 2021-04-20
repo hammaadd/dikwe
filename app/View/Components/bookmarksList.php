@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class bookmakrsList extends Component
+class bookmarksList extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class bookmakrsList extends Component
      */
     public function render()
     {
-        return view('components.bookmakrs-list');
+        return view('components.bookmarks-list');
     }
 }
