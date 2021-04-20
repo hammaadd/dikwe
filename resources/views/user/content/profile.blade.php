@@ -1,6 +1,6 @@
 @extends('user.layout.userLayout')
-@section('title','Tags')
-@section('page-title','Tags')
+@section('title','User Profile')
+@section('page-title','User Profile')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <script src="{{ asset('js/profile.js') }}"></script>
