@@ -60,6 +60,9 @@ Route::get('workspaces', function () {
 Route::get('user-profile', function () {
     return view('user.content.profile');
 })->name('user-profile');
+Route::get('notes', function () {
+    return view('user.content.notes');
+})->name('notes');
 
 Auth::routes();
 
