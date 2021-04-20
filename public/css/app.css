@@ -185864,8 +185864,8 @@ body {
 
 .rating label {
   float: right;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
   --tw-text-opacity: 1;
   color: rgba(209, 213, 219, var(--tw-text-opacity));
   transition-property: all;
@@ -185916,6 +185916,7 @@ body {
 
 .tag{
   border-radius: 0.75rem;
+  cursor: pointer;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
   padding-left: 1rem;

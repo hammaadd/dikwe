@@ -121,7 +121,7 @@ body {
     @apply hidden
 }
 .rating label {
-    @apply text-xl text-gray-300 float-right transition-all
+    @apply text-base text-gray-300 float-right transition-all
 }
 .rating input:not(:checked) ~ label:hover,
 .rating input:not(:checked) ~ label:hover ~ label {
@@ -137,7 +137,7 @@ body {
     @apply flex flex-wrap justify-start items-center mt-3 mb-1
 }
 .tag {
-    @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl hover:bg-green-550 hover:text-white
+    @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl cursor-pointer hover:bg-green-550 hover:text-white
 }
 .nav--tabs {
     @apply my-3 py-1 pl-4 text-center text-white text-2xl hover:rounded-r-3xl hover:bg-white hover:text-green-550
