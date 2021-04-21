@@ -63,6 +63,9 @@ Route::get('user-profile', function () {
 Route::get('notes', function () {
     return view('user.content.notes');
 })->name('notes');
+Route::get('bookmarks', function () {
+    return view('user.content.bookmarks');
+})->name('bookmarks');
 
 Auth::routes();
 
