@@ -75,4 +75,9 @@ class RegisterController extends Controller
 
         return $user;
     }
+
+    public function showRegistrationForm()
+    {
+        return view('visitor.content.register');
+    }
 }

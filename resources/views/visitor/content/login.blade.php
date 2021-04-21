@@ -66,7 +66,7 @@
                     </button>
                 </div>
                 <div class="text-center my-5">
-                    <p class="font-roboto text-base text-gray-900">Don't Have Account? <a href="{{ route('register') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">Create Account!</a></p>
+                    <p class="font-roboto text-base text-gray-900">Don't Have Account? <a href="{{ route('register.form') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">Create Account!</a></p>
                 </div>
                 <div class="text-center my-5">
                     <p class="font-roboto text-base text-gray-900">By creating an account, you are agreeing to our <a href="#" class=" text-green-550 hover:border-b-2 hover:border-green-550">Terms of Service</a> and <a href="#" class=" text-green-550 hover:border-b-2 hover:border-green-550">Privacy Policy</a>.</p>
@@ -75,3 +75,4 @@
         </div>
     </div>
 @endsection
+

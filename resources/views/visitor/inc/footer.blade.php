@@ -14,7 +14,8 @@
                     <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-linkedin-in footer-icons"></a></li>
                 </ul>
                 <div class="mt-5">
-                    <form action="#" method="POST">
+                    <form action="{{route('subscribe')}}" method="POST">
+                        @csrf
                         <input type="email" name="email" id="user-email" class="flex-1 block w-full form--input" placeholder="user@email.com">
                         <div class="text-center my-3">
                             <button type="submit" class="form-btn">
