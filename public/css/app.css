@@ -186336,6 +186336,30 @@ body {
   color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
+.tab-item {
+  --tw-border-opacity: 1;
+  border-color: rgba(234, 247, 240, var(--tw-border-opacity));
+  border-bottom-width: 1px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  overflow: hidden;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-bottom: 0.75rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 40%
+}
+
+.active-network {
+  --tw-border-opacity: 1;
+  border-color: rgba(47, 178, 104, var(--tw-border-opacity));
+  border-bottom-width: 4px;
+  width: 12rem
+}
+
 @media (min-width: 640px){
   .sm\:h--70 {
     height: 70vh;
@@ -186385,5 +186409,6 @@ body {
     height: 60vh;
   }
 }
+
 
 
