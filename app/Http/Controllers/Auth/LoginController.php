@@ -51,14 +51,22 @@ class LoginController extends Controller
         if($user->hasRole('user')){
             session()->flash('success', 'Welcome Back '.Auth::user()->name);
 
-            return redirect()->route('dashboard');
+            return redirect()->route('u.dashboard');
         }
 
-        return redirect()->route('dashboard');
+        return redirect()->route('u.dashboard');
     }
 
     public function showLoginForm()
     {
+        if(Auth::user()){
+            $user = User::find(Auth::id());
+            if($user->hasRole('superadministrator')){
+                return redirect()->route('admin.dashboard');
+            }elseif($user->hasRole('user')){
+                return redirect()->route('u.dashboard');
+            }
+        }
         return view('visitor.content.login');
     }
 

@@ -132,7 +132,6 @@ class ProfileController extends Controller
         $imag = User::find(Auth::id());
                 if($imag->profile_img!= null){
                     $image_path =  public_path()."/adminassets/images/avatar/".$imag->profile_img;
-                    //dd($image_path);  // Value is not URL but directory file path
                     if(File::exists($image_path)) {
                        $del =  File::delete($image_path);
                     }
