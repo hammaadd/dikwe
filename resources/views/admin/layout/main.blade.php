@@ -29,7 +29,7 @@
     </div>
 
         @include('admin.inc.scripts')
-        @yield('scriptCode')
+        
         @include('admin.inc.toastify')
         <script>
                 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -45,5 +45,6 @@
             });
     
           </script>
+          @yield('scriptCode')
 </body>
 </html>
