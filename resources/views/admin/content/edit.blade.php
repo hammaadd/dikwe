@@ -10,8 +10,11 @@
     </ol>
 </nav>
 @endsection
-@section('summernote')
-@include('admin.inc.summernote')
+@section('summernotecss')
+<link rel="stylesheet" href="{{asset('adminassets/vendors/summernote/summernote-lite.min.css')}}">
+@endsection
+@section('summernotejs')
+<script src="{{asset('adminassets/vendors/summernote/summernote-lite.min.js')}}"></script>
 @endsection
 @section('content')
 <section class="row">
@@ -52,7 +55,7 @@
                                 
                                 <div class="form-group mt-4">
                                     <label>Content</label>
-                                    <textarea name="content" id="content-id" class="form-control">{!!$content->content!!}</textarea>
+                                    <textarea name="content" id="content-id" class="form-control" rows="5" cols="20">{!!$content->content!!}</textarea>
                                 </div>
                                 <div class="form-group d-flex justify-content-end">
                                     <button type="submit" class="btn btn-primary btn-sm">Update</button>
@@ -70,7 +73,7 @@
 <script>
     $(document).ready(function() {
     $('#content-id').summernote({
-        height:600,
+        height:400,
         toolbar: [
         ['style', ['bold', 'italic', 'underline', 'clear']],
         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -80,7 +83,7 @@
         ['height', ['height']],
        ['insert', ['link', 'picture', 'video']],
        ['view', ['fullscreen', 'codeview', 'help']],
-  ]
+  ],
   
     });
   });
