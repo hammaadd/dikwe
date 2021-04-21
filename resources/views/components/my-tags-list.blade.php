@@ -7,7 +7,7 @@
     </div>
     <div class="flex flex-wrap items-center">
         <span class="count-number mx-3 text-gray-400 font-bold ">20</span>
-        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 hover:bg-green-550 hover:text-white">
+        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 hover:bg-green-550 hover:text-white focus:outline-none">
             <i class="fas fa-pen"></i>
         </button>
     </div>
