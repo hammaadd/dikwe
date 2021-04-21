@@ -1,11 +1,11 @@
 @extends('admin.layout.main')
-@section('title','Subscribers')
-@section('heading','Subscribers')
-@section('desc','Manage Subscriber Who Subscribe us .')
+@section('title','Manage Users')
+@section('heading','Manage User ')
+@section('desc','Manage users Who use Application  .')
 @section('breadcrumbs')
 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Subscriber</li>
+        <li class="breadcrumb-item active" aria-current="page">Users</li>
     </ol>
 </nav>
 @endsection
@@ -24,8 +24,9 @@
                                 <thead>
                                     <tr>
                                         <th>Sr#</th>
+                                        <th>Name</th>
                                         <th>Email </th>
-                                        <th>Subcribe/Unsubcribe</th>
+                                        
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -33,16 +34,13 @@
                                 @forelse($users as $user)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
+                                        <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>
-                                            @if ($user->status=='1')
-                                                <span class="text-success">Subscribe</span>
-                                            @else
-                                                <span class="text-danger">Un Subscribe</span>
-                                            @endif
-                                        </td>
+                                       
                                         <td class="d-flex justify-content-center">
-                                            <a class="btn btn-danger btn-sm" href="{{route('admin.delete.subscribe',$user)}}" title="Delete" onclick="return confirm('Are You Sure ?')"><i class="bi bi-trash"></i></a>
+                                           <a href="{{route('admin.activate.user',$user)}}" class="btn btn-warning"> <i class="bi bi-upload"></i></a>
+                                          
+                                            
                                         </td>
                                     </tr>
                                 @empty
