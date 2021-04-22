@@ -105,6 +105,20 @@
 
                     </ul>
                 </li>
+                <li class="sidebar-item has-sub {{Request::is('admin/ayment-plans')}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-file-easel"></i>
+                        <span>Payment Plans </span>
+                    </a>
+                    <ul class="submenu" style="{{Request::is('admin/payment-plans') ? 'display:block;' : ''}}" >
+                        
+                        <li class="submenu-item {{Request::is('admin/payment-plans') ? 'active' : ''}}">
+                            <a href="{{route('admin.payment.plans')}}">Payment Plans</a>
+                        </li>
+                       
+
+                    </ul>
+                </li>
 
                 <li class="sidebar-title">Account</li>
 

@@ -16,7 +16,7 @@
                         <x-user-profile />
                     </div>
                 </div>
-
+                
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}

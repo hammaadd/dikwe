@@ -71,7 +71,7 @@ Route::prefix('u')->group(function(){
         return view('user.content.contactus');
     })->name('contactus');
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
-
+    Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
 });
 
 Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
@@ -142,6 +142,14 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
 
     Route::get('contactus/message','Admin\UserManageController@contactus')->name('contactus.message');
     Route::get('delete/contact/{contact}','Admin\UserManageController@deletecontact')->name('delete.contact');
+    // Payment Plans
+    Route::get('/payment-plans','Admin\PaymentController@all')->name('payment.plans');
+    // Route::get('/create/plans','Admin\PaymentController@create')->name('create.plan');
+    // Route::post('/store/plans','Admin\PaymentController@store')->name('store.plan');
+
+    Route::get('/edit-plans/{plan}','Admin\PaymentController@edit')->name('edit.plan');
+    Route::post('/update-plans/{plan}','Admin\PaymentController@update')->name('update.plan');
+    //Route::get('/delete-plans/{plan}','Admin\PaymentController@delete')->name('delete.plan');
 });
 
 
