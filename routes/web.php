@@ -62,6 +62,21 @@ Route::get('bookmarks', function () {
 Route::get('short-urls', function () {
     return view('user.content.shorturls');
 })->name('short-urls');
+Route::get('network', function () {
+    return view('user.content.network');
+})->name('network');
+Route::get('network-statistics', function () {
+    return view('user.content.network-statistics');
+})->name('network-statistics');
+Route::get('network-more-info', function () {
+    return view('user.content.network-more-info');
+})->name('network-more-info');
+Route::get('opened-notebook-gv', function () {
+    return view('user.content.opened-notebook-gv');
+})->name('opened-notebook-gv');
+Route::get('add-note', function () {
+    return view('user.content.add-note');
+})->name('add-note');
 
 
 
