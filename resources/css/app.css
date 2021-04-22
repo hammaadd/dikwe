@@ -211,5 +211,11 @@ body {
 .active-network {
     @apply border-green-550 border-b-4 w-48
 }
+.stat-count {
+    @apply py-2 px-2 font-bold text-base bg-white rounded-2xl mr-2
+}
+.user-social-links .info-link {
+    @apply my-3 px-5
+}
 
 
