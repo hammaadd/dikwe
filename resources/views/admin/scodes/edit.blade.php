@@ -1,5 +1,8 @@
 @extends('admin.layout.main')
 @section('desc','Manage frequently asked questions.')
+@section('title','Short Codes')
+@section('heading','Short Codes')
+@section('desc','Manage Short Codes.')
 @section('breadcrumbs')
 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
     <ol class="breadcrumb">
