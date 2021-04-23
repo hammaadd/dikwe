@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function country(){
         return $this->belongsTo(Country::class,'country_id');
     }
+    public function sociallinks(){
+        return $this->hasMany(SocialLink::class,'user_id');
+    }
 }

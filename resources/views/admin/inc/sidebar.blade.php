@@ -74,29 +74,29 @@
 
                     </ul>
                 </li>
-                <li class="sidebar-item has-sub {{Request::is('admin/manage-users')}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
                         <span>Manage User </span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/manage-users') ? 'display:block;' : ''}}" >
-                        <li class="submenu-item {{Request::is('admin/manage-users') ? 'active' : ''}}">
+                    <ul class="submenu" style="{{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/subscriber/all') ? 'active' : ''}}">
                             <a href="{{route('admin.subscriber.all')}}">Manage Users</a>
                         </li>
-                        <li class="submenu-item {{Request::is('admin/shortcode/all') ? 'active' : ''}}">
+                        <li class="submenu-item {{Request::is('admin/short-code/all') ? 'active' : ''}}">
                             <a href="{{route('admin.shortcode.all')}}">Short Codes</a>
                         </li>
 
                     </ul>
                 </li>
-                <li class="sidebar-item has-sub {{Request::is('admin/users')}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/users/all')|| Request::is('admin/deleted-users') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
                         <span>Users </span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/users') ? 'display:block;' : ''}}" >
+                    <ul class="submenu" style="{{Request::is('admin/users/all')||Request::is('admin/deleted-users') ? 'display:block;' : ''}}" >
                         
-                        <li class="submenu-item {{Request::is('admin/users') ? 'active' : ''}}">
+                        <li class="submenu-item {{Request::is('admin/users/all') ? 'active' : ''}}">
                             <a href="{{route('admin.users.all')}}">Users</a>
                         </li>
                         <li class="submenu-item {{Request::is('admin/deleted-users') ? 'active' : ''}}">
@@ -105,7 +105,7 @@
 
                     </ul>
                 </li>
-                <li class="sidebar-item has-sub {{Request::is('admin/ayment-plans')}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/payment-plans') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
                         <span>Payment Plans </span>

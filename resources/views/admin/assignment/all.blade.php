@@ -16,7 +16,7 @@
 <section x-data="{open: false}">
 <div class="row my-2" >
     <div class="col-12 d-flex justify-content-end">
-        <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add New Permission" > Assign Permission <i class="bi bi-plus-circle"></i></button>
+        {{-- <button class="btn btn-primary btn-sm" @click=" open= !open" data-bs-toggle="tooltip" title="Add New Permission" > Assign Permission <i class="bi bi-plus-circle"></i></button> --}}
     </div>
 </div>
 <div class="row d-flex justify-content-center align-items-stretch" >
@@ -87,8 +87,9 @@
                                 </td >
                                 <td class="d-flex justify-content-center">
                                     <a class="btn btn-warning btn-sm m-1" href="{{route('admin.edit.assignment',$role)}}" title="Edit"><i class="bi bi-pen"></i></a>
-                                   <a class="btn btn-danger btn-sm m-1" href="{{route('admin.delete.assignment',$role)}}" title="Delete" onclick="return confirm('Are You Sure ?')"><i class="bi bi-trash"></i></a>
-                                  
+                                    @if(count($role->permissions)>0)
+                                        <a class="btn btn-danger btn-sm m-1" href="{{route('admin.delete.assignment',$role)}}" title="Delete" onclick="return confirm('Are You Sure ?')"><i class="bi bi-trash"></i></a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

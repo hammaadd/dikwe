@@ -161,6 +161,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/assignment-list','Admin\AssignmentController@all')->name('assignment.list');
     Route::post('/assign-permission','Admin\AssignmentController@add')->name('assign.permission');
     Route::get('/edit-assignment/{role}','Admin\AssignmentController@edit')->name('edit.assignment');
+    Route::post('/update-assignment/{role}','Admin\AssignmentController@update')->name('update.assignment');
     Route::get('/delete-assignment/{role}','Admin\AssignmentController@delete')->name('delete.assignment');
     
     

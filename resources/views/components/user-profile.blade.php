@@ -23,24 +23,52 @@
             <input type="text" name="phone_no" id="" class="field" placeholder="Phone Number" @if(Auth::check()) value="{{Auth::user()->phone_no}}" @endif/>
         </div>
         <div class="w-full px-5">
-            <input type="text" name="" id="" class="field" placeholder="Location" @if(Auth::check()) value="{{Auth::user()->country->country}}" @endif/>
+            <input type="text" name="" id="" class="field" placeholder="Location" @if(Auth::check() && !(empty(Auth::user()->country)))  value="{{Auth::user()->country->country}}" @endif/>
         </div>
     </div>
+    @php
+        $user = Auth::user();
+        $userlinks = $user->sociallinks;
+    @endphp
     <div class="mt-8">
         <label for="social-links" class="pl-5">Social Links</label>
         <div class="px-5 mt-2 user-social-links">
             <div class="border border-green-550 rounded-xl">
                 <div class=" w-full px-10">
-                    <p class="link"><i class="fab fa-twitter text-green-550"></i><a href="#" class="pl-5">www.twitter.com</a></p>
+                    <p class="link"><i class="fab fa-twitter text-green-550"></i><input type="text" class="w-10/12 border-0 ring-0 focus:border-0 focus:ring-0" placeholder="www.twitter.com" name="twitterlink"
+                    @foreach ($userlinks as $link)
+                        @if ($link->type=='T')
+                            value="{{$link->url}}"
+                        @endif
+                    @endforeach    
+                    ></p>
                 </div>
                 <div class=" w-full px-10">
-                    <p class="link"><i class="fab fa-facebook-f text-green-550"></i><a href="#" class="pl-5">www.facebook.com</a></p>
+                    <p class="link"><i class="fab fa-facebook-f text-green-550"></i><input type="text" class="w-10/12 border-0 ring-0 focus:border-0 focus:ring-0" placeholder="www.facebook.com" name="facebooklink"
+                        @foreach ($userlinks as $link)
+                        @if ($link->type=='F')
+                            value="{{$link->url}}"
+                        @endif
+                    @endforeach     
+                    ></p>
                 </div>
                 <div class=" w-full px-10">
-                    <p class="link"><i class="fab fa-linkedin-in text-green-550"></i><a href="#" class="pl-5">www.linkedin.com</a></p>
+                    <p class="link"><i class="fab fa-linkedin-in text-green-550"></i><input type="text" class="w-10/12 border-0 ring-0 focus:border-0 focus:ring-0" placeholder="www.linkedin.com" name="linkedinlink"
+                        @foreach ($userlinks as $link)
+                        @if ($link->type=='L')
+                            value="{{$link->url}}"
+                        @endif
+                    @endforeach     
+                    ></p>
                 </div>
                 <div class=" w-full px-10">
-                    <p class="link"><i class="fas fa-globe text-green-550"></i><a href="#" class="pl-5">www.website.com</a></p>
+                    <p class="link"><i class="fas fa-globe text-green-550"></i><input type="text" class="w-10/12 border-0 ring-0 focus:border-0 focus:ring-0" placeholder="www.website.com" name="othersite"
+                        @foreach ($userlinks as $link)
+                        @if ($link->type=='O')
+                            value="{{$link->url}}"
+                        @endif
+                    @endforeach     
+                    ></p>
                 </div>
             </div>
         </div>

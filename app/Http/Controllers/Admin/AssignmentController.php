@@ -33,21 +33,42 @@ class AssignmentController extends Controller
         return back();
 
     }
-    public function edit(Request $request )
+    public function edit(Request $request,Role $role)
     {
+        $permissions = Permission::all();
+        return view('admin.assignment.edit',compact('role','permissions'));
+    }
+    public function update(Request $request ,Role $role)
+    {
+        
+        foreach($role->permissions as $permission)
+        {
+           $res =  $role->detachPermission($permission);
+        }
+        $permissions = $request->input('permission');
+        foreach($permissions as $per)
+        {
+         $role->permissions()->attach([$per]);
+        }
+        // if($res){
+            session()->flash('success', 'Permission assigned Successfully.');
+        // }else{
+        //     session()->flash('error', 'Unable To delete Permission');
+        // }
+        return redirect()->route('admin.assignment.list');
 
     }
     public function delete(Request $request,Role $role)
     {
         foreach($role->permissions as $permission)
         {
-           $res =  $role->detachPermission($permission);
+             $role->detachPermission($permission);
         }
-        if($res){
-        session()->flash('success', 'Permission deleted Successfully.');
-        }else{
-            session()->flash('error', 'Unable To delete Permission');
-        }
+        // if($res){
+            session()->flash('success', 'Permission deleted Successfully.');
+        // }else{
+        //     session()->flash('error', 'Unable To delete Permission');
+        // }
         return back();
 
     }
