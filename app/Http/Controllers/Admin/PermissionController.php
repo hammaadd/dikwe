@@ -55,13 +55,12 @@ class PermissionController extends Controller
     {
         if($permission)
         {
-            
-        $res = $permission->delete();
-        if($res){
-            $request->session()->flash('success', 'Permission deleted  Successfully!');
-        }else{
-            $request->session()->flash('error', 'Unable To delete Permission Try Later!');
-        }
+            $res = $permission->delete();
+            if($res){
+                $request->session()->flash('success', 'Permission deleted  Successfully!');
+            }else{
+                $request->session()->flash('error', 'Unable To delete Permission Try Later!');
+            }
         }
         return back();
     }
