@@ -18,7 +18,8 @@ class PermissionController extends Controller
             'name' =>'required|unique:permissions|max:191'
         ]);
         $permission = New Permission;
-        $permission->name = $request->name;
+        $name = str_replace(" ","-",$request->name);
+        $permission->name = $name;
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
         
@@ -39,7 +40,8 @@ class PermissionController extends Controller
         $request->validate([
             'name' =>'required|max:191'
         ]);
-        $permission->name = $request->name;
+        $name = str_replace(" ","-",$request->name);
+        $permission->name = $name;
         $permission->display_name = $request->display_name;
         $permission->description = $request->description;
         
