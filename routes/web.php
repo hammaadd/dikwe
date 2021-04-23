@@ -150,6 +150,15 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-plans/{plan}','Admin\PaymentController@edit')->name('edit.plan');
     Route::post('/update-plans/{plan}','Admin\PaymentController@update')->name('update.plan');
     //Route::get('/delete-plans/{plan}','Admin\PaymentController@delete')->name('delete.plan');
+    // Permission 
+    Route::get('/permissions','Admin\PermissionController@all')->name('all.permission');
+    Route::post('/add-permission','Admin\PermissionController@add')->name('add.permission');
+    Route::get('/edit-permission/{permission}','Admin\PermissionController@edit')->name('edit.permission');
+    Route::put('/update-permission/{permission}','Admin\PermissionController@update')->name('update.permission');
+    Route::get('/delete-permission/{permission}','Admin\PermissionController@delete')->name('delete.permission');
+    
+    
+  
 });
 
 
