@@ -156,6 +156,13 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-permission/{permission}','Admin\PermissionController@edit')->name('edit.permission');
     Route::put('/update-permission/{permission}','Admin\PermissionController@update')->name('update.permission');
     Route::get('/delete-permission/{permission}','Admin\PermissionController@delete')->name('delete.permission');
+    // Assigning the permission to roles 
+
+    Route::get('/assignment-list','Admin\AssignmentController@all')->name('assignment.list');
+    Route::post('/assign-permission','Admin\AssignmentController@add')->name('assign.permission');
+    Route::get('/edit-assignment/{role}','Admin\AssignmentController@edit')->name('edit.assignment');
+    Route::get('/delete-assignment/{role}','Admin\AssignmentController@delete')->name('delete.assignment');
+    
     
     
   

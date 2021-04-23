@@ -66,4 +66,5 @@ class PermissionController extends Controller
         }
         return back();
     }
+    
 }
