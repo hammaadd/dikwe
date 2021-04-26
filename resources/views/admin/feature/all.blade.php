@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <h4 class="card-title">Feature # {{$feat->order}}</h4>
                         <p class="card-text">
-                            {{$feat->text}}
+                            {!!$feat->text!!}
                         </p>
                         <small class="text-muted">Last updated @if($feat->updated_at == null) {{($feat->created_at)->diffForHumans()}} @else {{($feat->updated_at)->diffForHumans()}} @endif</small>
                         <div class="d-flex justify-content-center align-items-end">

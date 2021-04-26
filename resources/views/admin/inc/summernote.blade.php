@@ -1,2 +1,2 @@
-<link href="{{asset('adminassets/summernote/summernote-lite.min.css')}}" rel="stylesheet">
-    <script src="{{asset('adminassets/summernote/summernote-lite.min.js')}}"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js">
