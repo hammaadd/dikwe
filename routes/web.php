@@ -131,6 +131,12 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     // users manage 
     Route::get('/subscriber/all','Admin\UserManageController@index')->name('subscriber.all');
     Route::get('/subscriber/delete/{subcriber}','Admin\UserManageController@delete')->name('delete.subscribe');
+    Route::get('/subscriber/send-mail','Admin\UserManageController@sendmail')->name('subscriber.sendmail');
+    Route::post('/subscriber/send-mail','Admin\UserManageController@send_mail')->name('sendmail.subscriber');
+    
+    Route::get('/csvexport/subscribers','Admin\UserManageController@exportsubscriber')->name('export.subscriber');
+
+    
     // Short Codes
     Route::get('/short-code/all','Admin\ScodeController@codes')->name('shortcode.all');
     Route::post('/add-code','Admin\ScodeController@addCode')->name('add.code');

@@ -77,11 +77,14 @@
                 <li class="sidebar-item has-sub {{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
-                        <span>Manage User </span>
+                        <span>Subscriber</span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'display:block;' : ''}}" >
                         <li class="submenu-item {{Request::is('admin/subscriber/all') ? 'active' : ''}}">
-                            <a href="{{route('admin.subscriber.all')}}">Manage Users</a>
+                            <a href="{{route('admin.subscriber.all')}}">Subscribers</a>
+                        </li>
+                        <li class="submenu-item {{Request::is('admin/subscriber/send-mail') ? 'active' : ''}}">
+                            <a href="{{route('admin.subscriber.sendmail')}}">Send Mail </a>
                         </li>
                         <li class="submenu-item {{Request::is('admin/short-code/all') ? 'active' : ''}}">
                             <a href="{{route('admin.shortcode.all')}}">Short Codes</a>
