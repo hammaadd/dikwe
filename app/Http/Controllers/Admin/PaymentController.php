@@ -24,12 +24,14 @@ class PaymentController extends Controller
         $amount = $request->input('amount');
         $name = $request->input('name');
         $type = $request->input('type');
+        
         $features = $request->input('features');
         $features =  json_encode($features);
         $plans = new PaymentPlans;
         $plans->name = $name ;
         $plans->type = $type ;
-        $plans->amount = $amount ;
+        $plans->amount = $amount;
+        $plans->status = $request->status;
         $plans->features = $features ;
         $plans->created_by = Auth::id();
         $res = $plans->save();

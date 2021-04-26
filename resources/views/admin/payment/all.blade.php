@@ -32,6 +32,7 @@
                                         <th>Name</th>
                                         <th>Type</th>
                                         <th>Amount</th>
+                                        <th>Status</th>
                                         <th>Features</th>
                                         <th>Action </th>
                                     </tr>
@@ -43,6 +44,7 @@
                                         <td>{{$plan->name}}</td>
                                         <td>{{$plan->type}}</td>
                                         <td>{{$plan->amount}}</td>
+                                        <td>{{$plan->status}}</td>
                                         <td>
                                            @php
                                                $abc = json_decode($plan->features);

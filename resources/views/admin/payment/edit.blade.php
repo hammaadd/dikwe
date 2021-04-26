@@ -35,26 +35,26 @@
                                 @csrf
                            
                                 <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" name="name" id="name" value="{{$plan->name}}" >
-                                        <label>Name</label>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" name="name" id="name" value="{{$plan->name}}" >
+                                            <label>Name</label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-floating">
-                                       <select name="type" id="" class="form-control">
-                                           
-                                           <option value="monthly" @if ($plan->type=='monthly')
-                                               selected
-                                           @endif>Monthly </option>
-                                           <option value="yearly"  @if ($plan->type=='yearly')
-                                            selected
-                                        @endif>Yearly </option>
-                                       </select>
-                                        <label for="heading">Type</label>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-floating">
+                                        <select name="type" id="" class="form-control">
+                                            
+                                            <option value="monthly" @if ($plan->type=='monthly')
+                                                selected
+                                            @endif>Monthly </option>
+                                            <option value="yearly"  @if ($plan->type=='yearly')
+                                                selected
+                                            @endif>Yearly </option>
+                                        </select>
+                                            <label for="heading">Type</label>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                                 
                                 
@@ -65,6 +65,25 @@
                                             <label>Amount</label>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-floating">
+                                            <select name="status" id="" class="form-control">
+                                                
+                                                <option value="activate" 
+                                                    @if ($plan->status=='activate')
+                                                        selected
+                                                    @endif
+                                                >Activate </option>
+                                                <option value="deactivate" 
+                                                    @if ($plan->status=='deactivate')
+                                                        selected
+                                                    @endif
+                                                >De Activate</option>
+                                            </select>
+                                             <label for="heading">Status</label>
+                                         </div>
+                                    </div>
+                                    
                                     
                                 </div>
                                 <div class="row">

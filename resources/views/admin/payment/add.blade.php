@@ -50,6 +50,14 @@
                                        </select>
                                         <label for="heading">Type</label>
                                     </div>
+                                    <div class="form-floating">
+                                        <select name="status" id="" class="form-control">
+                                            
+                                            <option value="activate" >Activate </option>
+                                            <option value="deactivate"  >De Activate</option>
+                                        </select>
+                                         <label for="heading">Status</label>
+                                     </div>
                                 </div>
                                 </div>
                                 

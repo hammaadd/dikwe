@@ -38,9 +38,9 @@ Route::get('short-url-search', function () {
 Route::get('url-search-result', function () {
     return view('visitor.content.searchResult');
 })->name('url-search-result');
-Route::get('pricing', function () {
-    return view('visitor.content.pricing');
-})->name('pricing');
+// Route::get('pricing', function () {
+//     return view('visitor.content.pricing');
+// })->name('pricing');
 Route::get('features', function () {
     return view('visitor.content.features');
 })->name('features');
@@ -58,8 +58,11 @@ Route::get('notes', function () {
 })->name('notes');
 
 
+Route::get('pricing','VisitorController@pricing')->name('pricing');
 
-Auth::routes();
+// google Login
+Route::get('google/login','Auth\LoginController@googlelogin')->name('googlecallbacklogin');
+Auth::routes(['verify'=>true]);
 
 Route::prefix('u')->group(function(){
     Route::get('/login','Auth\LoginController@showLoginForm')->name('login.form');
@@ -70,6 +73,9 @@ Route::prefix('u')->group(function(){
      Route::get('contact-us', function () {
         return view('user.content.contactus');
     })->name('contactus');
+    Route::get('google-login','Auth\LoginController@redirectToProvoider')->name('google.login');
+    
+
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
 });
@@ -78,7 +84,7 @@ Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
 
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
-    })->name('dashboard');
+    })->name('dashboard')->middleware('verified');
 
 });
 
