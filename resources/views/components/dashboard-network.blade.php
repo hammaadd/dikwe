@@ -16,6 +16,6 @@
         @endfor
     </div>
     <div class="text-right px-4 pt-4">
-        <a href="#" class=" font-bold text-green-550 link-hover">Open Network</a>
+        <a href="{{route('network')}}" class=" font-bold text-green-550 link-hover">Open Network</a>
     </div>
 </div>

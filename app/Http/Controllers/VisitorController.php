@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Contacts;
 use Illuminate\Http\Request;
+use App\Models\Feature;
 use App\Models\Subscriber;
 use App\Models\PaymentPlans;
 class VisitorController extends Controller
@@ -11,7 +12,8 @@ class VisitorController extends Controller
 
     public function homePage(Request $request){
 
-        return view('visitor.content.mainScreen');
+        $features = Feature::orderBy('order','ASC')->get();
+        return view('visitor.content.mainScreen',compact('features'));
     }
     public function subscribe(Request $request)
     {

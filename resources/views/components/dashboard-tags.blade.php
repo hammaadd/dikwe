@@ -16,7 +16,7 @@
         @endfor
     </div>
     <div class="text-right px-4 pt-4">
-        <a href="#" class=" font-bold text-green-550 link-hover">Open All Tags</a>
+        <a href="{{route('tags')}}" class=" font-bold text-green-550 link-hover">Open All Tags</a>
     </div>
 </div>
 
