@@ -50,6 +50,15 @@ Route::get('tags', function () {
 Route::get('workspaces', function () {
     return view('user.content.workspaces');
 })->name('workspaces');
+Route::get('user-profile', function () {
+    return view('user.content.profile');
+})->name('user-profile');
+Route::get('notes', function () {
+    return view('user.content.notes');
+})->name('notes');
+Route::get('bookmarks', function () {
+    return view('user.content.bookmarks');
+})->name('bookmarks');
 
 
 
@@ -69,10 +78,11 @@ Route::prefix('u')->group(function(){
 });
 
 Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
     })->name('dashboard');
-   
+
 });
 
 // Admin Routes
