@@ -150,7 +150,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-faq/{faq}','Admin\FaqController@editFaq')->name('edit.faq');
     Route::put('/update-faq/{faq}','Admin\FaqController@updateFaq')->name('update.faq');
     Route::get('/delete-faq/{faq}','Admin\FaqController@deleteFaq')->name('delete.faq');
-    // users manage
+    // Subscribers
     Route::get('/subscriber/all','Admin\UserManageController@index')->name('subscriber.all');
     Route::get('/subscriber/delete/{subcriber}','Admin\UserManageController@delete')->name('delete.subscribe');
     Route::get('/subscriber/send-mail','Admin\UserManageController@sendmail')->name('subscriber.sendmail');
@@ -169,6 +169,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('users/all','Admin\UsersController@users')->name('users.all');
     Route::post('change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
     Route::get('user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
+    Route::get('export/allusers','Admin\UsersController@exportusers')->name('export.allusers');
 
     Route::get('delete/user/{user}','Admin\UsersController@deleteuser')->name('delete.user');
     Route::get('deleted-users','Admin\UsersController@deleteduser')->name('deleted.user');
