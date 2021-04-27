@@ -5,8 +5,8 @@
 <script src="{{ asset('js/alpine.min.js') }}" defer></script>
 @endsection
 @section('content')
-    <div class="visitor container mx-auto py-10">
-        <div class="w-full md:w-3/4 lg:w-1/2 mx-auto bg-green-150 text-center rounded-xl shadow-md p-8">
+    <div class="visitor container mx-auto p-4 md:py-10">
+        <div class="w-full md:w-3/4 lg:w-1/2 mx-auto bg-green-150 text-center rounded-xl shadow-md p-4 md:p-8">
             <h1 class="font-roboto font-bold text-gray-900 text-xl">Login With</h1>
             <ul class="text-center mt-4">
                 <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-google social-icons"></a></li>
@@ -14,7 +14,7 @@
                 <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-twitter social-icons"></a></li>
             </ul>
             <div class="separator font-roboto text-base text-lightblue-650 my-4">OR</div>
-            <form method="POST" action="{{ route('login') }}" class="mt-2 flex flex-col w-9/12 mx-auto text-center">
+            <form method="POST" action="{{ route('login') }}" class="mt-2 flex flex-col w-full max-w-md md:max-w-none md:w-9/12 mx-auto text-center">
                 @csrf
                 <div class="my-2 relative rounded-xl shadow-md">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <input type="email" name="email" id="email" class="block w-full font-roboto text-base text-gray-900 rounded-xl @error('email') field-error @enderror border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Email" required autocomplete="email" autofocus value="{{ old('email') }}"/>
-                    
+
                 </div>
                 @error('email')
                     <small class="field-error-message">

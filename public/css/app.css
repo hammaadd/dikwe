@@ -185373,6 +185373,10 @@ select {
   height: 60vh;
 }
 
+.min-w--16 {
+  min-width: 4rem;
+}
+
 .h--70 {
   height: 70vh;
 }
@@ -185472,12 +185476,19 @@ body {
   display: inline-block;
   font-family: "Roboto Slab", serif;
   font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity))
+}
+
+@media (min-width: 768px){
+  .banner-list{
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
 }
 
 .border--radius {
@@ -186389,6 +186400,10 @@ body {
   .sm\:h--60 {
     height: 60vh;
   }
+
+  .sm\:min-w--16 {
+    min-width: 4rem;
+  }
 }
 
 @media (min-width: 768px){
@@ -186398,6 +186413,10 @@ body {
 
   .md\:h--60 {
     height: 60vh;
+  }
+
+  .md\:min-w--16 {
+    min-width: 4rem;
   }
 }
 
@@ -186409,6 +186428,10 @@ body {
   .lg\:h--60 {
     height: 60vh;
   }
+
+  .lg\:min-w--16 {
+    min-width: 4rem;
+  }
 }
 
 @media (min-width: 1280px){
@@ -186419,6 +186442,10 @@ body {
   .xl\:h--60 {
     height: 60vh;
   }
+
+  .xl\:min-w--16 {
+    min-width: 4rem;
+  }
 }
 
 @media (min-width: 1536px){
@@ -186428,6 +186455,10 @@ body {
 
   .\32xl\:h--60 {
     height: 60vh;
+  }
+
+  .\32xl\:min-w--16 {
+    min-width: 4rem;
   }
 }
 

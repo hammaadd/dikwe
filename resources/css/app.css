@@ -10,6 +10,9 @@
         .h--60 {
             height: 60vh;
         }
+        .min-w--16 {
+            min-width: 4rem;
+        }
     }
     .h--70 {
         height: 70vh;
@@ -64,7 +67,7 @@ body {
     @apply w-2 h-2 shadow-lg ml-4 rounded-full inline-block
 }
 .banner-list {
-    @apply inline-block text-white font-bold text-xl mx-3 font-roboto-slab
+    @apply inline-block text-white font-bold text-sm md:text-xl mx-3 font-roboto-slab
 }
 .border--radius {
     @apply rounded-xl
