@@ -24,7 +24,7 @@
                     </div>
                     <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
                 </div>
-                @error('name')
+                @error('name') 
                     <small class="field-error-message">
                         <span>{{$message}}</span>
                     </small>
