@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
+use App\Mail\WelcomeMail;
+use Mail;
 class UsersController extends Controller
 {
     public function users()
@@ -81,7 +83,9 @@ class UsersController extends Controller
     {
         if($user)
         {
+            Mail::to($user->email)->send(new WelcomeMail());
             $user->email_verified_at = now();
+
             $res = $user->update();
             if($res){
                 $request->session()->flash('success', 'Email verified  successfully');

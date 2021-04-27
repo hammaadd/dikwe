@@ -84,6 +84,7 @@ Route::get('pricing','VisitorController@pricing')->name('pricing');
 
 // google Login
 Route::get('google/login','Auth\LoginController@googlelogin')->name('googlecallbacklogin');
+Route::get('user/verification','UserController@userverification')->name('user.verification');
 Auth::routes(['verify'=>true]);
 
 Route::prefix('u')->group(function(){
