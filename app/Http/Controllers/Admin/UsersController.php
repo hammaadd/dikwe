@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 class UsersController extends Controller
 {
     public function users()
@@ -90,6 +91,10 @@ class UsersController extends Controller
             
         }
         return redirect()->route('admin.users.all');
+    }
+    public function exportusers()
+    {
+        return Excel::download(new UsersExport, 'Users.csv');
     }
 }
 
