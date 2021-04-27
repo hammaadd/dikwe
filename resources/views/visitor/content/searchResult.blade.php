@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="w-full md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0">
-            <div class="result w-full rounded-xl shadow-md p-4 md:p-8 mb-4 md:mb-10">
+            <div  class="result w-full rounded-xl shadow-md p-4 md:p-8 mb-4 md:mb-10">
                 <span class="date text-sm md:text-base">12 April 2020</span>
                 <div class="flex items-center justify-between py-5 border-b-2 border-gray-300">
                     <div class="flex items-center">

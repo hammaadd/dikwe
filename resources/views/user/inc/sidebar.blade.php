@@ -1,5 +1,5 @@
 <div class="sidebar" x-data="{ isOpen:false}">
-    <div class="sidebar-mini fixed bg-green-550 w-24 h-full lg:h-screen py-8" x-show="!isOpen">
+    <div class="sidebar-mini hidden md:block fixed bg-green-550 w-24 h-full lg:h-screen py-8" x-show="!isOpen">
         <div class="text-center">
             <a href="{{route('user-profile')}}" class="block relative">
                 <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-white shadow-xl"/>
@@ -66,7 +66,7 @@
             </button>
         </div>
     </div>
-    <div class="sidebar-large absolute bg-white py-8 w-64 h-full lg:h-screen shadow-lg z-10"
+    <div class="sidebar-large hidden md:block absolute bg-white py-8 w-64 h-full lg:h-screen shadow-lg z-10"
         x-show="isOpen"
         x-transition:enter="transition-all transform ease-out"
         x-transition:enter-start="-translate-x-1/2 opacity-0"

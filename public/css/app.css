@@ -185377,6 +185377,18 @@ select {
   min-width: 4rem;
 }
 
+.min-w--20 {
+  min-width: 5rem;
+}
+
+.w-100-32 {
+  width: calc(100% - 32px);
+}
+
+.height-28 {
+  height: calc(100% - 28px);
+}
+
 .h--70 {
   height: 70vh;
 }
@@ -185854,8 +185866,8 @@ body {
   line-height: 1.5rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .input-search:focus{
@@ -185867,6 +185879,13 @@ body {
   --tw-text-opacity: 1;
   color: rgba(17, 24, 39, var(--tw-text-opacity));
   width: 100%;
+}
+
+@media (min-width: 1024px){
+  .input-search{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .rating input {
@@ -186055,6 +186074,14 @@ body {
   background-color: rgba(47, 178, 104, var(--tw-bg-opacity));
   border-top-right-radius: 1.5rem;
   border-bottom-right-radius: 1.5rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity))
+}
+
+.tab---active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(47, 178, 104, var(--tw-bg-opacity));
+  border-radius: 1.5rem;
   --tw-text-opacity: 1;
   color: rgba(255, 255, 255, var(--tw-text-opacity))
 }
@@ -186404,6 +186431,18 @@ body {
   .sm\:min-w--16 {
     min-width: 4rem;
   }
+
+  .sm\:min-w--20 {
+    min-width: 5rem;
+  }
+
+  .sm\:w-100-32 {
+    width: calc(100% - 32px);
+  }
+
+  .sm\:height-28 {
+    height: calc(100% - 28px);
+  }
 }
 
 @media (min-width: 768px){
@@ -186417,6 +186456,18 @@ body {
 
   .md\:min-w--16 {
     min-width: 4rem;
+  }
+
+  .md\:min-w--20 {
+    min-width: 5rem;
+  }
+
+  .md\:w-100-32 {
+    width: calc(100% - 32px);
+  }
+
+  .md\:height-28 {
+    height: calc(100% - 28px);
   }
 }
 
@@ -186432,6 +186483,18 @@ body {
   .lg\:min-w--16 {
     min-width: 4rem;
   }
+
+  .lg\:min-w--20 {
+    min-width: 5rem;
+  }
+
+  .lg\:w-100-32 {
+    width: calc(100% - 32px);
+  }
+
+  .lg\:height-28 {
+    height: calc(100% - 28px);
+  }
 }
 
 @media (min-width: 1280px){
@@ -186446,6 +186509,18 @@ body {
   .xl\:min-w--16 {
     min-width: 4rem;
   }
+
+  .xl\:min-w--20 {
+    min-width: 5rem;
+  }
+
+  .xl\:w-100-32 {
+    width: calc(100% - 32px);
+  }
+
+  .xl\:height-28 {
+    height: calc(100% - 28px);
+  }
 }
 
 @media (min-width: 1536px){
@@ -186459,6 +186534,18 @@ body {
 
   .\32xl\:min-w--16 {
     min-width: 4rem;
+  }
+
+  .\32xl\:min-w--20 {
+    min-width: 5rem;
+  }
+
+  .\32xl\:w-100-32 {
+    width: calc(100% - 32px);
+  }
+
+  .\32xl\:height-28 {
+    height: calc(100% - 28px);
   }
 }
 

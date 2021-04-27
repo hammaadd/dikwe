@@ -5,21 +5,21 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
-    <div class="p-5">
-        <div class="bg-green-150 rounded-xl p-8">
+    <div class="p-2 md:p-5 lg:p-2 xl:p-5">
+        <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
                     <!-- Column Content -->
                     {{-- Bookmarks Section --}}
-                    <div class="bg-white px-6 pt-10 rounded-xl h-full">
+                    <div class="bg-white px-2 md:px-6 pt-4 lg:pt-10 rounded-xl h-full">
                         <div class=" text-right">
                             <a href="#" class="btn-main">
                                 <i class="fas fa-plus-circle mr-2"></i> New Bookmark
                             </a>
                         </div>
-                        <div class="w-full flex flex-wrap justify-between relative mt-8" x-data="{ isOpen: false, fOpen: false }">
-                            <div class="w-1/2">
+                        <div class="w-full flex flex-wrap justify-between relative mt-6 lg:mt-8" x-data="{ isOpen: false, fOpen: false }">
+                            <div class="w-full md:w-1/2 px-2 md:px-0">
                                 <form action="" class="flex flex-col text-center">
                                     <div class="relative rounded-xl">
                                         <input type="text" name="name" class="input-search" placeholder="Search Bookmark"/>
@@ -31,7 +31,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div>
+                            <div class="mt-4 sm:mt-0 mx-auto md:mx-0">
                                 <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
                                     <i class="fas fa-list-ul text-xl align-middle"></i>
                                 </button>
@@ -54,7 +54,7 @@
                                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-10 top-10 z-20"
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-full md:right-10 md:top-10 z-20"
                             >
                                 <li>
                                     <a href="#" class="dropdown-item">
@@ -120,7 +120,7 @@
                                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-20 top-10 z-20">
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-0 top-full md:right-20 md:top-10 z-20">
                                 <p class="font-bold text-center">Filter By</p>
                                 <div class="flex flex-col border-b border-gray-500 py-6">
                                     <label class="items-center">
@@ -208,7 +208,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="mt-8">
+                        <div class="mt-4 md:mt-8">
                             @for($i=0;$i<2;$i++)
                                 <x-bookmarks-list />
                             @endfor
@@ -219,11 +219,11 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}
-                    <div class="bg-white px-6 py-5 rounded-xl">
+                    <div class="bg-white p-2 md:px-6 md:py-5 rounded-xl mt-4 lg:mt-0">
                         <x-skillar-banner/>
                     </div>
                     {{-- Network Section --}}
-                    <div class="bg-white px-6 py-5 rounded-xl mt-8">
+                    <div class="bg-white p-2 md:px-6 md:py-5 rounded-xl mt-4 md:mt-8">
                         <x-follow-people/>
                     </div>
                 </div>

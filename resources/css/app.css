@@ -13,6 +13,15 @@
         .min-w--16 {
             min-width: 4rem;
         }
+        .min-w--20 {
+            min-width: 5rem;
+        }
+        .w-100-32 {
+            width: calc(100% - 32px);
+        }
+        .height-28 {
+            height: calc(100% - 28px);
+        }
     }
     .h--70 {
         height: 70vh;
@@ -118,7 +127,7 @@ body {
     @apply font-roboto-slab font-bold text-xl text-lightblue-650 pt-2 pb-5 text-center
 }
 .input-search {
- @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-8 focus:border-green-550 focus:ring-green-550
+ @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-4 lg:px-8 focus:border-green-550 focus:ring-green-550
 }
 .rating input {
     @apply hidden
@@ -162,6 +171,9 @@ body {
 }
 .tab--active {
     @apply text-white bg-green-550 rounded-r-3xl
+}
+.tab---active {
+    @apply text-white bg-green-550 rounded-3xl
 }
 .notification-icon {
     @apply p-2 bg-green-150 text-xl shadow-md text-green-550 w-12 h-12 text-center rounded-xl hover:bg-green-550 hover:text-white

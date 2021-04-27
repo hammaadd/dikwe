@@ -1,6 +1,6 @@
-<div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-8 mb-10">
+<div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-2 md:p-8 mb-4 md:mb-10">
     <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
-        <span class="date">12 April 2020</span>
+        <span class="date text-sm md:text-base">12 April 2020</span>
         <button @click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
             <i class="fas fa-ellipsis-v text-xl align-middle"></i>
         </button>
@@ -49,10 +49,10 @@
     </div>
     <div class="flex items-center justify-between py-5 border-b border-gray-300">
         <div class="flex items-center">
-            <span class="w-1/5">
-                <img src="{{ asset('images/microsoft-icon.png') }}" class=" w-20 h-20 rounded-xl" alt="Microsoft Logo">
+            <span class="w-2/5 sm:w-1/5 lg:w-2/6 xl:w-1/5">
+                <img src="{{ asset('images/microsoft-icon.png') }}" class=" w-20 h-20 min-w--20 rounded-xl" alt="Microsoft Logo">
             </span>
-            <div class="w-4/5 flex flex-col">
+            <div class="w-3/5 sm:w-4/5 lg:w-4/6 xl:w-4/5 flex flex-col">
                 <span class="text-xl">
                     Microsoft Age Extensions
                 </span>
@@ -89,8 +89,8 @@
             <span class="tag">Workspace</span>
         </div>
         <div class="mt-4">
-            <div class="inline-block">
-                <div class="flex items-center space-x-2">
+            <div class="block sm:inline-block">
+                <div class="flex items-center justify-center space-x-2">
                     <a href="#" class="block relative">
                         <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-10 w-10 "/>
                     </a>
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="inline-block float-right">
+            <div class="block sm:inline-block text-center mt-4 sm:mt-0 sm:float-right">
                 <ul class="">
                     <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-xl text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count">12</span></li>
                     <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-xl text-green-550"><i class="fas fa-thumbs-down"></i></a><br><span class="count">2</span></li>
