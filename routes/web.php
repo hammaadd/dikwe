@@ -77,6 +77,9 @@ Route::get('opened-notebook-gv', function () {
 Route::get('add-note', function () {
     return view('user.content.add-note');
 })->name('add-note');
+Route::get('tag-bookmarks-lv', function () {
+    return view('user.content.tag-bookmarks-lv');
+})->name('tag-bookmarks-lv');
 
 
 
