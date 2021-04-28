@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\SocialLink;
+use App\Mail\WelcomeMail;
+use Mail;
 class UserController extends Controller
 {
     public function updateprofile(Request $request)
@@ -111,6 +113,11 @@ class UserController extends Controller
         }
 
     return back();
+    }
+    public function userverification()
+    {
+        Mail::to(Auth::user()->email)->send(new WelcomeMail());
+        return redirect()->route('u.dashboard');
     }
    
 }

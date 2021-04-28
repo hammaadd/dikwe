@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\WelcomeMail;
+use Mail;
 use Socialite;
 use App\Models\User;
 
@@ -107,11 +109,13 @@ class LoginController extends Controller
             $new_user->firstname = $user->user['given_name'];
             $new_user->lastname = $user->user['family_name'];
             $new_user->email_verified_at = now();
+
             if ($new_user->save()) {
+                Mail::to($new_user->email)->send(new WelcomeMail());
                 session()->flash('success', 'Profile Created successfully!');
                $new_user->attachRole('user');
                $new_user->attachRole('free');
-        
+                
                  Auth::login($new_user);
                  return redirect()->route('u.dashboard');
             } 
