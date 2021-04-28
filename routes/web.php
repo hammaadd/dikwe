@@ -76,8 +76,8 @@ Route::prefix('u')->group(function(){
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
 
 });
-
-Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+// Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+Route::prefix('u')->name('u.')->group(function () {
 
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
