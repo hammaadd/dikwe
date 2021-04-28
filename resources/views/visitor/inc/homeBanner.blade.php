@@ -12,10 +12,10 @@
     } ).mount();
 </script>
 @endsection
-<div class="top-banner bg-green-550 w-full max-w-full h--70 2xl:h--60">
-    <div class="container mx-auto pb-12">
+<div class="top-banner bg-green-550 w-full max-w-full lg:h--70 2xl:h--60">
+    <div class="container mx-auto pb-4 md:pb-12">
         <!-- Top Banner List -->
-        <div class="text-center">
+        <div class="text-center lg:text-right xl:text-center">
             <ul class="pt-4">
                 <li class="banner-list">Data <div class="bg-red-800 banner-dots"></div></li>
                 <li class="banner-list">Information <div class="bg-blue-900 banner-dots"></div></li>
@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="flex flex-wrap overflow-hidden pb-5">
-            <div class="w-full overflow-hidden lg:w-1/2 xl:w-1/2 md:h-80 2xl:h-96">
+            <div class="w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2 md:h-80 2xl:h-96">
                 <div class="splide relative">
                     <div class="splide__arrows absolute -bottom-8">
                         <button class="splide__arrow splide__arrow--prev">
@@ -39,26 +39,26 @@
                             </svg>
                         </button>
                     </div>
-                    
+
                     <div class="splide__track h-64 2xl:h-80">
                         <ul class="splide__list h-full justify-center items-center">
                             <li class="splide__slide text-center">
                                 <div>
-                                    <p class="text-white text-3xl leading-10 font-roboto-slab font-bold">
-                                        Save, organize and share your</br>Knowledge Assets in the cloud
+                                    <p class="text-white text-lg md:text-2xl lg:text-3xl px-4 leading-10 font-roboto-slab font-bold">
+                                        Save, organize and share your<br>Knowledge Assets in the cloud
                                     </p>
                                 </div>
                             </li>
                             <li class="splide__slide text-center">
                                 <div>
-                                    <p class="text-white text-3xl leading-10 font-roboto-slab font-bold">
-                                        All kinds of Knowledge Assets:</br>Bookmarks, Notes, Short URLs, Ideas
+                                    <p class="text-white text-lg md:text-2xl lg:text-3xl px-4 leading-10 font-roboto-slab font-bold">
+                                        All kinds of Knowledge Assets:<br>Bookmarks, Notes, Short URLs, Ideas
                                     </p>
                                 </div>
                             </li>
                             <li class="splide__slide text-center">
                                 <div>
-                                    <p class="text-white text-3xl leading-10 font-roboto-slab font-bold">
+                                    <p class="text-white text-lg md:text-2xl lg:text-3xl px-4 leading-10 font-roboto-slab font-bold">
                                         Get Informed Better..<br>Browse other user's knowledge<br>assets, follow them, subscribe to Tags
                                     </p>
                                 </div>
@@ -67,9 +67,9 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full overflow-hidden lg:w-1/2 xl:w-1/2">
-                <div class="justify-center items-center">
-                    <img class="w-2/3 mx-auto pt-3 pb-4" src="{{asset('images/Mask Group 15.svg')}}" alt="Top Banner Image">
+            <div class="w-full overflow-hidden md:w-1/2 lg:w-1/2 xl:w-1/2">
+                <div class="flex flex-col justify-between items-center px-4 pt-4 md:pt-12 lg:pt-0">
+                    <img class="w-full sm:w-2/3 mx-auto pt-3 pb-4" src="{{asset('images/Mask Group 15.svg')}}" alt="Top Banner Image">
                     <a href="{{ route('register') }}" class="md:flex w-max mx-auto btn-secondary">SIGN UP</a>
                 </div>
             </div>

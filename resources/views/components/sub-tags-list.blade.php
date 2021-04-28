@@ -1,4 +1,4 @@
-<div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between my-2 rounded-xl">
+<div class="w-full bg-white py-2 px-3 md:px-5 flex flex-wrap items-center justify-between my-2 rounded-xl">
     <div class="flex flex-wrap items-center">
         <span class=" w-3 h-3 rounded-full bg-green-550"></span>
         <label for="tag-name" class=" ml-2.5">

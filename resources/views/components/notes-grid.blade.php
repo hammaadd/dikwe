@@ -44,15 +44,15 @@
     <p class="px-2 py-5">
         note text note text note text note text note text note text note text note text note text
     </p>
-    <div class="flex flex-row justify-between">
+    <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
         <ul class="">
-            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
-            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-lg text-green-550"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
-            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-lg text-green-550"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
-            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-lg text-green-550"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
-            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-2 text-lg text-green-550"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
+            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
+            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
+            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
+            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
+            <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
         </ul>
-        <div class="rating">
+        <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
             <input type="radio" name="rate" id="rate-5">
             <label for="rate-5" class="fas fa-star"></label>
             <input type="radio" name="rate" id="rate-4">
@@ -65,8 +65,8 @@
             <label for="rate-1" class="fas fa-star"></label>
         </div>
     </div>
-    <div class="flex flex-row justify-between relative mt-5">
-        <span class="font-bold"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
+    <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
+        <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
         <span class="date text-sm">12 April 2020</span>
     </div>
 </div>
