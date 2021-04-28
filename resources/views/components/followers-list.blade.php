@@ -2,7 +2,7 @@
     <div class="flex flex-wrap items-center">
         <div class="w-full flex items-center">
             <a href="#" class="block relative">
-                <img alt="User Image" src="{{asset("images/Ellipse 179.png")}}" class="mx-auto object-cover rounded-full h-12 w-12 "/>
+                <img alt="User Image" src="{{asset("images/Ellipse 179.png")}}" class="mx-auto object-cover rounded-full h-12 w-12 lg:h-10 xl:h-12 lg:w-10 xl:w-12"/>
             </a>
             <div class="flex flex-col items-start ml-2">
                 <a href="#" class="">

@@ -10,6 +10,18 @@
         .h--60 {
             height: 60vh;
         }
+        .min-w--16 {
+            min-width: 4rem;
+        }
+        .min-w--20 {
+            min-width: 5rem;
+        }
+        .w-100-32 {
+            width: calc(100% - 32px);
+        }
+        .height-28 {
+            height: calc(100% - 28px);
+        }
     }
     .h--70 {
         height: 70vh;
@@ -64,7 +76,7 @@ body {
     @apply w-2 h-2 shadow-lg ml-4 rounded-full inline-block
 }
 .banner-list {
-    @apply inline-block text-white font-bold text-xl mx-3 font-roboto-slab
+    @apply inline-block text-white font-bold text-sm md:text-xl mx-3 font-roboto-slab
 }
 .border--radius {
     @apply rounded-xl
@@ -115,7 +127,7 @@ body {
     @apply font-roboto-slab font-bold text-xl text-lightblue-650 pt-2 pb-5 text-center
 }
 .input-search {
- @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-8 focus:border-green-550 focus:ring-green-550
+ @apply  block w-full bg-green-150 font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-4 lg:px-8 focus:border-green-550 focus:ring-green-550
 }
 .rating input {
     @apply hidden
@@ -160,6 +172,9 @@ body {
 .tab--active {
     @apply text-white bg-green-550 rounded-r-3xl
 }
+.tab---active {
+    @apply text-white bg-green-550 rounded-3xl
+}
 .notification-icon {
     @apply p-2 bg-green-150 text-xl shadow-md text-green-550 w-12 h-12 text-center rounded-xl hover:bg-green-550 hover:text-white
 }
@@ -197,10 +212,13 @@ body {
     @apply text-left text-red-600;
 }
 .user-social-links .link {
-    @apply border-b border-gray-500 my-6 px-5
+    @apply border-b border-gray-500 px-1 sm:px-5
 }
 .user-profile .field {
     @apply w-full font-roboto text-base text-gray-900 border-0 border-b border-gray-500 py-2 px-6 mt-3 ring-0 focus:border-green-550 focus:ring-0
+}
+.user-social-links .field {
+    @apply w-11/12 sm:w-10/12 font-roboto text-base text-gray-900 border-0 py-2 px-2 sm:px-6 mt-3 ring-0 focus:border-0; focus:ring-0
 }
 .cancel-btn {
     @apply bg-gray-500 text-white font-bold font-roboto text-base px-4 py-2 rounded-xl hover:bg-green-150 hover:text-gray-500 border-2 border-gray-500
@@ -215,7 +233,6 @@ body {
     @apply py-2 px-2 font-bold text-base bg-white rounded-2xl mr-2
 }
 .user-social-links .info-link {
-    @apply my-3 px-5
+    @apply my-3 px-2 md:px-5
 }
-
 
