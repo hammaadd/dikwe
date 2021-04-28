@@ -5,7 +5,7 @@ use App\Models\Contacts;
 use Illuminate\Http\Request;
 use App\Models\Feature;
 use App\Models\Subscriber;
-
+use App\Models\PaymentPlans;
 class VisitorController extends Controller
 {
     //
@@ -53,5 +53,10 @@ class VisitorController extends Controller
 
     return back();
 
+    }
+    public function pricing()
+    {
+        $plans = PaymentPlans::where('status','activate')->get();
+        return view('visitor.content.pricing',compact('plans'));
     }
 }

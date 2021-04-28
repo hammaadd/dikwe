@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
     use HasFactory, Notifiable;
@@ -51,5 +51,8 @@ class User extends Authenticatable
 
     public function country(){
         return $this->belongsTo(Country::class,'country_id');
+    }
+    public function sociallinks(){
+        return $this->hasMany(SocialLink::class,'user_id');
     }
 }

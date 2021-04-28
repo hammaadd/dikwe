@@ -9,7 +9,7 @@
         <div class="w-full md:w-3/4 lg:w-1/2 mx-auto bg-green-150 text-center rounded-xl shadow-md p-4 md:p-8">
             <h1 class="font-roboto font-bold text-gray-900 text-xl">Login With</h1>
             <ul class="text-center mt-4">
-                <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-google social-icons"></a></li>
+                <li class="inline-block mx-1"><a href="{{route('google.login')}}" target="_blank" class="fab fa-google social-icons"></a></li>
                 <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-facebook-f social-icons"></a></li>
                 <li class="inline-block mx-1"><a href="#" target="_blank" class="fab fa-twitter social-icons"></a></li>
             </ul>
@@ -50,8 +50,17 @@
                     </small>
                 @enderror
                 <div class="text-center my-5">
-                    <p class="font-roboto text-base text-gray-900"><a href="{{ route('forgot-password') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">Forgot Password?</a></p>
+                   
+                
+                
+                        @if (Route::has('password.request'))
+                        <a  href="{{ route('password.request') }}" class=" text-green-550 font-bold hover:border-b-2 hover:border-green-550">
+                            {{ __('Forgot Password?') }}
+                        </a>  @endif
+                    </p>
+              
                 </div>
+               
                 <div class="text-center my-2">
                 <div class="flex items-center justify-between">
                     <label class="flex items-center mx-auto">
