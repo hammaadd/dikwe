@@ -199,6 +199,10 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-assignment/{role}','Admin\AssignmentController@edit')->name('edit.assignment');
     Route::post('/update-assignment/{role}','Admin\AssignmentController@update')->name('update.assignment');
     Route::get('/delete-assignment/{role}','Admin\AssignmentController@delete')->name('delete.assignment');
+    // Notification routes
+    Route::get('/notification','Admin\UsersController@notification')->name('all.notifications');
+    Route::get('/read-notification','Admin\UsersController@readnotify')->name('read.notification');
+
     
     
     

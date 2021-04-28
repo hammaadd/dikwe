@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Auth;
 use Mail;
 class UsersController extends Controller
 {
@@ -99,6 +100,19 @@ class UsersController extends Controller
     public function exportusers()
     {
         return Excel::download(new UsersExport, 'Users.csv');
+    }
+    public function notification()
+    {
+        return view ('admin.notification.all');
+    }
+    public function readnotify(Request $request)
+    {
+       foreach(Auth::user()->notifications as $notification)
+       {
+           $notification->markAsRead();
+       }
+       $request->session()->flash('success', 'Notification Marked As Read Successfully');
+       return back();
     }
 }
 
