@@ -105,6 +105,8 @@ Route::prefix('u')->group(function(){
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
 });
 
+// Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+
 Route::prefix('u')->name('u.')->group(function () {
 
     Route::get('dashboard', function () {
