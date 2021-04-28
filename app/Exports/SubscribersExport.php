@@ -6,7 +6,7 @@ use App\Models\Subscriber;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class SubscribersExport implements FromCollection, WithHeadings
+class SubscribersExport implements FromCollection, WithHeadings,WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection

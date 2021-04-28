@@ -27,17 +27,12 @@
                     <a class="nav-link active dropdown-toggle" href="#" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         <i class='bi bi-bell bi-sub fs-4 text-gray-600'></i>
-                        
-                        <sup class="badge bg-info rounded-pill" @if(count(Auth::user()->unreadNotifications)==0) style="display:none;" @endif>{{count(Auth::user()->unreadNotifications)}}</sup>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                         <li>
-                            <h6 class="dropdown-header ">Notifications <span class="float-end"><a href="{{route('admin.all.notifications')}}" >View All</a></span></h6>
-                            
+                            <h6 class="dropdown-header">Notifications</h6>
                         </li>
-                        @foreach (Auth::user()->unreadNotifications as $notify)
-                        <li><a class="dropdown-item">{{$notify->data['data']}}</a></li>
-                        @endforeach
+                        <li><a class="dropdown-item">No notification available</a></li>
                     </ul>
                 </li>
             </ul>

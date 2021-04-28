@@ -10,7 +10,6 @@
 </nav>
 @endsection
 @section('alpineJs')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
 @section('content')
@@ -97,15 +96,4 @@
     </div>
 </div>
 </section>
-@endsection
-@section('scriptCode')
-<script>
-    $(document).ready(function() {
-        $('#contentTable').dataTable();
-    });
-</script>
-@endsection
-@section('extraScripts')
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 @endsection

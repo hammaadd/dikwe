@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Notifications\UserRegistered;
 
 class RegisterController extends Controller
 {
@@ -73,14 +72,7 @@ class RegisterController extends Controller
 
         $user->attachRole('user');
         $user->attachRole('free');
-        $users = User::all();
-        foreach($users as $admin)
-        {
-            if($admin->hasRole('superadministrator'))
-            {
-                $admin->notify(new UserRegistered);
-            }
-        }
+
 
         return $user;
     }

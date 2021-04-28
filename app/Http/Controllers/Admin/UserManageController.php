@@ -5,7 +5,6 @@ use App\Models\Contacts;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscriber;
-
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SubscribersExport;
 use App\Mail\SubscribeMail;
