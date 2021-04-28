@@ -1,6 +1,6 @@
 @extends('user.layout.userLayout')
-@section('title','Workspaces')
-@section('page-title','Workspaces')
+@section('title','Notes')
+@section('page-title','Notes')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
@@ -13,10 +13,10 @@
                     <!-- Column Content -->
                     {{-- Filter Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
-                        <x-workspaces-filter />
+                        <x-note-filters />
                         <div class="w-full pt-3" x-data="{ wsParent: false, wsChild: false, wsSubChild: false }">
                             @for($i=0;$i<5;$i++)
-                                <x-workspaces-list wsparent="Parent WS" wschild="Child WS" wssubchild="Sub-Child WS"/>
+                            <x-notes-list notename="Note Name"/>
                             @endfor
                         </div>
                         <div class="text-center pt-5">
@@ -29,73 +29,14 @@
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
-                        <div class="flex flex-wrap justify-between relative" x-data="{ isOpen: false }">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">13 Knowledge Assets</label></div>
-                            <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpen = !isOpen ">
-                                <i class="fas fa-plus-circle mr-2"></i> New
-                            </button>
-                            <ul
-                                x-show="isOpen"
-                                @click.away="isOpen = false"
-                                x-transition:enter="transition transform origin-top-right ease-out duration-200"
-                                x-transition:enter-start="opacity-0 scale-75"
-                                x-transition:enter-end="opacity-100 scale-100"
-                                x-transition:leave="transition transform origin-top-right ease-out duration-200"
-                                x-transition:leave-start="opacity-100 scale-100"
-                                x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-10 z-20"
-                            >
-                                <li class="border-b border-green-150">
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-tags dropdown-item-icon"></i>
-                                        <span class="ml-2">Create New Workspace</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-folder dropdown-item-icon"></i>
-                                        <span class="ml-2">Include A Sub Workspace</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-clipboard dropdown-item-icon"></i>
-                                        <span class="ml-2">Include A Notebook</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-star dropdown-item-icon"></i>
-                                        <span class="ml-2">include A Bookmark</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-link dropdown-item-icon"></i>
-                                        <span class="ml-2">Include A URL</span>
-                                    </a>
-                                </li>
-                            </ul>
+                        <div class="flex flex-wrap justify-between relative">
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">02 Notes</label></div>
                         </div>
-                        <div class="w-full lg:w-3/4 xl:w-3/4 mx-auto py-5 px-2">
-                            <form action="" class="flex flex-col text-center">
-                                <div class="relative rounded-xl">
-                                    <input type="text" name="name" class="input-search" placeholder="Search Any Open Tags"/>
-                                    <button class="absolute inset-y-0 right-0 px-4 flex items-center bg-green-550 rounded-xl">
-                                        <span class="text-xl">
-                                            <i class="text-white fas fa-search"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="w-full px-2 md:px-5 lg:px-2 xl:px-5 flex flex-wrap justify-between relative" x-data="{ isOpen: false, fOpen: false }">
-                            <div class="mx-auto md:mx-0">
-                                <button class="bg-green-150 text-gray-400 font-bold py-2 px-3 mx-2 rounded-xl hover:bg-green-550 hover:text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">Notes</span> <span class="counts md:ml-3">7</span></button>
-                                <button class="bg-green-150 text-gray-400 font-bold py-2 px-3 mx-2 rounded-xl hover:bg-green-550 hover:text-white focus:outline-none"><i class="fas fa-star mr-2"></i><span class="hidden xl:inline-block">Bookmarks</span> <span class="counts md:ml-3">2</span></button>
-                                <button class="bg-green-150 text-gray-400 font-bold py-2 px-3 mx-2 rounded-xl hover:bg-green-550 hover:text-white focus:outline-none"><i class="fas fa-link mr-2"></i><span class="hidden xl:inline-block">Short URLs</span> <span class="counts md:ml-3">3</span></button>
+                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5" x-data="{ isOpen: false, fOpen: false }">
+                            <div>
+                                <a href="{{ route('add-note') }}" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none"><i class="fas fa-plus-circle"></i></a>
                             </div>
-                            <div class="mt-2 sm:mt-0 mx-auto md:mx-0">
+                            <div>
                                 <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
                                     <i class="fas fa-list-ul text-xl align-middle"></i>
                                 </button>
@@ -123,55 +64,55 @@
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-plus-circle dropdown-item-icon"></i>
-                                        <span class="ml-2">Add New Bookmark Here</span>
+                                        <span class="ml-2">Add New Note Here</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-external-link-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Open All Bookmarks</span>
+                                        <span class="ml-2">Open All Note</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-share-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Share Bookmarks</span>
+                                        <span class="ml-2">Share Notes</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-tags dropdown-item-icon"></i>
-                                        <span class="ml-2">Tag Bookmarks</span>
+                                        <span class="ml-2">Tag Notes</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-tag dropdown-item-icon"></i>
-                                        <span class="ml-2">Untag Bookmarks</span>
+                                        <span class="ml-2">Untag Notes</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-lock dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Private</span>
+                                        <span class="ml-2">Make Notes Private</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-globe-americas dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Public</span>
+                                        <span class="ml-2">Make Notes Public</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-users dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Restricted</span>
+                                        <span class="ml-2">Make Notes Restricted</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-trash-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Delete Bookmarks</span>
+                                        <span class="ml-2">Delete Notes</span>
                                     </a>
                                 </li>
                             </ul>
@@ -273,9 +214,11 @@
                             </form>
                         </div>
                         <div class="mt-4 md:mt-8 px-2">
-                            @for($i=0;$i<2;$i++)
-                                <x-bookmarks-list />
-                            @endfor
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
+                                @for($i=0;$i<2;$i++)
+                                    <x-notes-grid />
+                                @endfor
+                            </div>
                         </div>
                     </div>
                 </div>

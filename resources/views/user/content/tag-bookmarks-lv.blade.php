@@ -1,6 +1,6 @@
 @extends('user.layout.userLayout')
-@section('title','Workspaces')
-@section('page-title','Workspaces')
+@section('title','Tags')
+@section('page-title','Tags')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
@@ -13,10 +13,10 @@
                     <!-- Column Content -->
                     {{-- Filter Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
-                        <x-workspaces-filter />
+                        <x-tag-filters />
                         <div class="w-full pt-3" x-data="{ wsParent: false, wsChild: false, wsSubChild: false }">
                             @for($i=0;$i<5;$i++)
-                                <x-workspaces-list wsparent="Parent WS" wschild="Child WS" wssubchild="Sub-Child WS"/>
+                                <x-tags-list tagname="Tag Name"/>
                             @endfor
                         </div>
                         <div class="text-center pt-5">
@@ -28,7 +28,7 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
-                    <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
+                    <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative" x-data="{ isOpen: false }">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">13 Knowledge Assets</label></div>
                             <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpen = !isOpen ">

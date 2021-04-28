@@ -50,6 +50,37 @@ Route::get('tags', function () {
 Route::get('workspaces', function () {
     return view('user.content.workspaces');
 })->name('workspaces');
+Route::get('user-profile', function () {
+    return view('user.content.profile');
+})->name('user-profile');
+Route::get('notes', function () {
+    return view('user.content.notes');
+})->name('notes');
+Route::get('bookmarks', function () {
+    return view('user.content.bookmarks');
+})->name('bookmarks');
+Route::get('short-urls', function () {
+    return view('user.content.shorturls');
+})->name('short-urls');
+Route::get('network', function () {
+    return view('user.content.network');
+})->name('network');
+Route::get('network-statistics', function () {
+    return view('user.content.network-statistics');
+})->name('network-statistics');
+Route::get('network-more-info', function () {
+    return view('user.content.network-more-info');
+})->name('network-more-info');
+Route::get('opened-notebook-gv', function () {
+    return view('user.content.opened-notebook-gv');
+})->name('opened-notebook-gv');
+Route::get('add-note', function () {
+    return view('user.content.add-note');
+})->name('add-note');
+Route::get('tag-bookmarks-lv', function () {
+    return view('user.content.tag-bookmarks-lv');
+})->name('tag-bookmarks-lv');
+
 
 
 
@@ -68,11 +99,12 @@ Route::prefix('u')->group(function(){
 
 });
 
-Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
+Route::prefix('u')->name('u.')->group(function () {
+
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
     })->name('dashboard');
-   
+
 });
 
 // Admin Routes
@@ -115,7 +147,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-faq/{faq}','Admin\FaqController@editFaq')->name('edit.faq');
     Route::put('/update-faq/{faq}','Admin\FaqController@updateFaq')->name('update.faq');
     Route::get('/delete-faq/{faq}','Admin\FaqController@deleteFaq')->name('delete.faq');
-    // users manage 
+    // users manage
     Route::get('/subscriber/all','Admin\UserManageController@index')->name('subscriber.all');
     Route::get('/subscriber/delete/{subcriber}','Admin\UserManageController@delete')->name('delete.subscribe');
     // Short Codes
@@ -124,11 +156,11 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::get('/edit-scode/{scode}','Admin\ScodeController@editscode')->name('edit.code');
     Route::put('/update-scode/{scode}','Admin\ScodeController@updatecode')->name('update.code');
     Route::get('/delete-scode/{scode}','Admin\ScodeController@deletecode')->name('delete.code');
-    // users management 
-    Route::get('users/all','Admin\UsersController@users')->name('users.all'); 
+    // users management
+    Route::get('users/all','Admin\UsersController@users')->name('users.all');
     Route::post('change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
     Route::get('user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
-    
+
     Route::get('delete/user/{user}','Admin\UsersController@deleteuser')->name('delete.user');
     Route::get('deleted-users','Admin\UsersController@deleteduser')->name('deleted.user');
     Route::get('activateuser/{user}','Admin\UsersController@activateuser')->name('activate.user');
