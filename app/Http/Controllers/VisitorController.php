@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Contacts;
 use Illuminate\Http\Request;
 use App\Models\Feature;
+use App\Models\User;
+use App\Notifications\Subscription;
 use App\Models\Subscriber;
-
+use App\Models\PaymentPlans;
 class VisitorController extends Controller
 {
     //
@@ -24,11 +26,21 @@ class VisitorController extends Controller
         $subscriber = new Subscriber;
         $subscriber->email = $request->input('email');
         $res = $subscriber->save();
+        
+        $users = User::all();
+        foreach($users as $admin)
+        {
+            if($admin->hasRole('superadministrator'))
+            {
+                $admin->notify(new Subscription);
+            }
+        }
         if($res){
             session()->flash('success', 'Thanks For subscribes.');
         }else{
             session()->flash('error', 'Unable to subscribe try Again');
         }
+        
         return back();
     }
     public function contactus(Request $request)
@@ -53,5 +65,10 @@ class VisitorController extends Controller
 
     return back();
 
+    }
+    public function pricing()
+    {
+        $plans = PaymentPlans::where('status','activate')->get();
+        return view('visitor.content.pricing',compact('plans'));
     }
 }

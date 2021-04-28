@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Auth;
+use Mail;
 class UsersController extends Controller
 {
     public function users()
@@ -80,7 +84,9 @@ class UsersController extends Controller
     {
         if($user)
         {
+            Mail::to($user->email)->send(new WelcomeMail());
             $user->email_verified_at = now();
+
             $res = $user->update();
             if($res){
                 $request->session()->flash('success', 'Email verified  successfully');
@@ -90,6 +96,23 @@ class UsersController extends Controller
             
         }
         return redirect()->route('admin.users.all');
+    }
+    public function exportusers()
+    {
+        return Excel::download(new UsersExport, 'Users.csv');
+    }
+    public function notification()
+    {
+        return view ('admin.notification.all');
+    }
+    public function readnotify(Request $request)
+    {
+       foreach(Auth::user()->notifications as $notification)
+       {
+           $notification->markAsRead();
+       }
+       $request->session()->flash('success', 'Notification Marked As Read Successfully');
+       return back();
     }
 }
 
