@@ -25,7 +25,7 @@
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-75">
         <div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between rounded-xl">
-            <div class="flex flex-wrap items-center pl-10">
+            <div class="flex flex-wrap items-center pl-2 md:pl-10">
                 <label for="tag-name">
                     {{$wschild}}
                 </label>
@@ -49,12 +49,12 @@
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-75">
             <div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between rounded-xl">
-                <div class="flex flex-wrap items-center pl-10">
+                <div class="flex flex-wrap items-center pl-2 md:pl-10">
                     <label for="tag-name">
                         {{$wssubchild}}
                     </label>
                 </div>
-                <div class="flex flex-wrap items-center pr-10">
+                <div class="flex flex-wrap items-center pr-2 md:pr-10">
                     <span class="count-number mx-3 text-gray-400 font-bold ">20</span>
                     <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 hover:bg-green-550 hover:text-white focus:outline-none">
                         <i class="fas fa-pen"></i>

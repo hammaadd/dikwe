@@ -17,6 +17,8 @@
     </div>
     {{-- <div class="grid grid-cols-1 md:grid-cols-2 mt-0 md:mt-5"> --}}
         {{-- <div class="w-full px-2 md:px-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-0 md:mt-5">
+        <div class="w-full px-2 md:px-5">
             <input type="email" name="" id="" class="field" placeholder="Email"/>
         </div>
         <div class="w-full px-2 md:px-5">
