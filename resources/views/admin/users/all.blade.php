@@ -20,6 +20,11 @@
                 <div class="card shadow-sm">
                     <div class="card-content">
                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a href="{{route('admin.export.allusers')}}" class="btn btn-success btn-sm float-end mb-3" title="Export All the User "><i class="bi bi-download"></i> CSV Export</a>
+                                </div>
+                            </div>
                             <table class="table table-bordered table-striped" id="contentTable">
                                 <thead>
                                     <tr>

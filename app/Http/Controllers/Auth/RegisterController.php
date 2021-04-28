@@ -71,6 +71,7 @@ class RegisterController extends Controller
         ]);
 
         $user->attachRole('user');
+        $user->attachRole('free');
 
 
         return $user;
