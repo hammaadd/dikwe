@@ -1,11 +1,11 @@
 @extends('admin.layout.main')
-@section('title','FAQ Management')
-@section('heading','FAQ Management')
-@section('desc','Manage frequently asked questions.')
+@section('title','Short Codes')
+@section('heading','Short Codes')
+@section('desc','Manage Short Codes.')
 @section('breadcrumbs')
 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">FAQ's</li>
+        <li class="breadcrumb-item active" aria-current="page">Short Code</li>
     </ol>
 </nav>
 @endsection

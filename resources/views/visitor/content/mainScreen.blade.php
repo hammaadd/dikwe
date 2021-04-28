@@ -2,76 +2,74 @@
 @section('title','Homepage')
 @section('content')
 @include('visitor.inc.homeBanner')
-<div class="container mx-auto py-12">
+<div class="container mx-auto p-4 md:py-10">
     <!-- Page Title Section -->
     <div class="text-center">
         <h2 class="page-title-primary">DIKWE FEATURES</h2>
     </div>
-    <!-- 1st Row Content-->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
     @forelse($features as $feat)
-
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 1st Column Content -->
-            <img src="{{asset('images/features/'.$feat->image)}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Keep all your knowledge<br>assets in the most<br>organized way
+            <img src="{{asset('images/features/'.$feat->image)}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Keep all your knowledge assets in the most organized way
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 2nd Column Content -->
-            <img src="{{asset('images/Group 513.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Save different kinds of<br>knowledge assets, notes, files,<br>tags, bookmarks..etc
+            <img src="{{asset('images/Group 513.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Save different kinds of knowledge assets, notes, files, tags, bookmarks..etc
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 3rd Column Content -->
-            <img src="{{asset('images/Group 514.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                See other user profiles<br>and use their<br>knowledge
+            <img src="{{asset('images/Group 514.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                See other user profiles and use their knowledge
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 1st Column Content -->
-            <img src="{{asset('images/Group 516.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Share your knowledge<br>assets on other platforms<br>with everyone
+            <img src="{{asset('images/Group 516.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Share your knowledge assets on other platforms with everyone
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 2nd Column Content -->
-            <img src="{{asset('images/Group 517.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Organize your<br>workspaces and make<br>others contribute
+            <img src="{{asset('images/Group 517.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Organize your workspaces and make others contribute
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 3rd Column Content -->
-            <img src="{{asset('images/Group 515.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Browse assets knowledge<br>and get thousands of tags<br>right here
+            <img src="{{asset('images/Group 515.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Browse assets knowledge and get thousands of tags right here
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 1st Column Content -->
-            <img src="{{asset('images/Group 518.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Search for any thing,<br>and start gaining much<br>knowledge
+            <img src="{{asset('images/Group 518.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Search for any thing, and start gaining much knowledge
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 2nd Column Content -->
-            <img src="{{asset('images/Group 519.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Keep track of every<br>knowledge asset<br>statistics
+            <img src="{{asset('images/Group 519.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Keep track of every knowledge asset statistics
             </p>
         </div>
-        <div class="w-full">
+        <div class="w-full flex flex-col justify-between">
             <!-- 3rd Column Content -->
-            <img src="{{asset('images/Group 520.png')}}" alt="">
-            <p class="font-normal font-roboto text-base 2xl:text-xl text-gray-900 text-center">
-                Save any knowledge<br>assets you want
+            <img src="{{asset('images/Group 520.png')}}" alt="" class=" max-h-96 mx-auto">
+            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
+                Save any knowledge assets<br>you want
                 {!!$feat->text!!}
             </p>
         </div>
@@ -80,10 +78,10 @@
     @endforelse
     </div>
     <!-- Bottome Button Section -->
-    <div class="text-center pt-10">
-    <a href="{{ route('register') }}" class="w-max mx-auto btn-main-large">
-        SIGN UP  <i class="fas fa-arrow-right ml-2"></i>
-    </a>
+    <div class="text-center pt-10 pb-4">
+        <a href="{{ route('register') }}" class="w-max mx-auto btn-main-large">
+            SIGN UP  <i class="fas fa-arrow-right ml-2"></i>
+        </a>
     </div>
 </div>
 @endsection
