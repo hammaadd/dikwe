@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
-    <div class="p-5">
-        <div class="bg-green-150 rounded-xl p-8">
+    <div class="p-2 md:p-5 lg:p-2 xl:p-5">
+        <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Filter Section --}}
-                    <div class="bg-white px-6 py-5 rounded-xl">
+                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
                         <x-note-filters />
                         <div class="w-full pt-3" x-data="{ wsParent: false, wsChild: false, wsSubChild: false }">
                             @for($i=0;$i<5;$i++)
@@ -28,12 +28,12 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
-                    <div class="bg-white pb-5 rounded-xl h-full">
+                    <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"">
                         <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-8 py-3 br-top-left"><label for="knowledge-assets">02 Notes</label></div>
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">02 Notes</label></div>
                         </div>
-                        <div class="w-full px-5 flex flex-wrap justify-between relative mt-5" x-data="{ isOpen: false, fOpen: false }">
-                            <a href="#" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
+                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5" x-data="{ isOpen: false, fOpen: false }">
+                            <a href="{{ route('add-note') }}" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                             <div>
@@ -59,7 +59,7 @@
                                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-10 top-10 z-20"
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-full md:right-10 md:top-10 z-20"
                             >
                                 <li>
                                     <a href="#" class="dropdown-item">
@@ -125,7 +125,7 @@
                                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-20 top-10 z-20">
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-0 top-full md:right-20 md:top-10 z-20">
                                 <p class="font-bold text-center">Filter By</p>
                                 <div class="flex flex-col border-b border-gray-500 py-6">
                                     <label class="items-center">
@@ -213,8 +213,8 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="mt-8">
-                            <div class="bg-white rounded-xl shadow-md p-5 w-10/12 mx-auto">
+                        <div class=" mt-4 md:mt-8 px-2 md:px-0">
+                            <div class="bg-white rounded-xl shadow-md p-2 md:p-5 w-full md:w-10/12 mx-auto">
                                 <div class="flex flex-row items-center relative" x-data="{ nColor: false }">
                                     <button @click=" nColor = !nColor " class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8">
                                         <div class="w-4 h-4 rounded-full bg-green-550 inline-block"></div>
@@ -247,17 +247,17 @@
                                         <i class="far fa-times-circle text-gray-400"></i>
                                     </button> --}}
                                 </div>
-                                <div class="p-5">
+                                <div class="md:p-5">
                                     <textarea name="" id="" rows="5" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea>
                                 </div>
-                                <div class=" text-right">
+                                <div class=" text-center md:text-right pb-2 md:pb-0">
                                     <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>
                                     <button class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">More Info</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-8 pb-5">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-10/12 mx-auto">
+                        <div class="mt-4 md:mt-8 md:pb-5 px-2 md:px-0">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
                                 @for($i=0;$i<2;$i++)
                                     <x-notes-grid />
                                 @endfor
