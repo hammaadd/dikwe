@@ -53,6 +53,45 @@ Route::get('workspaces', function () {
 
 
 
+Route::get('user-profile', function () {
+    return view('user.content.profile');
+})->name('user-profile');
+Route::get('notes', function () {
+    return view('user.content.notes');
+})->name('notes');
+Route::get('bookmarks', function () {
+    return view('user.content.bookmarks');
+})->name('bookmarks');
+Route::get('short-urls', function () {
+    return view('user.content.shorturls');
+})->name('short-urls');
+Route::get('network', function () {
+    return view('user.content.network');
+})->name('network');
+Route::get('network-statistics', function () {
+    return view('user.content.network-statistics');
+})->name('network-statistics');
+Route::get('network-more-info', function () {
+    return view('user.content.network-more-info');
+})->name('network-more-info');
+Route::get('opened-notebook-gv', function () {
+    return view('user.content.opened-notebook-gv');
+})->name('opened-notebook-gv');
+Route::get('add-note', function () {
+    return view('user.content.add-note');
+})->name('add-note');
+Route::get('tag-bookmarks-lv', function () {
+    return view('user.content.tag-bookmarks-lv');
+})->name('tag-bookmarks-lv');
+
+
+
+Route::get('pricing','VisitorController@pricing')->name('pricing');
+
+// google Login
+Route::get('google/login','Auth\LoginController@googlelogin')->name('googlecallbacklogin');
+Route::get('user/verification','UserController@userverification')->name('user.verification');
+// Auth::routes(['verify'=>true]);
 Auth::routes();
 
 Route::prefix('u')->group(function(){
@@ -73,6 +112,11 @@ Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
         return view('user.content.dashboard');
     })->name('dashboard');
    
+
+    // Route::get('dashboard', function () {
+    //     return view('user.content.dashboard');
+    // })->name('dashboard')->middleware('verified');
+
 });
 
 // Admin Routes

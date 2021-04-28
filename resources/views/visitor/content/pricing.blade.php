@@ -32,8 +32,12 @@
                 </div>
             </div>
         </div>
+<<<<<<< Updated upstream
 
         <div class="w-full overflow-hidden lg:my-8 lg:px-8 lg:w-1/3 xl:my-8 xl:px-8 xl:w-1/3">
+=======
+        <div class="w-full overflow-hidden md:h-full mt-4 md:my-4 md:px-4 md:w-1/3 lg:my-8 lg:px-8 lg:w-1/3">
+>>>>>>> Stashed changes
             <!-- Premium Plan Content -->
             <div class="border-2 border-green-550 rounded-xl py-6 px-10">
                 <h2 class="page-title-secondary text-center">
