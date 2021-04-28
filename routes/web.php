@@ -80,6 +80,12 @@ Route::get('add-note', function () {
 Route::get('tag-bookmarks-lv', function () {
     return view('user.content.tag-bookmarks-lv');
 })->name('tag-bookmarks-lv');
+Route::get('add-bookmark', function () {
+    return view('user.content.add-bookmark');
+})->name('add-bookmark');
+Route::get('workspace-info', function () {
+    return view('user.content.workspace-info');
+})->name('workspace-info');
 
 
 
