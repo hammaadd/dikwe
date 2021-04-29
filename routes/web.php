@@ -152,6 +152,9 @@ Route::get('add-note-tags', function () {
 Route::get('include-shorturl-tag', function () {
     return view('user.content.include-shorturl-tag');
 })->name('include-shorturl-tag');
+Route::get('notifications', function () {
+    return view('user.content.notifications');
+})->name('notifications');
 
 
 
