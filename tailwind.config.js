@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         green: {
           '150': '#EAF7F0',
+          '250': '#C1E8D2',
           '550': '#2fb268'
         },
         lightblue: {

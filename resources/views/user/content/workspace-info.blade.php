@@ -3,15 +3,6 @@
 @section('page-title','Workspaces')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endsection
-@section('bodyExtra')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.multiple-select').select2();
-        });
-    </script>
 @endsection
 @section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
@@ -37,7 +28,7 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
-                    <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
+                    <div class=" bg-green-250 pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="workspace-info"><i class="fas fa-cog mr-2"></i>Workspace Info</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
