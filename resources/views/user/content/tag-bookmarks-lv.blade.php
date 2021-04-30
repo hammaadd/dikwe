@@ -48,19 +48,13 @@
                                 <li class="border-b border-green-150">
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-tags dropdown-item-icon"></i>
-                                        <span class="ml-2">Create New Workspace</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-folder dropdown-item-icon"></i>
-                                        <span class="ml-2">Include A Sub Workspace</span>
+                                        <span class="ml-2">Create New Tag</span>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#" class="dropdown-item">
                                         <i class="fas fa-clipboard dropdown-item-icon"></i>
-                                        <span class="ml-2">Include A Notebook</span>
+                                        <span class="ml-2">Include A Note</span>
                                     </a>
                                 </li>
                                 <li>

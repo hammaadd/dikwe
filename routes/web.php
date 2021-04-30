@@ -83,6 +83,81 @@ Route::get('add-note', function () {
 Route::get('tag-bookmarks-lv', function () {
     return view('user.content.tag-bookmarks-lv');
 })->name('tag-bookmarks-lv');
+Route::get('add-bookmark', function () {
+    return view('user.content.add-bookmark');
+})->name('add-bookmark');
+Route::get('workspace-info', function () {
+    return view('user.content.workspace-info');
+})->name('workspace-info');
+Route::get('notes-info', function () {
+    return view('user.content.notes-info');
+})->name('notes-info');
+Route::get('network-profile-tags', function () {
+    return view('user.content.network-profile-tags');
+})->name('network-profile-tags');
+Route::get('network-profile-notes', function () {
+    return view('user.content.network-profile-notes');
+})->name('network-profile-notes');
+Route::get('tag-info', function () {
+    return view('user.content.tag-info');
+})->name('tag-info');
+Route::get('add-notebook', function () {
+    return view('user.content.add-notebook');
+})->name('add-notebook');
+Route::get('workspace-collapse', function () {
+    return view('user.content.workspace-collapse');
+})->name('workspace-collapse');
+Route::get('opened-bookmarks', function () {
+    return view('user.content.opened-bookmarks');
+})->name('opened-bookmarks');
+Route::get('short-url-info', function () {
+    return view('user.content.short-url-info');
+})->name('short-url-info');
+Route::get('tag-bookmarks-gv', function () {
+    return view('user.content.tag-bookmarks-gv');
+})->name('tag-bookmarks-gv');
+Route::get('add-short-url', function () {
+    return view('user.content.add-short-url');
+})->name('add-short-url');
+Route::get('network-tags-info', function () {
+    return view('user.content.network-tags-info');
+})->name('network-tags-info');
+Route::get('add-workspace', function () {
+    return view('user.content.add-workspace');
+})->name('add-workspace');
+Route::get('bookmark-info', function () {
+    return view('user.content.bookmark-info');
+})->name('bookmark-info');
+Route::get('note-info', function () {
+    return view('user.content.note-info');
+})->name('note-info');
+Route::get('include-bookmark-tags', function () {
+    return view('user.content.include-bookmark-tags');
+})->name('include-bookmark-tags');
+Route::get('opened-notebook-lv', function () {
+    return view('user.content.opened-notebook-lv');
+})->name('opened-notebook-lv');
+Route::get('add-tag', function () {
+    return view('user.content.add-tag');
+})->name('add-tag');
+Route::get('tag-notebooks-lv', function () {
+    return view('user.content.tag-notebooks-lv');
+})->name('tag-notebooks-lv');
+Route::get('tag-shorturl-lv', function () {
+    return view('user.content.tag-shorturl-lv');
+})->name('tag-shorturl-lv');
+Route::get('edit-note-info', function () {
+    return view('user.content.edit-note-info');
+})->name('edit-note-info');
+Route::get('add-note-tags', function () {
+    return view('user.content.add-note-tags');
+})->name('add-note-tags');
+Route::get('include-shorturl-tag', function () {
+    return view('user.content.include-shorturl-tag');
+})->name('include-shorturl-tag');
+Route::get('notifications', function () {
+    return view('user.content.notifications');
+})->name('notifications');
 
 
 

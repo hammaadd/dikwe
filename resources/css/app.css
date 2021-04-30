@@ -62,6 +62,49 @@
     .br-top-right {
         border-top-right-radius: 12px;
     }
+    .select2-container--default .select2-selection--multiple {
+        border: none !important;
+        background: transparent !important;
+    }
+    .select2-container {
+        width: 100% !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: white !important;
+        border: none !important;
+        border-radius: 15px !important;
+        box-sizing: border-box !important;
+        display: inline-block !important;
+        margin-left: 8px !important;
+        margin-top: 5px !important;
+        padding: 5px 8px !important;
+        padding-left: 8px !important;
+        padding-right: 32px !important;
+        position: relative !important;
+        max-width: 100% !important;
+        min-width: fit-content;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        vertical-align: bottom !important;
+        white-space: nowrap !important;
+    }
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        background-color: transparent !important;
+        border: 1px solid red !important;
+        border-radius: 15px !important;
+        color: red !important;
+        cursor: pointer !important;
+        font-size: 18px !important;
+        line-height: 18px !important;
+        font-weight: bold !important;
+        position: absolute !important;
+        height: 20px !important;
+        width: 20px !important;
+        text-align: center !important;
+        left: auto !important;
+        right: 8px !important;
+        top: 7px !important;
+    }
 }
 body {
     @apply font-roboto text-gray-900 text-base
@@ -234,5 +277,41 @@ body {
 }
 .user-social-links .info-link {
     @apply my-3 px-2 md:px-5
+}
+.input--field {
+    @apply bg-green-150 p-2 md:px-5 my-2 md:my-4 rounded-xl w-full border-0 focus:border-0 focus:ring-green-550
+}
+.input---field {
+    @apply bg-green-150 p-2 md:px-5 my-2 rounded-xl w-full border-0 focus:border-0 focus:ring-green-550
+}
+.input--f {
+    @apply bg-green-150 p-2 md:px-5 my-2 md:my-4 rounded-xl border-0 focus:border-0 focus:ring-green-550
+}
+.btn-green {
+    @apply bg-green-550 border-2 border-green-550 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-transparent hover:text-green-550
+}
+.btn-gray {
+    @apply bg-gray-400 border-2 border-gray-400 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-transparent hover:text-gray-400
+}
+.ws-tab-item {
+    @apply inline-block p-2 mx-1 rounded-xl text-center text-sm cursor-pointer overflow-hidden overflow-ellipsis whitespace-nowrap
+}
+.ws-tab-active {
+    @apply w-48
+}
+.ws-tab---active {
+    @apply w-52
+}
+.ws-tab--active {
+    @apply w-60
+}
+.total--count {
+    @apply bg-white px-2 py-2 mr-2 rounded-full
+}
+.auth-item {
+    @apply inline-block border-b py-2 border-green-150 w-2/5 px-2 text-center font-bold cursor-pointer overflow-hidden overflow-ellipsis whitespace-nowrap
+}
+.auth-active {
+    @apply border-black border-b-4 w-48
 }
 
