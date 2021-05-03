@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\SocialLink;
+
+use App\Mail\WelcomeMail;
+use App\Models\TTags;
+use Mail;
+
 class UserController extends Controller
 {
     public function updateprofile(Request $request)
@@ -112,5 +117,36 @@ class UserController extends Controller
 
     return back();
     }
-   
+
+    public function userverification()
+    {
+        Mail::to(Auth::user()->email)->send(new WelcomeMail());
+        return redirect()->route('u.dashboard');
+    }
+    public function create_tag()
+    {
+        $users = User::all();
+        return view('user.tags.create_tag',compact('users'));
+    }
+    public function storetag(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required',
+            'tag' => 'required',
+            'note' => 'required',
+        ]);
+        $t_tags = new TTags;
+        $t_tags->user_id = $request->user_id;
+        $t_tags->tag = $request->tag;
+        $t_tags->note = $request->note;
+        $t_tags->created_by = Auth::id();
+        $res = $t_tags->save();
+        if($res){
+            session()->flash('success', 'Tag Created Successfully.');
+        }else{
+            session()->flash('error', 'Unable To Create Tag Please try Again');
+        }
+        return back();
+    }
+
 }

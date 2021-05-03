@@ -99,7 +99,9 @@ Route::prefix('u')->group(function(){
         return view('user.content.contactus');
     })->name('contactus');
     Route::get('google-login','Auth\LoginController@redirectToProvoider')->name('google.login');
-    
+    Route::get('create-tags','UserController@create_tag')->name('create.tag');
+    Route::post('store-tags','UserController@storetag')->name('store.tags');
+
 
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
@@ -169,10 +171,14 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     Route::put('/update-scode/{scode}','Admin\ScodeController@updatecode')->name('update.code');
     Route::get('/delete-scode/{scode}','Admin\ScodeController@deletecode')->name('delete.code');
     // users management
-    Route::get('users/all','Admin\UsersController@users')->name('users.all');
-    Route::post('change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
-    Route::get('user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
-    Route::get('export/allusers','Admin\UsersController@exportusers')->name('export.allusers');
+    Route::get('/users/all','Admin\UsersController@users')->name('users.all');
+    Route::post('/change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
+    Route::get('/user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
+    Route::get('/export/allusers','Admin\UsersController@exportusers')->name('export.allusers');
+    Route::get('/all/adminstators','Admin\UsersController@adminstators')->name('all.administators');
+    Route::get('/create/adminstator','Admin\UsersController@addadministrator')->name('add.adminstrator');
+    Route::post('/store/adminstator','Admin\UsersController@store')->name('createadminstator');
+    Route::get('/delete/adminstator/{user}','Admin\UsersController@delete')->name('deleteadminstator');
 
     Route::get('delete/user/{user}','Admin\UsersController@deleteuser')->name('delete.user');
     Route::get('deleted-users','Admin\UsersController@deleteduser')->name('deleted.user');
