@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Services;
+use Session;
 use Socialite;
 use App\Models\User;
 
@@ -46,6 +48,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+        Session::put('services',Services::all());
         if($user->hasRole('superadministrator')){
             session()->flash('success', 'Welcome Back '.Auth::user()->name);
             return redirect()->route('admin.dashboard');
@@ -83,6 +86,7 @@ class LoginController extends Controller
         
         if ($found_user) {
             Auth::login($found_user);
+
             session()->flash('success', 'Welcome Back '.Auth::user()->name);
             if($found_user->hasRole('superadministrator')){
                 return redirect()->route('admin.dashboard');

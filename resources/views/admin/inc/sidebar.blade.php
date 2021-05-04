@@ -20,22 +20,32 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+            
+                @foreach (Session::get('services') as $service)
+            
+                @if(($service->module=="Content") && ($service->status=="A")) 
+            
+                
+                    <li class="sidebar-title">Content Management</li>
 
-                <li class="sidebar-title">Content Management</li>
+                    <li class="sidebar-item has-sub {{Request::is('admin/manage-content') ? 'active' : ''}}">
+                        <a href="#" class="sidebar-link ">
+                            <i class="bi bi-paragraph"></i>
+                            <span>Content</span>
+                        </a>
+                        <ul class="submenu" style="{{Request::is('admin/manage-content') ? 'display:block;' : ''}}">
+                            <li class="submenu-item {{Request::is('admin/manage-content') ? 'active' : ''}}">
+                                <a href="{{route('admin.manage.content')}}">Manage Content</a>
+                            </li>
 
-                <li class="sidebar-item has-sub {{Request::is('admin/manage-content') ? 'active' : ''}}">
-                    <a href="#" class="sidebar-link ">
-                        <i class="bi bi-paragraph"></i>
-                        <span>Content</span>
-                    </a>
-                    <ul class="submenu" style="{{Request::is('admin/manage-content') ? 'display:block;' : ''}}">
-                        <li class="submenu-item {{Request::is('admin/manage-content') ? 'active' : ''}}">
-                            <a href="{{route('admin.manage.content')}}">Manage Content</a>
-                        </li>
-
-                    </ul>
-                </li>
-
+                        </ul>
+                    </li>
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+            
+                @if(($service->module=="Slides") && ($service->status=="A")) 
+            
                 <li class="sidebar-item has-sub {{Request::is('admin/manage-slides')||Request::is('admin/edit-slide/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
@@ -48,7 +58,12 @@
 
                     </ul>
                 </li>
-
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+            
+                @if(($service->module=="Features") && ($service->status=="A")) 
+            
                 <li class="sidebar-item has-sub {{Request::is('admin/manage-features')||Request::is('admin/edit-feature/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-brush"></i>
@@ -61,7 +76,11 @@
 
                     </ul>
                 </li>
-
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+            
+                @if(($service->module=="Faq") && ($service->status=="A")) 
                 <li class="sidebar-item has-sub {{Request::is('admin/manage-faqs')||Request::is('admin/edit-faq/*') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-patch-question"></i>
@@ -74,6 +93,11 @@
 
                     </ul>
                 </li>
+                
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+                @if(($service->module=="Subscriber") && ($service->status=="A")) 
                 <li class="sidebar-item has-sub {{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
@@ -86,12 +110,29 @@
                         <li class="submenu-item {{Request::is('admin/subscriber/send-mail') ? 'active' : ''}}">
                             <a href="{{route('admin.subscriber.sendmail')}}">Send Mail </a>
                         </li>
-                        <li class="submenu-item {{Request::is('admin/short-code/all') ? 'active' : ''}}">
-                            <a href="{{route('admin.shortcode.all')}}">Short Codes</a>
-                        </li>
+                        
 
                     </ul>
                 </li>
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+                @if(($service->module=="ShortCodes") && ($service->status=="A"))
+                <li class="sidebar-item has-sub{{Request::is('admin/short-code/all')? 'active' : ''}}">
+                    <a href="#" class="sidebar-link ">
+                        <i class="bi bi-file-easel"></i>
+                        <span>Short Codes</span>
+                    </a>
+                    <ul class="submenu" style=" Request::is('admin/short-code/all')? 'display:block;' : ''}}" >
+                        <li class="submenu-item {{Request::is('admin/short-code/all') ? 'active' : ''}}">
+                            <a href="{{route('admin.shortcode.all')}}">Short Codes</a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
+                @endforeach
+                @foreach (Session::get('services') as $service)
+                @if(($service->module=="Users") && ($service->status=="A"))
                 <li class="sidebar-item has-sub {{Request::is('admin/users/all')|| Request::is('admin/deleted-users') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
@@ -108,21 +149,40 @@
 
                     </ul>
                 </li>
-                <li class="sidebar-item has-sub {{Request::is('admin/payment-plans') ? 'active' : ''}}">
+                @endif
+                @endforeach
+              @if(Auth::user()->hasRole('superadministrator'))
+                <li class="sidebar-item has-sub {{Request::is('admin/services/all') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-file-easel"></i>
-                        <span>Payment Plans </span>
+                        <span>Services </span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/payment-plans') ? 'display:block;' : ''}}" >
-                        
-                        <li class="submenu-item {{Request::is('admin/payment-plans') ? 'active' : ''}}">
-                            <a href="{{route('admin.payment.plans')}}">Payment Plans</a>
+                    <ul class="submenu" style="{{Request::is('admin/services/all') ? 'display:block;' : ''}}" >   
+                        <li class="submenu-item {{Request::is('admin/services/all') ? 'active' : ''}}">
+                            <a href="{{route('admin.services.all')}}">Services</a>
                         </li>
-                       
-
                     </ul>
                 </li>
+            @endif
+            @foreach (Session::get('services') as $service)
+            
+                @if(($service->module=="Payment") && ($service->status=="A")) 
+                    <li class="sidebar-item has-sub {{Request::is('admin/payment-plans') ? 'active' : ''}}">
+                        <a href="#" class="sidebar-link ">
+                            <i class="bi bi-file-easel"></i>
+                            <span>Payment Plans </span>
+                        </a>
+                        <ul class="submenu" style="{{Request::is('admin/payment-plans') ? 'display:block;' : ''}}" >
+                            
+                            <li class="submenu-item {{Request::is('admin/payment-plans') ? 'active' : ''}}">
+                                <a href="{{route('admin.payment.plans')}}">Payment Plans</a>
+                            </li>
+                        
 
+                        </ul>
+                    </li>
+                @endif
+                @endforeach
                 <li class="sidebar-title">Account</li>
 
                 <li class="sidebar-item has-sub {{Request::is('admin/update-profile')||Request::is('admin/change-avatar')||Request::is('admin/profile') ? 'active' : ''}}">
