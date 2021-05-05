@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\SocialLink;
-
+use App\Models\Tshorurl;
 use App\Mail\WelcomeMail;
 use App\Models\TTags;
+use Illuminate\Support\Str;
 use Mail;
 
 class UserController extends Controller
@@ -147,6 +148,45 @@ class UserController extends Controller
             session()->flash('error', 'Unable To Create Tag Please try Again');
         }
         return back();
+    }
+    public function addurl()
+    {
+        return view('user.content.addurl');
+    }
+    public function storeurl(Request $request)
+    {
+        $request->validate([
+            'title'=>'required',
+            'url'=>'required'
+        ]);
+        
+        
+        $i=0;
+        while($i!=1)
+        {
+            $code = Str::random(5);
+            $rand = rand(100,999);
+            $code = $code.$rand;
+            $url = Tshorurl::where('short_url',$code)->first();
+            if(empty($url))
+            {
+                $i=1;
+                $testurl = new Tshorurl;
+                $testurl->title = $request->title;
+                $testurl->source_url = $request->url;
+                $testurl->short_url = $code;
+                $testurl->created_by = Auth::id();
+                $res = $testurl->save();
+                if($res){
+                    session()->flash('success', 'Url  Created Successfully.');
+                }else{
+                    session()->flash('error', 'Unable To Create Url Please try Again');
+                }
+                return back();
+
+            }
+        }
+
     }
 
 }

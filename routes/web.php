@@ -101,7 +101,8 @@ Route::prefix('u')->group(function(){
     Route::get('google-login','Auth\LoginController@redirectToProvoider')->name('google.login');
     Route::get('create-tags','UserController@create_tag')->name('create.tag');
     Route::post('store-tags','UserController@storetag')->name('store.tags');
-
+    Route::get('create-short-url','UserController@addurl')->name('create.short.url');
+    Route::post('create-short-url','UserController@storeurl')->name('store.url');
 
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
