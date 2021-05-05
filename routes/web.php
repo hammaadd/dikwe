@@ -104,6 +104,10 @@ Route::prefix('u')->group(function(){
     Route::get('create-short-url','UserController@addurl')->name('create.short.url');
     Route::post('create-short-url','UserController@storeurl')->name('store.url');
 
+    // Create WorkSpace
+    Route::get('create-workspace','UserController@addworkspace')->name('add.workspace');
+    Route::post('create-workspace','UserController@storeworspace')->name('store.workspace');
+
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
 });

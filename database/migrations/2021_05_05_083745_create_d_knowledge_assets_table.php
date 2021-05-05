@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTshorurlsTable extends Migration
+class CreateDKnowledgeAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateTshorurlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tshorurls', function (Blueprint $table) {
+        Schema::create('d_knowledge_assets', function (Blueprint $table) {
             $table->id();
-            $table->string('title',191);
-            $table->text('source_url');
-            $table->text('short_url');
+            
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->enum('ka_type',['n','b','s']);
+            $table->string('color',191);
+            $table->enum('visiability',['pr','p','r']);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->unsignedBigInteger('updated_by')->nullable();
-            
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -33,6 +36,6 @@ class CreateTshorurlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tshorurls');
+        Schema::dropIfExists('d_knowledge_assets');
     }
 }

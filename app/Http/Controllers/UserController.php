@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\SocialLink;
 use App\Models\Tshorurl;
+use App\Models\WorkSpace;
 use App\Mail\WelcomeMail;
 use App\Models\TTags;
 use Illuminate\Support\Str;
@@ -188,5 +189,39 @@ class UserController extends Controller
         }
 
     }
+    public function addworkspace()
+    {
+        $workspaces = WorkSpace::where('parent',null)->get();
+        return view('user.workspace.add',compact('workspaces'));
+    }
+    public function storeworspace(Request $request)
+    {
+        
+        $request->validate([
+            'title'=>'required'
+        ]);
+        $workspace = new WorkSpace;
+        $workspace->title = $request->title;
+        $workspace->status = $request->status;
+        $workspace->parent = $request->parent;
+        $workspace->visiability = $request->visiability;
+        $workspace->created_by = Auth::id();
+        if($request->file('thumbnail')){
+            $file = $request->file('thumbnail');
+            $filename = $file->getClientOriginalName();
+            $imgname = uniqid() . $filename;
+            $destinationPath = public_path('images/workspace/');
+            $res = $file->move($destinationPath, $imgname);
+            
+            $workspace->thumbnail = $imgname;
+        }
+        $res = $workspace->save();
+        if($res){
+            session()->flash('success', 'Url  Created Successfully.');
+        }else{
+            session()->flash('error', 'Unable To Create Url Please try Again');
+        }
+        return back();
 
+    }
 }
