@@ -15,6 +15,8 @@
             <input type="text" name="" id="" class="block field" placeholder="UI UX Designer"/>
         </div>
     </div>
+    {{-- <div class="grid grid-cols-1 md:grid-cols-2 mt-0 md:mt-5"> --}}
+        {{-- <div class="w-full px-2 md:px-5">
     <div class="grid grid-cols-1 md:grid-cols-2 mt-0 md:mt-5">
         <div class="w-full px-2 md:px-5">
             <input type="email" name="" id="" class="field" placeholder="Email"/>
@@ -24,6 +26,18 @@
         </div>
         <div class="w-full px-2 md:px-5">
             <input type="text" name="" id="" class="field" placeholder="Address"/>
+        </div> --}}
+        
+    <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
+        <div class="w-full px-5">
+            <input type="email" name="email" id="" class="field" placeholder="Email" @if(Auth::check())  value="{{Auth::user()->email}}" @endif readonly/>
+        </div>
+        
+        <div class="w-full px-5">
+            <input type="text" name="phone_no" id="" class="field" placeholder="Phone Number" @if(Auth::check()) value="{{Auth::user()->phone_no}}" @endif/>
+        </div>
+        <div class="w-full px-5">
+            <input type="text" name="" id="" class="field" placeholder="Location" @if(Auth::check() && !(empty(Auth::user()->country)))  value="{{Auth::user()->country->country}}" @endif/>
         </div>
         <div class="w-full px-2 md:px-5">
             <select class="field" name="country">
@@ -48,16 +62,6 @@
             <input type="text" name="" id="" class="block field" placeholder="UI UX Designer"/>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
-        <div class="w-full px-5">
-            <input type="email" name="email" id="" class="field" placeholder="Email" @if(Auth::check())  value="{{Auth::user()->email}}" @endif readonly/>
-        </div>
-        <div class="w-full px-5">
-            <input type="text" name="phone_no" id="" class="field" placeholder="Phone Number" @if(Auth::check()) value="{{Auth::user()->phone_no}}" @endif/>
-        </div>
-        <div class="w-full px-5">
-            <input type="text" name="" id="" class="field" placeholder="Location" @if(Auth::check() && !(empty(Auth::user()->country)))  value="{{Auth::user()->country->country}}" @endif/>
-        </div>
     </div>
     @php
         $user = Auth::user();
@@ -67,7 +71,7 @@
         <label for="social-links" class="pl-5">Social Links</label>
         <div class="px-2 md:px-5 mt-2 user-social-links">
             <div class="border border-green-550 rounded-xl">
-                <div class=" w-full px-2 md:px-10">
+                {{-- <div class=" w-full px-2 md:px-10">
                     <p class="link"><i class="fab fa-twitter text-green-550"></i><input type="text" name="" id="" class="field border-0" placeholder="www.twitter.com"/></p>
                 </div>
                 <div class=" w-full px-2 md:px-10">
@@ -77,7 +81,7 @@
                     <p class="link"><i class="fab fa-linkedin-in text-green-550"></i><input type="text" name="" id="" class="field border-0" placeholder="www.linkedin.com"/></p>
                 </div>
                 <div class=" w-full px-2 md:px-10 pb-6">
-                    <p class="link"><i class="fas fa-globe text-green-550"></i><input type="text" name="" id="" class="field border-0" placeholder="www.website.com"/></p>
+                    <p class="link"><i class="fas fa-globe text-green-550"></i><input type="text" name="" id="" class="field border-0" placeholder="www.website.com"/></p> --}}
                 <div class=" w-full px-10">
                     <p class="link"><i class="fab fa-twitter text-green-550"></i><input type="text" class="w-10/12 border-0 ring-0 focus:border-0 focus:ring-0" placeholder="www.twitter.com" name="twitterlink"
                     @foreach ($userlinks as $link)
