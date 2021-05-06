@@ -1,11 +1,16 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Mail;
+use App\Models\Country;
+
 class UsersController extends Controller
 {
     public function users()
@@ -96,5 +101,77 @@ class UsersController extends Controller
     {
         return Excel::download(new UsersExport, 'Users.csv');
     }
+
+    public function notification()
+    {
+        return view ('admin.notification.all');
+    }
+    public function readnotify(Request $request)
+    {
+       foreach(Auth::user()->notifications as $notification)
+       {
+           $notification->markAsRead();
+       }
+       $request->session()->flash('success', 'Notification Marked As Read Successfully');
+       return back();
+    }
+    // create Administator 
+    Public function adminstators()
+    {
+        $users= User::all();
+        return view('admin.users.alladministator',compact('users'));
+    }
+    public function addadministrator()
+    {
+        $countries = Country::all();
+        return view('admin.users.addadminstrator',compact('countries'));
+    }
+    public function store(Request $request)
+    {
+        $request->validate([
+            'firstname' =>'required|max:191',
+            'lastname' =>'required|max:191',
+            'email' => 'email|required|unique:users,email',
+            'password'=>'required|confirmed|min:6',
+        ]);
+        $user = new User;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
+        $user->email = $request->email;
+        $user->status = 'A';
+        $user->name = $request->firstname." ".$request->lastname;
+        $user->country_id = $request->country_id;
+        $user->gender = $request->gender;
+        $user->password = Hash::make($request->password);
+        if($request->file('profile_img')){
+            $file = $request->file('profile_img');
+            $filename = $file->getClientOriginalName();
+            $imgname = uniqid() . $filename;
+            $destinationPath = public_path('images/avatar/');
+            $res = $file->move($destinationPath, $imgname);
+            $user->profile_img = $imgname;
+        }
+        $res = $user->save();
+
+        $user->attachRole('administrator');
+        if($res){
+            $request->session()->flash('success', 'Administrator created Successfully');
+        }else{
+            $request->session()->flash('error', 'Un Able to create the administrator');
+        }
+        return redirect()->route('admin.all.administators');
+    }
+    public function delete(User $user,Request $request)
+    {
+        $res = $user->delete();
+        if($res){
+            $request->session()->flash('success', 'Adminstrator Deleted Successfully ');
+        }else{
+            $request->session()->flash('error', 'Unable To delete the adminstrator');
+        }
+        return redirect()->route('admin.all.administators');
+    }
+
+
 }
 
