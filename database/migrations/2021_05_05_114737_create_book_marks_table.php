@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTshorurlsTable extends Migration
+class CreateBookMarksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTshorurlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tshorurls', function (Blueprint $table) {
+        Schema::create('book_marks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('ka_id');
+            $table->foreign('ka_id')->references('id')->on('d_knowledge_assets');
             $table->string('title',191);
-            $table->string('color',191)->nullable();
-            $table->unsignedBigInteger('ka_id')->nullable();
-            $table->foreign('ka_id')->references('id')->on('d_knowledge_assets')->onDelete('set null');
-            $table->text('source_url');
-            $table->text('short_url');
+            $table->string('thumbnail',191)->nullable();
+            $table->string('url',191);
+            $table->text('note')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -36,6 +36,6 @@ class CreateTshorurlsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tshorurls');
+        Schema::dropIfExists('book_marks');
     }
 }

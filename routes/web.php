@@ -110,6 +110,14 @@ Route::prefix('u')->group(function(){
 
     Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
+    // bookmarks
+    Route::get('allbookmarks','UserController@allbookmarks')->name('all.bookmarks');
+     Route::get('addbookmarks','UserController@addbookmark')->name('add.bookmark');
+     Route::post('create-bookmark','UserController@storebookmark')->name('store.bookmark');
+     Route::get('edit-bookmark/{bookmark}','UserController@editbookmark')->name('edit.bookmark');
+    Route::post('update-bookmark/{bookmark}','UserController@updatebookmark')->name('update.bookmark');
+    Route::get('delete-bookmark/{bookmark}','UserController@deletebookmark')->name('delete.bookmark');
+
 });
 
 Route::prefix('u')->name('u.')->group(function () {

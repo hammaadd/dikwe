@@ -9,6 +9,8 @@ use App\Models\SocialLink;
 use App\Models\Tshorurl;
 use App\Models\WorkSpace;
 use App\Mail\WelcomeMail;
+use App\Models\BookMarks;
+use App\Models\DKnowledgeAsset;
 use App\Models\TTags;
 use Illuminate\Support\Str;
 use Mail;
@@ -222,6 +224,81 @@ class UserController extends Controller
             session()->flash('error', 'Unable To Create Url Please try Again');
         }
         return back();
-
+    }
+    public function allbookmarks()
+    {
+        $bookmarks = BookMarks::where('created_by',Auth::id())->get();
+        return view('user.bookmark.all',compact('bookmarks'));
+    }
+    public function addbookmark()
+    {
+        $dknowledges = DKnowledgeAsset::all();
+        return view('user.bookmark.add',compact('dknowledges'));
+    }
+    public function storebookmark(Request $request)
+    {
+        $bookmark = new BookMarks;
+        $bookmark->title = $request->title;
+        $bookmark->url = $request->url;
+        $bookmark->ka_id = $request->ka_id;
+        $bookmark->note = $request->note;
+        if($request->file('thumbnail')){
+            $file = $request->file('thumbnail');
+            $filename = $file->getClientOriginalName();
+            $imgname = uniqid() . $filename;
+            $destinationPath = public_path('images/bookmark/');
+            $res = $file->move($destinationPath, $imgname);
+            
+            $bookmark->thumbnail = $imgname;
+        }
+        $bookmark->created_by = Auth::id();
+        $res = $bookmark->save();
+        if($res){
+            session()->flash('success', 'Bookmark  Created Successfully.');
+        }else{
+            session()->flash('error', 'Unable To Create Bookmark Please try Again');
+        }
+        return redirect()->route('all.bookmarks');
+        
+    }
+    public function editbookmark(BookMarks $bookmark)
+    {
+        $dknowledges = DKnowledgeAsset::all();
+        return view('user.bookmark.edit',compact('dknowledges','bookmark'));
+    }
+    public function updatebookmark(Request $request, BookMarks $bookmark)
+    {
+      
+        $bookmark->title = $request->title;
+        $bookmark->url = $request->url;
+        $bookmark->ka_id = $request->ka_id;
+        $bookmark->note = $request->note;
+        if($request->file('thumbnail')){
+            $file = $request->file('thumbnail');
+            $filename = $file->getClientOriginalName();
+            $imgname = uniqid() . $filename;
+            $destinationPath = public_path('images/bookmark/');
+            $res = $file->move($destinationPath, $imgname);
+            
+            $bookmark->thumbnail = $imgname;
+        }
+        $bookmark->created_by = Auth::id();
+        $res = $bookmark->update();
+        if($res){
+            session()->flash('success', 'Bookmark  Created Successfully.');
+        }else{
+            session()->flash('error', 'Unable To Create Bookmark Please try Again');
+        }
+        return redirect()->route('all.bookmarks');
+    }
+    public function deletebookmark(BookMarks $bookmark, Request $request)
+    {
+        $res = $bookmark->delete();
+        if($res){
+            session()->flash('success', 'Bookmark  deleted Successfully.');
+        }else{
+            session()->flash('error', 'Unable To delete Bookmark Please try Again');
+        }
+        return redirect()->route('all.bookmarks');
     }
 }
