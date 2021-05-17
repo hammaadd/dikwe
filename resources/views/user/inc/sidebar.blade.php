@@ -20,31 +20,31 @@
                     class="absolute bg-white shadow overflow-hidden rounded-xl w-60 mt-2 py-1 left-10 top-full z-50"
                 >
                     <li class="border-b border-green-150">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('add-tag')}}" class="dropdown-item">
                             <i class="fas fa-tags fa-flip-horizontal dropdown-item-icon"></i>
                             <span class="ml-2">New Tag</span>
                         </a>
                     </li>
                     <li class="border-b border-green-150">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('add-workspace') }}" class="dropdown-item">
                             <i class="fas fa-folder dropdown-item-icon"></i>
                             <span class="ml-2">New Workspace</span>
                         </a>
                     </li>
                     <li class="border-b border-green-150">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('add-bookmark')}}" class="dropdown-item">
                             <i class="fas fa-star dropdown-item-icon"></i>
                             <span class="ml-2">New Bookmark</span>
                         </a>
                     </li>
                     <li class="border-b border-green-150">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('add-note') }}" class="dropdown-item">
                             <i class="fas fa-clipboard dropdown-item-icon"></i>
                             <span class="ml-2">New Note</span>
                         </a>
                     </li>
                     <li class="">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ route('add-short-url') }}" class="dropdown-item">
                             <i class="fas fa-link dropdown-item-icon"></i>
                             <span class="ml-2">New Short URL</span>
                         </a>

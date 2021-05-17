@@ -32,7 +32,7 @@
                         <div class="pt-6 text-center">
                             <img src="{{ asset('images/Mask Group 61.svg') }}" alt="">
                             <p class="font-bold text-center pt-10">Notebooks are Knowledge<br>Assets used to collate other<br>Assets: Notes, To<br>Do Lists ..etc</p>
-                            <button class="mt-10 btn-main">Create New Note</button>
+                            <button class="mt-10 btn-main" onclick="return location='{{ route('add-note')}}';">Create New Note</button>
                         </div>
                     </div>
                 </div>

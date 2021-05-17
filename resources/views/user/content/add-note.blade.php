@@ -252,7 +252,7 @@
                                 </div>
                                 <div class=" text-center md:text-right pb-2 md:pb-0">
                                     <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>
-                                    <button class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">More Info</button>
+                                    <button class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550" onclick="return location = '{{ route('edit-note-info')}}';">More Info</button>
                                 </div>
                             </div>
                         </div>

@@ -100,7 +100,7 @@
                 @if(($service->module=="Subscriber") && ($service->status=="A")) 
                 <li class="sidebar-item has-sub {{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-file-easel"></i>
+                        <i class="bi bi-envelope"></i>
                         <span>Subscriber</span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/subscriber/all') || Request::is('admin/short-code/all')? 'display:block;' : ''}}" >
@@ -135,7 +135,7 @@
                 @if(($service->module=="Users") && ($service->status=="A"))
                 <li class="sidebar-item has-sub {{Request::is('admin/users/all')|| Request::is('admin/deleted-users') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-file-easel"></i>
+                        <i class="bi bi-people"></i>
                         <span>Users </span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/users/all')||Request::is('admin/deleted-users') ? 'display:block;' : ''}}" >
@@ -154,8 +154,8 @@
               @if(Auth::user()->hasRole('superadministrator'))
                 <li class="sidebar-item has-sub {{Request::is('admin/services/all') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-file-easel"></i>
-                        <span>Services </span>
+                        <i class="bi bi-credit-card"></i>
+                        <span>Payment Plans </span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/services/all') ? 'display:block;' : ''}}" >   
                         <li class="submenu-item {{Request::is('admin/services/all') ? 'active' : ''}}">

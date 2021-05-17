@@ -13,10 +13,10 @@
             <!-- 1st Column Content -->
             <img src="{{asset('images/features/'.$feat->image)}}" alt="" class=" max-h-96 mx-auto">
             <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
-                Keep all your knowledge assets in the most organized way
+                {!!$feat->text!!}
             </p>
         </div>
-        <div class="w-full flex flex-col justify-between">
+        {{-- <div class="w-full flex flex-col justify-between">
             <!-- 2nd Column Content -->
             <img src="{{asset('images/Group 513.png')}}" alt="" class=" max-h-96 mx-auto">
             <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
@@ -64,15 +64,8 @@
             <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
                 Keep track of every knowledge asset statistics
             </p>
-        </div>
-        <div class="w-full flex flex-col justify-between">
-            <!-- 3rd Column Content -->
-            <img src="{{asset('images/Group 520.png')}}" alt="" class=" max-h-96 mx-auto">
-            <p class="font-normal font-roboto text-base 2xl:text-xl md:px-16 text-gray-900 text-center">
-                Save any knowledge assets<br>you want
-                {!!$feat->text!!}
-            </p>
-        </div>
+        </div> --}}
+        
     @empty
         <p>No feature to show.</p>
     @endforelse

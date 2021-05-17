@@ -31,7 +31,7 @@
                     <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative" x-data="{ isOpen: false }">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">13 Knowledge Assets</label></div>
-                            <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpen = !isOpen ">
+                            <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpen = !isOpen " >
                                 <i class="fas fa-plus-circle mr-2"></i> New
                             </button>
                             <ul
@@ -46,7 +46,7 @@
                                 class="absolute bg-white shadow overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-10 z-20"
                             >
                                 <li class="border-b border-green-150">
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{{ route('add-workspace') }}" class="dropdown-item">
                                         <i class="fas fa-tags dropdown-item-icon"></i>
                                         <span class="ml-2">Create New Workspace</span>
                                     </a>

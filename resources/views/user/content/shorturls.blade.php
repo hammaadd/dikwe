@@ -14,7 +14,7 @@
                     {{-- Short URLs Section --}}
                     <div class="bg-white px-2 md:px-6 pt-4 lg:pt-10 rounded-xl h-full">
                         <div class=" text-right">
-                            <a href="#" class="btn-main">
+                            <a href="{{ route('add-short-url') }}" class="btn-main">
                                 <i class="fas fa-plus-circle mr-2"></i> New URL
                             </a>
                         </div>

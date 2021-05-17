@@ -42,7 +42,7 @@
                         <div class="pt-16 pb-4 text-center">
                             <img src="{{ asset('images/Mask Group 45.svg') }}" alt="">
                             <p class="font-bold text-center pt-10">No tags is opened!<br>open a tag and start browsing<br>knowledge assets ..</p>
-                            <button class="mt-10 btn-main">Create New Tag</button>
+                            <button class="mt-10 btn-main" onclick="return location='{{ route('add-tag')}}';">Create New Tag</button>
                         </div>
                     </div>
                 </div>
