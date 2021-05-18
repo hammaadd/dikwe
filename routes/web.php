@@ -53,9 +53,7 @@ Route::get('workspaces', function () {
 
 
 
-Route::get('user-profile', function () {
-    return view('user.content.profile');
-})->name('user-profile');
+
 Route::get('notes', function () {
     return view('user.content.notes');
 })->name('notes');
@@ -196,21 +194,19 @@ Route::prefix('u')->group(function(){
     Route::post('update-bookmark/{bookmark}','UserController@updatebookmark')->name('update.bookmark');
     Route::get('delete-bookmark/{bookmark}','UserController@deletebookmark')->name('delete.bookmark');
 
+    
+
 });
 
 // Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
 
-Route::prefix('u')->name('u.')->group(function () {
+Route::prefix('u')->middleware('role:user')->group(function () {
 
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
     })->name('dashboard');
-   
-
-    // Route::get('dashboard', function () {
-    //     return view('user.content.dashboard');
-    // })->name('dashboard')->middleware('verified');
-
+    //User Profile Routes
+    Route::get('profile','ProfileController@index')->name('user-profile');
 });
 
 // Admin Routes

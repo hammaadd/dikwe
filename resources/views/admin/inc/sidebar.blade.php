@@ -154,8 +154,8 @@
               @if(Auth::user()->hasRole('superadministrator'))
                 <li class="sidebar-item has-sub {{Request::is('admin/services/all') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
-                        <i class="bi bi-credit-card"></i>
-                        <span>Payment Plans </span>
+                        <i class="bi bi-card-checklist"></i>
+                        <span>Services </span>
                     </a>
                     <ul class="submenu" style="{{Request::is('admin/services/all') ? 'display:block;' : ''}}" >   
                         <li class="submenu-item {{Request::is('admin/services/all') ? 'active' : ''}}">
@@ -169,7 +169,7 @@
                 @if(($service->module=="Payment") && ($service->status=="A")) 
                     <li class="sidebar-item has-sub {{Request::is('admin/payment-plans') ? 'active' : ''}}">
                         <a href="#" class="sidebar-link ">
-                            <i class="bi bi-file-easel"></i>
+                            <i class="bi bi-credit-card"></i>
                             <span>Payment Plans </span>
                         </a>
                         <ul class="submenu" style="{{Request::is('admin/payment-plans') ? 'display:block;' : ''}}" >

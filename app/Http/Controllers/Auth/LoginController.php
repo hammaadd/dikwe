@@ -57,10 +57,10 @@ class LoginController extends Controller
         if($user->hasRole('user')){
             session()->flash('success', 'Welcome Back '.Auth::user()->name);
 
-            return redirect()->route('u.dashboard');
+            return redirect()->route('dashboard');
         }
 
-        return redirect()->route('u.dashboard');
+        return redirect()->route('dashboard');
     }
 
     public function showLoginForm()
@@ -91,7 +91,7 @@ class LoginController extends Controller
             if($found_user->hasRole('superadministrator')){
                 return redirect()->route('admin.dashboard');
             }elseif($found_user->hasRole('user')){
-                return redirect()->route('u.dashboard');
+                return redirect()->route('dashboard');
             }
         }else{
             // $url = preg_replace('/\?sz=[\d]*$/', '', $user->getAvatar());
@@ -112,12 +112,12 @@ class LoginController extends Controller
             $new_user->lastname = $user->user['family_name'];
             $new_user->email_verified_at = now();
             if ($new_user->save()) {
-                session()->flash('success', 'Profile Created successfully!');
+            session()->flash('success', 'Profile Created successfully!');
                $new_user->attachRole('user');
                $new_user->attachRole('free');
         
                  Auth::login($new_user);
-                 return redirect()->route('u.dashboard');
+                 return redirect()->route('dashboard');
             } 
         }
 

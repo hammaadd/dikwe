@@ -12,7 +12,7 @@
     }
     .visitor.container:before {
         content: '';
-        background-image: url(/images/Group16.png);
+        background-image: url(../images/Group16.png);
         background-size: 50%;
         background-repeat: no-repeat;
         position: absolute;
@@ -24,7 +24,7 @@
     }
     .visitor.container:after {
         content: '';
-        background-image: url(/images/Group17.png);
+        background-image: url(../images/Group17.png);
         background-size: 50%;
         background-repeat: no-repeat;
         position: absolute;

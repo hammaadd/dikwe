@@ -30,7 +30,7 @@
                     <div class="hidden lg:flex flex-col pl-4 text-right" @click=" isOpen = !isOpen ">
                         <label class="cursor-pointer">Hello
                             <span class="font-bold ml-1 cursor-pointer">
-                                Julia
+                                {{Auth::user()->name}}
                             </span>
                         </label>
                     </div>
@@ -49,13 +49,13 @@
                         class="absolute bg-white shadow overflow-hidden rounded-xl w-60 mt-2 py-1 right-0 top-full z-20"
                     >
                         <li class="border-b border-green-150">
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ route('user-profile') }}" class="dropdown-item">
                                 <i class="fas fa-user dropdown-item-icon"></i>
                                 <span class="ml-2">Profile</span>
                             </a>
                         </li>
                         <li class="border-b border-green-150">
-                            <a href="#" class="dropdown-item">
+                            <a href="{{ route('dashboard') }}" class="dropdown-item">
                                 <i class="fas fa-home dropdown-item-icon"></i>
                                 <span class="ml-2">Dashboard</span>
                             </a>
@@ -166,7 +166,7 @@
                     <ul class="border-b-2 border-gray-300">
                         <li class="nav---tabs {{Request::is('u/dashboard') ? 'tab---active' : ''}} ">
                             <div>
-                                <a href="{{route('u.dashboard')}}"><i class="pr-2 fas fa-home"></i> Home</a>
+                                <a href="{{route('dashboard')}}"><i class="pr-2 fas fa-home"></i> Home</a>
                             </div>
                         </li>
                         <li class="nav---tabs {{Request::is('tags') ? 'tab---active' : ''}}">

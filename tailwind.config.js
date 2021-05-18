@@ -3,6 +3,8 @@ module.exports = {
   //       enabled: true,
   //       content:[
   //           './resources/**/*.blade.php',
+  //           './resources/**/**/*.blade.php',
+  //           './resources/**/**/**/*.blade.php',
   //           './resources/**/*.js',
   //       ]
   // },

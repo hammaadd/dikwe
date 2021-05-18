@@ -16,10 +16,10 @@
 </div>
 <!-- links -->
 <div class="toggle hidden md:flex w-full md:w-auto text-center text-bold mt-5 md:mt-0 bg-white md:bg-transparent z-10 rounded-t-xl">
-  <a href="{{ route('home') }}" class="active link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Home</a>
-  <a href="{{ route('pricing') }}" class="link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Pricing</a>
-  <a href="{{ route('short-url-search') }}" class="link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Short URLs</a>
-  <a href="{{ route('features') }}" class="link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Features</a>
+  <a href="{{ route('home') }}" class="{{Request::is('/') ? 'active' : ''}} link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Home</a>
+  <a href="{{ route('pricing') }}" class="{{Request::is('pricing') ? 'active' : ''}} link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Pricing</a>
+  <a href="{{ route('short-url-search') }}" class="{{Request::is('short-url-search') ? 'active' : ''}} link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Short URLs</a>
+  <a href="{{ route('features') }}" class="{{Request::is('features') ? 'active' : ''}} link-hover mx-4 block md:inline-block text-gray-500 py-2 md:py-0">Features</a>
 </div>
 <!-- cta -->
 <div class="toggle hidden md:flex w-full bg-white pt-3 pb-5 text-center md:w-auto md:py-0 md:bg-transparent z-10 rounded-b-xl">

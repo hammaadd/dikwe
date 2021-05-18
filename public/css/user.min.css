@@ -1,0 +1,65 @@
+.select2-container--default .select2-selection--multiple {
+    border: none !important;
+    background: transparent !important;
+}
+.select2-container {
+    width: 100% !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: white !important;
+    border: none !important;
+    border-radius: 15px !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
+    margin-left: 8px !important;
+    margin-top: 5px !important;
+    padding: 5px 8px !important;
+    padding-left: 8px !important;
+    padding-right: 32px !important;
+    position: relative !important;
+    max-width: 100% !important;
+    min-width: fit-content;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    vertical-align: bottom !important;
+    white-space: nowrap !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background-color: transparent !important;
+    border: 1px solid red !important;
+    border-radius: 15px !important;
+    color: red !important;
+    cursor: pointer !important;
+    font-size: 18px !important;
+    line-height: 18px !important;
+    font-weight: bold !important;
+    position: absolute !important;
+    height: 20px !important;
+    width: 20px !important;
+    text-align: center !important;
+    left: auto !important;
+    right: 8px !important;
+    top: 7px !important;
+}
+
+.preloader{
+    display:flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    background-color: #ededed;
+    position: fixed;
+    margin: auto;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
