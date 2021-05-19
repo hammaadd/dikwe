@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="w-full overflow-hidden lg:w-2/4">
-            <input type="text" name="name" class="block field" placeholder="Yomna Sabry"  @if(Auth::check())  value="{{Auth::user()->name}}" @endif/>
-            <input type="text" name="designation" class="block field" placeholder="UI UX Designer"/>
+            <input type="text" name="name" class="block field" placeholder="Jhon Doe. Enter name here."  @if(Auth::check())  value="{{Auth::user()->name}}" @endif/>
+            <textarea name="about" class="block field" placeholder="Tell about yourself.">{{ Auth::user()->about }}</textarea>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
@@ -22,28 +22,22 @@
         </div>
         
         <div class="w-full px-5">
-            <input type="text" name="phone_no" class="field" placeholder="Phone Number" @if(Auth::check()) value="{{Auth::user()->phone_no}}" @endif/>
+            <input type="text" name="phone_no" class="field" placeholder="Phone number" @if(Auth::check()) value="{{Auth::user()->phone_no}}" @endif/>
         </div>
         <div class="w-full px-5">
-            <input type="text" name="" class="field" placeholder="Location" @if(Auth::check() && !(empty(Auth::user()->country)))  value="{{Auth::user()->country->country}}" @endif/>
+            <select class="field" name="gender">
+                <option value="Male" @if(Auth::user()->gender == 'Male') selected @endif>Male</option>
+                <option value="Female" @if(Auth::user()->gender == 'Female') selected @endif>Female</option>
+                <option value="Other" @if(Auth::user()->gender == 'Other') selected @endif>Other</option>
+            </select>
         </div>
         <div class="w-full px-2 md:px-5">
             <select class="field" name="country">
-                <option value="">
-                    Country
-                </option>
-                <option value="">
-                    United States
-                </option>
-                <option value="">
-                    United Kingdom
-                </option>
-                <option value="">
-                    Saudi Arabia
-                </option>
-                <option value="">
-                    Pakistan
-                </option>
+                @forelse($countries as $country)
+                <option value="{{ $country->id }}" @if(Auth::user()->country->id == $country->id) selected @endif>{{ $country->country }}</option>
+                @empty
+                <option value="">Nothing to show</option>
+                @endforelse
             </select>
         
     </div>

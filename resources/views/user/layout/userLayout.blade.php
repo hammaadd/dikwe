@@ -5,7 +5,7 @@
         <div class="preloader" id="preloader">
             <img src="{{asset('assets/loader/puff.svg')}}" style="width: 10rem;" alt="loader">
         </div>
-
+        
         {{-- Notification Components Start Here --}}
         <div x-data="{ shownotification : true }" x-init="setTimeout(() => shownotification = false, 4000)">
             @if(session()->get('success'))

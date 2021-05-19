@@ -11,9 +11,11 @@ class userProfile extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $countries;
+    public function __construct($countries)
     {
         //
+        $this->countries = $countries;
     }
 
     /**

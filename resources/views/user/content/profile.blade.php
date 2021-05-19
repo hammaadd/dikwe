@@ -12,7 +12,7 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
                     <div class="user-profile bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
                         {{-- User Profile Section --}}
-                        <x-user-profile />
+                        <x-user-profile :countries="$countries"/>
                     </div>
                 </div>
                 

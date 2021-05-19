@@ -184,8 +184,8 @@ Route::prefix('u')->group(function(){
     Route::get('create-workspace','UserController@addworkspace')->name('add.workspace');
     Route::post('create-workspace','UserController@storeworspace')->name('store.workspace');
 
-    Route::post('user/contactus','VisitorController@contactus')->name('user.contactus');
-    Route::put('user/update-profile','UserController@updateprofile')->name('user.update.profile');
+    Route::post('/contactus','VisitorController@contactus')->name('user.contactus');
+    Route::put('/update-profile','ProfileController@updateprofile')->name('user.update.profile');
     // bookmarks
     Route::get('allbookmarks','UserController@allbookmarks')->name('all.bookmarks');
      Route::get('addbookmarks','UserController@addbookmark')->name('add.bookmark');
