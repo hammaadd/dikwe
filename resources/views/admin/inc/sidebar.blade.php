@@ -133,12 +133,12 @@
                 @endforeach
                 @foreach (Session::get('services') as $service)
                 @if(($service->module=="Users") && ($service->status=="A"))
-                <li class="sidebar-item has-sub {{Request::is('admin/users/all')|| Request::is('admin/deleted-users') ? 'active' : ''}}">
+                <li class="sidebar-item has-sub {{Request::is('admin/users/all')||Request::is('admin/permissions')|| Request::is('admin/deleted-users')||Request::is('admin/assign-permissions') ? 'active' : ''}}">
                     <a href="#" class="sidebar-link ">
                         <i class="bi bi-people"></i>
                         <span>Users </span>
                     </a>
-                    <ul class="submenu" style="{{Request::is('admin/users/all')||Request::is('admin/deleted-users') ? 'display:block;' : ''}}" >
+                    <ul class="submenu" style="{{Request::is('admin/users/all')||Request::is('admin/permissions')||Request::is('admin/deleted-users')||Request::is('admin/assign-permissions') ? 'display:block;' : ''}}" >
                         
                         <li class="submenu-item {{Request::is('admin/users/all') ? 'active' : ''}}">
                             <a href="{{route('admin.users.all')}}">Users</a>
@@ -146,6 +146,13 @@
                         <li class="submenu-item {{Request::is('admin/deleted-users') ? 'active' : ''}}">
                             <a href="{{route('admin.deleted.user')}}">Deleted Users</a>
                         </li>
+                        <li class="submenu-item {{Request::is('admin/permissions') ? 'active' : ''}}">
+                            <a href="{{route('admin.all.permission')}}">Permissions</a>
+                        </li>
+                        <li class="submenu-item {{Request::is('admin/assign-permissions') ? 'active' : ''}}">
+                            <a href="{{route('admin.assignment.list')}}">Roles</a>
+                        </li>
+                        
 
                     </ul>
                 </li>

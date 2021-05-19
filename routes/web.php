@@ -275,7 +275,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
         Route::get('/delete-scode/{scode}','Admin\ScodeController@deletecode')->name('delete.code');
     });
     // users management
-    Route::middleware(["servicecheck:User"])->group(function () {
+    Route::middleware(["servicecheck:Users"])->group(function () {
         Route::get('/users/all','Admin\UsersController@users')->name('users.all');
         Route::post('/change/status/{user}','Admin\UsersController@changestatus')->name('change.status');
         Route::get('/user/verifyemail/{user}','Admin\UsersController@verifyemail')->name('user.verifyemail');
@@ -321,7 +321,7 @@ Route::prefix('admin')->middleware('role:superadministrator')->name('admin.')->g
     // Assigning the permission to roles 
     
     Route::middleware(["servicecheck:assignment"])->group(function () {
-    Route::get('/assignment-list','Admin\AssignmentController@all')->name('assignment.list');
+    Route::get('/assign-permissions','Admin\AssignmentController@all')->name('assignment.list');
     Route::post('/assign-permission','Admin\AssignmentController@add')->name('assign.permission');
     Route::get('/edit-assignment/{role}','Admin\AssignmentController@edit')->name('edit.assignment');
     Route::post('/update-assignment/{role}','Admin\AssignmentController@update')->name('update.assignment');

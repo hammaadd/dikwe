@@ -3,7 +3,6 @@
 @section('page-title','User Profile')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
-    <script src="{{ asset('js/profile.js') }}"></script>
 @endsection
 @section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
@@ -32,4 +31,22 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+<script>
+    function fasterPreview( uploader ) {
+        if ( uploader.files && uploader.files[0] ){
+              $('#profileImage').attr('src',
+                 window.URL.createObjectURL(uploader.files[0]) );
+        }
+    }
+
+    function showImage(){
+        $("#avatarImg").click();
+    }
+    $("#avatarImg").change(function(){
+        fasterPreview( this );
+    });
+
+</script>
 @endsection

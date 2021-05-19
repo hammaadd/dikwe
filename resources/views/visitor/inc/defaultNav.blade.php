@@ -23,6 +23,12 @@
 </div>
 <!-- cta -->
 <div class="toggle hidden md:flex w-full bg-white pt-3 pb-5 text-center md:w-auto md:py-0 md:bg-transparent z-10 rounded-b-xl">
+  @guest
     <a href="{{route('login.form')}}" class="toggle hidden mt-2 md:mt-0 md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">LOGIN</a>
+  @endguest
+
+  @auth
+    <a href="{{ route('dashboard') }}" class="toggle hidden mt-2 md:mt-0 md:flex w-auto mx-auto md:mx-0 md:w-auto btn-primary">DASHBOARD</a>
+  @endauth
 </div>
 </nav>
