@@ -1,19 +1,38 @@
-<form action="{{route('user.update.profile')}}" method="post">
+<form action="{{route('user.update.profile')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="flex flex-wrap overflow-hidden">
         <div class="w-full overflow-hidden md:w-2/5 lg:w-2/5 pl-5">
             <div class="block relative w-24 h-24 sm:h-32 sm:w-32 mx-auto">
-                <img id="profileImage" alt="profil" src="{{ asset('images/Ellipse 1792x.png') }}" class="object-cover rounded-full w-full h-full"/>
+                <img id="profileImage" alt="profil"
+                src="
+                @if(Auth::user()->profile_img == null)
+                  https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                  @else
+                  {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                  @endif
+                  "
+                 class="object-cover rounded-full w-full h-full"/>
                 <div class=" flex justify-center items-center bg-white bg-opacity-25 w-full h-full absolute top-0 left-0 rounded-full">
                     <i class="fas fa-camera text-4xl cursor-pointer align-middle" onclick="showImage()"></i>
                     <input type="file" name="avatar_img" id="avatarImg" style="display:none;">
+                    
                 </div>
             </div>
+            @error('avatar_img')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+            @enderror
         </div>
         <div class="w-full overflow-hidden lg:w-2/4">
             <input type="text" name="name" class="block field" placeholder="Jhon Doe. Enter name here."  @if(Auth::check())  value="{{Auth::user()->name}}" @endif/>
-            <textarea name="about" class="block field" placeholder="Tell about yourself.">{{ Auth::user()->about }}</textarea>
+            @error('name')
+                <small class="field-error-message">
+                    <span>{{$message}}</span>
+                </small>
+            @enderror
+            <textarea name="about" rows="3" class="block field" placeholder="Tell about yourself.">{{ Auth::user()->about }}</textarea>
         </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 mt-5">

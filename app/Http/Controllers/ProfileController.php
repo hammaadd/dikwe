@@ -7,6 +7,7 @@ use App\Models\SocialLink;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -20,6 +21,12 @@ class ProfileController extends Controller
 
     public function updateprofile(Request $request)
     {
+
+        $request->validate([
+            'avatar_img'=>'image|max:2048|mimes:jpg,png,jpeg,gif,svg',
+            'name'=>'required',
+            'gender'=>'in:Male,Female'
+        ]);
         $facebook = $twitter=$linkedin = $other = 0;
         $twitterlink = $request->twitterlink;
         $facebooklink = $request->facebooklink;
@@ -31,6 +38,22 @@ class ProfileController extends Controller
         $user->about = $request->about;
         $user->country_id = $request->country;
         $user->gender = $request->gender;
+
+        if($request->file('avatar_img')){
+            $file = $request->file('avatar_img');
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $imgname = uniqid() . $filename;
+            $destinationPath = public_path('/user_profile_images');
+            $file->move($destinationPath, $imgname);
+            if(null!=Auth::user()->profile_img){
+                $image_path = "user_profile_images/".Auth::user()->profile_img;  // Value is not URL but directory file path
+                if(File::exists($image_path)) {
+                    File::delete($image_path);
+                }
+            }
+            $user->profile_img = $imgname; 
+        }
         
         $res = $user->update();
         foreach($user->sociallinks as $userlink)

@@ -35,7 +35,14 @@
                         </label>
                     </div>
                     <button class="block ml-2 focus:outline-none" @click=" isOpen = !isOpen ">
-                        <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-green-550"/>
+                        <img alt="User Image" 
+                        src="
+                        @if(Auth::user()->profile_img == null)
+                        https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                        @else
+                        {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                        @endif
+                        " class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-green-550"/>
                     </button>
                     <ul
                         x-show="isOpen"
@@ -244,7 +251,14 @@
             </div>
             <a href="#"><i class="fas fa-bell text-xl text-green-550 mx-2"></i></a>
             <button class="block ml-2 focus:outline-none" @click=" pShow = !pShow ">
-                <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-8 w-8 border-2 border-green-550"/>
+                <img alt="User Image" 
+                src="
+                @if(Auth::user()->profile_img == null)
+                  https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                  @else
+                  {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                  @endif
+                  " class="mx-auto object-cover rounded-full h-8 w-8 border-2 border-green-550"/>
             </button>
             <ul
                 x-show="pShow"

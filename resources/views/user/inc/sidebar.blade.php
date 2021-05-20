@@ -2,7 +2,13 @@
     <div class="sidebar-mini hidden md:block fixed bg-green-550 w-24 h-full lg:h-screen py-8" x-show="!isOpen">
         <div class="text-center">
             <a href="{{route('user-profile')}}" class="block relative">
-                <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-white shadow-xl"/>
+                <img alt="User Image"  src="
+                @if(Auth::user()->profile_img == null)
+                  https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                  @else
+                  {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                  @endif
+                  " class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-white shadow-xl"/>
             </a>
             <div class="relative" x-data="{ isOpen: false }">
                 <button class="block w-min mx-auto mt-5 focus:outline-none" @click=" isOpen = !isOpen ">
