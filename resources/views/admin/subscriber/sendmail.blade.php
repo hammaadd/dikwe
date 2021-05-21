@@ -3,7 +3,7 @@
 @section('heading','Send Mail to Subscriber')
 @section('desc','Manage to send the mail to subscribers.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Mail to Subscribers</li>
     </ol>

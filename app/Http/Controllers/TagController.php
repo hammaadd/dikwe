@@ -9,6 +9,6 @@ class TagController extends Controller
     //
 
     public function index(){
-        
+       return view('user.content.add-tag');
     }
 }

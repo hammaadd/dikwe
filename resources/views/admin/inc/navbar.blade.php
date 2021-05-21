@@ -40,13 +40,13 @@
                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="user-menu d-flex">
                         <div class="user-name text-end me-3">
-                            <h6 class="mb-0 text-gray-600">{{Auth::user()->name}}</h6>
-                            <p class="mb-0 text-sm text-gray-600">Administrator</p>
+                            <h6 class="mb-0 mt-2 text-gray-600">{{Auth::user()->name}}</h6>
+                            {{-- <p class="mb-0 text-sm text-gray-600">Administrator</p> --}}
                         </div>
                         <div class="user-img d-flex align-items-center">
                             <div class="avatar avatar-md">
                                 @if(Auth::user()->profile_img != null)
-                                    <img src="{{asset('adminassets/images/avatar/'.Auth::user()->profile_img)}}">
+                                    <img src="{{asset('user_profile_images/'.Auth::user()->profile_img)}}">
                                 @else
                                     <img src="{{asset('adminassets/images/faces/2.jpg')}}">
                                 @endif

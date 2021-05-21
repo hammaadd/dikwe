@@ -3,7 +3,7 @@
 @section('heading','Profile')
 @section('desc','User admin profile.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">Profile</li>
     </ol>
@@ -32,7 +32,7 @@
         <div class="card p-3 card-80">
             <div class="row">
                 <div class="image col-md-4 border-box col-12 d-flex justify-content-center align-items-center flex-column">
-                    <img src="@if(Auth::user()->profile_img != null) {{asset('adminassets/images/avatar/'.Auth::user()->profile_img)}} @else {{asset('adminassets/images/faces/2.jpg')}} @endif"
+                    <img src="@if(Auth::user()->profile_img != null) {{asset('user_profile_images/'.Auth::user()->profile_img)}} @else {{asset('adminassets/images/faces/2.jpg')}} @endif"
                         class="rounded" style="background-color: rgb(209, 209, 209);" id="toggleImg" width="200">
 
                     <a class="btn btn-secondary btn-sm d-block mt-3" href="{{route('admin.change.avatar')}}">Update Avatar <i class="bi bi-image"></i></a>

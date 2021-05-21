@@ -3,7 +3,7 @@
 @section('heading','Update Slide')
 @section('desc','Update slides content for the homepage slider.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" ><a href="{{route('admin.slides')}}">Slides</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Slide # {{$slide->order}}</li>

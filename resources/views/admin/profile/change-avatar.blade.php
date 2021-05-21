@@ -3,7 +3,7 @@
 @section('heading','Change Avatar')
 @section('desc','Change the Avatar of your profile.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.profile')}}">Profile</a></li>
         <li class="breadcrumb-item active" aria-current="page">Change Avatar</li>
@@ -21,7 +21,7 @@
                             <div class="row d-flex justify-content-center my-2 ">
                                 <p>Old Avatar</p>
                                 <div class="col-md-6 col-12 position-relative">
-                                    <img  src="@if(Auth::user()->profile_img != null) {{asset('adminassets/images/avatar/'.Auth::user()->profile_img)}} @else {{asset('adminassets/images/faces/2.jpg')}} @endif"
+                                    <img  src="@if(Auth::user()->profile_img != null) {{asset('user_profile_images/'.Auth::user()->profile_img)}} @else {{asset('adminassets/images/faces/2.jpg')}} @endif"
                                     class="rounded avatar-img">
                                     <a class="delete-cross" href="{{route('admin.delete.avatar')}}" onclick="return confirm('Are you sure you want to delete');" title="Delete Avatar" >X</a>
                                 </div>

@@ -3,7 +3,7 @@
 @section('heading','Update Feature')
 @section('desc','Update features to show on homepage and features tab.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" ><a href="{{route('admin.features')}}">Features</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Feature # {{$feature->order}}</li>

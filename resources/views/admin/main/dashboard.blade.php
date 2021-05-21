@@ -3,7 +3,7 @@
 @section('heading','Dashboard')
 @section('desc','The dashboard to show the main highlighted content of the CMS.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active">Dashboard</li>
     </ol>

@@ -95,11 +95,11 @@ class ProfileController extends Controller
                     $file = $request->file('avatar');
                     $filename = $file->getClientOriginalName();
                     $imgname = uniqid() . $filename;
-                    $destinationPath = public_path('/adminassets/images/avatar/');
+                    $destinationPath = public_path('/user_profile_images');
                     $res = $file->move($destinationPath, $imgname);
                     $imag = User::find(Auth::id());
                     if(null!=$imag->profile_img){
-                        $image_path = "adminassets/images/avatar/".$imag->profile_img;  // Value is not URL but directory file path
+                        $image_path = "user_profile_images/".$imag->profile_img;  // Value is not URL but directory file path
                         if(File::exists($image_path)) {
                             File::delete($image_path);
                         }
@@ -131,7 +131,7 @@ class ProfileController extends Controller
     public function deleteAvatar(Request $request){
         $imag = User::find(Auth::id());
                 if($imag->profile_img!= null){
-                    $image_path =  public_path()."/adminassets/images/avatar/".$imag->profile_img;
+                    $image_path =  public_path()."user_profile_images/".$imag->profile_img;
                     if(File::exists($image_path)) {
                        $del =  File::delete($image_path);
                     }

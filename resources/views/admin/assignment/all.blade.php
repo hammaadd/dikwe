@@ -3,7 +3,7 @@
 @section('heading','Assignment of Permission  ')
 @section('desc','Permission that are assigned to the roles.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Assignment permission</li>
     </ol>

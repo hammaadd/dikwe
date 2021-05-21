@@ -3,7 +3,7 @@
 @section('heading','Short Codes')
 @section('desc','Manage Short Codes.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Short Code</li>
     </ol>

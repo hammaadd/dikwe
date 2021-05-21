@@ -3,7 +3,7 @@
 @section('heading','Manage User ')
 @section('desc','Manage users Who use Application  .')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Users</li>
     </ol>
@@ -61,7 +61,7 @@
                                                     @csrf
                                                     <select name="status" class="form-control">
                                                         <option value="A" @if($user->status=='A') selected @endif>Activate</option>
-                                                        <option value="D" @if($user->status=='D') selected @endif>De Activate</option>
+                                                        <option value="D" @if($user->status=='D') selected @endif>Suspend</option>
                                                     </select>
                                                     <button type="submit" class="btn btn-info btn-sm mt-2" title="Submit"><i class="bi bi-check"></i></button>
                                                 </form>

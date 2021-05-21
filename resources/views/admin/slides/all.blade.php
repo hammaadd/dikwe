@@ -3,7 +3,7 @@
 @section('heading','Slide Management')
 @section('desc','Manage slides showing on the home page slider.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Slides</li>
     </ol>

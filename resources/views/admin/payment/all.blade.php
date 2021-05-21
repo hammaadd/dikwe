@@ -3,7 +3,7 @@
 @section('heading','Payment Plans')
 @section('desc','Manage payment plan .')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Payment Plans</li>
     </ol>
@@ -43,7 +43,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$plan->name}}</td>
                                         <td>{{$plan->type}}</td>
-                                        <td>{{$plan->amount}}</td>
+                                        <td>$ {{$plan->amount}}</td>
                                         <td>{{$plan->status}}</td>
                                         <td>
                                            @php

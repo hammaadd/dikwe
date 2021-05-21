@@ -3,7 +3,7 @@
 @section('heading','Edit '.$content->heading)
 @section('desc','Edit/Update the content of given sections.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.manage.content')}}">Content Management</a></li>
         <li class="breadcrumb-item active" aria-current="page">Edit Content</li>

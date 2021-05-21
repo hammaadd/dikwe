@@ -3,7 +3,7 @@
 @section('heading','Edit Payment Plan')
 @section('desc','Edit/Update the content of given sections.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.payment.plans')}}">Payment Plans</a></li>
         <li class="breadcrumb-item active" aria-current="page">Edit Plan</li>
@@ -45,12 +45,12 @@
                                         <div class="form-floating">
                                         <select name="type" id="" class="form-control">
                                             
-                                            <option value="monthly" @if ($plan->type=='monthly')
+                                            <option value="Month" @if ($plan->type=='Month')
                                                 selected
-                                            @endif>Monthly </option>
-                                            <option value="yearly"  @if ($plan->type=='yearly')
+                                            @endif>Month </option>
+                                            <option value="Year"  @if ($plan->type=='Year')
                                                 selected
-                                            @endif>Yearly </option>
+                                            @endif>Year </option>
                                         </select>
                                             <label for="heading">Type</label>
                                         </div>
@@ -61,7 +61,7 @@
                                 <div class="row mt-3">
                                     <div class="col-md-6 col-12">
                                         <div class="form-floating">
-                                            <input type="number" min="1" class="form-control" name="amount" id="" value="{{$plan->amount}}" >
+                                            <input type="number" min="0" class="form-control" name="amount" id="" value="{{$plan->amount}}" >
                                             <label>Amount</label>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                                                     @if ($plan->status=='deactivate')
                                                         selected
                                                     @endif
-                                                >De Activate</option>
+                                                >Suspend</option>
                                             </select>
                                              <label for="heading">Status</label>
                                          </div>
@@ -121,8 +121,8 @@
                                         <table class="table table-hover table-bordered" id="tabledata">
                                             <thead>
                                                 <tr>
-                                                    <td>Feature</td>
-                                                    <td>Remove</td>
+                                                    <td></td>
+                                                    <td></td>
                                                 </tr>
                                             </thead>
                                         </table>

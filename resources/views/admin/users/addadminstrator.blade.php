@@ -3,7 +3,7 @@
 @section('heading','Create Adminstrator')
 @section('desc','Create the Adminstrator.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Short Code</li>
     </ol>

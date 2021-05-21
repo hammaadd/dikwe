@@ -135,9 +135,7 @@ Route::get('include-bookmark-tags', function () {
 Route::get('opened-notebook-lv', function () {
     return view('user.content.opened-notebook-lv');
 })->name('opened-notebook-lv');
-Route::get('add-tag', function () {
-    return view('user.content.add-tag');
-})->name('add-tag');
+
 Route::get('tag-notebooks-lv', function () {
     return view('user.content.tag-notebooks-lv');
 })->name('tag-notebooks-lv');
@@ -194,6 +192,7 @@ Route::prefix('u')->group(function(){
     Route::post('update-bookmark/{bookmark}','UserController@updatebookmark')->name('update.bookmark');
     Route::get('delete-bookmark/{bookmark}','UserController@deletebookmark')->name('delete.bookmark');
 
+
     
 
 });
@@ -207,6 +206,9 @@ Route::prefix('u')->middleware('role:user')->group(function () {
     })->name('dashboard');
     //User Profile Routes
     Route::get('profile','ProfileController@index')->name('user-profile');
+
+    //Tags
+    Route::get('add-tag','TagController@index')->name('add-tag');
 });
 
 // Admin Routes

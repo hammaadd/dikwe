@@ -3,7 +3,7 @@
 @section('heading','Edit Permission Assignment')
 @section('desc','Update the permission of the roles .')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" ><a href="{{route('admin.assignment.list')}}"></a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Roles Permission</li>

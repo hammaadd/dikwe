@@ -59,6 +59,7 @@ class PaymentController extends Controller
         $plan->type = $type ;
         $plan->amount = $amount ;
         $plan->features = $features ;
+        $plan->status = $request->status;
         $res=$plan->update();
         if($res){
             $request->session()->flash('success', 'Payment Plan Updated Successfully!');

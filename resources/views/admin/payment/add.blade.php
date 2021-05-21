@@ -3,7 +3,7 @@
 @section('heading','Add Payment Plan')
 @section('desc','Create the Payment Plans.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item" aria-current="page"><a href="{{route('admin.payment.plans')}}">Payment Plans</a></li>
         <li class="breadcrumb-item active" aria-current="page">Add Payment Plan</li>
@@ -45,8 +45,8 @@
                                     <div class="form-floating">
                                        <select name="type" id="" class="form-control">
                                            <option value=""></option>
-                                           <option value="monthly" >Monthly </option>
-                                           <option value="yearly"  >Yearly </option>
+                                           <option value="Month" >Month </option>
+                                           <option value="Year"  >Year </option>
                                        </select>
                                         <label for="heading">Type</label>
                                     </div>

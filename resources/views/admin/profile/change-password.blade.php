@@ -3,7 +3,7 @@
 @section('heading','Change Password')
 @section('desc','Change the password of your profile.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.profile')}}">Profile</a></li>
         <li class="breadcrumb-item active" aria-current="page">Change Password</li>

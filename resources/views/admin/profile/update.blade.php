@@ -3,7 +3,7 @@
 @section('heading','Update Profile')
 @section('desc','Update the information of your profile here.')
 @section('breadcrumbs')
-<nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+<nav aria-label="breadcrumb" class="breadcrumb-header float-start">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{route('admin.profile')}}">Profile</a></li>
         <li class="breadcrumb-item active" aria-current="page">Update Profile</li>
@@ -98,7 +98,7 @@
                                         <div class="form-floating">
                                             
                                             <input type="text" id="phone_no" class="form-control"
-                                                name="phone_no" placeholder="Phone no">
+                                                name="phone_no" placeholder="Phone no" value="{{ Auth::user()->phone_no }}">
                                             <label for="phone_no">Phone no</label>
                                         </div>
                                     </div>
