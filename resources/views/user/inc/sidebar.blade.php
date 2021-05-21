@@ -1,4 +1,4 @@
-<div class="sidebar" x-data="{ isOpen:false}">
+<div class="sidebar relative z-10" x-data="{ isOpen:false}">
     <div class="sidebar-mini hidden md:block fixed bg-green-550 w-24 h-full lg:h-screen py-8" x-show="!isOpen">
         <div class="text-center">
             <a href="{{route('user-profile')}}" class="block relative">

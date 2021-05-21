@@ -36,10 +36,11 @@
                                 </small>
                         @enderror
                     </div>
-                    <div class="input--f">
+                    {{-- <div class="input--f">
                         <i class="fas fa-thumbs-up text-green-550 text-2xl mx-2"></i>
                         <i class="fas fa-thumbs-down text-green-550 text-2xl mx-2"></i>
-                    </div>
+                    </div> --}}
+   
                 </div>
                 <div class="input--field">
                     <div class="flex flex-row justify-around xl:justify-center">
@@ -75,16 +76,6 @@
             </form>
         </div>
     </div>
-    {{-- Notification Components Start Here --}}
-<div x-data="{ shownotification : true }" >
-    @if(session()->has('success'))
-    <div x-data="{ shownotification : true }" x-init="setTimeout(() => shownotification = false, 4000)">
-        <x-success-notify :message="session()->get('success')"/>
-    </div>
-    @elseif(session()->has('error'))
-        <x-error-notify :message="session()->get('error')"/>
-    @endif
-</div>
-{{-- Notification component Ends Here --}}
+    @include('user.sections.notification')
 </div>
 

@@ -13,4 +13,8 @@ class TagsList extends Component
         $tags = Tag::where('status','=','active')->limit(5)->orderBy('created_at','DESC')->get();
         return view('livewire.tags-list',['tags'=>$tags]);
     }
+
+    public function passTagId($tagId){
+        $this->emit('editTag',$tagId);
+    }
 }
