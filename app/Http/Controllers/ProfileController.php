@@ -15,7 +15,8 @@ class ProfileController extends Controller
     public function index(Request $request){
 
         // $request->session()->flash('error', 'Feedback deleted successfully');
-        $countries = Country::all();
+        $countries = Country::select('id','country')->get();
+        // dd($countries);
         return view('user.content.profile',compact('countries'));
     }
 

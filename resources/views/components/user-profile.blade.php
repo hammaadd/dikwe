@@ -53,7 +53,7 @@
         <div class="w-full px-2 md:px-5">
             <select class="field" name="country">
                 @forelse($countries as $country)
-                <option value="{{ $country->id }}" @if(Auth::user()->country->id == $country->id) selected @endif>{{ $country->country }}</option>
+                <option value="{{ $country->id }}" @if(Auth::user()->country_id == $country->id) selected @endif>{{ $country->country }}</option>
                 @empty
                 <option value="">Nothing to show</option>
                 @endforelse
