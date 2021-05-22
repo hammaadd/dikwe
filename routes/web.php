@@ -44,7 +44,7 @@ Route::get('url-search-result', function () {
 Route::get('features', function () {
     return view('visitor.content.features');
 })->name('features');
-Route::get('tags', function () {
+Route::get('tagss', function () {
     return view('user.content.tags');
 })->name('tags');
 Route::get('workspaces', function () {

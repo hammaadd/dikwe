@@ -12,7 +12,7 @@
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
-                        <x-tag-filters />
+                        <livewire:tag-filters />
                             <livewire:tags-list />
                         <div class="text-center pt-5">
                             <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
