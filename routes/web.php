@@ -208,6 +208,7 @@ Route::prefix('u')->middleware('role:user')->group(function () {
     //Tags
     Route::get('add-tag','TagController@index')->name('add-tag');
     Route::get('tags', function () { return view('user.content.tags'); })->name('tags');
+    Route::get('workspaces', function () { return view('user.content.workspaces'); })->name('workspaces');
 });
 
 // Admin Routes

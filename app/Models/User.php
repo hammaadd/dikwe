@@ -56,3 +56,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(SocialLink::class,'user_id');
     }
 }
+
+
+
+
+

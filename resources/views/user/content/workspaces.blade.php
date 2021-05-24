@@ -3,11 +3,23 @@
 @section('page-title','Workspaces')
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    @livewireStyles
+@endsection
+@section('bodyExtra')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.multiple-select').select2({
+                maximumSelectionLength: 1,
+            });
+        });
+    </script>
 @endsection
 @section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
-        <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
-            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
+        <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8" >
+            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{showAdd:false, isOpenWorkspace:false}">
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
@@ -24,19 +36,38 @@
                         </div>
                     </div>
                 </div>
+                {{-- Add Workspace Code Starts Here --}}
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="showAdd"
+                x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-75"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-75">
+                    <livewire:add-workspace/>
+                </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
+                {{-- Add workspace code ends here --}}
+
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="!showAdd"
+                x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                x-transition:enter-start="opacity-0 scale-75"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-75"              
+                >
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
-                        <div class="flex flex-wrap justify-between relative" x-data="{ isOpen: false }">
+                        <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">13 Knowledge Assets</label></div>
-                            <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpen = !isOpen " >
+                            <button class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-right focus:outline-none" @click=" isOpenWorkspace = !isOpenWorkspace " >
                                 <i class="fas fa-plus-circle mr-2"></i> New
                             </button>
                             <ul
-                                x-show="isOpen"
-                                @click.away="isOpen = false"
+                                x-show="isOpenWorkspace"
+                                @click.away="isOpenWorkspace = false"
                                 x-transition:enter="transition transform origin-top-right ease-out duration-200"
                                 x-transition:enter-start="opacity-0 scale-75"
                                 x-transition:enter-end="opacity-100 scale-100"
@@ -46,7 +77,7 @@
                                 class="absolute bg-white shadow overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-10 z-20"
                             >
                                 <li class="border-b border-green-150">
-                                    <a href="{{ route('add-workspace') }}" class="dropdown-item">
+                                    <a href="#" class="dropdown-item" @click=" showAdd = !showAdd , isOpenWorkspace = false ">
                                         <i class="fas fa-tags dropdown-item-icon"></i>
                                         <span class="ml-2">Create New Workspace</span>
                                     </a>
@@ -283,4 +314,8 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+
+@livewireScripts
 @endsection
