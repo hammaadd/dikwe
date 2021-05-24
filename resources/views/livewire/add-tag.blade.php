@@ -2,6 +2,11 @@
 
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="tag">Adding Tag</label></div>
+        <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
+            <a href="javascript:void(0)" x-on:click="showMain = true" class="link-hover text-green-550 font-bold">
+                Back To The Tags
+            </a>
+        </div>
     </div>
     <div class="p-2 md:p-8">
         <div>

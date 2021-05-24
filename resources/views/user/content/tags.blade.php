@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="showMain">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show.transition.in.duration.200ms.out.duration.50ms="showMain">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl lg:h-full mt-4 lg:mt-0">
@@ -37,12 +37,13 @@
                         <div class="pt-16 pb-4 text-center">
                             <img src="{{ asset('images/Mask Group 45.svg') }}" alt="">
                             <p class="font-bold text-center pt-10">No tags is opened!<br>open a tag and start browsing<br>knowledge assets ..</p>
-                            <button class="mt-10 btn-main" onclick="return location='{{ route('add-tag')}}';">Create New Tag</button>
+                            {{-- <button class="mt-10 btn-main" onclick="return location='{{ route('add-tag')}}';">Create New Tag</button> --}}
+                            <button class="mt-10 btn-main" @click="showMain = false" >Create New Tag</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="showMain">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show.transition.in.duration.200ms.out.duration.50ms="showMain">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 rounded-xl mt-4 lg:mt-0">
@@ -54,10 +55,10 @@
                     </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3"  x-show="!showEdit && !showMain">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3"  x-show.transition.in.duration.200ms.out.duration.50ms="!showEdit && !showMain">
                     <livewire:add-tag />
                 </div>
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="showEdit">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show.transition.in.duration.200ms.out.duration.50ms="showEdit">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class=" bg-green-250 pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
@@ -65,7 +66,7 @@
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="workspace-info"><i class="fas fa-cog mr-2"></i>Tag Info</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
                                 <a href="javascript:void(0)" x-on:click="showEdit= false" class="link-hover text-green-550 font-bold">
-                                    Back To The Tags Knowledge Assets
+                                    Back To The Add Tag
                                 </a>
                             </div>
                         </div>

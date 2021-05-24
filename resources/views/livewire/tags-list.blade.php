@@ -12,8 +12,8 @@
     </div>
     <div class="flex flex-wrap items-center">
         <span class="count-number mx-3 text-gray-400 font-bold ">20</span>
-        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 hover:bg-green-550 hover:text-white focus:outline-none" x-on:click="{showEdit=true,showMain=false}" wire:click="passTagId({{$tag->id}})">
-            <i class="fas fa-pen"></i>
+        <button class=" bg-green-150 text-gray-400 text-sm rounded-full px-2 py-1 hover:bg-green-550 hover:text-white focus:outline-none @if($tagId == $tag->id) bg-green-550 text-white @endif" x-on:click="{showEdit=true,showMain=false}" wire:click="passTagId({{$tag->id}})">
+            <i class="fas fa-pen @if($tagId == $tag->id) text-white @endif"></i>
         </button>
     </div>
     

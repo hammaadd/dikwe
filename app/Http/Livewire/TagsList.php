@@ -8,7 +8,7 @@ use Livewire\Component;
 class TagsList extends Component
 {
     protected $listeners = ['updateTags' => 'render','updateVisibility'=>'updateVisiblityOfTags','updateColor'=>'updateVisiblityOfTags'];
-    public $tags, $visi_type = null, $color = null;
+    public $tags, $visi_type = null, $color = null,$tagId;
     protected  $tagg;
 
     public function updateVisiblityOfTags($visi_type,$color){
@@ -57,6 +57,7 @@ class TagsList extends Component
     }
 
     public function passTagId($tagId){
+        $this->tagId = $tagId;
         $this->emit('editTag',$tagId);
     }
 }
