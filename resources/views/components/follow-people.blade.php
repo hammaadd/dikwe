@@ -1,6 +1,6 @@
 <h3 class=" text-lg font-bold pl-2">Start Following People and Gain Knowledge</h3>
 <div class="bg-white rounded-xl p-5 height-28">
-    <div class="w-full" x-show="tab==='followers'">
+    <div class="w-full">
         @for($i=0;$i<3;$i++)
             <x-followers-list followname="Martin Wood" followcount="120"/>
         @endfor

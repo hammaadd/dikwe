@@ -44,9 +44,7 @@ Route::get('url-search-result', function () {
 Route::get('features', function () {
     return view('visitor.content.features');
 })->name('features');
-Route::get('tagss', function () {
-    return view('user.content.tags');
-})->name('tags');
+
 Route::get('workspaces', function () {
     return view('user.content.workspaces');
 })->name('workspaces');
@@ -209,6 +207,7 @@ Route::prefix('u')->middleware('role:user')->group(function () {
 
     //Tags
     Route::get('add-tag','TagController@index')->name('add-tag');
+    Route::get('tags', function () { return view('user.content.tags'); })->name('tags');
 });
 
 // Admin Routes

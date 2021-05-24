@@ -35,11 +35,14 @@ class EditTag extends Component
     }
 
     public function resetUpdateForm(){
-        $this->tagId = 0;
-        $this->name = '';
-        $this->note = '';
-        $this->color = '';
-        $this->visibility = '';
+        if($this->tagId > 0):
+            $tag = Tag::where('id',$this->tagId)->where('user_id','=',Auth::id())->first();
+            $this->tagId = $tag->id;
+            $this->name = $tag->tag;
+            $this->note = $tag->note;
+            $this->color = $tag->color;
+            $this->visibility = $tag->visibility;
+        endif;
     }
 
     public function update(){

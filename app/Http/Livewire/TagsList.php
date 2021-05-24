@@ -7,30 +7,52 @@ use Livewire\Component;
 
 class TagsList extends Component
 {
-    protected $listeners = ['updateTags' => 'render','updateVisibility'=>'updateVisiblityOfTags'];
-    public $tags, $visi_type = null , $tagg;
+    protected $listeners = ['updateTags' => 'render','updateVisibility'=>'updateVisiblityOfTags','updateColor'=>'updateVisiblityOfTags'];
+    public $tags, $visi_type = null, $color = null;
+    protected  $tagg;
 
-    public function updateVisiblityOfTags($visi_type){
+    public function updateVisiblityOfTags($visi_type,$color){
         $this->visi_type = $visi_type;
-        if($this->visi_type=='A'){
-            $this->tags = $this->tag->where('status','=','active')->limit(5)->orderBy('created_at','DESC')->where('user_id',Auth::id())->get();
+        $this->color = $color;
+        $colors = array('purple','yellow','blue','green');
+        $tagg = Tag::query();
+        $tagg->where('status','=','active')
+            ->limit(5)
+            ->orderBy('created_at','DESC')
+            ->where('user_id',Auth::id());
+        if($this->visi_type=='A' || $this->visi_type == null){
+            
         }else{
-            $this->tags = $this->tag->('status','=','active')->where('visibility','=',$visi_type)->limit(5)->orderBy('created_at','DESC')->where('user_id',Auth::id())->get();
+            $tagg->where('visibility','=',$visi_type);
         }
+
+        if(in_array($color, $colors)){
+            $tagg->where('color','=',$color);
+        }
+
+
+        $this->tags = $tagg->get();
         
     }
+
+    // public function updateColors($color){
+    //     $this->updateVisiblityOfTags($this->visi_type, $color);
+
+    // }
+
+    // public function updateVisib($visi_type){
+    //     $this->updateVisiblityOfTags($visi_type, $this->color);
+    // }
     public function mount(){
-        $this->initializeTag();
-        $this->updateVisiblityOfTags('A');
+        $this->updateVisiblityOfTags('A','A');
     }
-    public function initializeTag(){
-        $this->tagg = Tag::query();
-    }
+
     public function render()
     {
-        if($this->visi_type != null){
-            $this->updateVisiblityOfTags($this->visi_type);
+        if($this->visi_type != null || $this->color !=null){
+            $this->updateVisiblityOfTags($this->visi_type,$this->color);
         }
+        
         return view('livewire.tags-list');
     }
 

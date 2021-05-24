@@ -44,7 +44,7 @@ class AddTag extends Component
         $tag->visibility = $this->visibility;
         $tag->user_id = Auth::id();
         $tag->save();
-        session()->flash('success', 'Profile Updated Successfully.');
+        session()->flash('success', 'Tag Added Successfully.');
         $this->emit('updateTags');
 
         $this->resetCreateForm();
