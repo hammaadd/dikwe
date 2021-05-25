@@ -7,13 +7,7 @@
 @endsection
 @section('bodyExtra')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.multiple-select').select2({
-                maximumSelectionLength: 1,
-            });
-        });
-    </script>
+    
 @endsection
 @section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">

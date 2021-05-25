@@ -11,30 +11,35 @@
     <div class="p-2 md:p-8">
         <div>
             <form wire:submit.prevent="store">
-                <input type="text" placeholder="Workspace Name" class="input--field" name="name">
+                <input type="text" placeholder="Workspace Name" class="input--field" name="name" wire:model.defer="name">
                 @error('name')
                                 <small class="field-error-message">
                                     <span>{{$message}}</span>
                                 </small>
                     @enderror
-                <textarea rows="3" class="input--field" placeholder="Workspace Description" name="description"></textarea>
+                <textarea rows="3" class="input--field" placeholder="Workspace Description" name="description" wire:model.defer="description"></textarea>
                 @error('description')
                                 <small class="field-error-message">
                                     <span>{{$message}}</span>
                                 </small>
                     @enderror
-                <div class="input--field">
-                    <label for="workspace">Select Workspace</label>
-                    <select class="multiple-select" id="SelectTag" multiple="multiple" name="workspace" placeholder="Select Parent Workspace">
+                <div class="input--field" >
+                    
+                    <div wire:ignore>
+                        <label for="workspace">Select Workspace</label>
+                    <select class="multiple-select" id="selectWorkspace" multiple="multiple" name="workspace" placeholder="Select Parent Workspace">
                         <option value="0" selected>None</option>
-                        <option value="">Child Child Workspace</option>
+                        <option value="1">Child Child Workspace</option>
                     </select>
+                    </div>
+                    
                     @error('workspace')
                                 <small class="field-error-message">
                                     <span>{{$message}}</span>
                                 </small>
                     @enderror
                 </div>
+                
                 <div class="flex flex-wrap overflow-hidden flex-row items-center justify-between">
                     <div class="input--f">
                         <div class=" mx-auto">
@@ -85,10 +90,34 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray">Cancel</button>
+                    <button type="button" class="btn-gray">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
         </div>
     </div>
+    @include('user.sections.notification')
+    <script>
+        document.addEventListener('livewire:load', function () {
+        $('.multiple-select').on('select2:select', (e) => {
+            @this.emit('setWorkspace', $('.multiple-select').select2('val')[0]);
+            console.log($('.multiple-select').select2('val')[0]);
+        });
+
+        $('.multiple-select').val(@this.get('workspace')).trigger('change');
+        });
+    </script>
 </div>
+
+@push('script_s')
+<script>
+    $(document).ready(function() {
+        $('.multiple-select').select2({
+            maximumSelectionLength: 1,
+        });
+    });
+
+    
+</script>
+
+@endpush

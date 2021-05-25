@@ -33,6 +33,7 @@
     
           </script>
           @yield('scripts')
+          @stack('script_s')
     </body>
 
 {{-- <script src="{{asset('js/main.js')}}"></script>

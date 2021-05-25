@@ -10,7 +10,9 @@ use Livewire\Component;
 class AddWorkspace extends Component
 {
     use AuthorizesRequests;
-    public $name , $description , $color , $visibility, $workspace;
+    public $name , $description , $color , $visibility, $workspace = 0;
+    protected $listeners = ['setWorkspace'];
+
 
     private function resetCreateForm(){
         $this->name = '';
@@ -22,6 +24,7 @@ class AddWorkspace extends Component
         $pretty_names = [
             'name'  =>  'workspace name',
         ];
+        
         
         $this->validate([
             'name' => 'required',
@@ -39,9 +42,15 @@ class AddWorkspace extends Component
         $wrkspc->user_id = Auth::id();
         $wrkspc->save();
         session()->flash('success', 'Workspace Added Successfully.');
+        
         // $this->emit('updateTags');
 
         $this->resetCreateForm();
+    }
+
+    public function setWorkspace($selectValue){
+        $this->workspace = $selectValue;
+        
     }
 
     public function render()
