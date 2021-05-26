@@ -27,10 +27,14 @@
                     
                     <div wire:ignore>
                         <label for="workspace">Select Workspace</label>
-                    <select class="multiple-select" id="selectWorkspace" multiple="multiple" name="workspace" placeholder="Select Parent Workspace">
-                        <option value="0" selected>None</option>
-                        <option value="1">Child Child Workspace</option>
-                    </select>
+                        <select class="multiple-select" id="selectWorkspace" multiple="multiple" name="workspace" placeholder="Select Parent Workspace">
+                            <option value="0">None</option>
+                            @forelse ($workspaces as $wrk)
+                            <option value="{{$wrk->id}}">{{$wrk->title}}</option>
+                            @empty
+                                
+                            @endforelse
+                        </select>
                     </div>
                     
                     @error('workspace')
@@ -97,16 +101,7 @@
         </div>
     </div>
     @include('user.sections.notification')
-    <script>
-        document.addEventListener('livewire:load', function () {
-        $('.multiple-select').on('select2:select', (e) => {
-            @this.emit('setWorkspace', $('.multiple-select').select2('val')[0]);
-            console.log($('.multiple-select').select2('val')[0]);
-        });
-
-        $('.multiple-select').val(@this.get('workspace')).trigger('change');
-        });
-    </script>
+    
 </div>
 
 @push('script_s')
@@ -116,8 +111,21 @@
             maximumSelectionLength: 1,
         });
     });
+        document.addEventListener('livewire:load', function () {
+            $('.multiple-select').select2({
+            maximumSelectionLength: 1,
+        });
+        $('.multiple-select').on('select2:select', (e) => {
+            @this.emit('setWorkspace', $('.multiple-select').select2('val')[0]);
+            // console.log($('.multiple-select').select2('val')[0]);
+        });
+        $('.multiple-select').on('select2:unselect', (e) => {
+            // console.log($('.multiple-select').select2('val')[0]);
+            @this.emit('setWorkspace',null);
+        });
 
-    
-</script>
+        $('.multiple-select').val(@this.get('workspace')).trigger('change');
+        });
+    </script>
 
 @endpush

@@ -10,10 +10,13 @@ use Livewire\Component;
 class AddWorkspace extends Component
 {
     use AuthorizesRequests;
-    public $name , $description , $color , $visibility, $workspace = 0;
+    public $name , $description , $color , $visibility, $workspace , $workspaces;
     protected $listeners = ['setWorkspace'];
 
 
+    public function mount(){
+        $this->workspaces = Workspace::where('created_by','=',Auth::user()->id)->get();
+    }
     private function resetCreateForm(){
         $this->name = '';
         $this->description = '';
@@ -30,16 +33,19 @@ class AddWorkspace extends Component
             'name' => 'required',
             'description' => 'max:500',
             'color' => 'required|in:purple,yellow,blue,green',
-            'visibility' => 'required',
+            'visibility' => 'required|in:P,PR,R',
             'workspace'=>'required'
         ],[],$pretty_names);
-        
+        if($this->workspace == 0 || $this->workspace == null){
+            $this->workspace = null;
+        }
         $wrkspc = new Workspace;
-        $wrkspc->name = $this->name;
+        $wrkspc->title = $this->name;
         $wrkspc->description = $this->description;
         $wrkspc->parent = $this->workspace;
+        $wrkspc->color = $this->color;
         $wrkspc->visibility = $this->visibility;
-        $wrkspc->user_id = Auth::id();
+        $wrkspc->created_by = Auth::id();
         $wrkspc->save();
         session()->flash('success', 'Workspace Added Successfully.');
         
