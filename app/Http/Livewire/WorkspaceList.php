@@ -24,7 +24,7 @@ class WorkspaceList extends Component
 
     public function mount(){
         $this->parent = 0;
-        $this->wrkspcs = Workspace::where('created_by','=',Auth::id())->get();
+        $this->wrkspcs = Workspace::where('created_by','=',Auth::id())->where('parent','=',null)->get();
     }
 
     public function loadChilds($id){

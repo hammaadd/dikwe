@@ -17,8 +17,8 @@
                 <span class="text-gray-400 mx-2 py-1 hover:text-green-550 focus:outline-none cursor-pointer">
                 @if($ws->children->count() > 0 )
                 
-                    <i class="fas fa-caret-right text-2xl align-middle" @click="wsChild = !wsChild" :class="{'block': !wsChild, 'hidden-imp':wsChild }" wire:click="loadChilds({{$ws->id}})"></i>
-                    <i class="fas fa-caret-down text-2xl align-middle" @click="wsChild = !wsChild" :class="{'hidden-imp': !wsChild, 'block':wsChild }"></i>
+                    <i class="fas text-2xl align-middle" @click="wsChild = !wsChild" :class="{'fa-caret-right': !wsChild, 'fa-caret-down':wsChild }" wire:click="loadChilds({{$ws->id}})"></i>
+                    {{-- <i class="fas fa-caret-down text-2xl align-middle" @click="wsChild = !wsChild" :class="{'hidden-imp': !wsChild, 'block':wsChild }"></i> --}}
                 
                 @endif
             </span>
