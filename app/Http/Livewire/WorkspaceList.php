@@ -8,13 +8,30 @@ use Livewire\Component;
 
 class WorkspaceList extends Component
 {
-    public $wrkspcs;
+    public $wrkspcs , $parent;
     public function render()
     {
+        if($this->parent != 0){
+            $childs = Workspace::where('parent','=',$this->parent)->where('created_by','=',Auth::id())->get();
+            if($childs){
+                return view('livewire.workspace-list',['childs'=>$childs]);
+            }
+            
+        }
+        
         return view('livewire.workspace-list');
     }
 
     public function mount(){
+        $this->parent = 0;
         $this->wrkspcs = Workspace::where('created_by','=',Auth::id())->get();
     }
+
+    public function loadChilds($id){
+        if($id > 0){
+            $this->parent = $id;
+        }
+    }
+
+
 }

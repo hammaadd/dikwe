@@ -8,7 +8,7 @@
         <div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between rounded-xl">
             <div class="flex flex-wrap items-center pl-2 md:pl-10">
                 <label for="tag-name">
-                    Child
+                    
                 </label>
             </div>
             <div class="flex flex-wrap items-center">
@@ -22,7 +22,7 @@
                 </span>
             </div>
         </div>
-        <div x-show="wsSubChild"
+        {{-- <div x-show="wsSubChild"
             x-transition:enter="transition transform origin-top ease-out duration-200"
             x-transition:enter-start="opacity-0 scale-75"
             x-transition:enter-end="opacity-100 scale-100"
@@ -42,5 +42,5 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
