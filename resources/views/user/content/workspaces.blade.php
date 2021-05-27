@@ -26,11 +26,7 @@
                     {{-- Filter Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
                         <x-workspaces-filter />
-                        <div class="w-full pt-3" x-data="{ wsParent: false, wsChild: false, wsSubChild: false }">
-                            @for($i=0;$i<5;$i++)
-                                <x-workspaces-list wsparent="Parent WS" wschild="Child WS" wssubchild="Sub-Child WS"/>
-                            @endfor
-                        </div>
+                        <livewire:workspace-list/>
                         <div class="text-center pt-5">
                             <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
                         </div>
@@ -44,7 +40,7 @@
                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                 x-transition:leave-start="opacity-100 scale-100"
                 x-transition:leave-end="opacity-0 scale-75">
-                    <livewire:add-workspace/>
+                    <livewire:add-workspace />
                 </div>
 
                 {{-- Add workspace code ends here --}}

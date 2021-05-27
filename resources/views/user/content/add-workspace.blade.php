@@ -19,7 +19,7 @@
                     {{-- Filter Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
                         <x-workspaces-filter />
-                        <livewire:workspace-list/>
+                        {{-- <livewire:workspace-list/> --}}
                         <div class="text-center pt-5">
                             <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
                         </div>

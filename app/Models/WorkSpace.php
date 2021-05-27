@@ -15,4 +15,11 @@ class Workspace extends Model
     {
         return $this->hasMany(WorkSpace::class, 'parent');
     }
+
+    public function children()
+    {
+        return $this->hasMany(WorkSpace::class,'parent');
+    }
+
+
 }
