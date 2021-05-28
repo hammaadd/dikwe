@@ -34,7 +34,8 @@ class ChildWorkspaces extends Component
         }
     }
 
-    public function checkEdit($id){
-        
+    public function passWsId($id){
+        $this->wsId = $id;
+        $this->emit('editWs',$id);
     }
 }
