@@ -49,7 +49,7 @@ class AddWorkspace extends Component
         $wrkspc->save();
         session()->flash('success', 'Workspace Added Successfully.');
         
-        // $this->emit('updateTags');
+        $this->emit('updateWorkspaceList');
 
         $this->resetCreateForm();
     }

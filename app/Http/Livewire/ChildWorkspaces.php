@@ -8,11 +8,13 @@ use Livewire\Component;
 
 class ChildWorkspaces extends Component
 {
-    public $childs, $parent;
+    public $childs, $parent ,$prnt;
+    
 
-    public function mount($childs){
-        $this->$childs = $childs;
+    public function mount($childs,$prnt){
+        $this->childs = $childs;
         $this->parent = 0;
+        $this->prnt = $prnt;
     }
     public function render()
     {
@@ -28,6 +30,11 @@ class ChildWorkspaces extends Component
     public function loadChilds($id){
         if($id > 0){
             $this->parent = $id;
+            
         }
+    }
+
+    public function checkEdit($id){
+        
     }
 }
