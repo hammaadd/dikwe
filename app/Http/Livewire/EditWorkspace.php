@@ -22,8 +22,8 @@ class EditWorkspace extends Component
     }
 
     public function resetUpdateForm(){
-        if($this->wsId > 0):
-            $ws = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->first();
+        $ws = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->first();
+        if($this->wsId > 0 && $ws):
             $this->wsId = $ws->id;
             $this->description = $ws->description;
             $this->title = $ws->title;
@@ -33,6 +33,7 @@ class EditWorkspace extends Component
     }
 
     public function mount(){
+        
         if($this->wsId > 0){
             $ws = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->first();
             if($ws){
@@ -59,7 +60,7 @@ class EditWorkspace extends Component
         ],[],$pretty_names);
         
        $ws = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->first();
-        if($this->wsId > 0 &&$ws){
+        if($this->wsId > 0 && $ws){
            $ws->title = $this->name;
            $ws->description = $this->description;
            $ws->color = $this->color;
@@ -79,9 +80,9 @@ class EditWorkspace extends Component
 
     public function delete(){
         if($this->wsId > 0){
-            $res = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->first();
-            $res2 = Workspace::where('parent',$this->wsId)->where('created_by','=',Auth::id())->first();
-            if($res && $res2){
+            $res = Workspace::where('id',$this->wsId)->where('created_by','=',Auth::id())->delete();
+            $res2 = Workspace::where('parent',$this->wsId)->where('created_by','=',Auth::id())->delete();
+            if($res){
                 $this->emit('updateWorkspaceList');
                 session()->flash('success', 'Workspace Deleted Successfully.');
                 $this->resetUpdateForm();

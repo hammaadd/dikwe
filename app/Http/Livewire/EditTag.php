@@ -35,8 +35,8 @@ class EditTag extends Component
     }
 
     public function resetUpdateForm(){
-        if($this->tagId > 0):
-            $tag = Tag::where('id',$this->tagId)->where('user_id','=',Auth::id())->first();
+        $tag = Tag::where('id',$this->tagId)->where('user_id','=',Auth::id())->first();
+        if($this->tagId > 0 && $tag):
             $this->tagId = $tag->id;
             $this->name = $tag->tag;
             $this->note = $tag->note;
