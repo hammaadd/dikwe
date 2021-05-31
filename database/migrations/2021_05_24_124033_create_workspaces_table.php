@@ -24,6 +24,7 @@ class CreateWorkspacesTable extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->enum('status',['active','inactive'])->default('active');
+            $table->text('slug')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

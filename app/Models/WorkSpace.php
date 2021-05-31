@@ -17,11 +17,15 @@ class Workspace extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => ['owner.name','title']
             ]
         ];
     }
-    
+
+    public function owner(){
+        return $this->hasOne(User::class,'created_by');
+    }
+
     public function parent()
     {
         return $this->hasMany(WorkSpace::class, 'parent');
