@@ -7,18 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tag extends Model
+class Note extends Model
 {
     use HasFactory;
     use SoftDeletes;
     use Sluggable;
 
     protected $fillable = [
-        'tag',
-        'note',
-        'visibility',
-        'color',
-        'slug'
+        'title','source','source_url','visibility','color'
         
     ];
 
@@ -26,12 +22,12 @@ class Tag extends Model
     {
         return [
             'slug' => [
-                'source' => 'tag'
+                'source' => 'title'
             ]
         ];
     }
 
     public function owner(){
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class,'created_by','id');
     }
 }
