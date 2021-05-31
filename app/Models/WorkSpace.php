@@ -13,17 +13,21 @@ class Workspace extends Model
     use SoftDeletes;
     use Sluggable;
 
+    protected $fillable = [
+        'title','description','parent','visibility','color','created_by','status','slug'	
+    ];
+
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => ['owner.name','title']
+                'source' => ['owner.firstname','title']
             ]
         ];
     }
 
     public function owner(){
-        return $this->hasOne(User::class,'created_by');
+        return $this->belongsTo(User::class,'created_by','id');
     }
 
     public function parent()
