@@ -21,10 +21,10 @@
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8" x-data="{showAdd:false, editShow:false, isOpenWorkspace:false}" @showedit.window="editShow=true , showAdd=false">
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" >
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3 ">
                     <!-- Column Content -->
                     {{-- Filter Section --}}
-                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
+                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
                         <livewire:workspace-filters />
                        
                         <livewire:workspace-list />

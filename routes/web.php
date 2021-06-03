@@ -52,9 +52,7 @@ Route::get('workspaces', function () {
 
 
 
-Route::get('notes', function () {
-    return view('user.content.notes');
-})->name('notes');
+
 Route::get('bookmarks', function () {
     return view('user.content.bookmarks');
 })->name('bookmarks');
@@ -209,6 +207,7 @@ Route::prefix('u')->middleware('role:user')->group(function () {
     Route::get('add-tag','TagController@index')->name('add-tag');
     Route::get('tags', function () { return view('user.content.tags'); })->name('tags');
     Route::get('workspaces', function () { return view('user.content.workspaces'); })->name('workspaces');
+    Route::get('notes', 'NoteController@index')->name('notes');
 });
 
 // Admin Routes
