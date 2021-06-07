@@ -41,7 +41,7 @@ class AddNoteInfo extends Component
 
     public function moreAddInfo(){
         
-        $this->emit('passMoreInfo',$this->title, $this->description,$this->color);
+        $this->emit('passMoreInfo',$this->title, $this->description,$this->color,$this->tags,$this->workspaces,$this->source,$this->url,$this->visibility);
         
     }
 

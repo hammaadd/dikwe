@@ -2,11 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Note;
+use App\Models\NoteTag;
+use App\Models\NoteWorkspace;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AddNote extends Component
 {
-    public $color,$title, $description;
+    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [];
     protected $listeners = ['passMoreInfo'=> 'passMoreInfo'];
     public function render()
     {
@@ -17,15 +21,82 @@ class AddNote extends Component
         $this->emit('showMoreInfo',$this->title, $this->description,$this->color);
     }
 
-    public function passMoreInfo( $title,$description,$color){
+    public function passMoreInfo( $title,$description,$color,$tags,$workspaces,$source,$url,$visibility){
         
         $this->title = $title;
         $this->description = $description;
-        $this->color = $color;  
+        $this->color = $color; 
+        $this->tags = $tags;
+        $this->workspaces = $workspaces;
+        $this->source = $source;
+        $this->url = $url;
+        $this->visibility = $visibility;
     
     }
 
+    public function resetCreateForm(){
+        $this->title = '';
+        $this->description = '';
+        $this->color = '';
+        $this->visibility = '';
+        $this->source = '';
+        $this->url = '';
+
+
+    }
+
     public function store(){
+        $pretty_names = [
+            'title'  =>  'note title',
+            'description'  => 'description'
+        ];
         
+        $this->validate([
+            'title' => 'required',
+            'description' => 'required|max:500',
+        ],[],$pretty_names);
+        $note = new Note;
+        $note->title = $this->title;
+        $note->description = $this->description;
+        $note->source = $this->source;
+        $note->source_url = $this->url;
+        $note->visibility = $this->visibility;
+        $note->color = $this->color;
+        $note->created_by = Auth::id();
+        $nRes = $note->save();
+        if($nRes){
+            $nsRes = 0;
+            #Add workspaces of notes using loop
+            foreach($this->workspaces as $ws){
+                $nw = new NoteWorkspace;
+                $nw->note = $note->id;
+                $nw->workspace = $ws;
+                $nw->save();
+                $nsRes++;
+            }
+
+            // Add tags of notes using the method below
+
+            foreach($this->tags as $tg){
+                $nt = new NoteTag;
+                $nt->note = $note->id;
+                $nt->tag = $tg;
+                $nt->save();
+                $nsRes++;
+            }
+
+            
+            
+        }
+
+        if($nsRes){
+            session()->flash('success', 'Note Added Successfully.');
+        }else{
+            session()->flash('error', 'Note Added Successfully.');
+        }
+
+        
+
+        $this->resetCreateForm();
     }
 }

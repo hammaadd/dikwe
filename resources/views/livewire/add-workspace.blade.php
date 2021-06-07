@@ -98,6 +98,7 @@
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
+            
         </div>
     </div>
     @include('user.sections.notification')

@@ -20,7 +20,7 @@ class CreateNotesTable extends Migration
             $table->string('source',191)->nullable();
             $table->text('source_url')->nullable();
             $table->enum('visibility',['P','R','PR'])->nullable()->default('P');
-            $table->string('color',191)->nullable();
+            $table->string('color',191)->nullable()->default('purple');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->enum('status',['active','inactive'])->default('active');

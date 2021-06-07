@@ -1,4 +1,4 @@
-<div class=" mt-4 md:mt-8 px-2 md:px-0">
+<div class=" mt-4 md:mt-8 px-2 md:px-0 relative">
     <form wire:submit.prevent="store">
     <div class="bg-white rounded-xl shadow-md p-2 md:p-5 w-full md:w-10/12 mx-auto">
         <div class="flex flex-row items-center relative" x-data="{ nColor: false }">
@@ -34,13 +34,13 @@
                     <input type="radio" wire:model="color" value="blue" name="color" class="h-4 w-4 text-indigo-900 bg-indigo-900 focus:ring-0 border-0"/>
                 </li>
             </ul>
-            <input type="text" name="title" wire:model="title" class="border-0 border-b-2 mx-3 border-gray-400 font-bold flex-grow ring-0 focus:border-green-550 focus:ring-0" placeholder="Note Title">
+            <input type="text" name="title" wire:model.defer="title" class="border-0 border-b-2 mx-3 border-gray-400 font-bold flex-grow ring-0 focus:border-green-550 focus:ring-0" placeholder="Note Title">
             {{-- <button @click=" nAdd = false " class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8">
                 <i class="far fa-times-circle text-gray-400"></i>
             </button> --}}
         </div>
         <div class="md:p-5">
-            <textarea name="description" rows="5" wire:model.lazy="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea>
+            <textarea name="description" rows="5" wire:model.defer="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea>
         </div>
         <div class=" text-center md:text-right pb-2 md:pb-0">
             <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>
@@ -48,4 +48,11 @@
         </div>
     </div>
     </form>
+    <div wire:loading>
+        <div class=" absolute w-full h-full bg-green-250 bg-opacity-90 top-0 grid place-items-center">
+            <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
+        </div>
+    </div>
+
+    @include('user.sections.notification')
 </div>

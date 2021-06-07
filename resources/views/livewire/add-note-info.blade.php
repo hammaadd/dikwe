@@ -4,7 +4,7 @@
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i> Note Info</label></div>
     </div>
     <div class="p-2 md:p-8">
-        <div>
+        <div class="relative">
             <form wire:submit.prevent="store">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
                 @error('title')
@@ -115,6 +115,11 @@
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
+            <div wire:loading>
+                <div class=" absolute w-full h-full bg-green-250 bg-opacity-90 top-0 grid place-items-center">
+                    <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
+                </div>
+            </div>
         </div>
     </div>
     @include('user.sections.notification')
