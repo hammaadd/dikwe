@@ -1,4 +1,4 @@
-<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
+<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"> 
 
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i> Note Info</label></div>
@@ -18,33 +18,43 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                <input type="text" placeholder="Source URL" class="input--field" name="url" wire:model.defer="url">
+                <input type="url" placeholder="Source URL" class="input--field" name="url" wire:model.defer="url">
                 @error('url')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                <div class="input--field" wire:ignore>
-                    <select class="multiple-select" id="tags1" multiple="multiple">
-                        @forelse($tagsG as $tg)
-                        <option value="{{$tg->id}}">{{$tg->tag}}</option>
-                        @empty
-                        <option>No tag added</option>
-                        @endforelse
-                    </select>
+                 {{-- @php print_r($tags); @endphp --}}
+                <div class="input--field">
+                    <label for="tags1">Tags</label>
+                    <div wire:ignore wire:key="tags-drop">
+                        <select class="multiple-select" id="tags1" multiple="multiple" name="tags">
+                            @forelse($tagsG as $tg)
+                            <option value="{{$tg->id}}">{{$tg->tag}}</option>
+                            @empty
+                            <option>No tag added</option>
+                            @endforelse
+                        </select>
+                    </div>
                 </div>
                 @error('tags')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                <div class="input--field" wire:ignore>
-                    <select class="multiple-select" id="workspaces1" multiple="multiple">
-                        <option value="">Workspace</option>
-                        <option value="">Workspace</option>
-                        <option value="">Workspace</option>
-                        <option value="">Workspace</option>
+                {{-- @php print_r($workspaces); @endphp --}}
+                <div class="input--field">
+                    
+                    <label for="workspaces1">Workspaces</label>
+                    <div wire:ignore wire:key="workspaces-drop">
+                    <select class="multiple-select" id="workspaces1" multiple="multiple" name="workspaces">
+                        @forelse($wrkspcs as $ws)
+                        <option value="{{$ws->id}}">{{$ws->title}}</option>
+                        @empty
+                        <option>No workspace added</option>
+                        @endforelse
                     </select>
+                    </div>
                 </div>
                 @error('workspaces')
                     <small class="field-error-message">
@@ -101,12 +111,13 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray" type="button">Cancel</button>
+                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true "  wire:click="moreAddInfo">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
         </div>
     </div>
+    @include('user.sections.notification')
 </div>
 
 @push('script_s')
@@ -118,8 +129,31 @@
         document.addEventListener('livewire:load', function () {
             $('#tags1').select2();
             $('#workspaces1').select2();
-            console.log('hammad');
+        $('#workspaces1').on('select2:select', (e) => {
+            @this.emit('setWorkspaces', $('#workspaces1').select2('val'));
+        });
+
+        $('#workspaces1').on('select2:unselect', (e) => {
+            @this.emit('setWorkspaces',$('#workspaces1').select2('val'));
+        });
+
+        $('#workspaces1').val(@this.get('workspaces')).trigger('change');
+
+        $('#tags1').on('select2:select', (e) => {
+            @this.emit('setTags', $('#tags1').select2('val'));
+        });
+
+        $('#tags1').on('select2:unselect', (e) => {
+            @this.emit('setTags',$('#tags1').select2('val'));
+        });
+
+        $('#tags1').val(@this.get('tags')).trigger('change');
+
+        // @this.on('refreshDropdown', function () {
+        //       $('.multiple-select').select2();
+        //   });
         });
     </script>
+
 
 @endpush

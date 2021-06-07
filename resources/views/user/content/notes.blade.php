@@ -13,9 +13,9 @@
 @section('content')
 @php
     if(isset($_GET['m'])):
-        if($_GET['type']=='add'):
+        if($_GET['m']=='add'):
             $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false}";
-        elseif($_GET['type']=='add-info'):
+        elseif($_GET['m']=='add-info'):
             $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true}";
         else:
             $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false}";
@@ -54,7 +54,7 @@
                             <button class="mt-10 btn-main" @click="nshowAdd = true">Create New Note</button>
                         </div>
                     </div>
-                </div>
+                </div> 
 
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">

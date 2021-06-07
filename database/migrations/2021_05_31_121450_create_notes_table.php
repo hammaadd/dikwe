@@ -16,6 +16,7 @@ class CreateNotesTable extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
             $table->string('title',191);
+            $table->text('description')->nullable();
             $table->string('source',191)->nullable();
             $table->text('source_url')->nullable();
             $table->enum('visibility',['P','R','PR'])->nullable()->default('P');
