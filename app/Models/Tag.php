@@ -34,4 +34,8 @@ class Tag extends Model
     public function owner(){
         return $this->belongsTo(User::class,'user_id','id');
     }
+
+    public function notes(){
+        return $this->hasMany(Note::class,'id','note');
+    }
 }

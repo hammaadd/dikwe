@@ -1,4 +1,4 @@
-<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"> 
+<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0" wire:init="render"> 
 
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i> Note Info</label></div>
@@ -24,13 +24,13 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                 {{-- @php print_r($tags); @endphp --}}
+                
                 <div class="input--field">
-                    <label for="tags1">Tags</label>
+                    <label for="tags2">Tags</label>
                     <div wire:ignore wire:key="tags-drop">
-                        <select class="multiple-select" id="tags1" multiple="multiple" name="tags">
+                        <select class="multiple-select" id="tags2" multiple="multiple" name="tags">
                             @forelse($tagsG as $tg)
-                            <option value="{{$tg->id}}">{{$tg->tag}}</option>
+                            <option value="{{$tg->id}}" @if(in_array($tg->id,$tags)) selected @endif>{{$tg->tag}}</option>
                             @empty
                             <option>No tag added</option>
                             @endforelse
@@ -45,9 +45,9 @@
                 {{-- @php print_r($workspaces); @endphp --}}
                 <div class="input--field">
                     
-                    <label for="workspaces1">Workspaces</label>
+                    <label for="workspaces2">Workspaces</label>
                     <div wire:ignore wire:key="workspaces-drop">
-                    <select class="multiple-select" id="workspaces1" multiple="multiple" name="workspaces">
+                    <select class="multiple-select" id="workspaces2" multiple="multiple" name="workspaces">
                         @forelse($wrkspcs as $ws)
                         <option value="{{$ws->id}}">{{$ws->title}}</option>
                         @empty
@@ -111,7 +111,7 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEdit = false"  wire:click="moreAddInfo">Cancel</button>
+                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEditNote = false"  wire:click="moreAddInfo">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
@@ -128,31 +128,39 @@
 @push('script_s')
 <script>
     $(document).ready(function() {
-        $('#tags1').select2();
-        $('#workspaces1').select2();
+        $('#tags2').select2();
+        $('#workspaces2').select2();
     });
+
+    window.livewire.on('update-tags-ev', message => {
+        $('#tags2').select2();
+        $('#tags2').val(@this.get('tags')).trigger('change');
+        console.log('Checking -worjaksl');
+})
         document.addEventListener('livewire:load', function () {
-            $('#tags1').select2();
-            $('#workspaces1').select2();
-        $('#workspaces1').on('select2:select', (e) => {
-            @this.emit('setWorkspaces', $('#workspaces1').select2('val'));
+            $('#tags2').select2();
+            $('#workspaces2').select2();
+            // $('#tags2').val(@this.get('tags')).trigger('change');
+            
+        $('#workspaces2').on('select2:select', (e) => {
+            @this.emit('setWorkspaces2', $('#workspaces2').select2('val'));
         });
 
-        $('#workspaces1').on('select2:unselect', (e) => {
-            @this.emit('setWorkspaces',$('#workspaces1').select2('val'));
+        $('#workspaces2').on('select2:unselect', (e) => {
+            @this.emit('setWorkspaces2',$('#workspaces2').select2('val'));
         });
 
-        $('#workspaces1').val(@this.get('workspaces')).trigger('change');
+        $('#workspaces2').val(@this.get('workspaces')).trigger('change');
 
-        $('#tags1').on('select2:select', (e) => {
-            @this.emit('setTags', $('#tags1').select2('val'));
+        $('#tags2').on('select2:select', (e) => {
+            @this.emit('setTags2', $('#tags2').select2('val'));
         });
 
-        $('#tags1').on('select2:unselect', (e) => {
-            @this.emit('setTags',$('#tags1').select2('val'));
+        $('#tags2').on('select2:unselect', (e) => {
+            @this.emit('setTags2',$('#tags2').select2('val'));
         });
 
-        $('#tags1').val(@this.get('tags')).trigger('change');
+        $('#tags2').val(@this.get('tags')).trigger('change');
 
         // @this.on('refreshDropdown', function () {
         //       $('.multiple-select').select2();

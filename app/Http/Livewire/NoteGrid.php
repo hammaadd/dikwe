@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class NoteGrid extends Component
 {
-    public $notes;
+    public $notes,$noteId;
     protected $listeners = ['updateNoteGrid'=> 'updateGrid'];
     public function render()
     {
@@ -29,5 +29,10 @@ class NoteGrid extends Component
                         ->orderBy('created_at','DESC')
                         ->limit(4)
                         ->get();
+    }
+
+    public function passNoteId($noteId){
+        $this->noteId = $noteId;
+        $this->emit('getNoteData',$noteId);
     }
 }

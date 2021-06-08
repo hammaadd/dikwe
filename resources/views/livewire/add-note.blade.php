@@ -54,7 +54,7 @@
         </div>
         <div class=" text-center md:text-right pb-2 md:pb-0">
             <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>
-            <button type="button" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550" @click="nshowAddMore = true , nshowAdd = false " wire:click="moreInfo">More Info</button>
+            <button type="button" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550" @click="nshowAddMore = true , nshowAdd = false , nShowEdit = false " wire:click="moreInfo">More Info</button>
         </div>
     </div>
     </form>

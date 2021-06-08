@@ -27,7 +27,7 @@
 @endphp
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
-            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{{$xData}}" >
+            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{{$xData}}"  @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false">
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Filter Section --}}
@@ -279,6 +279,12 @@
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <livewire:add-note-info/>
+                </div>
+
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowEdit">
+                    <!-- Column Content -->
+                    {{-- Tag Section --}}
+                    <livewire:edit-note/>
                 </div>
 
             </div>

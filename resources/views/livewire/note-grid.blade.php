@@ -19,7 +19,7 @@
                 class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
             >
                 <li>
-                    <a href="#" class="dropdown-item">
+                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit')" class="dropdown-item">
                         <i class="fas fa-edit dropdown-item-icon"></i>
                         <span class="ml-2">Edit Note</span>
                     </a>

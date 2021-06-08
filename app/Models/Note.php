@@ -30,4 +30,8 @@ class Note extends Model
     public function owner(){
         return $this->belongsTo(User::class,'created_by','id');
     }
+
+    public function tags(){
+        return $this->hasMany(NoteTag::class,'note');
+    }
 }
