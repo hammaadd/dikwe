@@ -8,7 +8,7 @@
                 @elseif($color=='green') bg-green-550 
                 @elseif($color=='blue') bg-purple-900
                 @elseif($color=='yellow') bg-yellow-400
-                @else bg-green-550 @endif
+                @else bg-indigo-700 @endif
                  inline-block"></div>
             </button>
             <ul
@@ -39,8 +39,18 @@
                 <i class="far fa-times-circle text-gray-400"></i>
             </button> --}}
         </div>
+        @error('title')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+        @enderror
         <div class="md:p-5">
             <textarea name="description" rows="5" wire:model.defer="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea>
+            @error('description')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+            @enderror
         </div>
         <div class=" text-center md:text-right pb-2 md:pb-0">
             <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>

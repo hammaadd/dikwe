@@ -67,23 +67,30 @@ class AddNote extends Component
         if($nRes){
             $nsRes = 0;
             #Add workspaces of notes using loop
-            foreach($this->workspaces as $ws){
-                $nw = new NoteWorkspace;
-                $nw->note = $note->id;
-                $nw->workspace = $ws;
-                $nw->save();
+            if(count($this->workspaces) > 0):
+                foreach($this->workspaces as $ws){
+                    $nw = new NoteWorkspace;
+                    $nw->note = $note->id;
+                    $nw->workspace = $ws;
+                    $nw->save();
+                    $nsRes++;
+                }
+            else:
                 $nsRes++;
-            }
+            endif;
 
             // Add tags of notes using the method below
-
-            foreach($this->tags as $tg){
-                $nt = new NoteTag;
-                $nt->note = $note->id;
-                $nt->tag = $tg;
-                $nt->save();
+            if(count($this->tags) > 0):
+                foreach($this->tags as $tg){
+                    $nt = new NoteTag;
+                    $nt->note = $note->id;
+                    $nt->tag = $tg;
+                    $nt->save();
+                    $nsRes++;
+                }
+            else:
                 $nsRes++;
-            }
+            endif;
 
             
             
@@ -92,11 +99,12 @@ class AddNote extends Component
         if($nsRes){
             session()->flash('success', 'Note Added Successfully.');
         }else{
-            session()->flash('error', 'Note Added Successfully.');
+            session()->flash('error', 'Unable to add note. Try again later');
         }
 
         
 
         $this->resetCreateForm();
+        $this->emit('updateNoteGrid');
     }
 }

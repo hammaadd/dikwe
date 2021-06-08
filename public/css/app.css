@@ -1791,6 +1791,10 @@ select {
   left: auto
 }
 
+.-top-5 {
+  top: -1.25rem
+}
+
 .-bottom-8 {
   bottom: -2rem
 }

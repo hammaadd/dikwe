@@ -116,7 +116,7 @@
                 </div>
             </form>
             <div wire:loading>
-                <div class=" absolute w-full h-full bg-green-250 bg-opacity-90 top-0 grid place-items-center">
+                <div class="absolute w-full grid place-items-center -top-5">
                     <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
                 </div>
             </div>

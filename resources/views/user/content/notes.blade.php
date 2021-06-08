@@ -252,12 +252,11 @@
                             
                         </div>
                         <livewire:add-note/>
+
+                        {{-- Notes Grid View --}}
+
                         <div class="mt-4 md:mt-8 md:pb-5 px-2 md:px-0">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
-                                @for($i=0;$i<2;$i++)
-                                    <x-notes-grid />
-                                @endfor
-                            </div>
+                           <livewire:note-grid/>
                         </div>
                     </div>
                 </div>

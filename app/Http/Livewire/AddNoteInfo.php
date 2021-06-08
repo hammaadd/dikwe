@@ -116,6 +116,7 @@ class AddNoteInfo extends Component
         
 
         $this->resetCreateForm();
+        $this->emit('updateNoteGrid');
     }
 
 
