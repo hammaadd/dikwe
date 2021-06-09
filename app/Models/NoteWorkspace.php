@@ -10,6 +10,9 @@ class NoteWorkspace extends Model
     use HasFactory;
 
     protected $table = 'notes_workspaces';
+    protected $guarded = [];
 
-    
+    public function notes(){
+        return $this->belongsTo(Note::class,'note');
+    }
 }

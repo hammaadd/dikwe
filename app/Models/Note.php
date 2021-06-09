@@ -34,4 +34,7 @@ class Note extends Model
     public function tags(){
         return $this->hasMany(NoteTag::class,'note');
     }
+    public function workspaces(){
+        return $this->hasMany(NoteWorkspace::class,'note');
+    }
 }

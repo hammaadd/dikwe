@@ -1,11 +1,16 @@
 <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0" wire:init="render"> 
 
     <div class="flex flex-wrap justify-between relative">
-        <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i> Note Info</label></div>
+        <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i>Edit Note Info</label></div>
+        <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
+            <a href="javascript:void(0)" x-on:click="nshowAdd = true, nshowEdit = false" class="link-hover text-green-550 font-bold">
+                Back To The Notes
+            </a>
+        </div>
     </div>
     <div class="p-2 md:p-8">
         <div class="relative">
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="update">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
                 @error('title')
                     <small class="field-error-message">
@@ -49,7 +54,7 @@
                     <div wire:ignore wire:key="workspaces-drop">
                     <select class="multiple-select" id="workspaces2" multiple="multiple" name="workspaces">
                         @forelse($wrkspcs as $ws)
-                        <option value="{{$ws->id}}">{{$ws->title}}</option>
+                        <option value="{{$ws->id}}" @if(in_array($ws->id,$workspaces)) selected @endif>{{$ws->title}}</option>
                         @empty
                         <option>No workspace added</option>
                         @endforelse
@@ -135,7 +140,9 @@
     window.livewire.on('update-tags-ev', message => {
         $('#tags2').select2();
         $('#tags2').val(@this.get('tags')).trigger('change');
-        console.log('Checking -worjaksl');
+        $('#workspaces2').select2();
+        $('#workspaces2').val(@this.get('workspaces')).trigger('change');
+        
 })
         document.addEventListener('livewire:load', function () {
             $('#tags2').select2();
