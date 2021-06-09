@@ -31,17 +31,10 @@
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Filter Section --}}
-                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
-                        <x-note-filters /> 
-                        <div class="w-full pt-3">
-                            @for($i=0;$i<5;$i++)
-                                <x-notes-list notename="Note Name"/>
-                            @endfor
-                        </div>
-                        <div class="text-center pt-5">
-                            <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
-                        </div>
-                    </div>
+                <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
+                   <livewire:note-filter/>
+                   <livewire:note-list/>
+                </div>
                 </div>
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="!nshowAdd && !nshowEdit && !nshowAddMore">
@@ -62,9 +55,9 @@
                     {{-- Tag Section --}}
                     <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"">
                         <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">02 Notes</label></div>
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
-                                <a href="javascript:void(0)" x-on:click="showAdd = false" class="link-hover text-green-550 font-bold">
+                                <a href="javascript:void(0)" x-on:click="nshowAdd = false" class="link-hover text-green-550 font-bold">
                                     Back To The Notes
                                 </a>
                             </div>

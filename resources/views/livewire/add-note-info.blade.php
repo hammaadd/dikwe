@@ -1,7 +1,12 @@
 <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"> 
 
     <div class="flex flex-wrap justify-between relative">
-        <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i> Note Info</label></div>
+        <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-clipboard mr-2"></i> Note Info</label></div>
+        <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
+            <a href="javascript:void(0)" x-on:click="nshowAdd = true, nshowAddMore = false" class="link-hover text-green-550 font-bold">
+                Back To The Notes
+            </a>
+        </div>
     </div>
     <div class="p-2 md:p-8">
         <div class="relative">
