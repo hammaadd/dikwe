@@ -127,7 +127,7 @@ class EditNote extends Component
 
         
 
-        $this->resetCreateForm();
+        // $this->resetCreateForm();
         $this->emit('updateNoteGrid');
     }
 
