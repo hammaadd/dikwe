@@ -119,6 +119,7 @@ class EditNote extends Component
             
         }
 
+
         if($nsRes){
             session()->flash('success', 'Note Updated Successfully.');
         }else{
@@ -129,6 +130,7 @@ class EditNote extends Component
 
         // $this->resetCreateForm();
         $this->emit('updateNoteGrid');
+        $this->emit('updateNotes');
     }
 
 
