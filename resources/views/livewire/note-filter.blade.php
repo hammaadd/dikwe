@@ -57,22 +57,22 @@
         class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
         >
         <li class="border-b border-green-150">
-            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='A') bg-green-550 text-white @endif" wire:click="updateVisib('A')" @click="tagVisible = false">
+            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='A') bg-green-550 text-white @endif" wire:click="updateVisib('A')" @click="nVisible = false">
                 <span class="ml-2">All</span>
             </a>
         </li>
         <li class="border-b border-green-150">
-            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="tagVisible = false">
+            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="nVisible = false">
                 <span class="ml-2">Public</span>
             </a>
         </li>
         <li class="border-b border-green-150">
-            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='PR') bg-green-550 text-white @endif" wire:click="updateVisib('PR')" @click="tagVisible = false">
+            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='PR') bg-green-550 text-white @endif" wire:click="updateVisib('PR')" @click="nVisible = false">
                 <span class="ml-2">Private</span>
             </a>
         </li>
         <li class="border-b border-green-150">
-            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='R') bg-green-550 text-white @endif" wire:click="updateVisib('R')" @click="tagVisible = false">
+            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='R') bg-green-550 text-white @endif" wire:click="updateVisib('R')" @click="nVisible = false">
                 <span class="ml-2">Restricted</span>
             </a>
         </li>
@@ -110,27 +110,27 @@
             x-transition:leave-end="opacity-0 scale-75"
             class="w-12 absolute text-center border border-gray-500 rounded-lg bg-white px-1 z-10">
             <li class="border-b border-gray-400">
-                <a href="#" wire:click="updateColor('A')" @click="tagColor = false">
+                <a href="#" wire:click="updateColor('A')" @click="nColor = false">
                     <span class="my-1">All</span>
                 </a>
             </li>
             <li class="border-b border-gray-400">
-                <a href="javascript:void(0)" wire:click="updateColor('purple')" @if($color=='purple')  @endif  @click="tagColor = false">
+                <a href="javascript:void(0)" wire:click="updateColor('purple')" @if($color=='purple')  @endif  @click="nColor = false">
                     <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
                 </a>
             </li>
             <li class="border-b border-gray-400">
-                <a href="javascript:void(0)" wire:click="updateColor('green')" @if($color=='green')  @endif @click="tagColor = false">
+                <a href="javascript:void(0)" wire:click="updateColor('green')" @if($color=='green')  @endif @click="nColor = false">
                     <div class="w-5 h-5 rounded-full bg-green-550 inline-block my-1 align-middle"></div>
                   </a>
             </li>
             <li class="border-b border-gray-400">
-                <a href="javascript:void(0)" wire:click="updateColor('blue')" @if($color=='blue')  @endif @click="tagColor = false">
+                <a href="javascript:void(0)" wire:click="updateColor('blue')" @if($color=='blue')  @endif @click="nColor = false">
                     <div class="w-5 h-5 rounded-full bg-purple-900 inline-block my-1 align-middle"></div>
                 </a>
             </li>
             <li class="border-b border-gray-400">
-                <a href="javascript:void(0)" wire:click="updateColor('yellow')" @if($color=='yellow')  @endif @click="tagColor = false">
+                <a href="javascript:void(0)" wire:click="updateColor('yellow')" @if($color=='yellow')  @endif @click="nColor = false">
                     <div class="w-5 h-5 rounded-full bg-yellow-400 inline-block my-1 align-middle"></div>
                 </a>
             </li>
