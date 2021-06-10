@@ -116,7 +116,7 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEditNote = false">Cancel</button>
+                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nshowEdit = false">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>

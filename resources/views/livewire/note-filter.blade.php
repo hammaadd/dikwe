@@ -108,7 +108,7 @@
             x-transition:leave="transition transform origin-top ease-out duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-75"
-            class="w-12 absolute text-center border border-gray-500 rounded-lg bg-white px-1">
+            class="w-12 absolute text-center border border-gray-500 rounded-lg bg-white px-1 z-10">
             <li class="border-b border-gray-400">
                 <a href="#" wire:click="updateColor('A')" @click="tagColor = false">
                     <span class="my-1">All</span>
