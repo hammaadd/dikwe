@@ -83,10 +83,10 @@
                         </small>
                         @enderror
                     </div>
-                    <div class="input--f">
+                    {{-- <div class="input--f">
                         <i class="fas fa-thumbs-up text-green-550 text-2xl mx-2"></i>
                         <i class="fas fa-thumbs-down text-green-550 text-2xl mx-2"></i>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="input--field">
                     <div class="flex flex-row justify-around">

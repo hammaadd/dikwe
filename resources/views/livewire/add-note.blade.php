@@ -1,4 +1,4 @@
-<div class=" mt-4 md:mt-8 px-2 md:px-0 relative">
+<div class=" mt-4 md:mt-8 px-2 md:px-0 relative" x-show.transition.origin.top.left="showAddForm">
     <form wire:submit.prevent="store">
     <div class="bg-white rounded-xl shadow-md p-2 md:p-5 w-full md:w-10/12 mx-auto">
         <div class="flex flex-row items-center relative" x-data="{ nColor: false }">

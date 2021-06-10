@@ -14,20 +14,23 @@
 @php
     if(isset($_GET['m'])):
         if($_GET['m']=='add'):
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true}";
         elseif($_GET['m']=='add-info'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false}";
         else:
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false}";
         endif;
     else:
-        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false}";
+        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false}";
     endif;
 
 @endphp
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
-            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{{$xData}}"  @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false" @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false ">
+            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{{$xData}}"
+            @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false"
+            @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
+            @showaddform.window="showAddForm  = !showAddForm">
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Filter Section --}}
@@ -63,7 +66,7 @@
                             </div>
                         </div>
                         <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5" x-data="{ isOpen: false, fOpen: false }">
-                            <a  href="javascript:void(0)" x-on:click="$dispatch('shownoteadd')" wire:click="moreInfo" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
+                            <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                             <div>
@@ -244,6 +247,7 @@
                             </form>
                             
                         </div>
+                        
                         <livewire:add-note/>
 
                         {{-- Notes Grid View --}}
