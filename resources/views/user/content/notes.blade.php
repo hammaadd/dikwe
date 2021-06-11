@@ -14,14 +14,14 @@
 @php
     if(isset($_GET['m'])):
         if($_GET['m']=='add'):
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid'}";
         elseif($_GET['m']=='add-info'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid'}";
         else:
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid'}";
         endif;
     else:
-        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false}";
+        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false,noteStyle:'grid'}";
     endif;
 
 @endphp
