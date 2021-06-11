@@ -1,3 +1,4 @@
+<div>
 <template x-if="noteStyle=== 'list'">
 <div class="mt-4 md:mt-8 px-2">
 @forelse($notes as $note)
@@ -19,7 +20,7 @@
             class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
         >
             <li>
-                <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , bShow = !bShow" class="dropdown-item">
+                <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , bShow = !bShow  , @this.passNoteId({{$note->id}})" class="dropdown-item">
                     <i class="fas fa-edit dropdown-item-icon"></i>
                     <span class="ml-2">Edit Note</span>
                 </a>
@@ -37,7 +38,7 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow , @this.delete({{$note->id}})"  class="dropdown-item">
                     <i class="fas fa-trash-alt dropdown-item-icon"></i>
                     <span class="ml-2">Delete Note</span>
                 </a>
@@ -110,7 +111,7 @@
                 class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
             >
                 <li>
-                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit')" class="dropdown-item">
+                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , @this.passNoteId({{$note->id}})" class="dropdown-item">
                         <i class="fas fa-edit dropdown-item-icon"></i>
                         <span class="ml-2">Edit Note</span>
                     </a>
@@ -128,7 +129,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow">
+                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow, @this.delete({{$note->id}})">
                         <i class="fas fa-trash-alt dropdown-item-icon"></i>
                         <span class="ml-2">Delete Note</span>
                     </a>
@@ -171,3 +172,4 @@
 
 </div>
 </template>
+</div>
