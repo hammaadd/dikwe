@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="dropdown-item">
+                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow">
                         <i class="fas fa-trash-alt dropdown-item-icon"></i>
                         <span class="ml-2">Delete Note</span>
                     </a>

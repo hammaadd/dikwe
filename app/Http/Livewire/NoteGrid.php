@@ -35,4 +35,20 @@ class NoteGrid extends Component
         $this->noteId = $noteId;
         $this->emit('getNoteData',$noteId);
     }
+
+    public function delete($noteId){
+        if($noteId > 0){
+            $res = Note::where('id',$noteId)->where('created_by','=',Auth::id())->delete();
+            if($res){
+                session()->flash('success', 'Note Deleted Successfully.');
+                
+            }else{
+                session()->flash('error', 'Unable To Delete Note. Try Again');
+            }
+            $this->emit('updateNoteGrid');
+            $this->emit('updateNotes');
+        }else{
+            session()->flash('error', 'Unable To Delete Note. Try Again');
+        }
+    }
 }
