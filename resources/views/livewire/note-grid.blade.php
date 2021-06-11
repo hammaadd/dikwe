@@ -1,7 +1,9 @@
-<template x-if="noteStyle== 'list'">
+<template x-if="noteStyle=== 'list'">
+<div class="mt-4 md:mt-8 px-2">
+@forelse($notes as $note)
 <div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-2 md:p-8 mb-4 md:mb-8">
     <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
-        <span class="text-lg font-bold"><i class="fas fa-clipboard text-gray-400 mr-1"></i> Note Title</span>
+        <span class="text-lg font-bold" title="{{$note->title}}"><i class="fas fa-clipboard text-gray-400 mr-1"></i>{{Str::limit($note->title,65)}}</span>
         <button @click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
             <i class="fas fa-ellipsis-v text-lg align-middle"></i>
         </button>
@@ -17,7 +19,7 @@
             class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
         >
             <li>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , bShow = !bShow" class="dropdown-item">
                     <i class="fas fa-edit dropdown-item-icon"></i>
                     <span class="ml-2">Edit Note</span>
                 </a>
@@ -35,7 +37,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="dropdown-item">
+                <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow" class="dropdown-item">
                     <i class="fas fa-trash-alt dropdown-item-icon"></i>
                     <span class="ml-2">Delete Note</span>
                 </a>
@@ -43,7 +45,7 @@
         </ul>
     </div>
     <p class="px-2 py-5">
-        note text note text note text note text note text note text note text note text note text
+        {{$note->description}}
     </p>
     <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
         <ul class="">
@@ -77,11 +79,16 @@
                 </a>
             </div>
         </div>
-        <span class="date text-sm">12 April 2020</span>
+        <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span>
     </div>
 </div>
+@empty
+
+@endforelse
+</div>
 </template>
-<template x-if="noteStyle == 'grid'">
+
+<template x-if="noteStyle === 'grid'">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
       
 @forelse($notes as $note)

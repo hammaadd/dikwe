@@ -8,20 +8,19 @@
 @endsection
 @section('bodyExtra')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
 @endsection
 @section('content')
 @php
     if(isset($_GET['m'])):
         if($_GET['m']=='add'):
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid'}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid', isOpen: false, fOpen: false}";
         elseif($_GET['m']=='add-info'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid'}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false}";
         else:
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid'}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false}";
         endif;
     else:
-        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false,noteStyle:'grid'}";
+        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false,noteStyle:'grid',isOpen: false, fOpen: false}";
     endif;
 
 @endphp
@@ -65,15 +64,22 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5" x-data="{ isOpen: false, fOpen: false }">
+                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
                             <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
                             <div>
-                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                
+                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none" 
+                                :class="{'text-green-550': noteStyle === 'list'}"
+                                @click="noteStyle = 'list'"
+                                >
                                     <i class="fas fa-list-ul text-xl align-middle"></i>
                                 </button>
-                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none" 
+                                :class="{'text-green-550': noteStyle === 'grid'}"
+                                @click="noteStyle = 'grid'"
+                                >
                                     <i class="fas fa-th-large text-xl align-middle"></i>
                                 </button>
                                 <button @click=" fOpen = !fOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
