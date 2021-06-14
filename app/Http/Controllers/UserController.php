@@ -301,4 +301,10 @@ class UserController extends Controller
         }
         return redirect()->route('all.bookmarks');
     }
+
+
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
 }

@@ -61,20 +61,6 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-
-                <div class="my-2 relative rounded-xl shadow-md">
-                    <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                        <span class="text-gray-400 text-xl">
-                            <i class="fas fa-user"></i>
-                        </span>
-                    </div>
-                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
-                </div>
-
-                <div class="captcha">
-                    <span class="captcha-code block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550">{!! captcha_img() !!}</span>
-                    <button type="button" class="btn btn-danger captcha-refresh reload" id="reload">&#x21bb;</button>
-                </div>
                 <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
@@ -89,6 +75,21 @@
                         </span>
                     </div>
                 </div>
+                <div class="inline-flex captcha">
+                    <span class="captcha-code h-20">{!! captcha_img() !!}</span>
+                    <button type="button" class="align-baseline captcha-refresh reload h-auto px-4 text-sm text-white bg-green-500 rounded-lg focus:shadow-outline hover:bg-green-200" id="reload">&#x21bb;</button>
+                </div>
+                <div class="my-2 relative rounded-xl shadow-md">
+                    <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <span class="text-gray-400 text-xl">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <input type="text" name="captcha" id="captcha" class="block w-full font-roboto text-base @error('captcha') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Captcha"/>
+                </div>
+
+
+               
                 <div class="text-center my-5">
                     <button type="submit" class="form-btn shadow-md">
                         SIGN UP
