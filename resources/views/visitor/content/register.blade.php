@@ -22,7 +22,7 @@
                             <i class="fas fa-user"></i>
                         </span>
                     </div>
-                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
+                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name" value="{{ old('name') }}"/>
                 </div>
                 @error('name') 
                     <small class="field-error-message">
@@ -82,12 +82,16 @@
                 <div class="my-2 relative rounded-xl shadow-md">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-sync-alt"></i>
                         </span>
                     </div>
                     <input type="text" name="captcha" id="captcha" class="block w-full font-roboto text-base @error('captcha') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Captcha"/>
                 </div>
-
+                @error('captcha')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+                @enderror
 
                
                 <div class="text-center my-5">
