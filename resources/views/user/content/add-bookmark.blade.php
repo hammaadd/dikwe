@@ -13,7 +13,7 @@
         });
     </script>
 @endsection
-@section('content')
+@section('content') 
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <div class="w-full lg:w-2/3 xl:w-1/2 mx-auto md:px-0 bg-white rounded-xl">

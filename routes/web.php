@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/reload-captcha', 'UserController@reloadCaptcha');
 
 Route::get('/', 'VisitorController@homePage')->name('home');
 Route::post('/subscribe', 'VisitorController@subscribe')->name('subscribe');
-Route::get('register', function () {
-    return view('visitor.content.register');
-})->name('register');
+// Route::get('register', function () {
+//     return view('visitor.content.register');
+// })->name('register');
 Route::get('confirm-email', function () {
     return view('visitor.content.confirmEmail');
 })->name('confirm-email');
@@ -53,9 +54,7 @@ Route::get('workspaces', function () {
 
 
 
-Route::get('bookmarks', function () {
-    return view('user.content.bookmarks');
-})->name('bookmarks');
+
 Route::get('short-urls', function () {
     return view('user.content.shorturls');
 })->name('short-urls');
@@ -151,19 +150,20 @@ Route::get('notifications', function () {
     return view('user.content.notifications');
 })->name('notifications');
 
-
+Auth::routes(['verify'=>true]);
 
 Route::get('pricing','VisitorController@pricing')->name('pricing');
 
 // google Login
 Route::get('google/login','Auth\LoginController@googlelogin')->name('googlecallbacklogin');
-Auth::routes(['verify'=>true]);
+
+Route::post('u/register','Auth\RegisterController@register')->name('register');
 
 Route::prefix('u')->group(function(){
     Route::get('/login','Auth\LoginController@showLoginForm')->name('login.form');
     Route::post('/login','Auth\LoginController@login')->name('login');
     Route::get('/register','Auth\RegisterController@showRegistrationForm')->name('register.form');
-    Route::post('/register','Auth\RegisterController@register')->name('register');
+    
     Route::post('/logout','Auth\LoginController@logout')->name('logout');
      Route::get('contact-us', function () {
         return view('user.content.contactus');
@@ -181,12 +181,12 @@ Route::prefix('u')->group(function(){
     Route::post('/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('/update-profile','ProfileController@updateprofile')->name('user.update.profile');
     // bookmarks
-    Route::get('allbookmarks','UserController@allbookmarks')->name('all.bookmarks');
-     Route::get('addbookmarks','UserController@addbookmark')->name('add.bookmark');
-     Route::post('create-bookmark','UserController@storebookmark')->name('store.bookmark');
-     Route::get('edit-bookmark/{bookmark}','UserController@editbookmark')->name('edit.bookmark');
-    Route::post('update-bookmark/{bookmark}','UserController@updatebookmark')->name('update.bookmark');
-    Route::get('delete-bookmark/{bookmark}','UserController@deletebookmark')->name('delete.bookmark');
+    // Route::get('allbookmarks','UserController@allbookmarks')->name('all.bookmarks');
+    //  Route::get('addbookmarks','UserController@addbookmark')->name('add.bookmark');
+    //  Route::post('create-bookmark','UserController@storebookmark')->name('store.bookmark');
+    //  Route::get('edit-bookmark/{bookmark}','UserController@editbookmark')->name('edit.bookmark');
+    // Route::post('update-bookmark/{bookmark}','UserController@updatebookmark')->name('update.bookmark');
+    // Route::get('delete-bookmark/{bookmark}','UserController@deletebookmark')->name('delete.bookmark');
 
 
     
@@ -195,7 +195,7 @@ Route::prefix('u')->group(function(){
 
 // Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
 
-Route::prefix('u')->middleware('role:user')->group(function () {
+Route::prefix('u')->middleware('role:user')->middleware('auth')->group(function () {
 
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
@@ -208,6 +208,7 @@ Route::prefix('u')->middleware('role:user')->group(function () {
     Route::get('tags', function () { return view('user.content.tags'); })->name('tags');
     Route::get('workspaces', function () { return view('user.content.workspaces'); })->name('workspaces');
     Route::get('notes', 'NoteController@index')->name('notes');
+    Route::get('bookmarks','BookmarkController@index')->name('bookmarks');
 });
 
 // Admin Routes

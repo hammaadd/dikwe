@@ -5,6 +5,20 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 @endsection
 @section('content')
+@php
+    if(isset($_GET['m'])):
+        if($_GET['m']=='add'):
+            $xData = "{bshow: false , bshowAdd: true, bshowSidebar: false}";
+        elseif($_GET['m']=='add-info'):
+            $xData = "{bshow: false , bshowAdd: true, bshowSidebar: false}";
+        else:
+            $xData = "{bshow: false , bshowAdd: true, bshowSidebar: false}";
+        endif;
+    else:
+        $xData = "{bshow: false , bshowAdd: true, bshowSidebar: false}";
+    endif;
+
+@endphp
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">

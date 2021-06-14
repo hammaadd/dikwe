@@ -61,6 +61,20 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
+
+                <div class="my-2 relative rounded-xl shadow-md">
+                    <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                        <span class="text-gray-400 text-xl">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                    <input type="text" name="name" id="name" class="block w-full font-roboto text-base @error('name') field-error @enderror text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550" placeholder="Name"/>
+                </div>
+
+                <div class="captcha">
+                    <span class="captcha-code block w-full font-roboto text-base text-gray-900 rounded-xl border-0 py-3 px-16 focus:border-green-550 focus:ring-green-550">{!! captcha_img() !!}</span>
+                    <button type="button" class="btn btn-danger captcha-refresh reload" id="reload">&#x21bb;</button>
+                </div>
                 <div class="my-2 relative rounded-xl shadow-md" x-data="{ show: true}">
                     <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
                         <span class="text-gray-400 text-xl">
@@ -89,4 +103,19 @@
             </form>
         </div>
     </div>
+@endsection
+@section('bodyExtra')
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $('#reload').click(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'reload-captcha',
+            success: function (data) {
+                $(".captcha span").html(data.captcha);
+            }
+        });
+    });
+
+</script>
 @endsection
