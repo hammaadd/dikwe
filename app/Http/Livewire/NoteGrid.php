@@ -33,7 +33,7 @@ class NoteGrid extends Component
 
     public function passNoteId($noteId){
         $this->noteId = $noteId;
-        $this->emit('getNoteData',$noteId);
+        $this->emit('passNoteIdFromList',$noteId);
     }
 
     public function delete($noteId){

@@ -9,7 +9,7 @@ use Livewire\Component;
 class NoteList extends Component
 {
 
-    protected $listeners = ['updateNotes' => 'render','updateNoteVisibility'=>'updateVisiblityOfNotes','updateNoteColor'=>'updateVisiblityOfNotes'];
+    protected $listeners = ['updateNotes' => 'render','updateNoteVisibility'=>'updateVisiblityOfNotes','updateNoteColor'=>'updateVisiblityOfNotes','passNoteIdFromList'=>'passNoteId'];
     public $notes, $visi_type = null, $color = null,$noteId;
     protected  $nott;
 

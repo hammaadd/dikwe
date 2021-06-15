@@ -50,12 +50,14 @@ class EditNote extends Component
             }else{
                 
             }
+            
         }
     }
 
     public function getData($noteId){
         $this->noteId = $noteId;
         $this->mount();
+        
     }
 
     public function setWorkspaces($wkspcs){

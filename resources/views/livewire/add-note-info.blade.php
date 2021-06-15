@@ -17,6 +17,12 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
+                <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea>
+                @error('description')
+                    <small class="field-error-message">
+                        <span>{{$message}}</span>
+                    </small>
+                @enderror
                 <input type="text" placeholder="Source" class="input--field" name="source" wire:model.defer="source">
                 @error('source')
                     <small class="field-error-message">
