@@ -10,6 +10,7 @@
     </div>
     <div class="p-2 md:p-8">
         <div class="relative">
+            
             <form wire:submit.prevent="store">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
                 @error('title')
@@ -43,7 +44,7 @@
                             @forelse($tagsG as $tg)
                             <option value="{{$tg->id}}">{{$tg->tag}}</option>
                             @empty
-                            <option>No tag added</option>
+                            No tag added
                             @endforelse
                         </select>
                     </div>

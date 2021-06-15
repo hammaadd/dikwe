@@ -13,10 +13,12 @@ class Note extends Model
     use SoftDeletes;
     use Sluggable;
 
-    protected $fillable = [
-        'title','source','source_url','visibility','color'
+    // protected $fillable = [
+    //     'title','source','source_url','visibility','color', 'created_at','updated_at'
         
-    ];
+    // ];
+    protected $guarded = [];
+    
 
     public function sluggable(): array
     {

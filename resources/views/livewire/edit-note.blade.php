@@ -9,6 +9,7 @@
         </div>
     </div>
     <div class="p-2 md:p-8">
+        <span class="text-xs text-right">Last Updated: <span class=" text-red-500">@if($updated_at == null) {{($created_at)->diffForHumans()}} @else {{($updated_at)->diffForHumans()}} @endif</span></span>
         <div class="relative">
             <form wire:submit.prevent="update">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
