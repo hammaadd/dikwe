@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="p-2 md:p-8">
-        <span class="text-xs text-right">Last Updated: <span class=" text-red-500">@if($updated_at == null) {{($created_at)->diffForHumans()}} @else {{($updated_at)->diffForHumans()}} @endif</span></span>
+        <span class="text-xs text-right">Last Updated: <span class=" text-red-500">@if($updated_at == null && $created_at != null) {{($created_at)->diffForHumans()}} @elseif($updated_at != null) {{($updated_at)->diffForHumans()}} @else  @endif</span></span>
         <div class="relative">
             <form wire:submit.prevent="update">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
@@ -134,20 +134,32 @@
 @push('script_s')
 <script>
     $(document).ready(function() {
-        $('#tags2').select2();
-        $('#workspaces2').select2();
+        $('#tags2').select2({
+            tags:true
+        });
+        $('#workspaces2').select2({
+            tags:true
+        });
     });
 
     window.livewire.on('update-tags-ev', message => {
-        $('#tags2').select2();
+        $('#tags2').select2({
+            tags:true
+        });
         $('#tags2').val(@this.get('tags')).trigger('change');
-        $('#workspaces2').select2();
+        $('#workspaces2').select2({
+            tags:true
+        });
         $('#workspaces2').val(@this.get('workspaces')).trigger('change');
         
 })
         document.addEventListener('livewire:load', function () {
-            $('#tags2').select2();
-            $('#workspaces2').select2();
+            $('#tags2').select2({
+                tags:true
+            });
+            $('#workspaces2').select2({
+                tags:true
+            });
             // $('#tags2').val(@this.get('tags')).trigger('change');
             
         $('#workspaces2').on('select2:select', (e) => {

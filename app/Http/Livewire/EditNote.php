@@ -13,7 +13,7 @@ use Livewire\Component;
 class EditNote extends Component
 {
 
-    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at , $updated_at;
+    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null;
     protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData'];
     public function render()
     {

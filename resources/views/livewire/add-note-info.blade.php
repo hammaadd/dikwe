@@ -3,7 +3,7 @@
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-clipboard mr-2"></i> Note Info</label></div>
         <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
-            <a href="javascript:void(0)" x-on:click="nshowAdd = true, nshowAddMore = false" class="link-hover text-green-550 font-bold">
+            <a href="javascript:void(0)" wire:click="moreAddInfo" x-on:click="nshowAdd = true, nshowAddMore = false" class="link-hover text-green-550 font-bold">
                 Back To The Notes
             </a>
         </div>
@@ -140,12 +140,20 @@
 @push('script_s')
 <script>
     $(document).ready(function() {
-        $('#tags1').select2();
-        $('#workspaces1').select2();
+        $('#tags1').select2({
+            tags:true
+        });
+        $('#workspaces1').select2({
+            tags:true
+        });
     });
         document.addEventListener('livewire:load', function () {
-            $('#tags1').select2();
-            $('#workspaces1').select2();
+            $('#tags1').select2({
+                tags:true
+            });
+            $('#workspaces1').select2({
+                tags:true
+            });
         $('#workspaces1').on('select2:select', (e) => {
             @this.emit('setWorkspaces', $('#workspaces1').select2('val'));
         });
