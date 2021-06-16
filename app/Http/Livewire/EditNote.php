@@ -142,11 +142,13 @@ class EditNote extends Component
         
 
         // $this->resetCreateForm();
-        $this->emit('updateNoteGrid');
-        $this->emit('updateNotes');
-        $this->emit('refreshEditNote');
-        $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
-        $this->wrkspcs = Workspace::where('created_by',Auth::id())->where('status','active')->get();
+        //$this->emit('updateNoteGrid');
+        //$this->emit('updateNotes');
+        //$this->emit('refreshEditNote');
+        // $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
+        // $this->wrkspcs = Workspace::where('created_by',Auth::id())->where('status','active')->get();
+        return redirect()->route('notes',['m'=>'add']);
+
     }
 
 
