@@ -86,6 +86,7 @@ class AddNoteInfo extends Component
             $nsRes = 0;
             #Add workspaces of notes using loop
             foreach($this->workspaces as $ws){
+                
                 $nw = new NoteWorkspace;
                 $nw->note = $note->id;
                 $nw->workspace = $ws;
@@ -96,9 +97,18 @@ class AddNoteInfo extends Component
             // Add tags of notes using the method below
 
             foreach($this->tags as $tg){
+                $taags = Tag::find($tg);
+                if(!$taags->count() > 0){
+                    $taags = new Tag;
+                    $taags->user_id = Auth::id() ;
+                    $taags->tag = $tg;
+                    $taags->visibility = 'PR' ;
+                    $taags->color = 'purple';
+                    $taags->save();
+                }
                 $nt = new NoteTag;
                 $nt->note = $note->id;
-                $nt->tag = $tg;
+                $nt->tag = $taags->id;
                 $nt->save();
                 $nsRes++;
             }

@@ -30,7 +30,7 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                
+                {{print_r($tagsG)}}
                 <div class="input--field">
                     <label for="tags2">Tags</label>
                     <div wire:ignore wire:key="tags-drop">
@@ -130,7 +130,7 @@
     </div>
     @include('user.sections.notification')
 </div>
-
+@once
 @push('script_s')
 <script>
     $(document).ready(function() {
@@ -190,3 +190,4 @@
 
 
 @endpush
+@endonce

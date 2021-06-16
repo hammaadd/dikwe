@@ -14,7 +14,7 @@ class EditNote extends Component
 {
 
     public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null;
-    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData'];
+    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
@@ -112,9 +112,18 @@ class EditNote extends Component
             $nts = NoteTag::select('id')->where('note',$this->note->id)->get()->toArray();
             NoteTag::destroy($nts);
             foreach($this->tags as $tg){
+                $taags = Tag::find($tg);
+                if(!$taags){
+                    $taags = new Tag;
+                    $taags->user_id = Auth::id() ;
+                    $taags->tag = $tg;
+                    $taags->visibility = 'PR' ;
+                    $taags->color = 'purple';
+                    $taags->save();
+                }
                 $nt = new NoteTag;
                 $nt->note = $this->note->id;
-                $nt->tag = $tg;
+                $nt->tag = $taags->id;
                 $nt->save();
                 $nsRes++;
             }
@@ -135,6 +144,9 @@ class EditNote extends Component
         // $this->resetCreateForm();
         $this->emit('updateNoteGrid');
         $this->emit('updateNotes');
+        $this->emit('refreshEditNote');
+        $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
+        $this->wrkspcs = Workspace::where('created_by',Auth::id())->where('status','active')->get();
     }
 
 
