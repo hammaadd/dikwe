@@ -30,7 +30,7 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                {{print_r($tagsG)}}
+               
                 <div class="input--field">
                     <label for="tags2">Tags</label>
                     <div wire:ignore>
