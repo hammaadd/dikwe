@@ -164,7 +164,7 @@
                                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                                 x-transition:leave-start="opacity-100 scale-100"
                                 x-transition:leave-end="opacity-0 scale-75"
-                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-0 top-full md:right-20 md:top-10 z-20">
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-0 top-full md:right-20 md:top-10 z-10">
                                 <p class="font-bold text-center">Filter By</p>
                                 <div class="flex flex-col border-b border-gray-500 py-6">
                                     <label class="items-center">
