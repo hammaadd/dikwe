@@ -124,7 +124,7 @@
         x-transition:leave="transition transform origin-top ease-out duration-200"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-75"
-        class="absolute w-full bg-white rounded-xl p-4 shadow-md">
+        class="absolute w-full bg-white rounded-xl p-4 shadow-md z-10">
         <p class="font-bold text-center">Filter By</p>
         <div class="flex items-center justify-around border-b border-gray-500 py-6">
             <label class="inline-flex items-center">
@@ -160,7 +160,7 @@
             </label>
         </div>
         <div class=" text-right">
-            <button @click=" nForm = !nForm " class="bg-gray-400 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Cancel</button>
+            <button @click=" nForm = !nForm " type="button" class="bg-gray-400 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Cancel</button>
             <button @click=" nForm = !nForm " type="submit" class="bg-green-550 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Apply</button>
         </div>
     </form>
