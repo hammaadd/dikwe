@@ -12,7 +12,7 @@
         <span class="text-xs text-right">Last Updated: <span class=" text-red-500">@if($updated_at == null && $created_at != null) {{($created_at)->diffForHumans()}} @elseif($updated_at != null) {{($updated_at)->diffForHumans()}} @else  @endif</span></span>
         <div class="relative">
             <form wire:submit.prevent="update">
-                <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
+                <input type="text" placeholder="Title" class="input--field" name="title" wire:model.defer="title">
                 @error('title')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
@@ -33,7 +33,7 @@
                 {{print_r($tagsG)}}
                 <div class="input--field">
                     <label for="tags2">Tags</label>
-                    <div wire:ignore wire:key="tags-drop">
+                    <div wire:ignore>
                         <select class="multiple-select" id="tags2" multiple="multiple" name="tags">
                             @forelse($tagsG as $tg)
                             <option value="{{$tg->id}}" @if(in_array($tg->id,$tags)) selected @endif>{{$tg->tag}}</option>

@@ -155,7 +155,7 @@
                 tags:true
             });
         $('#workspaces1').on('select2:select', (e) => {
-            //console.log($('#workspaces1').select2('val'));
+            console.log($('#workspaces1').select2('val'));
             @this.emit('setWorkspaces', $('#workspaces1').select2('val'));
         });
 
