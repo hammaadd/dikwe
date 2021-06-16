@@ -20,7 +20,13 @@
             </div>
         </div>
     @empty
-
+    <div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between my-2 rounded-xl shadow-md">
+        <div class="flex flex-wrap items-center">
+            <label for="note-name" class=" ml-2.5 text-red-500">
+                No Results Found!
+            </label>
+        </div>
+    </div>
     @endforelse
 
     </div>
