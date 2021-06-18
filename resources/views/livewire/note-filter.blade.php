@@ -43,7 +43,7 @@
     <div class="relative mt-3" x-data="{ nVisible: false }">
         <button @click=" nVisible = !nVisible " class="w-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550">
             @if($visi_type=='A')
-                Visibility
+                All
             @elseif($visi_type=='P')
                 Public
             @elseif($visi_type=='PR')
