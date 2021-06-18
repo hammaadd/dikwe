@@ -22,6 +22,9 @@
         .height-28 {
             height: calc(100% - 28px);
         }
+        .max-w-120 {
+            max-width:120px;
+        }
     }
     .h--70 {
         height: 70vh;

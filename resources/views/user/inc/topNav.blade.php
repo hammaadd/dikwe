@@ -28,9 +28,11 @@
                 <a href="#" class="notification-icon"><i class="fas fa-bell"></i></a>
                 <div class="flex items-center space-x-2 relative" x-data="{ isOpen: false }">
                     <div class="hidden lg:flex flex-col pl-4 text-right" @click=" isOpen = !isOpen ">
-                        <label class="cursor-pointer">Hello
-                            <span class="font-bold ml-1 cursor-pointer">
-                                {{Auth::user()->name}}
+                        <label class="cursor-pointer max-w-120 flex flex-col align-items-center">
+                            <span>Hello</span>
+                            
+                            <span class="font-bold ml-1 cursor-pointer" title="{{Auth::user()->name}}">
+                                {{Str::limit(Auth::user()->name,8)}}
                             </span>
                         </label>
                     </div>

@@ -35,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="editShow"
+        <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="editShow"
                 x-transition:enter="transition transform origin-top-right ease-out duration-200"
                 x-transition:enter-start="opacity-0 scale-75"
                 x-transition:enter-end="opacity-100 scale-100"

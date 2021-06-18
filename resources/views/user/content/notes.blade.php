@@ -41,7 +41,7 @@
                 </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="!nshowAdd && !nshowEdit && !nshowAddMore">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="nshowAdd && !nshowEdit && !nshowAddMore">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl lg:h-full mt-4 lg:mt-0">
@@ -266,7 +266,7 @@
                     </div>
                 </div>
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="!nshowAdd && !nshowEdit && !nshowAddMore">
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="nshowAdd && !nshowEdit && !nshowAddMore">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 rounded-xl mt-4 lg:mt-0">
@@ -291,6 +291,11 @@
                     {{-- Tag Section --}}
                     <livewire:edit-note/>
                 </div>
+
+                {{-- Notes searchs section start here --}}
+                @include('user.inc.notes-search')
+
+                {{-- Notes search section ends here  --}}
 
             </div>
         </div>
