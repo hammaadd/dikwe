@@ -52,7 +52,9 @@
                     </small>
             @enderror
         </div>
+        <div id="editor"></div>
         <div class=" text-center md:text-right pb-2 md:pb-0">
+            <button type="button" class="bg-red-500 text-white font-bold border-2 border-red-500 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-red-500">Cancel</button>
             <button type="submit" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550">Save</button>
             <button type="button" class="bg-green-550 text-white font-bold border-2 border-green-550 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-green-550" @click="nshowAddMore = true , nshowAdd = false , nShowEdit = false " wire:click="moreInfo">More Info</button>
         </div>
@@ -66,3 +68,18 @@
 
     @include('user.sections.notification')
 </div>
+@push('script_s')
+<script>
+    
+    window.livewire.on('getQuillValue', () => {
+    console.log('checing');
+});
+
+// document.addEventListener('livewire:load', function () {
+//     var quill = new Quill('#editor', {
+//     theme: 'snow',
+//     placeholder: 'Note Body ...'
+//   });
+// });
+</script>
+@endpush

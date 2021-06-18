@@ -4,9 +4,11 @@
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     @livewireStyles
 @endsection
 @section('bodyExtra')
+    
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 @section('content')
@@ -295,11 +297,18 @@
     </div>
 @endsection
 @section('scripts')
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script>
     $(document).ready(function() {
         $('#tags1').select2();
         $('#workspaces1').select2();
+        var quill = new Quill('#editor', {
+    theme: 'snow',
+    placeholder: 'Note Body ...'
+  });
     });
+    
+
 </script>
 @livewireScripts
 @endsection

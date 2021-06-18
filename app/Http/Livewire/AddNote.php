@@ -18,6 +18,7 @@ class AddNote extends Component
     }
 
     public function moreInfo(){
+        $this->emit('getQuillValue');
         $this->emit('showMoreInfo',$this->title, $this->description,$this->color);
     }
 

@@ -123,7 +123,8 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEdit = false"  wire:click="moreAddInfo">Cancel</button>
+                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEdit = false"  wire:click="moreAddInfo"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button type="button" class="bg-red-500 text-white font-bold border-2 border-red-500 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-red-500">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
