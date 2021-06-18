@@ -14,7 +14,7 @@ use Livewire\Component;
 class AddNoteInfo extends Component
 {
     public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [];
-    protected $listeners = ['showMoreInfo'=> 'showMoreInfo','setWorkspaces'=> 'setWorkspaces','setTags'=>'setTags'];
+    protected $listeners = ['showMoreInfo'=> 'showMoreInfo','setWorkspaces'=> 'setWorkspaces','setTags'=>'setTags','cancelFormInfo'=>'resetCreateForm'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
@@ -35,6 +35,9 @@ class AddNoteInfo extends Component
         $this->visibility = '';
         $this->source = '';
         $this->url = '';
+        $this->tags = [];
+        $this->workspaces = [];
+        
 
 
     }
@@ -129,7 +132,6 @@ class AddNoteInfo extends Component
         $this->emit('updateNoteGrid');
         $this->emit('updateNotes');
     }
-
 
 
 

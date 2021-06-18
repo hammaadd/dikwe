@@ -297,15 +297,15 @@
     </div>
 @endsection
 @section('scripts')
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+{{-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> --}}
 <script>
     $(document).ready(function() {
         $('#tags1').select2();
         $('#workspaces1').select2();
-        var quill = new Quill('#editor', {
-    theme: 'snow',
-    placeholder: 'Note Body ...'
-  });
+//         var quill = new Quill('#editor', {
+//     theme: 'snow',
+//     placeholder: 'Note Body ...'
+//   });
     });
     
 

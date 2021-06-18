@@ -42,6 +42,9 @@ class AddNote extends Component
         $this->visibility = '';
         $this->source = '';
         $this->url = '';
+        $this->tags = [];
+        $this->workspaces = [];
+
 
 
     }
@@ -108,5 +111,11 @@ class AddNote extends Component
         $this->resetCreateForm();
         $this->emit('updateNoteGrid');
         $this->emit('updateNotes');
+    }
+
+    public function cancelForm(){
+        $this->resetCreateForm();
+        $this->emit('cancelFormInfo');
+        return redirect()->route('notes',['m'=>'add']);
     }
 }

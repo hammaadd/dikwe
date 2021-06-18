@@ -1,7 +1,16 @@
 <div>
     <div class="relative" x-data="{ nOpen: false }">
         <button @click=" nOpen = !nOpen " class="w-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550">
-            Notes <i class="fas fa-angle-down float-right mt-1"></i>
+            @if($notes_set=='M')
+                My Notes
+            @elseif($notes_set=='S')
+                Subscribed Notes
+            @elseif($notes_set=='SR')
+                Service Notes
+            @else
+                Notes
+            @endif
+            <i class="fas fa-angle-down float-right mt-1"></i>
         </button>
         <ul
         x-show="nOpen"
@@ -14,17 +23,17 @@
         x-transition:leave-end="opacity-0 scale-75"
         class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
         >
-            <li class="border-b border-green-150">
+            <li class="border-b border-green-150 @if($notes_set=='M') bg-green-550 text-white @endif">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">My Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150">
+            <li class="border-b border-green-150 @if($notes_set=='S') bg-green-550 text-white @endif">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">Subscribed Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150">
+            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">Service Notes</span>
                 </a>

@@ -7,10 +7,11 @@ use Livewire\Component;
 class NoteFilter extends Component
 {
 
-    public $visi_type,$color;
+    public $visi_type,$color,$notes_set;
     public function mount(){
         $this->visi_type = 'A';
         $this->color = 'A';
+        $this->notes_set = 'M';
     }
 
     public function render()
