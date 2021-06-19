@@ -25,17 +25,17 @@
         x-transition:leave-end="opacity-0 scale-75"
         class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
         >
-            <li class="border-b border-green-150 @if($notes_set=='M') bg-green-550 text-white @endif" @click="nOpen = !nOpen">
+            <li class="border-b border-green-150 @if($notes_set=='M') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('M')">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">My Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150 @if($notes_set=='S') bg-green-550 text-white @endif" @click="nOpen = !nOpen">
+            <li class="border-b border-green-150 @if($notes_set=='S') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('S')">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">Subscribed Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen">
+            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
                 <a href="#" class="tag-filter-item">
                     <span class="ml-2">Service Notes</span>
                 </a>
