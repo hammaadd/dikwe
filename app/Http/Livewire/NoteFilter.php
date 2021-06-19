@@ -11,7 +11,7 @@ class NoteFilter extends Component
     public function mount(){
         $this->visi_type = 'A';
         $this->color = 'A';
-        $this->notes_set = 'M';
+        $this->notes_set = 'N';
     }
 
     public function render()

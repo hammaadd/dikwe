@@ -21,13 +21,12 @@
                                             <i class="text-white fas fa-search"></i>
                                         </span>
                                     </button>
-                                    <div class="absolute bg-green-150 w-full h-40 z-50 top-full mt-2 rounded-xl shadow-md"></div>
+                                    {{-- <div class="absolute bg-green-150 w-full h-40 z-50 top-full mt-2 rounded-xl shadow-md"></div> --}}
                                 </div>
                             </form>
                         </div>
                         <div class="w-full px-2 md:px-5 lg:px-2 xl:px-5 flex flex-wrap justify-between relative" x-data="{ isOpen: false, fOpen: false }">
                             <div class="mx-auto md:mx-0">
-                                <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">My Notes</span> <span class="counts md:ml-3">0</span></span>
                             </div>
                             <div class="mt-2 sm:mt-0 mx-auto md:mx-0">
                                 <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
@@ -206,11 +205,16 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="mt-4 md:mt-8 px-2">
-                            @for($i=0;$i<2;$i++)
-                                <x-bookmarks-list />
-                            @endfor
+
+
+                        <div class="mx-auto md:mx-0">
+                            <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">My Notes</span> <span class="counts md:ml-3">0</span></span>
                         </div>
+                        <div class="mt-4 md:mt-8 px-2">
+                            
+                        </div>
+
+                        
                     </div>
                 </div>
 
