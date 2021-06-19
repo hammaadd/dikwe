@@ -30,6 +30,11 @@ class NoteFilter extends Component
         $this->emit('updateNoteColor',$this->visi_type,$color);
     }
 
+    public function notesSet($notesSet){
+        $this->notes_set = $notesSet;
+        $this->emit('updateNoteSet',$this->notes_set);
+    }
+
     
 
 }
