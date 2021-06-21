@@ -25,23 +25,11 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="w-full px-2 md:px-5 lg:px-2 xl:px-5 flex flex-wrap justify-between relative" x-data="{ isOpen: false, fOpen: false }">
+                        
+                        <div class="w-full px-2 md:px-5 lg:px-2 xl:px-5 flex flex-wrap justify-between relative" >
                             <div class="mx-auto md:mx-0">
                             </div>
-                            <div class="mt-2 sm:mt-0 mx-auto md:mx-0">
-                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-list-ul text-xl align-middle"></i>
-                                </button>
-                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-th-large text-xl align-middle"></i>
-                                </button>
-                                <button @click=" fOpen = !fOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-sliders-h text-xl align-middle"></i>
-                                </button>
-                                <button @click=" isOpen = !isOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-ellipsis-h text-xl align-middle"></i>
-                                </button>
-                            </div>
+                            <livewire:note-search-grid-buttons/>
                             <ul
                                 x-show="isOpen"
                                 @click.away="isOpen = false"
@@ -207,14 +195,9 @@
                         </div>
 
 
-                        <div class="mx-auto md:mx-0">
-                            <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">My Notes</span> <span class="counts md:ml-3">0</span></span>
-                        </div>
-                        <div class="mt-4 md:mt-8 px-2">
-                            
-                        </div>
+                        <livewire:note-search-grid/>
 
-                        
+
                     </div>
                 </div>
 

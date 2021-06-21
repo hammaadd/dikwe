@@ -1,19 +1,19 @@
-<div>
+<div class="relative mt-4">
     <div class="mx-auto md:mx-0 mb-4">
-        <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">My Notes</span> <span class="counts md:ml-3">{{$notes->count()}}</span></span>
+        <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">{{$notes->count()}}</span></span>
     </div>
-    <template x-if="noteStyle=== 'list'">
-    <div class="mt-4 md:mt-8 px-2">
+@if($noteStyle == 'list')
+<div class="mt-4 md:mt-8 px-2">
     @forelse($notes as $note)
     <div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-2 md:p-8 mb-4 md:mb-8">
         <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
             <span class="text-lg font-bold" title="{{$note->title}}"><i class="fas fa-clipboard text-gray-400 mr-1"></i>{{Str::limit($note->title,65)}}</span>
-            <button @click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+            <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
                 <i class="fas fa-ellipsis-v text-lg align-middle"></i>
             </button>
             <ul
                 x-show="bShow"
-                @click.away="bShow = false"
+                x-on:click.away="bShow = false"
                 x-transition:enter="transition transform origin-top-right ease-out duration-200"
                 x-transition:enter-start="opacity-0 scale-75"
                 x-transition:enter-end="opacity-100 scale-100"
@@ -23,7 +23,7 @@
                 class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
             >
                 <li>
-                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , bShow = !bShow  , @this.passNoteId({{$note->id}})" class="dropdown-item">
+                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" x-on:click=" $dispatch('shownoteedit') , bShow = !bShow  , @this.passNoteId({{$note->id}})" class="dropdown-item">
                         <i class="fas fa-edit dropdown-item-icon"></i>
                         <span class="ml-2">Edit Note</span>
                     </a>
@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow , @this.delete({{$note->id}})"  class="dropdown-item">
+                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow , @this.delete({{$note->id}})"  class="dropdown-item">
                         <i class="fas fa-trash-alt dropdown-item-icon"></i>
                         <span class="ml-2">Delete Note</span>
                     </a>
@@ -90,21 +90,21 @@
     
     @endforelse
     </div>
-    </template>
+@endif
     
-    <template x-if="noteStyle === 'grid'">
+@if($noteStyle =='grid')
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
           
     @forelse($notes as $note)
         <div class="p-3 rounded-xl shadow-md">
             <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
                 <span class="text-lg font-bold" title="{{$note->title}}"><i class="fas fa-clipboard text-gray-400 mr-1"></i>{{Str::limit($note->title,30)}}</span>
-                <button @click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
                     <i class="fas fa-ellipsis-v text-lg align-middle"></i>
                 </button>
                 <ul
                     x-show="bShow"
-                    @click.away="bShow = false"
+                    x-on:click.away="bShow = false"
                     x-transition:enter="transition transform origin-top-right ease-out duration-200"
                     x-transition:enter-start="opacity-0 scale-75"
                     x-transition:enter-end="opacity-100 scale-100"
@@ -114,7 +114,7 @@
                     class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
                 >
                     <li>
-                        <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" @click=" $dispatch('shownoteedit') , @this.passNoteId({{$note->id}})" class="dropdown-item">
+                        <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" x-on:click=" $dispatch('shownoteedit') , @this.passNoteId({{$note->id}})" class="dropdown-item">
                             <i class="fas fa-edit dropdown-item-icon"></i>
                             <span class="ml-2">Edit Note</span>
                         </a>
@@ -132,7 +132,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" @click="bShow = !bShow, @this.delete({{$note->id}})">
+                        <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow, @this.delete({{$note->id}})">
                             <i class="fas fa-trash-alt dropdown-item-icon"></i>
                             <span class="ml-2">Delete Note</span>
                         </a>
@@ -174,5 +174,10 @@
         
     
     </div>
-    </template>
+    @endif
+    <div wire:loading>
+        <div class=" absolute w-full h-full bg-white bg-opacity-90 -top-2 grid place-items-center">
+            <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
+        </div>
+    </div>
     </div>
