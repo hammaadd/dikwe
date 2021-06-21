@@ -10,8 +10,8 @@ class NoteSearchGrid extends Component
 {
 
     
-    protected $listeners = ['updateNoteSet'=> 'updateSet'];
-    public $notes, $note_set;
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle'];
+    public $notes, $note_set, $noteStyle , $noteHeading ;
     public function render()
     {
         return view('livewire.note-search-grid');
@@ -23,19 +23,47 @@ class NoteSearchGrid extends Component
                         ->orderBy('created_at','DESC')
                         ->limit(4)
                         ->get();
+        $this->noteStyle = 'grid';
+        $this->noteHeading = 'My Notes';
     }
 
     public function updateSet($noteSet){
         $this->note_set = $noteSet;
-
-        if($noteSet == 'M'){
+        //dd($this->note_set);
+        if($this->note_set == 'M'):
             $this->notes = Note::where('status','active')
                         ->where('created_by',Auth::id())
                         ->orderBy('created_at','DESC')
-                        ->limit(4)
+                        ->limit(6)
                         ->get();
-        }elseif($noteSet == 'S'){
+            $this->noteHeading = 'My Notes';
 
-        }elseif($noteSet == '')
+        elseif($this->note_set == 'S'):
+
+            $this->noteHeading = 'Subscribed Notes';
+        
+        elseif($this->note_set == 'SR'):
+            $this->notes = Note::where('status','active')
+                        ->orderBy('created_at','ASC')
+                        ->limit(6)
+                        ->get();
+            $this->noteHeading = 'Service Notes';
+
+        else:
+            $this->notes = Note::where('status','active')
+                        ->where('created_by',Auth::id())
+                        ->orderBy('created_at','DESC')
+                        ->limit(6)
+                        ->get();
+            $this->noteHeading = 'My Notes';
+
+        endif;
     }
+
+    public function setNoteStyle($style){
+        $this->noteStyle = $style;
+        //dd($style);
+    }
+
+
 }
