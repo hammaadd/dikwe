@@ -39,4 +39,6 @@ class Note extends Model
     public function workspaces(){
         return $this->hasMany(NoteWorkspace::class,'note');
     }
+
+    
 }
