@@ -2,7 +2,7 @@
     <div class="mx-auto md:mx-0 mb-4">
         <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">{{$notes->count()}}</span></span>
     </div>
-@if($noteStyle == 'list')
+@if($noteStyle == 'list' && $notes->count() > 0)
 <div class="mt-4 md:mt-8 px-2">
     @forelse($notes as $note)
     <div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-2 md:p-8 mb-4 md:mb-8">
@@ -54,10 +54,10 @@
         <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
             <ul class="">
                 <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
+                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
+                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
+                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
+                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
             </ul>
             <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
                 <input type="radio" name="rate" id="rate-5">
@@ -90,9 +90,10 @@
     
     @endforelse
     </div>
+    {{$notes->links('vendor.livewire.tailwind')}}
 @endif
     
-@if($noteStyle =='grid')
+@if($noteStyle =='grid' && $notes->count() > 0)
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
           
     @forelse($notes as $note)
@@ -145,10 +146,10 @@
             <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
                 <ul class="">
                     <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-green-550"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
+                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
+                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
+                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
+                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
                 </ul>
                 <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
                     <input type="radio" name="rate" id="rate-5">
@@ -174,6 +175,7 @@
         
     
     </div>
+    {{$notes->links('vendor.livewire.tailwind')}}
     @endif
     <div wire:loading>
         <div class=" absolute w-full h-full bg-white bg-opacity-90 -top-2 grid place-items-center">
