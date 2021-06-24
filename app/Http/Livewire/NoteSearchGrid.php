@@ -12,7 +12,7 @@ class NoteSearchGrid extends Component
 
     use WithPagination;
     protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle'];
-    public  $note_set, $noteStyle , $noteHeading ;
+    public  $note_set, $noteStyle , $noteHeading ,$noteId,$settings = 0;
     private $notes;
     
     public function render()
@@ -30,11 +30,32 @@ class NoteSearchGrid extends Component
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::where('status','active')
-                        ->orderBy('created_at','ASC')
+                        ->orderBy('created_at','DESC')
                         ->paginate(4);
             $this->noteHeading = 'Service Notes';
+        
+        elseif($this->note_set == 'LN'):
+
+            $this->notes = Note::whereHas('reactions',function ($query){
+                return $query->where('reaction_type','like')->where('reacted_by',Auth::id());
+            })
+            ->orderBy('created_at','DESC')
+            ->paginate(4);
+            $this->noteHeading = 'Liked Notes';
+            // $this->settings = 1;
+
+            // dd($this->notes);
+        elseif($this->note_set == 'DN'):
+
+                $this->notes = Note::whereHas('reactions',function ($query){
+                    return $query->where('reaction_type','dislike')->where('reacted_by',Auth::id());
+                })
+                ->orderBy('created_at','DESC')
+                ->paginate(4);
+                $this->noteHeading = 'Disliked Notes';
 
         else:
+           
             $this->notes = Note::where('status','active')
                         ->where('created_by',Auth::id())
                         ->orderBy('created_at','DESC')
@@ -64,6 +85,11 @@ class NoteSearchGrid extends Component
     public function setNoteStyle($style){
         $this->noteStyle = $style;
         //dd($style);
+    }
+
+    public function passNoteId($noteId){
+        $this->noteId = $noteId;
+        $this->emit('passNoteIdFromList',$noteId);
     }
 
 
