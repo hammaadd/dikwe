@@ -57,7 +57,7 @@ class AddNote extends Component
         
         $this->validate([
             'title' => 'required',
-            'description' => 'required|max:500',
+            'description' => 'required|max:50000',
         ],[],$pretty_names);
         $note = new Note;
         $note->title = $this->title;
