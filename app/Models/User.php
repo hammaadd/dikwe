@@ -55,6 +55,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sociallinks(){
         return $this->hasMany(SocialLink::class,'user_id');
     }
+
+    public function reactions(){
+        return $this->hasMany(Reaction::class,'reacted_by');
+    }
+
+    public function likedNotes(){
+        return $this->reactions->where('reaction_type','like');
+    }
 }
 
 
