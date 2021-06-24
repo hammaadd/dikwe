@@ -70,7 +70,7 @@ class AddNoteInfo extends Component
         
         $this->validate([
             'title' => 'required',
-            'description' => 'max:500',
+            'description' => 'max:50000',
             'color' => 'required|in:purple,yellow,blue,green',
             'visibility' => 'required|in:P,PR,R',
             'workspaces' =>'required',
