@@ -1,0 +1,261 @@
+@extends('user.layout.userLayout')
+@section('title','New Compact Listview')
+@section('page-title','New Compact Listview')
+@section('headerExtra')
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
+@section('content')
+    <div class="p-2 md:p-5 lg:p-2 xl:p-5">
+        <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
+            <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
+
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
+                    <!-- Column Content -->
+                    {{-- Filter Section --}}
+                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl">
+                        <x-note-filters />
+                        <div class="w-full pt-3" x-data="{ wsParent: false, wsChild: false, wsSubChild: false }">
+                            @for($i=0;$i<5;$i++)
+                            <x-notes-list notename="Note Name"/>
+                            @endfor
+                        </div>
+                        <div class="text-center pt-5" x-data="{ 'showModal': false }" @keydown.escape="showModal = false">
+                            <button class="link-hover text-green-550 font-bold focus:outline-none" @click=" showModal = true">Open More</button>
+                            <div class="absolute inset-0 z-30 flex items-start justify-center overflow-auto bg-black bg-opacity-50"
+                                x-show="showModal">
+                                <div class="w-full max-w-3xl m-4 sm:m-8 text-left bg-white rounded-xl shadow-lg"
+                                    @click.away="showModal = false"
+                                    x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                                    x-transition:enter-start="opacity-0 scale-75"
+                                    x-transition:enter-end="opacity-100 scale-100"
+                                    x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                                    x-transition:leave-start="opacity-100 scale-100"
+                                    x-transition:leave-end="opacity-0 scale-75">
+                                    <!-- Title / Close-->
+                                    <div class="flex items-center justify-between p-2 md:px-4 md:mt-2">
+                                        <h3 class="mr-3 font-bold text-gray-900 text-xl max-w-none">Modal Title Goes Here</h3>
+                                        <button type="button" class="z-50 cursor-pointer focus:outline-none" @click=" showModal = false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- content -->
+                                    <div class="p-2 md:p-4">
+                                        @for($i=0;$i<2;$i++)
+                                            <x-list-views />
+                                        @endfor
+                                    </div>
+
+                                    {{-- Footer --}}
+                                    <div class="flex flex-wrap justify-between items-center">
+                                        <a href="#" class="px-4 py-2 font-bold text-lg text-white bg-red-600 rounded-bl-xl"><i class="fas fa-arrow-left mr-2"></i>Cancel</a>
+                                        <a href="#" class="px-4 py-2 font-bold text-lg text-white bg-green-550 rounded-br-xl">Continue<i class="fas fa-arrow-right ml-2"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
+                    <!-- Column Content -->
+                    {{-- Tag Section --}}
+                    <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
+                        <div class="flex flex-wrap justify-between relative">
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">02 Notes</label></div>
+                        </div>
+                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5" x-data="{ isOpen: false, fOpen: false }">
+                            <div>
+                                <a href="{{ route('add-note') }}" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none"><i class="fas fa-plus-circle"></i></a>
+                            </div>
+                            <div>
+                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                    <i class="fas fa-list-ul text-xl align-middle"></i>
+                                </button>
+                                <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                    <i class="fas fa-th-large text-xl align-middle"></i>
+                                </button>
+                                <button @click=" fOpen = !fOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                    <i class="fas fa-sliders-h text-xl align-middle"></i>
+                                </button>
+                                <button @click=" isOpen = !isOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+                                    <i class="fas fa-ellipsis-h text-xl align-middle"></i>
+                                </button>
+                            </div>
+                            <ul
+                                x-show="isOpen"
+                                @click.away="isOpen = false"
+                                x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                                x-transition:enter-start="opacity-0 scale-75"
+                                x-transition:enter-end="opacity-100 scale-100"
+                                x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                                x-transition:leave-start="opacity-100 scale-100"
+                                x-transition:leave-end="opacity-0 scale-75"
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-full md:right-10 md:top-10 z-20"
+                            >
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-plus-circle dropdown-item-icon"></i>
+                                        <span class="ml-2">Add New Note Here</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-external-link-alt dropdown-item-icon"></i>
+                                        <span class="ml-2">Open All Note</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-share-alt dropdown-item-icon"></i>
+                                        <span class="ml-2">Share Notes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-tags dropdown-item-icon"></i>
+                                        <span class="ml-2">Tag Notes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-tag dropdown-item-icon"></i>
+                                        <span class="ml-2">Untag Notes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-lock dropdown-item-icon"></i>
+                                        <span class="ml-2">Make Notes Private</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-globe-americas dropdown-item-icon"></i>
+                                        <span class="ml-2">Make Notes Public</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-users dropdown-item-icon"></i>
+                                        <span class="ml-2">Make Notes Restricted</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-item">
+                                        <i class="fas fa-trash-alt dropdown-item-icon"></i>
+                                        <span class="ml-2">Delete Notes</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <form action=""
+                                x-show="fOpen"
+                                @click.away="fOpen = false"
+                                x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                                x-transition:enter-start="opacity-0 scale-75"
+                                x-transition:enter-end="opacity-100 scale-100"
+                                x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                                x-transition:leave-start="opacity-100 scale-100"
+                                x-transition:leave-end="opacity-0 scale-75"
+                                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 p-5 right-0 top-full md:right-20 md:top-10 z-20">
+                                <p class="font-bold text-center">Filter By</p>
+                                <div class="flex flex-col border-b border-gray-500 py-6">
+                                    <label class="items-center">
+                                        <input type="radio" name="rate" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            High Rate
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="rate" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            Low Rate
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="rate" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            All
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="flex flex-col border-b border-gray-500 py-6">
+                                    <label class="items-center">
+                                        <input type="radio" name="clicks" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            High Number of Clicks
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="clicks" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            Low Number of Clicks
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="clicks" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            All
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="flex flex-col border-b border-gray-500 py-6">
+                                    <label class="items-center">
+                                        <input type="radio" name="shares" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            High Number of Shares
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="shares" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            Low Number of Shares
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="shares" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            All
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="flex flex-col py-6">
+                                    <label class="items-center">
+                                        <input type="radio" name="time" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            Newest
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="time" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            Oldest
+                                        </span>
+                                    </label>
+                                    <label class="items-center">
+                                        <input type="radio" name="time" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                                        <span class="ml-2">
+                                            All
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class=" text-right">
+                                    <button @click=" fOpen = !fOpen " class="bg-gray-400 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Cancel</button>
+                                    <button @click=" fOpen = !fOpen " type="submit" class="bg-green-550 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Apply</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="mt-4 md:mt-8 px-2">
+                            @for($i=0;$i<4;$i++)
+                                <x-list-views />
+                            @endfor
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+@endsection
