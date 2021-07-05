@@ -318,3 +318,10 @@ body {
     @apply border-black border-b-4 w-48
 }
 
+.tag-item {
+    @apply mb-2 mr-1 py-1.5 px-2 text-sm text-gray-900 bg-green-150 rounded-lg cursor-pointer hover:bg-green-550 hover:text-white
+}
+.btn-read-more {
+    @apply py-1.5 px-2 text-sm text-white hover:text-gray-900 bg-green-550 hover:bg-white hover:text-green-550 rounded-lg cursor-pointer
+}
+
