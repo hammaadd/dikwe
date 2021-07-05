@@ -9,6 +9,10 @@
                 Service Notes
             @elseif($notes_set=='N')
                 Notes
+            @elseif($notes_set=='LN')
+                Liked Notes
+            @elseif($notes_set=='DN')
+                Disliked Notes
             @else
                 Notes
             @endif
@@ -40,17 +44,17 @@
                     <span class="ml-2">Service Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
+            <li class="border-b border-green-150 @if($notes_set=='LN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('LN')">
                 <a href="javascript:void(0)" class="tag-filter-item">
                     <span class="ml-2">Liked Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
+            <li class="border-b border-green-150 @if($notes_set=='DN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('DN')">
                 <a href="javascript:void(0)" class="tag-filter-item">
                     <span class="ml-2">Disliked Notes</span>
                 </a>
             </li>
-            <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
+            <li class="border-b border-green-150 @if($notes_set=='') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
                 <a href="javascript:void(0)" class="tag-filter-item">
                     <span class="ml-2">Rated Notes</span>
                 </a>
