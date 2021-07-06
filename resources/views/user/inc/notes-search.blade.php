@@ -1,16 +1,17 @@
 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3"
-                x-transition:enter="transition transform origin-top-right ease-out duration-200"
-                x-transition:enter-start="opacity-0 scale-75"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition transform origin-top-right ease-out duration-200"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-75"              
-                >
+            x-transition:enter="transition transform origin-top-right ease-out duration-200"
+            x-transition:enter-start="opacity-0 scale-75"
+            x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition transform origin-top-right ease-out duration-200"
+            x-transition:leave-start="opacity-100 scale-100"
+            x-transition:leave-end="opacity-0 scale-75"
+            x-show="noteSearch"              
+            >
                     <!-- Column Content -->
                     {{-- Tag Section --}}
-                    <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
+                <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">Search Notes</label></div>
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
                         </div>
                         <div class="w-full lg:w-3/4 xl:w-3/4 mx-auto py-5 px-2">
                             <form action="" class="flex flex-col text-center">
@@ -30,8 +31,7 @@
                             <div class="mx-auto md:mx-0">
                             </div>
                             <livewire:note-search-grid-buttons/>
-                            <ul
-                                x-show="isOpen"
+                            <ul x-show="isOpen"
                                 @click.away="isOpen = false"
                                 x-transition:enter="transition transform origin-top-right ease-out duration-200"
                                 x-transition:enter-start="opacity-0 scale-75"
@@ -41,60 +41,60 @@
                                 x-transition:leave-end="opacity-0 scale-75"
                                 class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-full md:right-10 md:top-10 z-20"
                             >
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-plus-circle dropdown-item-icon"></i>
-                                        <span class="ml-2">Add New Bookmark Here</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-external-link-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Open All Bookmarks</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-share-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Share Bookmarks</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-tags dropdown-item-icon"></i>
-                                        <span class="ml-2">Tag Bookmarks</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-tag dropdown-item-icon"></i>
-                                        <span class="ml-2">Untag Bookmarks</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-lock dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Private</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-globe-americas dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Public</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-users dropdown-item-icon"></i>
-                                        <span class="ml-2">Make Bookmarks Restricted</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="dropdown-item">
-                                        <i class="fas fa-trash-alt dropdown-item-icon"></i>
-                                        <span class="ml-2">Delete Bookmarks</span>
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-plus-circle dropdown-item-icon"></i>
+                                            <span class="ml-2">Add New Bookmark Here</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-external-link-alt dropdown-item-icon"></i>
+                                            <span class="ml-2">Open All Bookmarks</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-share-alt dropdown-item-icon"></i>
+                                            <span class="ml-2">Share Bookmarks</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-tags dropdown-item-icon"></i>
+                                            <span class="ml-2">Tag Bookmarks</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-tag dropdown-item-icon"></i>
+                                            <span class="ml-2">Untag Bookmarks</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-lock dropdown-item-icon"></i>
+                                            <span class="ml-2">Make Bookmarks Private</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-globe-americas dropdown-item-icon"></i>
+                                            <span class="ml-2">Make Bookmarks Public</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-users dropdown-item-icon"></i>
+                                            <span class="ml-2">Make Bookmarks Restricted</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-trash-alt dropdown-item-icon"></i>
+                                            <span class="ml-2">Delete Bookmarks</span>
+                                        </a>
+                                    </li>
                             </ul>
                             <form action=""
                                 x-show="fOpen"
@@ -195,13 +195,11 @@
                         </div>
 
 
-                        <livewire:note-search-grid/>
+                        <livewire:note-search-grid :key="rand()"/>
 
 
-                    </div>
                 </div>
+</div>
 
 
 
-            </div>
-        </div>
