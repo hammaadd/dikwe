@@ -36,6 +36,6 @@ class Tag extends Model
     }
 
     public function notes(){
-        return $this->hasMany(Note::class,'id','note');
+        return $this->hasMany(NoteTag::class,'id','tag');
     }
 }
