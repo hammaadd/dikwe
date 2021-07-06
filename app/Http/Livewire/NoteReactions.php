@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class NoteReactions extends Component
 {
-    public $note;
+    public $note,$type;
     protected $listeners = ['refreshNoteReactions' => '$refresh'];
     public function render()
     {
@@ -41,8 +41,9 @@ class NoteReactions extends Component
         $this->emit('refreshNoteReactions');
     }
 
-    public function mount($note){
+    public function mount($note,$type){
         $this->note = $note;
+        $this->type = $type;
     }
 
     public function unlikeKa($id){
