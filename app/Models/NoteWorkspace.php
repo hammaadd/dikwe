@@ -15,4 +15,8 @@ class NoteWorkspace extends Model
     public function notes(){
         return $this->belongsTo(Note::class,'note');
     }
+
+    public function workspace(){
+        return $this->belongsTo(Workspace::class,'workspace');
+    }
 }
