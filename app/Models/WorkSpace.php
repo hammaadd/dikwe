@@ -40,5 +40,9 @@ class Workspace extends Model
         return $this->hasMany(WorkSpace::class,'parent');
     }
 
+    public function notes(){
+        return $this->hasMany(Note::class,'id','note');
+    }
+
 
 }
