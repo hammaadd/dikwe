@@ -150,6 +150,16 @@ Route::get('notifications', function () {
     return view('user.content.notifications');
 })->name('notifications');
 
+Route::get('listview', function () {
+    return view('user.content.listview');
+})->name('listview');
+Route::get('new-layout', function () {
+    return view('user.content.new-layout');
+})->name('new-layout');
+Route::get('new-note-layout', function () {
+    return view('user.content.new-note-layout');
+})->name('new-note-layout');
+
 Auth::routes(['verify'=>true]);
 
 Route::get('pricing','VisitorController@pricing')->name('pricing');
