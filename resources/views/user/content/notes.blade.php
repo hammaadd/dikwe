@@ -15,43 +15,30 @@
 @php
     if(isset($_GET['m'])):
         if($_GET['m']=='add'):
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid', isOpen: false, fOpen: false}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid', isOpen: false, fOpen: false, noteSearch: false}";
         elseif($_GET['m']=='add-info'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false}";
+        elseif($_GET['m']=='search-notes'):
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: true}";
         else:
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: false}";
         endif;
     else:
-        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false,noteStyle:'grid',isOpen: false, fOpen: false}";
+        $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false,showAddForm:false,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: false}";
     endif;
 
 @endphp
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
+            <livewire:note-filter/>
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4" x-data="{{$xData}}"
-            @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false"
+            @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false, noteSearch=false"
+            @showsearchnote.window="nshowEdit=false , nshowAdd=false, nshowAddMore=false, noteSearch=true"
             @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
             @showaddform.window="showAddForm  = !showAddForm">
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
-                    <!-- Column Content -->
-                    {{-- Filter Section --}}
-                <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
-                   <livewire:note-filter/>
-                   <livewire:note-list/>
-                </div>
-                </div>
-
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="nshowAdd && !nshowEdit && !nshowAddMore">
-                    <!-- Column Content -->
-                    {{-- Tag Section --}}
-                    <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl lg:h-full mt-4 lg:mt-0">
-                        <div class="pt-6 text-center">
-                            <img src="{{ asset('images/Mask Group 61.svg') }}" alt="">
-                            <p class="font-bold text-center pt-10">Notebooks are Knowledge<br>Assets used to collate other<br>Assets: Notes, To<br>Do Lists ..etc</p>
-                            <button class="mt-10 btn-main" @click="nshowAddMore = true">Create New Note</button>
-                        </div>
-                    </div>
-                </div> 
+                
+            
+                
 
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">
@@ -61,7 +48,7 @@
                         <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
-                                <a href="javascript:void(0)" x-on:click="nshowAdd = false" class="link-hover text-green-550 font-bold">
+                                <a href="javascript:void(0)" x-on:click="nshowAdd = false , nshowAddMore = false , noteSearch=false, nshowEdit=false" class="link-hover text-green-550 font-bold">
                                     Back To The Notes
                                 </a>
                             </div>
@@ -265,8 +252,14 @@
                         </div>
                     </div>
                 </div>
+                
+            
 
-                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3" x-show="nshowAdd && !nshowEdit && !nshowAddMore">
+            @include('user.inc.notes-search')
+            
+
+       
+                <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 rounded-xl mt-4 lg:mt-0">
@@ -292,10 +285,7 @@
                     <livewire:edit-note/>
                 </div>
 
-                {{-- Notes searchs section start here --}}
-                @include('user.inc.notes-search')
-
-                {{-- Notes search section ends here  --}}
+                
 
             </div>
         </div>
@@ -316,4 +306,5 @@
 
 </script>
 @livewireScripts
+<script src="https://cdn.jsdelivr.net/gh/livewire/vue@v0.3.x/dist/livewire-vue.js"></script>
 @endsection
