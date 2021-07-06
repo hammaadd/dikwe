@@ -110,12 +110,12 @@ class AddNote extends Component
 
         $this->resetCreateForm();
         $this->emit('updateNoteGrid');
-        $this->emit('updateNotes');
+        // $this->emit('updateNotes');
     }
 
     public function cancelForm(){
         $this->resetCreateForm();
         $this->emit('cancelFormInfo');
-        return redirect()->route('notes',['m'=>'add']);
+        return redirect()->route('notes');
     }
 }
