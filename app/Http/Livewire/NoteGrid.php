@@ -9,7 +9,7 @@ use Livewire\Component;
 class NoteGrid extends Component
 {
     public $notes,$noteId;
-    protected $listeners = ['updateNoteGrid'=> 'updateGrid'];
+    // protected $listeners = ['updateNoteGrid'=> 'updateGrid'];
     public function render()
     {
         return view('livewire.note-grid');
