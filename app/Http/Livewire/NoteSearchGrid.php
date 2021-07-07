@@ -11,7 +11,7 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle'];
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render'];
     public  $note_set, $noteStyle , $noteHeading ,$noteId,$settings = 0;
     private $notes;
     
@@ -89,7 +89,7 @@ class NoteSearchGrid extends Component
 
     public function passNoteId($noteId){
         $this->noteId = $noteId;
-        $this->emit('passNoteIdFromList',$noteId);
+        $this->emit('passNoteIdFromSearchGrid',$noteId);
     }
 
 
