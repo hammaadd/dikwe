@@ -14,7 +14,7 @@ class EditNote extends Component
 {
 
     public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null;
-    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh'];
+    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh','passNoteIdFromSearchGrid' => 'getData'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
