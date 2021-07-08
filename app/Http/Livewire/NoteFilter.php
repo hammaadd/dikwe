@@ -21,8 +21,9 @@ class NoteFilter extends Component
 
 
     public function updateVisib($visib_type){
+        $this->emit('updateNoteVisibility',$visib_type);
         $this->visi_type = $visib_type;
-        $this->emit('updateNoteVisibility',$visib_type,$this->color);
+        
     }
 
     public function updateColor($color){
