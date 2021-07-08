@@ -11,67 +11,79 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render'];
-    public  $note_set, $noteStyle , $noteHeading ,$noteId,$settings = 0;
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity'];
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A';
     private $notes;
     
     public function render()
     {
         if($this->note_set == 'M'):
-            $this->notes = Note::where('status','active')
+            $this->notes = Note::query();
+            $this->notes->where('status','active')
                         ->where('created_by',Auth::id())
-                        ->orderBy('created_at','DESC')
-                        ->paginate(4);
+                        ->orderBy('created_at','DESC');
+            
             $this->noteHeading = 'My Notes';
+            if($this->visibility=='A' || $this->visibility == null){
+            
+            }else{
+                $this->notes->where('visibility','=',$this->visibility);
+            }
 
         elseif($this->note_set == 'S'):
-
             $this->noteHeading = 'Subscribed Notes';
         
         elseif($this->note_set == 'SR'):
-            $this->notes = Note::where('status','active')
-                        ->orderBy('created_at','DESC')
-                        ->paginate(4);
+            $this->notes = Note::query();
+            $this->notes->where('status','active')
+                        ->orderBy('created_at','DESC');
             $this->noteHeading = 'Service Notes';
         
         elseif($this->note_set == 'LN'):
-
-            $this->notes = Note::whereHas('reactions',function ($query){
+            $this->notes = Note::query();
+            $this->notes->whereHas('reactions',function ($query){
                 return $query->where('reaction_type','like')->where('reacted_by',Auth::id());
             })
-            ->orderBy('created_at','DESC')
-            ->paginate(4);
+            ->orderBy('created_at','DESC');
             $this->noteHeading = 'Liked Notes';
             // $this->settings = 1;
 
             // dd($this->notes);
         elseif($this->note_set == 'DN'):
-
-                $this->notes = Note::whereHas('reactions',function ($query){
+                $this->notes = Note::query();
+                $this->notes->whereHas('reactions',function ($query){
                     return $query->where('reaction_type','dislike')->where('reacted_by',Auth::id());
                 })
-                ->orderBy('created_at','DESC')
-                ->paginate(4);
+                ->orderBy('created_at','DESC');
                 $this->noteHeading = 'Disliked Notes';
 
         else:
-           
-            $this->notes = Note::where('status','active')
+            $this->notes = Note::query();
+            $this->notes->where('status','active')
                         ->where('created_by',Auth::id())
-                        ->orderBy('created_at','DESC')
-                        ->paginate(4);
+                        ->orderBy('created_at','DESC');
             $this->noteHeading = 'My Notes';
 
         endif;
+        if($this->notes != null){
+            return view('livewire.note-search-grid',['notes' =>$this->notes->paginate(4)]);
+        }else{
+            return view('livewire.note-search-grid',['notes' =>$this->notes]);
+        }
+            
+    }
 
-        return view('livewire.note-search-grid',['notes' => $this->notes]);
+    public function noteVisiblity($visib){
+        $this->visibility = $visib;
+        $this->render();
     }
 
     public function mount(){
-        $this->notes = Note::where('status','active')
-                        ->where('created_by',Auth::id())
-                        ->orderBy('created_at','DESC')
-                        ->paginate(4);
+        // $this->notes = Note::query();
+        // $this->notes->where('status','active')
+        //                 ->where('created_by',Auth::id())
+        //                 ->orderBy('created_at','DESC')
+        //                 ->paginate(4);
         $this->noteStyle = 'grid';
         $this->noteHeading = 'My Notes';
     }
@@ -90,6 +102,10 @@ class NoteSearchGrid extends Component
     public function passNoteId($noteId){
         $this->noteId = $noteId;
         $this->emit('passNoteIdFromSearchGrid',$noteId);
+    }
+
+    public function show($id){
+        $this->dispatchBrowserEvent('showView');
     }
 
 
