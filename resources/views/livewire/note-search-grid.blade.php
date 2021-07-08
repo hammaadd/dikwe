@@ -1,111 +1,36 @@
 <div class="relative mt-4">
     <div class="mx-auto md:mx-0 mb-4">
-        <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">{{$notes->count()}}</span></span>
+        <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">@if($notes) {{$notes->count()}} @endif</span></span>
     </div>
+@if(isset($notes))
 @if($noteStyle == 'list' && $notes->count() > 0)
 <div class="mt-4 md:mt-8 px-2">
     @forelse($notes as $note)
-    <div class="w-full md:w-4/5 mx-auto rounded-xl shadow-md p-2 md:p-8 mb-4 md:mb-8">
-        <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
-            <span class="text-lg font-bold" title="{{$note->title}}"><i class="fas fa-clipboard text-gray-400 mr-1"></i>{{Str::limit($note->title,65)}}</span>
-            <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
-                <i class="fas fa-ellipsis-v text-lg align-middle"></i>
-            </button>
-            <ul
-                x-show="bShow"
-                x-on:click.away="bShow = false"
-                x-transition:enter="transition transform origin-top-right ease-out duration-200"
-                x-transition:enter-start="opacity-0 scale-75"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition transform origin-top-right ease-out duration-200"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-75"
-                class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
-            >
-                <li>
-                    <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" x-on:click=" $dispatch('shownoteedit') , bShow = !bShow  , @this.passNoteId({{$note->id}})" class="dropdown-item">
-                        <i class="fas fa-edit dropdown-item-icon"></i>
-                        <span class="ml-2">Edit Note</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-share-alt dropdown-item-icon"></i>
-                        <span class="ml-2">Share Note</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-file-export dropdown-item-icon"></i>
-                        <span class="ml-2">Export Note</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow , @this.delete({{$note->id}})"  class="dropdown-item">
-                        <i class="fas fa-trash-alt dropdown-item-icon"></i>
-                        <span class="ml-2">Delete Note</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p class="px-2 py-5">
-            {{$note->description}}
-        </p>
-        <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
-            <ul class="">
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
-                <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
-            </ul>
-            <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
-                <input type="radio" name="rate" id="rate-5">
-                <label for="rate-5" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-4">
-                <label for="rate-4" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-3">
-                <label for="rate-3" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-2">
-                <label for="rate-2" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-1">
-                <label for="rate-1" class="fas fa-star"></label>
-            </div>
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
-            <div class="flex items-center justify-center space-x-2">
-                <a href="#" class="block relative">
-                    <img alt="User Image" src="{{ asset('images/Ellipse 179.png') }}" class="mx-auto object-cover rounded-full h-10 w-10 "/>
-                </a>
-                <div class="flex flex-col">
-                    <a href="#" class="font-bold ml-1 link-hover">
-                        Robert Stewart
-                    </a>
-                </div>
-            </div>
-            <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span>
-        </div>
-    </div>
-    @empty
-    
-    @endforelse
-    </div>
-    {{$notes->links('vendor.livewire.tailwind')}}
-@endif
-    
-@if($noteStyle =='grid' && $notes->count() > 0)
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
-          
-    @forelse($notes as $note)
-        <div class="p-3 rounded-xl shadow-md">
-            <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
-                <span class="text-lg font-bold" title="{{$note->title}}"><i class="fas fa-clipboard text-gray-400 mr-1"></i>{{Str::limit($note->title,30)}}</span>
-                <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+    <div class="w-full md:w-11/12 mx-auto rounded-lg shadow-md mb-4 md:mb-8">
+        <div class="flex flex-col-reverse sm:flex-row justify-between relative pt-2 px-2 md:px-4">
+
+            <span class="text-lg font-bold pt-2 sm:pt-0">
+                <div class="w-4 h-4 rounded-full 
+                @if($note->color == 'purple')
+                    bg-purple-900
+                @elseif($note->color == 'yellow')
+                    bg-yellow-400
+                @elseif($note->color == 'green')
+                    bg-green-550
+                @elseif($note->color == 'blue')
+                    bg-indigo-700
+                @else
+                    bg-indigo-700
+                @endif
+                    inline-block mr-1"></div>{{Str::limit($note->title,100)}}</span>
+            <div x-data="{ bShow: false }">
+                <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
+                <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
                     <i class="fas fa-ellipsis-v text-lg align-middle"></i>
                 </button>
                 <ul
                     x-show="bShow"
-                    x-on:click.away="bShow = false"
+                    @click.away="bShow = false"
                     x-transition:enter="transition transform origin-top-right ease-out duration-200"
                     x-transition:enter-start="opacity-0 scale-75"
                     x-transition:enter-end="opacity-100 scale-100"
@@ -114,12 +39,14 @@
                     x-transition:leave-end="opacity-0 scale-75"
                     class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
                 >
+                @if($note->owner->id == Auth::id())
                     <li>
-                        <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" x-on:click=" $dispatch('shownoteedit') , @this.passNoteId({{$note->id}})" class="dropdown-item">
+                        <a href="#" class="dropdown-item">
                             <i class="fas fa-edit dropdown-item-icon"></i>
                             <span class="ml-2">Edit Note</span>
                         </a>
                     </li>
+                @endif
                     <li>
                         <a href="#" class="dropdown-item">
                             <i class="fas fa-share-alt dropdown-item-icon"></i>
@@ -132,41 +59,164 @@
                             <span class="ml-2">Export Note</span>
                         </a>
                     </li>
+                @if($note->owner->id == Auth::id())
                     <li>
-                        <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow, @this.delete({{$note->id}})">
+                        <a href="#" class="dropdown-item">
                             <i class="fas fa-trash-alt dropdown-item-icon"></i>
                             <span class="ml-2">Delete Note</span>
                         </a>
                     </li>
+                @endif
                 </ul>
             </div>
-            <p class="px-2 py-5">
-                {{$note->description}}
-            </p>
-            <div class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between">
-                <ul class="">
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-hand-point-up"></i></a><br><span class="count text-sm">12</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-down"></i></a><br><span class="count text-sm">2</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-thumbs-up"></i></a><br><span class="count text-sm">20</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-copy"></i></a><br><span class="count text-sm">15</span></li>
-                    <li class="inline-block text-center"><a href="#" class=" cursor-pointer px-1 text-lg text-gray-400"><i class="fas fa-share-alt"></i></a><br><span class="count text-sm">2</span></li>
-                </ul>
-                <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
-                    <input type="radio" name="rate" id="rate-5">
-                    <label for="rate-5" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-4">
-                    <label for="rate-4" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-3">
-                    <label for="rate-3" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-2">
-                    <label for="rate-2" class="fas fa-star"></label>
-                    <input type="radio" name="rate" id="rate-1">
-                    <label for="rate-1" class="fas fa-star"></label>
+        </div>
+        <div class="w-full flex flex-wrap justify-between items-start px-2 md:px-4 py-2">
+            <div class="flex flex-col">
+                <div class="tags">
+                    <label for="tags" class="font-bold inline-block">Tags</label>
+                    <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
+                        @forelse($note->tags as $tag)
+                            <span class="tag-item">{{$tag->taga->tag}}</span>
+                        @empty
+                            <span class="text-red-600">No tags.</span>
+                        @endforelse
+                    </div>
+                </div>
+                <div class="workspaces pt-2 sm:pt-6">
+                    <label for="workspaces" class="font-bold inline-block">Workspaces</label>
+                    <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
+                    
+                        <span class="tag-item">Root WS</span>
+                        <span class="tag-item">Demo WS</span>
+                        <span class="tag-item">Workspace</span>
+                    </div>
                 </div>
             </div>
-            <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
-                <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
-                <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span>
+            
+                
+                <livewire:note-reactions :wire:key="'list-'.$note->id" :note="$note" :type="'list'"/>
+                
+            
+        </div>
+        <div class="flex flex-col sm:flex-row justify-between items-center relative bg-green-150 px-2 md:px-4 py-2">
+            <div class="flex flex-row justify-between items-center">
+                <div class="flex items-center justify-center space-x-2">
+                    <a href="#" class="block relative">
+                        <img alt="User Image" src="
+                        @if($note->owner->profile_img == null)
+                            https://ui-avatars.com/api/?background=2FB268&bold=true&color=FFFFFF&name={{ str_replace(' ','+' ,$note->owner->name) }}
+                            @else
+                            {{asset('user_profile_images/'.$note->owner->profile_img)}}
+                            @endif" class="mx-auto object-cover rounded-full h-8 w-8 "/>
+                    </a>
+                    <div class="flex flex-col">
+                        <a href="#" class="font-bold link-hover">
+                            {{$note->owner->name}}
+                        </a>
+                    </div>
+                </div>
+                <span class="date text-sm ml-3">{{$note->created_at->format('d M, Y')}}</span>
+            </div>
+            <a href="#" class="btn-read-more">View Details</a>
+        </div>
+    </div>
+    @empty
+    
+    @endforelse
+    </div>
+    {{$notes->links('vendor.livewire.tailwind')}}
+   
+    @endif
+    
+    {{-- grid starts from here --}}
+
+@if($noteStyle =='grid' && $notes->count() > 0)
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
+          
+    @forelse($notes as $note)
+        <div class="p-3 rounded-xl shadow-md flex flex-wrap overflow-hidden w-full">
+            <div class="self-start w-full">
+                <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
+                    <span class="text-lg font-bold" title="{{$note->title}}">
+                    <div class="w-4 h-4 rounded-full 
+                        @if($note->color == 'purple')
+                            bg-purple-900
+                        @elseif($note->color == 'yellow')
+                            bg-yellow-400
+                        @elseif($note->color == 'green')
+                            bg-green-550
+                        @elseif($note->color == 'blue')
+                            bg-indigo-700
+                        @else
+                            bg-indigo-700
+                        @endif
+                            inline-block mr-1"></div><a href="javascript:void(0)"  class="hover:text-green-550">{{Str::limit($note->title,30)}}</a></span>
+                    <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none border">
+                        <i class="fas fa-ellipsis-v text-lg align-middle"></i>
+                    </button>
+                    <ul
+                        x-show="bShow"
+                        x-on:click.away="bShow = false"
+                        x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-75"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-75"
+                        class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
+                    >
+                    @if($note->owner->id == Auth::id())
+                        <li>
+                            <a href="javascript:void(0)" wire:click="passNoteId({{$note->id}})" x-on:click=" $dispatch('shownoteedit') , @this.passNoteId({{$note->id}})" class="dropdown-item">
+                                <i class="fas fa-edit dropdown-item-icon"></i>
+                                <span class="ml-2">Edit Note</span>
+                            </a>
+                        </li>
+                    @endif
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-share-alt dropdown-item-icon"></i>
+                                <span class="ml-2">Share Note</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-file-export dropdown-item-icon"></i>
+                                <span class="ml-2">Export Note</span>
+                            </a>
+                        </li>
+                    @if($note->owner->id == Auth::id())
+                        <li>
+                            <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow, @this.delete({{$note->id}})">
+                                <i class="fas fa-trash-alt dropdown-item-icon"></i>
+                                <span class="ml-2">Delete Note</span>
+                            </a>
+                        </li>
+                    @endif
+                    
+                    <li>
+                        <a href="javascript:void(0)" class="dropdown-item" @click=" $dipatch('showViewNote') ">
+                            {{-- <i class="fas fa-trash-alt dropdown-item-icon"></i> --}}
+                            <span class="ml-2">View Note</span>
+                        </a>
+                    </li>
+                    </ul>
+                </div>
+                <p class="px-2 py-4 text-gray-600">
+                    {{Str::limit($note->description,190)}} 
+                    
+                </p>
+               
+            </div>
+           
+            <div class="self-end w-full">
+                <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
+                
+            
+                <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
+                    <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
+                    <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span>
+                </div>
             </div>
         </div>
     @empty
@@ -177,6 +227,12 @@
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
     @endif
+  
+@else
+<div class="p-3 mx-auto">
+    <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
+</div>
+@endif
     <div wire:loading>
         <div class=" absolute w-full h-full bg-white bg-opacity-90 -top-2 grid place-items-center">
             <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
