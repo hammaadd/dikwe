@@ -4,7 +4,7 @@
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
     @livewireStyles
 @endsection
 @section('bodyExtra')
@@ -15,16 +15,18 @@
 @php
     if(isset($_GET['m'])):
         if($_GET['m']=='add'):
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid', isOpen: false, fOpen: false, noteSearch: false}";
+            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: true , noteStyle:'grid', isOpen: false, fOpen: false, noteSearch: false , showViewNote:false}";
         elseif($_GET['m']=='add-info'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: true, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false ,showViewNote:false}";
         elseif($_GET['m']=='search-notes'):
-            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: true}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: true ,showViewNote:false}";
+        elseif($_GET['m']=='view'):
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false ,showViewNote:true}";
         else:
-            $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: false}";
+            $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: true ,showViewNote:false}";
         endif;
     else:
-        $xData = "{nshowEdit:false, nshowAdd:true, nshowAddMore: false,showAddForm:false,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: false}";
+        $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false,showAddForm:false,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: true ,showViewNote:false}";
     endif;
 
 @endphp
@@ -35,7 +37,7 @@
             @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false, noteSearch=false"
             @showsearchnote.window="nshowEdit=false , nshowAdd=false, nshowAddMore=false, noteSearch=true"
             @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
-            @showaddform.window="showAddForm  = !showAddForm">
+            @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false " @showViewNote.window="noteSearch = false , showViewNote = true" >
                 
             
                 
@@ -48,7 +50,7 @@
                         <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
-                                <a href="javascript:void(0)" x-on:click="nshowAdd = false , nshowAddMore = false , noteSearch=false, nshowEdit=false" class="link-hover text-green-550 font-bold">
+                                <a href="javascript:void(0)" x-on:click="$dispatch('showsearchnote')" class="link-hover text-green-550 font-bold">
                                     Back To The Notes
                                 </a>
                             </div>
@@ -57,7 +59,7 @@
                             <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
                                 <i class="fas fa-plus-circle"></i>
                             </a>
-                            <div>
+                        <div>
                                 
                                 <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none" 
                                 :class="{'text-green-550': noteStyle === 'list'}"
@@ -252,13 +254,31 @@
                         </div>
                     </div>
                 </div>
+
+                
                 
             
 
             @include('user.inc.notes-search')
             
 
-       
+            {{-- Note More Info --}}
+            <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAddMore">
+                <!-- Column Content -->
+                {{-- Tag Section --}}
+                <livewire:add-note-info/>
+            </div>
+
+            <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowEdit">
+                <!-- Column Content -->
+                {{-- Tag Section --}}
+                <livewire:edit-note/>
+            </div>
+
+            <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="showViewNote">
+                <livewire:note-view />
+            </div>
+
                 <div class="w-full overflow-hidden lg:px-4 lg:w-1/3 xl:px-4 xl:w-1/3">
                     <!-- Column Content -->
                     {{-- Skillar Section --}}
@@ -272,18 +292,7 @@
                 </div>
 
 
-                {{-- Note More Info --}}
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAddMore">
-                    <!-- Column Content -->
-                    {{-- Tag Section --}}
-                    <livewire:add-note-info/>
-                </div>
-
-                <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowEdit">
-                    <!-- Column Content -->
-                    {{-- Tag Section --}}
-                    <livewire:edit-note/>
-                </div>
+               
 
                 
 
@@ -297,6 +306,7 @@
     $(document).ready(function() {
         $('#tags1').select2();
         $('#workspaces1').select2();
+        
 //         var quill = new Quill('#editor', {
 //     theme: 'snow',
 //     placeholder: 'Note Body ...'
