@@ -14,7 +14,7 @@
     </div>
     @endif
     <ul>
-    @if($note->upvotedBy(Auth::id()))
+    {{-- @if($note->upvotedBy(Auth::id()))
         <li class="inline-block text-center">
             <a href="javascript:void(0)" wire:click="downvote({{$note->id}})" class=" cursor-pointer px-1 text-lg text-green-550">
                 <i class="fas fa-hand-point-up"></i>
@@ -30,7 +30,7 @@
             <br>
             <span class="count text-sm">{{$note->upvotes()->count()}}</span>
         </li>
-    @endif
+    @endif --}}
 
     @if($note->dislikedBy(Auth::id()))
         <li class="inline-block text-center">
