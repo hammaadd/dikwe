@@ -39,7 +39,7 @@
                             <option value="{{$tg->id}}" @if(in_array($tg->id,$tags)) selected @endif>{{$tg->tag}}</option>
                             @empty
                             <option>No tag added</option>
-                            @endforelse
+                            @endforelse 
                         </select>
                     </div>
                 </div>
