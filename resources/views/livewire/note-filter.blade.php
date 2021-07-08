@@ -10,6 +10,7 @@
                                 <i class="text-white fas fa-search"></i>
                             </span>
                         </button>
+                        <div class="absolute bg-green-150 w-full h-40 z-50 top-full mt-2 rounded-xl shadow-md"></div>
                     </div>
                 </form>
             </div>
@@ -17,7 +18,7 @@
         <div class="w-full md:w-1/2 px-2 md:pl-4 md:pr-0 pt-2 md:pt-4 lg:pt-0 lg:px-0 xl:px-4 lg:w-1/3 xl:w-5/12 flex flex-wrap">
             <div class="w-1/2 pr-2">
                 <div class="relative h-full" x-data="{ nOpen: false }">
-                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550">
+                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
                         @if($notes_set=='M')
                             My Notes
                         @elseif($notes_set=='S')
@@ -80,11 +81,20 @@
             </div>
             <div class="w-1/2 pl-2">
                 <div class="relative h-full" x-data="{ nVisible: false }">
-                    <button @click=" nVisible = !nVisible " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550">
-                        Visibility <i class="fas fa-angle-down float-right mt-1"></i>
+                    <button @click=" nVisible = !nVisible " class=" w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Visibility">
+                        @if($visi_type=='A' || $notes_set != 'M')
+                            All
+                        @elseif($visi_type=='P' && $notes_set == 'M')
+                            Public
+                        @elseif($visi_type=='PR' && $notes_set == 'M')
+                            Private
+                        @elseif($visi_type=='R' && $notes_set == 'M')
+                            Restricted
+                        @else
+                            Visibility
+                        @endif <i class="fas fa-angle-down float-right mt-1"></i>
                     </button>
-                    <ul
-                        x-show="nVisible"
+                    <ul x-show="nVisible"
                         @click.away="nVisible = false"
                         x-transition:enter="transition transform origin-top ease-out duration-200"
                         x-transition:enter-start="opacity-0 scale-75"
@@ -94,34 +104,40 @@
                         x-transition:leave-end="opacity-0 scale-75"
                         class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
                         >
-                        <li class="border-b border-green-150">
-                            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='A') bg-green-550 text-white @endif" wire:click="updateVisib('A')" @click="nVisible = false">
-                                <span class="ml-2">All</span>
-                            </a>
-                        </li>
-                        <li class="border-b border-green-150">
-                            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="nVisible = false">
-                                <span class="ml-2">Public</span>
-                            </a>
-                        </li>
-                        <li class="border-b border-green-150">
-                            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='PR') bg-green-550 text-white @endif" wire:click="updateVisib('PR')" @click="nVisible = false">
-                                <span class="ml-2">Private</span>
-                            </a>
-                        </li>
-                        <li class="border-b border-green-150">
-                            <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='R') bg-green-550 text-white @endif" wire:click="updateVisib('R')" @click="nVisible = false">
-                                <span class="ml-2">Restricted</span>
-                            </a>
-                        </li>
-                </ul>
+                            <li class="border-b border-green-150">
+                                <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='A') bg-green-550 text-white @endif" wire:click="updateVisib('A')" @click="nVisible = false">
+                                    <span class="ml-2">All</span>
+                                </a>
+                            </li>
+                        @if($notes_set == 'M')
+                            <li class="border-b border-green-150">
+                                <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="nVisible = false">
+                                    <span class="ml-2">Public</span>
+                                </a>
+                            </li>
+                            <li class="border-b border-green-150">
+                                <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='PR') bg-green-550 text-white @endif" wire:click="j('PR')" @click="nVisible = false">
+                                    <span class="ml-2">Private</span>
+                                </a>
+                            </li>
+                            <li class="border-b border-green-150">
+                                <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='R') bg-green-550 text-white @endif" wire:click="updateVisib('R')" @click="nVisible = false">
+                                    <span class="ml-2">Restricted</span>
+                                </a>
+                            </li>
+                        @endif
+                    </ul>
                 </div>
             </div>
         </div>
         <div class="w-full md:w-1/2 md:pr-4 pt-2 md:pt-4 lg:pt-0 lg:px-4 lg:w-1/3 xl:px-4 xl:w-3/12">
             <div class="flex justify-center md:justify-end lg:justify-between xl:justify-end relative h-full" x-data="{ nColor: false, nForm: false }">
-                <button @click=" nColor = !nColor " class="bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center">
-                    <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block mx-auto"></div>
+                <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
+                    <div class="w-5 h-5 rounded-full @if($color=='purple') bg-indigo-700 @endif
+                    @if($color=='green') bg-green-550 @endif
+                    @if($color=='blue') bg-purple-900 @endif
+                    @if($color=='yellow') bg-yellow-400 @endif
+                    @if($color=='A') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
                     {{-- <i class="fas fa-angle-down float-right ml-2 align-middle"></i> --}}
                 </button>
                 <button @click=" nForm = !nForm " class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
