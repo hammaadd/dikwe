@@ -28,7 +28,7 @@ class EditNote extends Component
             $this->note = $note;
             $tags = [];
             $workspaces = [];
-            $wrkspc = $note->workspaces->toArray();
+            $wrkspc = $note->workspace->toArray();
             $tag = $note->tags->toArray();
             for($i = 0; $i < count($tag) ; $i++){
                 array_push($tags,$tag[$i]['tag']);
@@ -101,9 +101,24 @@ class EditNote extends Component
             $nws = NoteWorkspace::select('id')->where('note',$this->note->id)->get()->toArray();
             NoteWorkspace::destroy($nws);
             foreach($this->workspaces as $ws){
+                $nws = NoteWorkspace::find($ws);
+                if(!$nws){
+                    $nws = new Workspace;
+                    // $nws->user_id = Auth::id() ;
+                    // $nws->tag = $tg;
+                    // $nws->visibility = 'PR' ;
+                    // $nws->color = 'purple';
+                    // $nws->save();
+
+                    $nws->title = $ws;
+                    $nws->color = 'purple';
+                    $nws->visibility = 'P';
+                    $nws->created_by = Auth::id();
+                    $nws->save();
+                }
                 $nw = new NoteWorkspace;
                 $nw->note = $this->note->id;
-                $nw->workspace = $ws;
+                $nw->workspace = $nws->id;
                 $nw->save();
                 $nsRes++;
             }
