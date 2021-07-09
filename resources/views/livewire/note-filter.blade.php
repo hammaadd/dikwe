@@ -133,11 +133,11 @@
         <div class="w-full md:w-1/2 md:pr-4 pt-2 md:pt-4 lg:pt-0 lg:px-4 lg:w-1/3 xl:px-4 xl:w-3/12">
             <div class="flex justify-center md:justify-end lg:justify-between xl:justify-end relative h-full" x-data="{ nColor: false, nForm: false }">
                 <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
-                    <div class="w-5 h-5 rounded-full @if($color=='purple') bg-indigo-700 @endif
-                    @if($color=='green') bg-green-550 @endif
-                    @if($color=='blue') bg-purple-900 @endif
-                    @if($color=='yellow') bg-yellow-400 @endif
-                    @if($color=='A') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
+                    <div class="w-5 h-5 rounded-full @if($color=='purple' && $notes_set == 'M') bg-indigo-700 @endif
+                    @if($color=='green' && $notes_set == 'M') bg-green-550 @endif
+                    @if($color=='blue' && $notes_set == 'M') bg-purple-900 @endif
+                    @if($color=='yellow' && $notes_set == 'M') bg-yellow-400 @endif
+                    @if($color=='A' && $notes_set == 'M') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
                     {{-- <i class="fas fa-angle-down float-right ml-2 align-middle"></i> --}}
                 </button>
                 <button @click=" nForm = !nForm " class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
@@ -160,30 +160,32 @@
                     x-transition:leave-end="opacity-0 scale-75"
                     class="w-12 absolute text-center border border-gray-500 rounded-lg left-0 top-full bg-white px-1 z-20">
                     <li class="border-b border-gray-400">
-                        <a href="#">
+                        <a href="javascript:void(0)" wire:click="updateColor('A')" @click="nColor = false">
                             <span class="my-1">All</span>
                         </a>
                     </li>
+                    @if($notes_set == 'M')
                     <li class="border-b border-gray-400">
-                        <a href="#">
+                        <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
                             <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
                         </a>
                     </li>
                     <li class="border-b border-gray-400">
-                        <a href="#">
+                        <a href="javascript:void(0)" wire:click="updateColor('green')" @click="nColor = false">
                             <div class="w-5 h-5 rounded-full bg-green-550 inline-block my-1 align-middle"></div>
                         </a>
                     </li>
                     <li class="border-b border-gray-400">
-                        <a href="#">
+                        <a href="javascript:void(0)" wire:click="updateColor('blue')" @click="nColor = false">
                             <div class="w-5 h-5 rounded-full bg-purple-900 inline-block my-1 align-middle"></div>
                         </a>
                     </li>
                     <li class="border-b border-gray-400">
-                        <a href="#">
+                        <a href="javascript:void(0)" wire:click="updateColor('yellow')" @click="nColor = false">
                             <div class="w-5 h-5 rounded-full bg-yellow-400 inline-block my-1 align-middle"></div>
                         </a>
                     </li>
+                    @endif
                 </ul>
                 <form action=""
                     x-show="nForm"
