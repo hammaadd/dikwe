@@ -161,7 +161,7 @@ Route::get('new-note-layout', function () {
 })->name('new-note-layout');
 
 Auth::routes(['verify'=>true]);
-
+Route::get('testing','NoteController@checkTest');
 Route::get('pricing','VisitorController@pricing')->name('pricing');
 
 // google Login
@@ -220,6 +220,8 @@ Route::prefix('u')->middleware('role:user')->middleware('auth')->group(function 
     Route::get('notes', 'NoteController@index')->name('notes');
     Route::get('bookmarks','BookmarkController@index')->name('bookmarks');
 });
+
+Route::get('n/{id}','NoteController@show')->name('view.note');
 
 // Admin Routes
 Route::get('admin/login','Admin\AuthController@login')->name('admin.login.form');
