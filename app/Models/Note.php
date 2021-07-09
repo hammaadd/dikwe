@@ -37,8 +37,8 @@ class Note extends Model
     public function tags(){
         return $this->hasMany(NoteTag::class,'note');
     }
-    public function workspaces(){
-        return $this->hasMany(NoteWorkspace::class,'id','note');
+    public function workspace(){
+        return $this->hasMany(NoteWorkspace::class,'note');
     }
 
     public function reactions(){
