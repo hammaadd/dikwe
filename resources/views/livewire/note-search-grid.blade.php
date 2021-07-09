@@ -22,7 +22,7 @@
                 @else
                     bg-indigo-700
                 @endif
-                    inline-block mr-1"></div>{{Str::limit($note->title,100)}}</span>
+                    inline-block mr-1"></div><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{Str::limit($note->title,100)}}</a></span>
             <div x-data="{ bShow: false }">
                 <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
                 <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
@@ -85,10 +85,11 @@
                 <div class="workspaces pt-2 sm:pt-6">
                     <label for="workspaces" class="font-bold inline-block">Workspaces</label>
                     <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
-                    
-                        <span class="tag-item">Root WS</span>
-                        <span class="tag-item">Demo WS</span>
-                        <span class="tag-item">Workspace</span>
+                        @forelse($note->workspace as $ws)
+                            <span class="tag-item">{{$ws->workspacea->title}}</span>
+                        @empty
+                            <span class="text-red-600">No Workspaces.</span>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -150,7 +151,7 @@
                         @else
                             bg-indigo-700
                         @endif
-                            inline-block mr-1"></div><a href="javascript:void(0)"  class="hover:text-green-550">{{Str::limit($note->title,30)}}</a></span>
+                            inline-block mr-1"></div><a href="{{route('view.note',$note->id)}}"  class="hover:text-green-550">{{Str::limit($note->title,30)}}</a></span>
                     <button x-on:click=" bShow = !bShow " class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none border">
                         <i class="fas fa-ellipsis-v text-lg align-middle"></i>
                     </button>
@@ -195,7 +196,7 @@
                     @endif
                     
                     <li>
-                        <a href="javascript:void(0)" class="dropdown-item" @click=" $dipatch('showViewNote') ">
+                        <a href="javascript:void(0)" class="dropdown-item" @click=" $dispatch('showViewNote') ">
                             {{-- <i class="fas fa-trash-alt dropdown-item-icon"></i> --}}
                             <span class="ml-2">View Note</span>
                         </a>
