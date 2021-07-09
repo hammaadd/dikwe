@@ -16,7 +16,7 @@ class NoteWorkspace extends Model
         return $this->belongsTo(Note::class,'note');
     }
 
-    public function workspace(){
-        return $this->belongsTo(Workspace::class,'workspace');
+    public function workspacea(){
+        return $this->belongsTo(Workspace::class,'workspace','id');
     }
 }
