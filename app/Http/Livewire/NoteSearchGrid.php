@@ -11,8 +11,8 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A';
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor'];
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A';
     private $notes;
     
     public function render()
@@ -28,6 +28,12 @@ class NoteSearchGrid extends Component
             
             }else{
                 $this->notes->where('visibility','=',$this->visibility);
+            }
+
+            if($this->color == 'A' || $this->color == null){
+
+            }else{
+                $this->notes->where('color','=',$this->color);
             }
 
         elseif($this->note_set == 'S'):
@@ -76,6 +82,12 @@ class NoteSearchGrid extends Component
     public function noteVisiblity($visib){
         $this->visibility = $visib;
         $this->render();
+    }
+
+    public function updateColor($color){
+        $this->color = $color;
+        $this->render();
+
     }
 
     public function mount(){
