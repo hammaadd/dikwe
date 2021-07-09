@@ -1,7 +1,7 @@
 <div @if($type=='list') class="flex flex-wrap flex-row-reverse sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto" @endif  @if($type=='grid')  class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between" @endif>
     @if($type=='list')
     <div class="rating mb-0">
-        <input type="radio" name="rate" id="rate-5">
+        {{-- <input type="radio" name="rate" id="rate-5">
         <label for="rate-5" class="fas fa-star"></label>
         <input type="radio" name="rate" id="rate-4">
         <label for="rate-4" class="fas fa-star"></label>
@@ -10,7 +10,7 @@
         <input type="radio" name="rate" id="rate-2">
         <label for="rate-2" class="fas fa-star"></label>
         <input type="radio" name="rate" id="rate-1">
-        <label for="rate-1" class="fas fa-star"></label>
+        <label for="rate-1" class="fas fa-star"></label> --}}
     </div>
     @endif
     <ul>
@@ -88,7 +88,7 @@
 
     @if($type=="grid")
     <div class="rating mb-4 md:mb-0 lg:mb-4 xl:mb-0">
-        <input type="radio" name="rate" id="rate-5">
+        {{-- <input type="radio" name="rate" id="rate-5">
         <label for="rate-5" class="fas fa-star"></label>
         <input type="radio" name="rate" id="rate-4">
         <label for="rate-4" class="fas fa-star"></label>
@@ -97,7 +97,7 @@
         <input type="radio" name="rate" id="rate-2">
         <label for="rate-2" class="fas fa-star"></label>
         <input type="radio" name="rate" id="rate-1">
-        <label for="rate-1" class="fas fa-star"></label>
+        <label for="rate-1" class="fas fa-star"></label> --}}
     </div>
 
     @endif
