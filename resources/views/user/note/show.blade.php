@@ -18,7 +18,7 @@
                         <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Note # {{$note->id}}</label></div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
-                                <a href="javascript:void(0)" class="link-hover text-green-550 font-bold">
+                                <a href="{{route('notes')}}" class="link-hover text-green-550 font-bold">
                                     Back To The Notes
                                 </a>
                             </div>
@@ -62,24 +62,24 @@
                                                     <span class="ml-2">Edit Note</span>
                                                 </a>
                                             </li> --}}
-                                            <li>
+                                            {{-- <li>
                                                 <a href="#" class="dropdown-item">
                                                     <i class="fas fa-share-alt dropdown-item-icon"></i>
                                                     <span class="ml-2">Share Note</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                             {{-- <li>
                                                 <a href="#" class="dropdown-item">
                                                     <i class="fas fa-file-export dropdown-item-icon"></i>
                                                     <span class="ml-2">Export Note</span>
                                                 </a>
                                             </li> --}}
-                                            <li>
+                                            {{-- <li>
                                                 <a href="#" class="dropdown-item">
                                                     <i class="fas fa-trash-alt dropdown-item-icon"></i>
                                                     <span class="ml-2">Delete Note</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                         </ul>
                                     </div>
                                 </div>
