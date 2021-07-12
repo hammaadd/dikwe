@@ -13,9 +13,9 @@
     >
         <i class="fas fa-th-large text-xl align-middle"></i>
     </button>
-    <button x-on:click=" fOpen = !fOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
+    {{-- <button x-on:click=" fOpen = !fOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
         <i class="fas fa-sliders-h text-xl align-middle"></i>
-    </button>
+    </button> --}}
     <button x-on:click=" isOpen = !isOpen " :class="{'text-green-550':fOpen}" class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none">
         <i class="fas fa-ellipsis-h text-xl align-middle"></i>
     </button>
