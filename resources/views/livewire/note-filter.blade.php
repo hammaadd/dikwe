@@ -1,18 +1,43 @@
 <div class="lg:px-4 lg:mb-8">
     <div class="flex flex-wrap lg:-mx-4 xl:-mx-4 bg-white rounded-xl py-2 md:py-4">
-        <div class="w-full overflow-hidden md:px-4 lg:px-4 lg:w-1/3 xl:px-4 xl:w-4/12">
+        <div class="w-full md:px-4 lg:px-4 lg:w-1/3 xl:px-4 xl:w-4/12">
             <div class="w-full px-2 md:px-0">
-                <form action="" class="flex flex-col text-center">
-                    <div class="relative rounded-xl">
-                        <input type="text" name="name" class="input-search" placeholder="Search Notes"/>
+                
+                    <div class="relative rounded-xl" >
+                        <input type="text" name="search" class="input-search" placeholder="Search Notes"
+                        wire:model.debounce.200ms="search"
+                        wire:keydown.escape="resetSearch"
+                        wire:keydown.tab="resetSearch"
+                       
+                        />
                         <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl">
                             <span class="text-xl">
                                 <i class="text-white fas fa-search"></i>
                             </span>
                         </button>
-                        <div class="absolute bg-green-150 w-full h-40 z-50 top-full mt-2 rounded-xl shadow-md"></div>
+                        
+                        @if(!empty($search))
+                        <div class="fixed top-0 bottom-0 left-0 right-0" wire:click="resetSearch"></div>
+                            <div class="absolute bg-green-150 w-full h-100 z-50 top-full mt-2 rounded-xl shadow-md"  >
+                                @forelse($results as $note)
+                                    <div class=" text-left p-3"><span class="font-light text-gray-600"><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{$note->title}}</a></span></div>
+                                    @if($loop->index == count($results)-1)
+
+                                    @else
+                                    <hr class="text-white">
+                                    @endif
+                                @empty
+                                    <div class=" text-left p-3"><span class="font-light text-red-600">No result found!</span></div>
+                                    
+                                @endforelse
+                                <div class="p-3 text-right"><span class="font-light text-gray-500"><small>Press <kbd class="p-1 text-gray-600 bg-white rounded">ESC</kbd> to reset.</small></span></div>
+                               
+                            </div>
+                        @endif
+                       
+
                     </div>
-                </form>
+                
             </div>
         </div>
         <div class="w-full md:w-1/2 px-2 md:pl-4 md:pr-0 pt-2 md:pt-4 lg:pt-0 lg:px-0 xl:px-4 lg:w-1/3 xl:w-5/12 flex flex-wrap">
@@ -187,7 +212,7 @@
                     </li>
                     @endif
                 </ul>
-                <form action=""
+                {{-- <form action=""
                     x-show="nForm"
                     @click.away="nForm = false"
                     x-transition:enter="transition transform origin-top ease-out duration-200"
@@ -235,7 +260,7 @@
                         <button @click=" nForm = !nForm " class="bg-gray-400 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Cancel</button>
                         <button @click=" nForm = !nForm " type="submit" class="bg-green-550 text-white font-bold px-4 py-1 mx-2 rounded-xl focus:outline-none">Apply</button>
                     </div>
-                </form>
+                </form> --}}
             </div>
         </div>
     </div>
