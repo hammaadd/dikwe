@@ -11,8 +11,8 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A';
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'];
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [];
     private $notes;
     
     public function render()
@@ -98,6 +98,8 @@ class NoteSearchGrid extends Component
         //                 ->paginate(4);
         $this->noteStyle = 'grid';
         $this->noteHeading = 'My Notes';
+        $this->note_selected = false;
+        $this->select_note = [];
     }
 
     public function updateSet($noteSet){
@@ -118,6 +120,36 @@ class NoteSearchGrid extends Component
 
     public function show($id){
         $this->dispatchBrowserEvent('showView');
+    }
+
+    public function noteSelectAll(){
+        $this->note_selected = true;
+    }
+
+    public function makeAllPublic(){
+        //dd($this->select_note);
+        if(count($this->select_note) > 0){
+            Note::whereIn('id',$this->select_note)->update(['visibility'=>'PR']);
+            // foreach($this->select_note as $sn){
+            //     Note::where('id','=',$this->select_note)->update(['visibility'=>'P']);
+            // }
+            
+        }
+
+        $this->mount();
+    }
+
+    public function makeAllPrivate(){
+        //dd($this->select_note);
+        if(count($this->select_note) > 0){
+            Note::whereIn('id',[$this->select_note])->update(['visibility'=>'PR']);
+        }
+
+        $this->mount();
+    }
+
+    public function delete(){
+
     }
 
 
