@@ -6,121 +6,124 @@
 @if($noteStyle == 'list' && $notes->count() > 0)
 <div class="mt-4 md:mt-8 px-2">
     @forelse($notes as $note)
-    <div class="w-full md:w-11/12 mx-auto rounded-lg shadow-md mb-4 md:mb-8">
-        <div class="flex flex-col-reverse sm:flex-row justify-between relative pt-2 px-2 md:px-4">
+        <div class="w-full md:w-11/12 mx-auto rounded-lg shadow-md mb-4 md:mb-8">
+            <div class="flex flex-col-reverse sm:flex-row justify-between relative pt-2 px-2 md:px-4">
 
-            <span class="text-lg font-bold pt-2 sm:pt-0">
-                <div class="w-4 h-4 rounded-full 
-                @if($note->color == 'purple')
-                    bg-purple-900
-                @elseif($note->color == 'yellow')
-                    bg-yellow-400
-                @elseif($note->color == 'green')
-                    bg-green-550
-                @elseif($note->color == 'blue')
-                    bg-indigo-700
-                @else
-                    bg-indigo-700
-                @endif
-                    inline-block mr-1"></div><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{Str::limit($note->title,100)}}</a></span>
-            <div x-data="{ bShow: false }">
-                <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
-                <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
-                    <i class="fas fa-ellipsis-v text-lg align-middle"></i>
-                </button>
-                <ul
-                    x-show="bShow"
-                    @click.away="bShow = false"
-                    x-transition:enter="transition transform origin-top-right ease-out duration-200"
-                    x-transition:enter-start="opacity-0 scale-75"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition transform origin-top-right ease-out duration-200"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-75"
-                    class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
-                >
-                @if($note->owner->id == Auth::id())
-                    <li>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-edit dropdown-item-icon"></i>
-                            <span class="ml-2">Edit Note</span>
-                        </a>
-                    </li>
-                @endif
-                    <li>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-share-alt dropdown-item-icon"></i>
-                            <span class="ml-2">Share Note</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file-export dropdown-item-icon"></i>
-                            <span class="ml-2">Export Note</span>
-                        </a>
-                    </li>
-                @if($note->owner->id == Auth::id())
-                    <li>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-trash-alt dropdown-item-icon"></i>
-                            <span class="ml-2">Delete Note</span>
-                        </a>
-                    </li>
-                @endif
-                </ul>
-            </div>
-        </div>
-        <div class="w-full flex flex-wrap justify-between items-start px-2 md:px-4 py-2">
-            <div class="flex flex-col">
-                <div class="tags">
-                    <label for="tags" class="font-bold inline-block">Tags</label>
-                    <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
-                        @forelse($note->tags as $tag)
-                            <span class="tag-item">{{$tag->taga->tag}}</span>
-                        @empty
-                            <span class="text-red-600">No tags.</span>
-                        @endforelse
-                    </div>
-                </div>
-                <div class="workspaces pt-2 sm:pt-6">
-                    <label for="workspaces" class="font-bold inline-block">Workspaces</label>
-                    <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
-                        @forelse($note->workspace as $ws)
-                            <span class="tag-item">{{$ws->workspacea->title}}</span>
-                        @empty
-                            <span class="text-red-600">No Workspaces.</span>
-                        @endforelse
-                    </div>
+                <span class="text-lg font-bold pt-2 sm:pt-0">
+                    <div class="w-4 h-4 rounded-full 
+                    @if($note->color == 'purple')
+                        bg-purple-900
+                    @elseif($note->color == 'yellow')
+                        bg-yellow-400
+                    @elseif($note->color == 'green')
+                        bg-green-550
+                    @elseif($note->color == 'blue')
+                        bg-indigo-700
+                    @else
+                        bg-indigo-700
+                    @endif
+                        inline-block mr-1"></div><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{Str::limit($note->title,100)}}</a></span>
+                <div x-data="{ bShow: false }">
+                    <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
+                    <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
+                        <i class="fas fa-ellipsis-v text-lg align-middle"></i>
+                    </button>
+                    <ul
+                        x-show="bShow"
+                        @click.away="bShow = false"
+                        x-transition:enter="transition transform origin-top-right ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-75"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition transform origin-top-right ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-75"
+                        class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
+                    >
+                    @if($note->owner->id == Auth::id())
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-edit dropdown-item-icon"></i>
+                                <span class="ml-2">Edit Note</span>
+                            </a>
+                        </li>
+                    @endif
+                        {{-- <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-share-alt dropdown-item-icon"></i>
+                                <span class="ml-2">Share Note</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-file-export dropdown-item-icon"></i>
+                                <span class="ml-2">Export Note</span>
+                            </a>
+                        </li> --}}
+                    @if($note->owner->id == Auth::id())
+                        <li>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-trash-alt dropdown-item-icon"></i>
+                                <span class="ml-2">Delete Note</span>
+                            </a>
+                        </li>
+                    @endif
+                    </ul>
                 </div>
             </div>
-            
+            <div class="w-full flex flex-wrap justify-between items-start px-2 md:px-4 py-2">
+                <div class="flex flex-col">
+                    <div class="tags">
+                        <label for="tags" class="font-bold inline-block">Tags</label>
+                        <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
+                            @forelse($note->tags as $tag)
+                                <span class="tag-item">{{$tag->taga->tag}}</span>
+                            @empty
+                                <span class="text-red-600">No tags.</span>
+                            @endforelse
+                        </div>
+                    </div>
+                    <div class="workspaces pt-2 sm:pt-6">
+                        <label for="workspaces" class="font-bold inline-block">Workspaces</label>
+                        <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
+                            @forelse($note->workspace as $ws)
+                                <span class="tag-item">{{$ws->workspacea->title}}</span>
+                            @empty
+                                <span class="text-red-600">No Workspaces.</span>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
                 
-                <livewire:note-reactions :wire:key="'list-'.$note->id" :note="$note" :type="'list'"/>
+                    
+                    <livewire:note-reactions :wire:key="'list-'.$note->id" :note="$note" :type="'list'"/>
+                    
                 
-            
-        </div>
-        <div class="flex flex-col sm:flex-row justify-between items-center relative bg-green-150 px-2 md:px-4 py-2">
-            <div class="flex flex-row justify-between items-center">
-                <div class="flex items-center justify-center space-x-2">
-                    <a href="#" class="block relative">
-                        <img alt="User Image" src="
-                        @if($note->owner->profile_img == null)
-                            https://ui-avatars.com/api/?background=2FB268&bold=true&color=FFFFFF&name={{ str_replace(' ','+' ,$note->owner->name) }}
-                            @else
-                            {{asset('user_profile_images/'.$note->owner->profile_img)}}
-                            @endif" class="mx-auto object-cover rounded-full h-8 w-8 "/>
-                    </a>
-                    <div class="flex flex-col">
-                        <a href="#" class="font-bold link-hover">
-                            {{$note->owner->name}}
-                        </a>
-                    </div>
-                </div>
-                <span class="date text-sm ml-3">{{$note->created_at->format('d M, Y')}}</span>
             </div>
-            <a href="#" class="btn-read-more">View Details</a>
+            <div class="flex flex-col sm:flex-row justify-between items-center relative bg-green-150 px-2 md:px-4 py-2">
+                <div class="flex flex-row justify-between items-center">
+                    <div class="flex items-center justify-center space-x-2">
+                        <a href="#" class="block relative">
+                            <img alt="User Image" src="
+                            @if($note->owner->profile_img == null)
+                                https://ui-avatars.com/api/?background=2FB268&bold=true&color=FFFFFF&name={{ str_replace(' ','+' ,$note->owner->name) }}
+                                @else
+                                {{asset('user_profile_images/'.$note->owner->profile_img)}}
+                                @endif" class="mx-auto object-cover rounded-full h-8 w-8 "/>
+                        </a>
+                        <div class="flex flex-col">
+                            <a href="#" class="font-bold link-hover">
+                                {{$note->owner->name}}
+                            </a>
+                        </div>
+                    </div>
+                    <span class="date text-sm ml-3">{{$note->created_at->format('d M, Y')}}</span>
+                </div>
+                <div>
+                    <a href="{{route('view.note',$note->id)}}" class="btn-read-more">View Details</a>
+                <input type="checkbox" value="{{$note->id}}" name="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif>
+                </div>
+            </div>
         </div>
-    </div>
     @empty
     
     @endforelse
@@ -174,7 +177,7 @@
                             </a>
                         </li>
                     @endif
-                        <li>
+                        {{-- <li>
                             <a href="#" class="dropdown-item">
                                 <i class="fas fa-share-alt dropdown-item-icon"></i>
                                 <span class="ml-2">Share Note</span>
@@ -185,7 +188,7 @@
                                 <i class="fas fa-file-export dropdown-item-icon"></i>
                                 <span class="ml-2">Export Note</span>
                             </a>
-                        </li>
+                        </li> --}}
                     @if($note->owner->id == Auth::id())
                         <li>
                             <a href="javascript:void(0)" class="dropdown-item"  wire:click="delete({{$note->id}})" x-on:click="bShow = !bShow, @this.delete({{$note->id}})">
@@ -196,7 +199,7 @@
                     @endif
                     
                     <li>
-                        <a href="javascript:void(0)" class="dropdown-item" @click=" $dispatch('showViewNote') ">
+                        <a href="{{route('view.note',$note->id)}}" class="dropdown-item" @click=" $dispatch('showViewNote') ">
                             {{-- <i class="fas fa-trash-alt dropdown-item-icon"></i> --}}
                             <span class="ml-2">View Note</span>
                         </a>
@@ -213,10 +216,21 @@
             <div class="self-end w-full">
                 <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
                 
-            
-                <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
-                    <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
-                    <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span>
+                <div title="Visibility" >
+                    <small class="text-green-550" >@if($note->visibility =='P')
+                        Public
+                    @elseif($note->visibility =='PR')
+                        Private
+                    @elseif($note->visibility =='R')
+                        Restricted
+                    @else
+                        Public
+                    @endif</small>
+                </div>
+                <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
+                    <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You </span>
+                    <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
+                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model.defer="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
                 </div>
             </div>
         </div>
