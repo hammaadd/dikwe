@@ -249,9 +249,9 @@
 
                         {{-- Notes Grid View --}}
 
-                        <div class="mt-4 md:mt-8 md:pb-5 px-2 md:px-0">
+                        {{-- <div class="mt-4 md:mt-8 md:pb-5 px-2 md:px-0">
                            <livewire:note-grid/>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
