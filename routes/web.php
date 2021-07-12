@@ -159,6 +159,11 @@ Route::get('new-layout', function () {
 Route::get('new-note-layout', function () {
     return view('user.content.new-note-layout');
 })->name('new-note-layout');
+Route::get('practise', function(){
+    return view('practise');
+});
+
+
 
 Auth::routes(['verify'=>true]);
 Route::get('testing','NoteController@checkTest');
