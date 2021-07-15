@@ -13,7 +13,7 @@ use Livewire\Component;
 
 class AddNoteInfo extends Component
 {
-    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [];
+    public $color,$title, $description,$source,$url,$visibility = 'P',$tagsG,$wrkspcs, $workspaces = [], $tags = [];
     protected $listeners = ['showMoreInfo'=> 'showMoreInfo','setWorkspaces'=> 'setWorkspaces','setTags'=>'setTags','cancelFormInfo'=>'resetCreateForm'];
     public function render()
     {
@@ -32,7 +32,7 @@ class AddNoteInfo extends Component
         $this->title = '';
         $this->description = '';
         $this->color = '';
-        $this->visibility = '';
+        $this->visibility = 'P';
         $this->source = '';
         $this->url = '';
         $this->tags = [];
@@ -66,7 +66,7 @@ class AddNoteInfo extends Component
             'description'  =>  'description'
         ];
 
-        $this->emit('refreshDropdown');
+        // $this->emit('refreshDropdown');
         
         $this->validate([
             'title' => 'required',
@@ -87,37 +87,53 @@ class AddNoteInfo extends Component
         $nRes = $note->save();
         if($nRes){
             $nsRes = 0;
-            #Add workspaces of notes using loop
+            if(count($this->workspaces) > 0):
             foreach($this->workspaces as $ws){
-                
-                $nw = new NoteWorkspace;
-                $nw->note = $note->id;
-                $nw->workspace = $ws;
-                $nw->save();
-                $nsRes++;
-            }
+                $nws = Workspace::find($ws);
+                    if(!$nws){
+                        $nws = new Workspace;
+                        // $nws->user_id = Auth::id() ;
+                        // $nws->tag = $tg;
+                        // $nws->visibility = 'PR' ;
+                        // $nws->color = 'purple';
+                        // $nws->save();
+
+                        $nws->title = $ws;
+                        $nws->color = 'purple';
+                        $nws->visibility = 'P';
+                        $nws->created_by = Auth::id();
+                        $nws->save();
+                    }
+                    $nw = new NoteWorkspace;
+                    $nw->note = $note->id;
+                    $nw->workspace = $nws->id;
+                    $nw->save();
+                    $nsRes++;
+                }
+            endif;
 
             // Add tags of notes using the method below
-
-            foreach($this->tags as $tg){
-                $taags = Tag::find($tg);
-                if(!$taags->count() > 0){
-                    $taags = new Tag;
-                    $taags->user_id = Auth::id() ;
-                    $taags->tag = $tg;
-                    $taags->visibility = 'PR' ;
-                    $taags->color = 'purple';
-                    $taags->save();
+            if(count($this->tags) > 0):
+            $nts = NoteTag::select('id')->where('note',$note->id)->get()->toArray();
+                NoteTag::destroy($nts);
+                foreach($this->tags as $tg){
+                    $taags = Tag::find($tg);
+                    if(!$taags){
+                        $taags = new Tag;
+                        $taags->user_id = Auth::id() ;
+                        $taags->tag = $tg;
+                        $taags->visibility = 'PR' ;
+                        $taags->color = 'purple';
+                        $taags->save();
+                    }
+                    $nt = new NoteTag;
+                    $nt->note = $note->id;
+                    $nt->tag = $taags->id;
+                    $nt->save();
+                    $nsRes++;
                 }
-                $nt = new NoteTag;
-                $nt->note = $note->id;
-                $nt->tag = $taags->id;
-                $nt->save();
-                $nsRes++;
-            }
+            endif;
 
-            
-            
         }
 
         if($nsRes){
@@ -128,9 +144,10 @@ class AddNoteInfo extends Component
 
         
 
-        $this->resetCreateForm();
-        $this->emit('updateNoteGrid');
-        $this->emit('updateNotes');
+        // $this->resetCreateForm();
+        // $this->emit('updateNoteGrid');
+        // $this->emit('updateNotes');
+        return redirect()->route('notes');
     }
 
 
