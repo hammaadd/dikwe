@@ -23,6 +23,10 @@ class NoteSelect extends Component
         $this->emit('makeAllPrivate');
     }
 
+    public function deleteNotes(){
+        $this->emit('deletAllSelectedNotes');
+    }
+
 
 
 
