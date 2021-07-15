@@ -107,6 +107,7 @@
                                            
                                             <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
                                                 @forelse($note->workspace as $ws)
+                                                {{-- {{print_r($ws->workspacea)}} --}}
                                                     <span class="tag-item">{{$ws->workspacea->title}}</span>
                                                 @empty
                                                     <span class="text-red-600">No Workspaces.</span>
