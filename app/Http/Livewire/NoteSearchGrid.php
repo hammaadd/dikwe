@@ -11,8 +11,9 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [];
+    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'
+    ,'updateQueryNoteSet'=>'updateQueryNoteSet','deletAllSelectedNotes'=>'deletAllSelectedNotes'];
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query;
     private $notes;
     
     public function render()
@@ -38,6 +39,21 @@ class NoteSearchGrid extends Component
 
         elseif($this->note_set == 'S'):
             $this->noteHeading = 'Subscribed Notes';
+        elseif($this->note_set == 'Q'):
+            
+                $this->notes1 = Note::query();
+                $this->notes = Note::query();
+
+                $this->notes->where('title','like',$this->query.'%');
+                $this->notes1->where('title','like','%'.$this->query.'%');
+                $this->notes->union($this->notes1);
+                // $this->isVisible = true;
+          
+            // $this->notes = Note::query();
+            // $this->notes->where('status','active')
+            //             ->orderBy('created_at','DESC');
+            //dd($this->notes);
+            $this->noteHeading = 'Search Results For "'.$this->query.'"';
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::query();
@@ -90,6 +106,15 @@ class NoteSearchGrid extends Component
 
     }
 
+    public function updateQueryNoteSet($ns, $q){
+        if(!empty($q)){
+            $this->note_set = $ns;
+            $this->query = $q;
+            $this->render();
+        }
+
+    }
+
     public function mount(){
         // $this->notes = Note::query();
         // $this->notes->where('status','active')
@@ -129,7 +154,12 @@ class NoteSearchGrid extends Component
     public function makeAllPublic(){
         //dd($this->select_note);
         if(count($this->select_note) > 0){
-            Note::whereIn('id',$this->select_note)->update(['visibility'=>'PR']);
+            $res = Note::whereIn('id',$this->select_note)->update(['visibility'=>'P']);
+            if($res){
+                session()->flash('success', 'Visibility Set To Public Successfully.');
+            }else{
+                session()->flash('error', 'Unable to set visibility. Try again later');
+            }
             // foreach($this->select_note as $sn){
             //     Note::where('id','=',$this->select_note)->update(['visibility'=>'P']);
             // }
@@ -139,17 +169,43 @@ class NoteSearchGrid extends Component
         $this->mount();
     }
 
+    public function deletAllSelectedNotes(){
+        if(count($this->select_note) > 0){
+            $res = Note::whereIn('id',$this->select_note)->where('created_by',Auth::id())->delete();
+            // dd($this->select_note);
+            if($res){
+                session()->flash('success', 'Notes Deleted Successfully.');
+            }else{
+                session()->flash('error', 'Unable to delete notes. Try again later');
+            }
+        }
+
+    }
+
     public function makeAllPrivate(){
         //dd($this->select_note);
         if(count($this->select_note) > 0){
-            Note::whereIn('id',[$this->select_note])->update(['visibility'=>'PR']);
+            $res = Note::whereIn('id',[$this->select_note])->update(['visibility'=>'PR']);
+            if($res){
+                session()->flash('success', 'Visibility Set To Private Successfully.');
+            }else{
+                session()->flash('error', 'Unable to set visibility. Try again later');
+            }
         }
 
         $this->mount();
     }
 
-    public function delete(){
-
+    public function delete($noteId){
+        if($noteId){
+            $res = Note::where('id',$noteId)->where('created_by',Auth::id())->delete();
+             
+            if($res){
+                session()->flash('success', 'Note Deleted Successfully.');
+            }else{
+                session()->flash('error', 'Unable to delete note. Try again later');
+            }
+        }
     }
 
 
