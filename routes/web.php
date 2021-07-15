@@ -163,6 +163,8 @@ Route::get('practise', function(){
     return view('practise');
 });
 
+Route::post('practice','NoteController@practice')->name('practice');
+Route::get('fetch/practice','NoteController@fetchData')->name('fetchPractice');
 
 
 Auth::routes(['verify'=>true]);
