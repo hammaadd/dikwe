@@ -96,12 +96,12 @@ class EditNote extends Component
         $this->note->created_by = Auth::id();
         $nRes = $this->note->update();
         if($nRes){
-            $nsRes = 0;
+            $nsRes = 1;
             #Add workspaces of notes using loop
             $nws = NoteWorkspace::select('id')->where('note',$this->note->id)->get()->toArray();
             NoteWorkspace::destroy($nws);
             foreach($this->workspaces as $ws){
-                $nws = NoteWorkspace::find($ws);
+                $nws = Workspace::find($ws);
                 if(!$nws){
                     $nws = new Workspace;
                     // $nws->user_id = Auth::id() ;
