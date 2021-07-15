@@ -10,7 +10,7 @@
                                 x-transition:leave-end="opacity-0 scale-75"
                                 class="absolute bg-white shadow-md overflow-hidden rounded-xl w-72 mt-2 py-1 right-0 top-full md:right-10 md:top-10 z-20"
                             >
-                                    <li>
+                                    {{-- <li>
                                         <a href="#" class="dropdown-item">
                                             <i class="fas fa-check-circle dropdown-item-icon" ></i>
                                             <span class="ml-2">Select All</span>
@@ -21,9 +21,9 @@
                                             <i class="fas fa-times-circle dropdown-item-icon"></i>
                                             <span class="ml-2">Un-select Selected</span>
                                         </a>
-                                    </li>   
+                                    </li>    --}}
                                     <li>
-                                        <a href="#" class="dropdown-item">
+                                        <a href="javascript:void(0)" class="dropdown-item" wire:click="deleteNotes">
                                             <i class="fas fa-trash dropdown-item-icon"></i>
                                             <span class="ml-2">Delete Selected</span>
                                         </a>
