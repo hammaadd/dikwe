@@ -10,6 +10,7 @@ class NoteFilter extends Component
     protected $listeners = ['resetSearch'=>'resetSearch'];
 
     public $visi_type,$color,$notes_set = 'M', $search,$results,$isVisible, $all_checked;
+    // protected $queryString = ['search'];
 
     
     public function mount(){
@@ -25,6 +26,8 @@ class NoteFilter extends Component
         $this->search = '';
         $this->results = [];
 }
+
+
 
     public function render()
     {
@@ -55,6 +58,11 @@ class NoteFilter extends Component
             $this->results = $this->results->merge($results2);
             $this->isVisible = true;
         }
+    }
+
+    public function search(){
+        $this->notes_set = 'Q';
+        $this->emit('updateQueryNoteSet',$this->notes_set,$this->search);
     }
 
     
