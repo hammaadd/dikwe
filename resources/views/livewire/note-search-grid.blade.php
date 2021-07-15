@@ -67,6 +67,12 @@
                             </a>
                         </li>
                     @endif
+                    <li>
+                        <a href="{{route('view.note',$note->id)}}" target="_blank" class="dropdown-item">
+                            <i class="fas fa-external-link-alt dropdown-item-icon"></i>
+                            <span class="ml-2">View Note</span>
+                        </a>
+                    </li>
                     </ul>
                 </div>
             </div>
@@ -199,8 +205,8 @@
                     @endif
                     
                     <li>
-                        <a href="{{route('view.note',$note->id)}}" class="dropdown-item" @click=" $dispatch('showViewNote') ">
-                            {{-- <i class="fas fa-trash-alt dropdown-item-icon"></i> --}}
+                        <a href="{{route('view.note',$note->id)}}" target="_blank" class="dropdown-item">
+                            <i class="fas fa-external-link-alt dropdown-item-icon"></i>
                             <span class="ml-2">View Note</span>
                         </a>
                     </li>
@@ -235,12 +241,17 @@
             </div>
         </div>
     @empty
-    
+    <div class="p-3 mx-auto">
+        <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
+    </div>
     @endforelse
-        
     
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
+    @else
+    <div class="p-3 mx-auto">
+        <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
+    </div>
     @endif
   
 @else
@@ -248,6 +259,7 @@
     <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
 </div>
 @endif
+
     <div wire:loading>
         <div class=" absolute w-full h-full bg-white bg-opacity-90 -top-2 grid place-items-center">
             <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
