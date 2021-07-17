@@ -64,9 +64,7 @@ Route::get('network', function () {
 Route::get('network-statistics', function () {
     return view('user.content.network-statistics');
 })->name('network-statistics');
-Route::get('network-more-info', function () {
-    return view('user.content.network-more-info');
-})->name('network-more-info');
+
 Route::get('opened-notebook-gv', function () {
     return view('user.content.opened-notebook-gv');
 })->name('opened-notebook-gv');
@@ -197,6 +195,8 @@ Route::prefix('u')->group(function(){
 
     Route::post('/contactus','VisitorController@contactus')->name('user.contactus');
     Route::put('/update-profile','ProfileController@updateprofile')->name('user.update.profile');
+    Route::get('/profile/{user}','ProfileController@viewUserProfile')->name('u.profile');
+    Route::get('/profile-detail/{user}','ProfileController@viewUserDetailProfile')->name('u.profile.detail');
     // bookmarks
     // Route::get('allbookmarks','UserController@allbookmarks')->name('all.bookmarks');
     //  Route::get('addbookmarks','UserController@addbookmark')->name('add.bookmark');
