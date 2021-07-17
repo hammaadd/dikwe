@@ -117,7 +117,7 @@
                                 @endif" class="mx-auto object-cover rounded-full h-8 w-8 "/>
                         </a>
                         <div class="flex flex-col">
-                            <a href="#" class="font-bold link-hover">
+                            <a href="{{route('u.profile',$note->owner)}}" class="font-bold link-hover">
                                 {{$note->owner->name}}
                             </a>
                         </div>
@@ -130,9 +130,11 @@
                 </div>
             </div>
         </div>
-    @empty
-    
-    @endforelse
+        @empty
+            <div class="p-3 mx-auto">
+                <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
+            </div>
+        @endforelse
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
    
@@ -234,7 +236,7 @@
                     @endif</small>
                 </div>
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
-                    <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You </span>
+                    <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i><a href="{{route('u.profile',$note->owner)}}">{{$note->owner->name}}</a></span>
                     <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
                         <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model.defer="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
                 </div>
@@ -248,16 +250,7 @@
     
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
-    @else
-    <div class="p-3 mx-auto">
-        <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
-    </div>
     @endif
-  
-@else
-<div class="p-3 mx-auto">
-    <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
-</div>
 @endif
 
     <div wire:loading>
