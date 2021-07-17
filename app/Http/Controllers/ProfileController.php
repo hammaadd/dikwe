@@ -19,7 +19,6 @@ class ProfileController extends Controller
         // dd($countries);
         return view('user.content.profile',compact('countries'));
     }
-
     public function updateprofile(Request $request)
     {
 
@@ -148,5 +147,19 @@ class ProfileController extends Controller
         }
 
     return back();
+    }
+
+
+    public function viewUserProfile(User $user){
+
+
+        return view('user.content.network-more-info',['user'=>$user]);
+    }
+
+
+    public function viewUserDetailProfile(User $user){
+
+
+        return view('user.content.network-more-info',['user'=>$user]);
     }
 }
