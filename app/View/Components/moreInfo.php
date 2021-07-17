@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class moreInfo extends Component
 {
+    public $user;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
         //
+        $this->user = $user;
     }
 
     /**
@@ -23,6 +25,7 @@ class moreInfo extends Component
      */
     public function render()
     {
+        
         return view('components.more-info');
     }
 }
