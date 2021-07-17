@@ -63,6 +63,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function likedNotes(){
         return $this->reactions->where('reaction_type','like');
     }
+
+    public function tags(){
+        return $this->hasMany(Tag::class,'user_id');
+    }
+
+    public function notes(){
+        return $this->hasMany(Note::class, 'created_by');
+    }
+
+    public function total_notes(){
+        return $this->notes->count();
+    }
 }
 
 
