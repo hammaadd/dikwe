@@ -54,7 +54,6 @@ Route::get('workspaces', function () {
 
 
 
-
 Route::get('short-urls', function () {
     return view('user.content.shorturls');
 })->name('short-urls');
