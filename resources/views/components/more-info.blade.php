@@ -11,7 +11,8 @@
         </div>
     </div>
     <div class="w-full overflow-hidden text-center lg:text-left mt-2 md:mt-0 lg:pl-2 xl:pl-0">
-        <span class="block font-bold text-2xl text-center">{{$user->name}}</span>
+        <span class="block font-bold text-2xl text-center">{{$user->name}} @if(Auth::id() == $user->id)<small><a href="#" title="Edit Info"><i class="fas fa-sm fa-pen text-green-550"></i></a></small>@endif</span>
+        
     </div>
 </div>
 <div class="mt-4 md:mt-8">
