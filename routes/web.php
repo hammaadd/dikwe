@@ -57,9 +57,7 @@ Route::get('workspaces', function () {
 Route::get('short-urls', function () {
     return view('user.content.shorturls');
 })->name('short-urls');
-Route::get('network', function () {
-    return view('user.content.network');
-})->name('network');
+
 Route::get('network-statistics', function () {
     return view('user.content.network-statistics');
 })->name('network-statistics');
@@ -211,7 +209,7 @@ Route::prefix('u')->group(function(){
 
 // Route::prefix('u')->middleware('role:user')->name('u.')->group(function () {
 
-Route::prefix('u')->middleware('role:user')->middleware('auth')->group(function () {
+Route::prefix('u')->middleware('auth')->group(function () {
 
     Route::get('dashboard', function () {
         return view('user.content.dashboard');
@@ -225,6 +223,7 @@ Route::prefix('u')->middleware('role:user')->middleware('auth')->group(function 
     Route::get('workspaces', function () { return view('user.content.workspaces'); })->name('workspaces');
     Route::get('notes', 'NoteController@index')->name('notes');
     Route::get('bookmarks','BookmarkController@index')->name('bookmarks');
+    Route::get('network','NetworkController@index')->name('network');
 });
 
 Route::get('n/{id}','NoteController@show')->name('view.note');
