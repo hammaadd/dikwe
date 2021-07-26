@@ -31,10 +31,10 @@
                                 <button class=" bg-green-550 text-white text-center rounded-full px-3 py-1 mx-3 border-2 border-green-550 font-bold hover:bg-white hover:text-green-550">Follow</button>
                             </div>
                         </div>
-                        <span class=" w-full text-lg">IT Consultant</span>
+                        {{-- <span class=" w-full text-lg">IT Consultant</span> --}}
                         <div class=" w-full mt-2 md:mt-0">
                             <span><i class="fas fa-map-marker-alt"></i>@isset($user->country->country) {{$user->country->country}} @endisset</span>
-                            <span class="ml-3"><a href="#" class="break-all"><i class="fas fa-link"></i> www.twitter.com</a></span>
+                            {{-- <span class="ml-3"><a href="#" class="break-all"> </a></span> --}}
                         </div>
                     </div>
                     <hr class="text-gray-500">
