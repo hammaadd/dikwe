@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use LaratrustUserTrait;
@@ -74,6 +76,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function total_notes(){
         return $this->notes->count();
+    }
+
+    public function following(){
+        return $this->hasMany(FollowUser::class, 'follower_id');
+    }
+
+    public function isFollowing($user){
+        return $this->following->where('follow_id','=',$user)->where('follower_id','=',Auth::id())->count();
     }
 }
 
