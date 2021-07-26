@@ -18,17 +18,19 @@
     {{-- Network user results will display here --}}
     @if(!empty($search))
         <div class="pt-5">
-            <div class="w-full flex flex-wrap items-center overflow-hidden ">
+            <div class="w-full flex flex-wrap items-center overflow-hidden">
                 <!-- Column Content -->
                 @forelse($results as $user)
                     <div class=" w-full md:w-1/5 p-3 mt-2">
-                        <img src="{{asset('images/Ellipse 1792x.png')}}" alt="" class="w-1/2 sm:w-1/4 md:w-full mx-auto">
+                        
+                        <img src="@if($user->profile_img == null) https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,$user->name) }} @else {{asset('user_profile_images/'.$user->profile_img)}} @endif
+                        " alt="" class="w-1/2 sm:w-1/4 md:w-full mx-auto object-cover rounded-full">
                     </div>
                     <div class="w-full md:w-4/5 flex flex-col pl-2">
                         <div class="w-full">
-                            <span class=" w-full font-bold text-lg">{{$user->name}}</span>
+                            <span class=" w-full font-bold text-lg hover:text-green-550 cursor-pointer">{{$user->name}}</span>
                             <div class="inline-block float-right">
-                                <button class=" bg-green-550 text-white text-center rounded-full px-3 py-1 mx-3 border-2 border-green-550 font-bold hover:bg-white hover:text-green-550">Follow</button>
+                               <livewire:follow-unfollow-user :user="$user" wire:key="fu-{{$user->id}}" />
                             </div>
                         </div>
                         {{-- <span class=" w-full text-lg">IT Consultant</span> --}}
