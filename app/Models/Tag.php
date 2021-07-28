@@ -38,4 +38,7 @@ class Tag extends Model
     public function notes(){
         return $this->hasMany(NoteTag::class,'id','tag');
     }
+    public function bookmark(){
+        return $this->hasMany(BookmarkTag::class,'tag');
+    }
 }

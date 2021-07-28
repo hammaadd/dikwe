@@ -43,6 +43,9 @@ class Workspace extends Model
     public function notes(){
         return $this->hasMany(Note::class,'id','note');
     }
+    public function bookmark(){
+        return $this->hasMany(bookmarkWorkspace::class,'workspace');
+    }
 
 
 }
