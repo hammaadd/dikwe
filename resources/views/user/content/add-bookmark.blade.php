@@ -34,8 +34,8 @@
                     </div>
                     <div class="mt-4 md:mt-8">
                         @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
+                            <li>{{ $error }}</li>
+                        @endforeach
                         <form action="{{route('create.bookmark')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="rounded-xl p-2 md:p-8 xl:px-5 bg-green-150 my-2 md:my-4 flex flex-wrap overflow-hidden flex-row justify-between lg:items-center">

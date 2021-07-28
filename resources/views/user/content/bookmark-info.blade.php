@@ -32,8 +32,8 @@
                 <div class="w-full flex flex-wrap overflow-hidden mt-4 md:mt-8">
                     <div class="flex-wrap overflow-hidden w-full lg:w-1/2 px-2 md:px-5 lg:px-2 xl:px-5 lg:h-full">
                         @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
+                            <li>{{ $error }}</li>
+                        @endforeach
                         {{-- <x-bm-info-form /> --}}
                         <form method="post" action="{{route('update.bookmark',$bookmark)}}">
                             @csrf 
