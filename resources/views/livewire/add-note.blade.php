@@ -1,7 +1,7 @@
 <div class=" mt-4 md:mt-8 px-2 md:px-0 relative" x-show.transition.origin.top.left="showAddForm">
     <form wire:submit.prevent="store">
     <div class="bg-white rounded-xl shadow-md p-2 md:p-5 w-full md:w-10/12 mx-auto">
-        <div class="flex flex-row items-center relative" x-data="{ nColor: false }">
+        <div class="flex flex-row items-center relative" x-data="{ nColor: false , trix: @entangle('description').defer}">
             <button @click=" nColor = !nColor "  type="button" class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8"> 
                 <div class="w-4 h-4 rounded-full 
                 @if($color=='purple') bg-indigo-700
@@ -9,7 +9,7 @@
                 @elseif($color=='blue') bg-purple-900
                 @elseif($color=='yellow') bg-yellow-400
                 @else bg-indigo-700 @endif
-                 inline-block"></div>
+                 inline-block"></div>   
             </button>
             <ul
                 x-show="nColor"
@@ -44,14 +44,43 @@
                         <span>{{$message}}</span>
                     </small>
         @enderror
-        <div class="md:p-5">
-            <textarea name="description" rows="5" wire:model.defer="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea>
-            @error('description')
+        
+            {{-- <textarea name="description" rows="5" wire:model.defer="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea> --}}
+            <div x-data="{textEditor:@entangle('description').defer}"
+                x-init="()=>{var element = document.querySelector('trix-editor');
+                           element.editor.insertHTML(textEditor);}"
+                wire:ignore
+                class="border-0 ring-0 focus:border-0 focus:ring-0 w-full my-2 ">
+            <style>
+                ol{
+                    list-style-type: decimal;
+                    margin: inherit;
+                    padding: inherit;
+                }
+                ul {
+                    list-style: circle;
+                    margin: inherit;
+                    padding: inherit;
+                }
+                .trix-button-group--file-tools {
+                        display: none !important;
+                    }
+            </style>
+                
+           
+           <input x-ref="editor"
+                  id="editor-x"
+                  type="hidden"
+                  name="description">
+           
+           <trix-editor  input="editor-x"
+                        x-on:trix-change="textEditor=$refs.editor.value;"></trix-editor>
+           </div>
+        @error('description')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
                     </small>
-            @enderror
-        </div>
+        @enderror
         {{-- <div id="editor"></div> --}}
         <div class=" text-center md:text-right pb-2 md:pb-0">
             <button type="button" class="bg-red-500 text-white font-bold border-2 border-red-500 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-red-500" wire:click="cancelForm">Cancel</button>
@@ -70,10 +99,14 @@
 </div>
 @push('script_s')
 <script>
-    
-    window.livewire.on('getQuillValue', () => {
-    console.log('checing');
-});
+//     var quill = new Quill('#editor', {
+//     theme: 'snow',
+//     placeholder: 'Note Body ...'
+//   });
+
+//   document.addEventListener('livewire:load', function () {
+//             console.log(quill.getContents());
+//         })
 
 // document.addEventListener('livewire:load', function () {
 //     var quill = new Quill('#editor', {

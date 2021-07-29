@@ -130,7 +130,7 @@
                                                 " class="mx-auto object-cover rounded-full h-8 w-8 "/>
                                             </a>
                                             <div class="flex flex-col">
-                                                <a href="#" class="font-bold link-hover">
+                                                <a href="{{route('u.profile.detail',$note->owner)}}" class="font-bold link-hover">
                                                     {{$note->owner->name}} 
                                                 </a>
                                                 

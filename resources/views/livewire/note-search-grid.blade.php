@@ -214,8 +214,9 @@
                     </li>
                     </ul>
                 </div>
+               
                 <p class="px-2 py-4 text-gray-600">
-                    {{Str::limit($note->description,190)}} 
+                    {!!Str::limit($note->description,190)!!} 
                     
                 </p>
                

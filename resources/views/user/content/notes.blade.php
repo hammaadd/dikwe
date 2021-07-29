@@ -4,6 +4,8 @@
 @section('headerExtra')
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('trix/dist/trix.css')}}">
+    <script type="text/javascript" src="{{ asset('trix/dist/trix.js')}}"></script>
     {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
     @livewireStyles
 @endsection
@@ -48,18 +50,21 @@
                     {{-- Tag Section --}}
                     <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"">
                         <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
+                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left" >
+                                <label for="knowledge-assets">Notes</label>
+                                <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add Note" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
+                                    <i class="fas fa-plus-circle"></i>
+                                </a>
+                            </div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
                                 <a href="javascript:void(0)" x-on:click="$dispatch('showsearchnote')" class="link-hover text-green-550 font-bold">
                                     Back To The Notes
                                 </a>
                             </div>
                         </div>
-                        <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
-                            <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
-                                <i class="fas fa-plus-circle"></i>
-                            </a>
-                        </div>
+                        {{-- <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
+                            
+                        </div> --}}
                         
                         
                         <livewire:add-note/>
@@ -120,7 +125,26 @@
 @section('scripts')
 {{-- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script> --}}
 <script>
+
+function copyToClipBoard(text) {
+  /* Get the text field */
+  var copyText = document.createElement("textarea");
+  document.body.appendChild(copyText);
+  copyText.textContent  = text;
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+  document.body.removeChild(copyText);
+}
     $(document).ready(function() {
+
         $('#tags1').select2();
         $('#workspaces1').select2();
         

@@ -1,5 +1,5 @@
 <div class="w-full lg:w-3/4 xl:w-3/4 mx-auto py-5">
-    <form action="" class="flex flex-col text-center">
+    <form action=""  class="flex flex-col text-center">
         <div class="relative rounded-xl">
             <input type="text" name="search" class="input-search" placeholder="Search And Open People Profiles"
                 autocomplete="off"
@@ -28,7 +28,7 @@
                     </div>
                     <div class="w-full md:w-4/5 flex flex-col pl-2">
                         <div class="w-full">
-                            <span class=" w-full font-bold text-lg hover:text-green-550 cursor-pointer">{{$user->name}}</span>
+                            <span class=" w-full font-bold text-lg hover:text-green-550 cursor-pointer"><a href="{{route('u.profile.detail',$user)}}">{{$user->name}}</a></span>
                             <div class="inline-block float-right">
                                <livewire:follow-unfollow-user :user="$user" wire:key="fu-{{$user->id}}" />
                             </div>

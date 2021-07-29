@@ -63,7 +63,7 @@ class AddNote extends Component
         ],[],$pretty_names);
         $note = new Note;
         $note->title = $this->title;
-        $note->description = $this->description;
+        $note->description = nl2br($this->description);
         $note->source = $this->source;
         $note->source_url = $this->url;
         $note->visibility = $this->visibility;

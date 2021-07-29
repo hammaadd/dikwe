@@ -1,4 +1,4 @@
-<div @if($type=='list') class="flex flex-wrap flex-row-reverse sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto" @endif  @if($type=='grid')  class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between" @endif>
+<div @if($type=='list') class="flex flex-wrap flex-row-reverse sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto" @endif  @if($type=='grid')  class="flex items-center md:items-start lg:items-center xl:items-start flex-col-reverse md:flex-row lg:flex-col-reverse xl:flex-row justify-between" @endif >
     @if($type=='list')
     <div class="rating mb-0">
         {{-- <input type="radio" name="rate" id="rate-5">
@@ -69,7 +69,10 @@
     @endif
 
         <li class="inline-block text-center">
-            <a href="#" class=" cursor-pointer px-1 text-lg text-gray-400">
+            @php 
+                $copyData = route('view.note',$note->id);
+            @endphp
+            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')">
                 <i class="fas fa-copy"></i>
             </a>
             <br>

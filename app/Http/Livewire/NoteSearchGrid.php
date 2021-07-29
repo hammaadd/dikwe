@@ -164,6 +164,8 @@ class NoteSearchGrid extends Component
             //     Note::where('id','=',$this->select_note)->update(['visibility'=>'P']);
             // }
             
+        }else{
+            session()->flash('error', 'Please select notes to proceed');
         }
 
         $this->mount();
@@ -171,13 +173,15 @@ class NoteSearchGrid extends Component
 
     public function deletAllSelectedNotes(){
         if(count($this->select_note) > 0){
-            $res = Note::whereIn('id',$this->select_note)->where('created_by',Auth::id())->delete();
+            $res = Note::whereIn('id',[$this->select_note])->where('created_by',Auth::id())->delete();
             // dd($this->select_note);
             if($res){
                 session()->flash('success', 'Notes Deleted Successfully.');
             }else{
                 session()->flash('error', 'Unable to delete notes. Try again later');
             }
+        }else{
+            session()->flash('error', 'Please select notes to proceed');
         }
 
     }
@@ -185,12 +189,14 @@ class NoteSearchGrid extends Component
     public function makeAllPrivate(){
         //dd($this->select_note);
         if(count($this->select_note) > 0){
-            $res = Note::whereIn('id',[$this->select_note])->update(['visibility'=>'PR']);
+            $res = Note::whereIn('id',$this->select_note)->update(['visibility'=>'PR']);
             if($res){
                 session()->flash('success', 'Visibility Set To Private Successfully.');
             }else{
                 session()->flash('error', 'Unable to set visibility. Try again later');
             }
+        }else{
+            session()->flash('error', 'Please select notes to proceed');
         }
 
         $this->mount();
