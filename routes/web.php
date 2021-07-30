@@ -71,9 +71,9 @@ Route::get('add-note', function () {
 Route::get('tag-bookmarks-lv', function () {
     return view('user.content.tag-bookmarks-lv');
 })->name('tag-bookmarks-lv');
-Route::get('add-bookmark', function () {
-    return view('user.content.add-bookmark');
-})->name('add-bookmark');
+// Route::get('add-bookmark', function () {
+//     return view('user.content.add-bookmark');
+// })->name('add-bookmark');
 Route::get('workspace-info', function () {
     return view('user.content.workspace-info');
 })->name('workspace-info');
@@ -223,6 +223,12 @@ Route::prefix('u')->middleware('auth')->group(function () {
     Route::get('workspaces', function () { return view('user.content.workspaces'); })->name('workspaces');
     Route::get('notes', 'NoteController@index')->name('notes');
     Route::get('bookmarks','BookmarkController@index')->name('bookmarks');
+    Route::get('add-bookmark','BookmarkController@addbookmark')->name('add-bookmark');
+    Route::post('add-bookmark','BookmarkController@createbookmark')->name('create.bookmark');
+    Route::get('edit-bookmark/{bookmark}','BookmarkController@editbookmark')->name('edit.bookmark');
+    Route::post('update-bookmark/{bookmark}','BookmarkController@updatebookmark')->name('update.bookmark');
+    Route::get('delete-bookmark/{bookmark}','BookmarkController@deletebookmark')->name('delete.bookmark');
+    
     Route::get('network','NetworkController@index')->name('network');
 });
 
