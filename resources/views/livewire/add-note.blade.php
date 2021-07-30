@@ -2,14 +2,14 @@
     <form wire:submit.prevent="store">
     <div class="bg-white rounded-xl shadow-md p-2 md:p-5 w-full md:w-10/12 mx-auto">
         <div class="flex flex-row items-center relative" x-data="{ nColor: false , trix: @entangle('description').defer}">
-            <button @click=" nColor = !nColor "  type="button" class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8"> 
-                <div class="w-4 h-4 rounded-full 
+            <button @click=" nColor = !nColor "  type="button" class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8">
+                <div class="w-4 h-4 rounded-full
                 @if($color=='purple') bg-indigo-700
-                @elseif($color=='green') bg-green-550 
+                @elseif($color=='green') bg-green-550
                 @elseif($color=='blue') bg-purple-900
                 @elseif($color=='yellow') bg-yellow-400
                 @else bg-indigo-700 @endif
-                 inline-block"></div>   
+                 inline-block"></div>
             </button>
             <ul
                 x-show="nColor"
@@ -44,7 +44,7 @@
                         <span>{{$message}}</span>
                     </small>
         @enderror
-        
+
             {{-- <textarea name="description" rows="5" wire:model.defer="description" class="border-0 ring-0 focus:border-0 focus:ring-0 w-full" placeholder="Note Body ..."></textarea> --}}
             <div x-data="{textEditor:@entangle('description').defer}"
                 x-init="()=>{var element = document.querySelector('trix-editor');
@@ -62,17 +62,18 @@
                     margin: inherit;
                     padding: inherit;
                 } */
+
                 .trix-button-group--file-tools {
                         display: none !important;
                     }
             </style>
-                
-           
+
+
            <input x-ref="editor"
                   id="editor-x"
                   type="hidden"
                   name="description">
-           
+
            <trix-editor  input="editor-x"
                         x-on:trix-change="textEditor=$refs.editor.value;" class="h-50"></trix-editor>
            </div>

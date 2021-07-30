@@ -5,7 +5,7 @@
         <div class="preloader" id="preloader">
             <img src="{{asset('assets/loader/puff.svg')}}" style="width: 10rem;" alt="loader">
         </div>
-        
+
         {{-- Notification Components Start Here --}}
         <div x-data="{ shownotification : true }" x-init="setTimeout(() => shownotification = false, 4000)">
             @if(session()->get('success'))
@@ -18,7 +18,7 @@
 
         <div class="w-full relative">
             @include('user.inc.sidebar')
-            <div class="md:pl-24">
+            <div class="md:pl-20">
                 @include('user.inc.topNav')
                 @yield('content')
             </div>
@@ -30,7 +30,7 @@
                     $("#preloader").fadeOut("slow");
                 });
             });
-    
+
           </script>
           @yield('scripts')
           @stack('script_s')

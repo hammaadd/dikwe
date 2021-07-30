@@ -110,7 +110,10 @@
     }
 }
 body {
-    @apply font-roboto text-gray-900 text-base
+    @apply font-roboto text-gray-900 text-sm
+}
+ol {
+    @apply list-inside
 }
 .active {
     @apply text-green-550 border-green-550 border-solid border-0 lg:border-b-2 font-bold
@@ -198,7 +201,7 @@ body {
     @apply mb-2 mr-2 py-1.5 px-4 text-gray-900 bg-green-150 rounded-xl cursor-pointer hover:bg-green-550 hover:text-white
 }
 .nav--tabs {
-    @apply my-3 py-1 pl-4 text-center text-white text-2xl hover:rounded-r-3xl hover:bg-white hover:text-green-550
+    @apply my-3 py-1 pl-4 text-center text-white text-lg hover:rounded-r-3xl hover:bg-white hover:text-green-550
 }
 .tab-active {
     @apply bg-white text-green-550 rounded-r-3xl
@@ -207,7 +210,10 @@ body {
     @apply bg-transparent text-green-550 border-2 border-green-550 rounded-xl px-4 py-2 shadow-lg hover:bg-green-550 hover:text-white
 }
 .nav---tabs {
-    @apply py-2 px-6 my-1 text-gray-400 hover:text-white hover:bg-green-550 hover:rounded-r-3xl
+    @apply py-2 px-6 text-gray-400 hover:text-white hover:bg-green-550 hover:rounded-r-3xl
+}
+.sidebar--tabs {
+    @apply flex items-center justify-between
 }
 .span-count {
     @apply py-1 px-2 font-bold text-sm float-right bg-green-150 text-gray-900 rounded-2xl

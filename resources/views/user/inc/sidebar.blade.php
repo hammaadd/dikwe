@@ -1,5 +1,5 @@
 <div class="sidebar relative z-10" x-data="{ isOpen:false}">
-    <div class="sidebar-mini hidden md:block fixed bg-green-550 w-24 h-full lg:h-screen py-8" x-show="!isOpen">
+    <div class="sidebar-mini hidden md:block fixed bg-green-550 w-20 h-full lg:h-screen py-8" x-show="!isOpen">
         <div class="text-center">
             <a href="{{route('user-profile')}}" class="block relative">
                 <img alt="User Image"  src="
@@ -8,11 +8,11 @@
                   @else
                   {{asset('user_profile_images/'.Auth::user()->profile_img)}}
                   @endif
-                  " class="mx-auto object-cover rounded-full h-12 w-12 border-2 border-white shadow-xl"/>
+                  " class="mx-auto object-cover rounded-full h-10 w-10 border-2 border-white shadow-xl"/>
             </a>
             <div class="relative" x-data="{ isOpen: false }">
                 <button class="block w-min mx-auto mt-5 focus:outline-none" @click=" isOpen = !isOpen ">
-                    <i class="fas fa-plus-circle rounded-3xl shadow-xl text-3xl text-green-550 p-2 bg-green-150 bg-opacity-75 hover:bg-opacity-100"></i>
+                    <i class="fas fa-plus-circle rounded-3xl shadow-xl text-2xl text-green-550 p-2 bg-green-150 bg-opacity-75 hover:bg-opacity-100"></i>
                 </button>
                 <ul
                     x-show="isOpen"
@@ -142,18 +142,18 @@
             </div>
             <ul class="border-b-2 border-gray-300">
                 <li class="nav---tabs {{Request::is('u/dashboard') ? 'tab--active' : ''}} ">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('dashboard')}}"><i class="pr-2 fas fa-home"></i> Home</a>
                     </div>
                 </li>
                 <li class="nav---tabs {{Request::is('tags') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('tags')}}"><i class="pl-2 fas fa-tags fa-flip-horizontal"></i> Tags</a>
                         <span class="span-count">120</span>
                     </div>
                 </li>
                 <li class="nav---tabs {{Request::is('workspaces') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('workspaces')}}"><i class="pr-2 fas fa-folder"></i> Workspaces</a>
                         <span class="span-count">3</span>
                     </div>
@@ -161,19 +161,19 @@
             </ul>
             <ul class="border-b-2 border-gray-300">
                 <li class="nav---tabs {{Request::is('notes') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('notes')}}"><i class="pr-2 fas fa-clipboard"></i> Notes</a>
                         <span class="span-count">5</span>
                     </div>
                 </li>
                 <li class="nav---tabs {{Request::is('bookmarks') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('bookmarks')}}"><i class="pr-2 fas fa-star"></i> Bookmarks</a>
                         <span class="span-count">80</span>
                     </div>
                 </li>
                 <li class="nav---tabs {{Request::is('short-urls') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('short-urls')}}"><i class="pr-2 fas fa-link"></i> Short URLs</a>
                         <span class="span-count">20</span>
                     </div>
@@ -181,14 +181,14 @@
             </ul>
             <ul class="border-b-2 border-gray-300">
                 <li class="nav---tabs {{Request::is('network') ? 'tab--active' : ''}}">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="{{route('network')}}"><i class="pr-2 fas fa-users"></i> Network</a>
                     </div>
                 </li>
             </ul>
             <ul class="pb-8">
                 <li class="nav---tabs">
-                    <div>
+                    <div class="sidebar--tabs">
                         <a href="#"><i class="pr-2 fas fa-cog"></i> Settings</a>
                     </div>
                 </li>

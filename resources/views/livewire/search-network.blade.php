@@ -10,33 +10,38 @@
                     <i class="text-white fas fa-search"></i>
                 </span>
             </button>
-            
+
         </div>
     </form>
-    
-    
+
+
     {{-- Network user results will display here --}}
     @if(!empty($search))
-        <div class="pt-5">
+        <div class="mt-2 bg-green-150 rounded-xl px-3">
             <div class="w-full flex flex-wrap items-center overflow-hidden">
                 <!-- Column Content -->
                 @forelse($results as $user)
-                    <div class=" w-full md:w-1/5 p-3 mt-2">
-                        
-                        <img src="@if($user->profile_img == null) https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,$user->name) }} @else {{asset('user_profile_images/'.$user->profile_img)}} @endif
-                        " alt="" class="w-1/2 sm:w-1/4 md:w-full mx-auto object-cover rounded-full">
-                    </div>
-                    <div class="w-full md:w-4/5 flex flex-col pl-2">
-                        <div class="w-full">
-                            <span class=" w-full font-bold text-lg hover:text-green-550 cursor-pointer"><a href="{{route('u.profile.detail',$user)}}">{{$user->name}}</a></span>
-                            <div class="inline-block float-right">
-                               <livewire:follow-unfollow-user :user="$user" wire:key="fu-{{$user->id}}" />
+                    <div class="w-full py-2 flex flex-wrap items-center justify-between rounded-xl">
+                        <div class="flex flex-wrap items-center">
+                            <div class="w-full flex items-center">
+                                <a href="{{route('u.profile.detail',$user)}}" class="block relative">
+                                    <img alt="User Image" src="@if($user->profile_img == null) https://ui-avatars.com/api/?background=FFFFFF&name={{ str_replace(' ','+' ,$user->name) }} @else {{asset('user_profile_images/'.$user->profile_img)}} @endif"
+                                    class="mx-auto object-cover rounded-full h-12 w-12 lg:h-10 xl:h-12 lg:w-10 xl:w-12 border-2 border-green-550">
+                                </a>
+                                <div class="flex flex-col items-start ml-2">
+                                    <a href="{{route('u.profile.detail',$user)}}" class="hover:text-green-550">
+                                        {{$user->name}}
+                                    </a>
+                                    <span class="text-sm font-bold">
+                                        <i class="fas fa-map-marker-alt"></i>@isset($user->country->country) {{$user->country->country}} @endisset
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        {{-- <span class=" w-full text-lg">IT Consultant</span> --}}
-                        <div class=" w-full mt-2 md:mt-0">
-                            <span><i class="fas fa-map-marker-alt"></i>@isset($user->country->country) {{$user->country->country}} @endisset</span>
-                            {{-- <span class="ml-3"><a href="#" class="break-all"> </a></span> --}}
+                        <div class="flex flex-wrap items-center">
+                            <button class=" bg-green-150 text-gray-400 text-sm text-center rounded-full px-2 py-1 mx-3 lg:mx-0 xl:mx-3 hover:bg-green-550 hover:text-white">
+                                <livewire:follow-unfollow-user :user="$user" wire:key="fu-{{$user->id}}" />
+                            </button>
                         </div>
                     </div>
                     <hr class="text-gray-500">
