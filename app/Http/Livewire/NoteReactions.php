@@ -126,6 +126,31 @@ class NoteReactions extends Component
     }
 
 
+    public function copyLink($id){
+        $ret = Reaction::where([
+            'ka'=>$id,
+            'reacted_by'=>Auth::id(),
+            'ka_type'=>'note',
+            'reaction_type'=>'copied'
+        ])->first();
+        if($ret){
+
+        }else{
+        Reaction::create([
+            'ka'=>$id,
+            'reacted_by'=>Auth::id(),
+            'ka_type'=>'note',
+            'reaction_type'=>'copied'
+        ]);
+        }
+
+        $this->emit('setNotificationMessage','Link copied Successfully.');
+
+        
+
+}
+
+
     
 
 }

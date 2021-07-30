@@ -18,7 +18,27 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea>
+                {{-- <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea> --}}
+                <div x-data="{textEditor:@entangle('description').defer}"
+                x-init="()=>{var element = document.querySelector('trix-editor');
+                           element.editor.insertHTML(textEditor);}"
+                wire:ignore
+                class="border-0 ring-0 focus:border-0 focus:ring-0 w-full my-2 ">
+            <style>
+                .trix-button-group--file-tools {
+                        display: none !important;
+                    }
+            </style>
+                
+           
+           <input x-ref="editor"
+                  id="editor-x3"
+                  type="hidden"
+                  name="description">
+           
+           <trix-editor  input="editor-x3"
+                        x-on:trix-change="textEditor=$refs.editor.value;" class="h-50"></trix-editor>
+           </div>
                 @error('description')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
@@ -139,6 +159,17 @@
 @once
 @push('script_s')
 <script>
+window.addEventListener('editNoteupdateTrixDesc', event => {
+    var element = document.querySelectorAll("trix-editor");
+        element = element[2];
+        length = element.editor.getDocument().toString().length;
+        element.editor.setSelectedRange([0, length + 1]);
+        element.editor.insertHTML(event.detail.description);
+        
+
+        console.log(event.detail.description);
+})
+
     $(document).ready(function() {
         $('#tags2').select2({
             tags:true

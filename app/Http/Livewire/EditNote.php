@@ -23,11 +23,21 @@ class EditNote extends Component
     }
 
     public function mount(){
-        if($this->noteId > 0){
+        if(isset($_GET['m'])){
+            if($_GET['m']=='edit'){
+                if(isset($_GET['id'])){
+                    $this->noteId = $_GET['id'];
+                }
+            }
+        }
+        if($this->noteId > 0 ){
+            
+
             $note = Note::where('id',$this->noteId)->where('created_by','=',Auth::id())->with('tags')->first();
             $this->note = $note;
             $tags = [];
             $workspaces = [];
+            $this->dispatchBrowserEvent('editNoteupdateTrixDesc', ['description' => $note->description]);
             $wrkspc = $note->workspace->toArray();
             $tag = $note->tags->toArray();
             for($i = 0; $i < count($tag) ; $i++){
@@ -88,7 +98,7 @@ class EditNote extends Component
         ],[],$pretty_names);
         
         $this->note->title = $this->title;
-        $this->note->description = $this->description;
+        $this->note->description = nl2br($this->description);
         $this->note->source = $this->source;
         $this->note->source_url = $this->url;
         $this->note->visibility = $this->visibility;

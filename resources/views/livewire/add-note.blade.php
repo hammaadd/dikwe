@@ -52,11 +52,17 @@
                 wire:ignore
                 class="border-0 ring-0 focus:border-0 focus:ring-0 w-full my-2 ">
             <style>
-                ol{
+                /* ol{
                     list-style-type: decimal;
                     margin: inherit;
                     padding: inherit;
                 }
+                ul {
+                    list-style: circle;
+                    margin: inherit;
+                    padding: inherit;
+                } */
+
                 .trix-button-group--file-tools {
                         display: none !important;
                     }
@@ -69,7 +75,7 @@
                   name="description">
 
            <trix-editor  input="editor-x"
-                        x-on:trix-change="textEditor=$refs.editor.value;"></trix-editor>
+                        x-on:trix-change="textEditor=$refs.editor.value;" class="h-50"></trix-editor>
            </div>
         @error('description')
                     <small class="field-error-message">
@@ -94,20 +100,15 @@
 </div>
 @push('script_s')
 <script>
-//     var quill = new Quill('#editor', {
-//     theme: 'snow',
-//     placeholder: 'Note Body ...'
-//   });
+window.addEventListener('addDescription', event => {
+    var element = document.querySelectorAll("trix-editor");
+        element = element[0];
+        length = element.editor.getDocument().toString().length;
+        element.editor.setSelectedRange([0, length + 1]);
+        element.editor.insertHTML(event.detail.description);
+        
 
-//   document.addEventListener('livewire:load', function () {
-//             console.log(quill.getContents());
-//         })
-
-// document.addEventListener('livewire:load', function () {
-//     var quill = new Quill('#editor', {
-//     theme: 'snow',
-//     placeholder: 'Note Body ...'
-//   });
-// });
+        console.log(event.detail.description);
+})
 </script>
 @endpush

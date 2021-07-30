@@ -209,9 +209,24 @@
                 <button @click=" nForm = !nForm " class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sliders-h text-xl align-middle"></i>
                 </button>
-                <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
-                    <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
-                </button>
+                @if($order == false)
+                    <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white" wire:click="updateOrder('f')">
+                        <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+                    </button>
+                @elseif($order == 'DESC')
+                    <button class="bg-green-550 text-white focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-150 hover:text-green-550" wire:click="updateOrder('DESC')">
+                        <i class="fas fa-sort-alpha-up text-xl align-middle"></i>
+                    </button>
+                @elseif($order == 'ASC')
+                    <button class="bg-green-550 text-white focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-150 hover:text-green-550" wire:click="updateOrder('ASC')">
+                        <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+                    </button>
+                @else
+                    <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white" wire:click="updateOrder('f')">
+                        <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+                    </button>
+                @endif
+                
                 <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 md:ml-2 md:mr-0 lg:mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sort-numeric-down text-xl align-middle"></i>
                 </button>

@@ -72,7 +72,7 @@
             @php 
                 $copyData = route('view.note',$note->id);
             @endphp
-            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')">
+            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')" wire:click="copyLink({{$note->id}})">
                 <i class="fas fa-copy"></i>
             </a>
             <br>

@@ -24,6 +24,12 @@
             $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: true ,showViewNote:false}";
         elseif($_GET['m']=='view'):
             $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false ,showViewNote:true}";
+        elseif($_GET['m']=='edit'):
+            if(isset($_GET['id'])):
+            $xData = "{nshowEdit:true, nshowAdd:false, nshowAddMore: false, showAddForm: false,noteStyle:'grid',isOpen: false, fOpen: false ,noteSearch: false ,showViewNote:false}";
+            else:
+                $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: true ,showViewNote:false}";
+            endif;
         else:
             $xData = "{nshowEdit:false, nshowAdd:false, nshowAddMore: false, showAddForm: true,noteStyle:'grid',isOpen: false, fOpen: false, noteSearch: true ,showViewNote:false}";
         endif;
@@ -140,7 +146,7 @@ function copyToClipBoard(text) {
   document.execCommand("copy");
 
   /* Alert the copied text */
-  alert("Copied the text: " + copyText.value);
+//   alert("Copied the text: " + copyText.value);
   document.body.removeChild(copyText);
 }
     $(document).ready(function() {

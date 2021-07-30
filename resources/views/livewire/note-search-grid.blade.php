@@ -259,4 +259,5 @@
             <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
         </div>
     </div>
+    @include('user.sections.notification')
     </div>

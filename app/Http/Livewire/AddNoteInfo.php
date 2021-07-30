@@ -26,6 +26,7 @@ class AddNoteInfo extends Component
         $this->title = $title;
         $this->description = $description;
         $this->color = $color;
+        $this->dispatchBrowserEvent('updateTrixDesc', ['description' => $description]);
     }
 
     public function resetCreateForm(){

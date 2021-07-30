@@ -12,8 +12,9 @@ class NoteSearchGrid extends Component
 
     use WithPagination;
     protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'
-    ,'updateQueryNoteSet'=>'updateQueryNoteSet','deletAllSelectedNotes'=>'deletAllSelectedNotes'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query;
+    ,'updateQueryNoteSet'=>'updateQueryNoteSet','deletAllSelectedNotes'=>'deletAllSelectedNotes','setNotificationMessage'=>'setNotificationMessage',
+    'updateNoteOrder'=>'updateNoteOrder'];
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query , $message = ' ' , $showNotification,$order;
     private $notes;
     
     public function render()
@@ -21,8 +22,8 @@ class NoteSearchGrid extends Component
         if($this->note_set == 'M'):
             $this->notes = Note::query();
             $this->notes->where('status','active')
-                        ->where('created_by',Auth::id())
-                        ->orderBy('created_at','DESC');
+                        ->where('created_by',Auth::id());
+                        
             
             $this->noteHeading = 'My Notes';
             if($this->visibility=='A' || $this->visibility == null){
@@ -57,16 +58,16 @@ class NoteSearchGrid extends Component
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::query();
-            $this->notes->where('status','active')
-                        ->orderBy('created_at','DESC');
+            $this->notes->where('status','active');
+                       
             $this->noteHeading = 'Service Notes';
         
         elseif($this->note_set == 'LN'):
             $this->notes = Note::query();
             $this->notes->whereHas('reactions',function ($query){
                 return $query->where('reaction_type','like')->where('reacted_by',Auth::id());
-            })
-            ->orderBy('created_at','DESC');
+            });
+           
             $this->noteHeading = 'Liked Notes';
             // $this->settings = 1;
 
@@ -75,18 +76,24 @@ class NoteSearchGrid extends Component
                 $this->notes = Note::query();
                 $this->notes->whereHas('reactions',function ($query){
                     return $query->where('reaction_type','dislike')->where('reacted_by',Auth::id());
-                })
-                ->orderBy('created_at','DESC');
+                });
                 $this->noteHeading = 'Disliked Notes';
 
         else:
             $this->notes = Note::query();
             $this->notes->where('status','active')
-                        ->where('created_by',Auth::id())
-                        ->orderBy('created_at','DESC');
+                        ->where('created_by',Auth::id());
             $this->noteHeading = 'My Notes';
 
         endif;
+
+        if($this->order == 'ASC'){
+            $this->notes->orderBy('title','ASC');
+        }elseif($this->order == 'DESC'){
+            $this->notes->orderBy('title','DESC');
+        }else{
+            $this->notes->orderBy('created_at','DESC');
+        }
         if($this->notes != null){
             return view('livewire.note-search-grid',['notes' =>$this->notes->paginate(4)]);
         }else{
@@ -97,6 +104,11 @@ class NoteSearchGrid extends Component
 
     public function noteVisiblity($visib){
         $this->visibility = $visib;
+        $this->render();
+    }
+
+    public function updateNoteOrder($order){
+        $this->order = $order;
         $this->render();
     }
 
@@ -125,6 +137,8 @@ class NoteSearchGrid extends Component
         $this->noteHeading = 'My Notes';
         $this->note_selected = false;
         $this->select_note = [];
+        $this->showNotification = false;
+        
     }
 
     public function updateSet($noteSet){
@@ -212,6 +226,11 @@ class NoteSearchGrid extends Component
                 session()->flash('error', 'Unable to delete note. Try again later');
             }
         }
+    }
+
+    public function setNotificationMessage($message){
+        $this->message = $message;
+        session()->flash('success', $message);
     }
 
 

@@ -18,7 +18,36 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea>
+                
+                {{-- <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea> --}}
+                <div x-data="{textEditor:@entangle('description').defer}"
+                wire:ignore
+                class="border-0 ring-0 focus:border-0 focus:ring-0 w-full my-2 ">
+            <style>
+                ol{
+                    list-style-type: decimal;
+                    margin: inherit;
+                    padding: inherit;
+                }
+                ul {
+                    list-style: circle;
+                    margin: inherit;
+                    padding: inherit;
+                }
+                .trix-button-group--file-tools {
+                        display: none !important;
+                    }
+            </style>
+                
+           
+           <input x-ref="editor2"
+                  id="editor-x2"
+                  type="hidden"
+                  name="description">
+           
+           <trix-editor  input="editor-x2"
+                        x-on:trix-change="textEditor=$refs.editor2.value;"></trix-editor>
+           </div>
                 @error('description')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
@@ -140,6 +169,24 @@
 
 @push('script_s')
 <script>
+//     Livewire.on('showMoreInfo', () => {
+//         var element = document.querySelectorAll("trix-editor");
+//         element = element[1];
+//         element.editor.insertHTML(@this.get('description'));
+//         console.log(@this.get('description'));
+// })
+
+window.addEventListener('updateTrixDesc', event => {
+    var element = document.querySelectorAll("trix-editor");
+        element = element[1];
+        length = element.editor.getDocument().toString().length;
+        element.editor.setSelectedRange([0, length + 1]);
+        element.editor.insertHTML(event.detail.description);
+        
+
+        console.log(event.detail.description);
+})
+
     $(document).ready(function() {
         $('#tags1').select2({
             tags:true

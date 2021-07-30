@@ -9,7 +9,7 @@ class NoteFilter extends Component
 {
     protected $listeners = ['resetSearch'=>'resetSearch'];
 
-    public $visi_type,$color,$notes_set = 'M', $search,$results,$isVisible, $all_checked;
+    public $visi_type,$color,$notes_set = 'M', $search,$results,$isVisible, $all_checked,$order;
     // protected $queryString = ['search'];
 
     
@@ -19,6 +19,7 @@ class NoteFilter extends Component
         $this->notes_set = 'M';
         $this->isVisible = false;
         $this->all_checked = false;
+        $this->order = false;
         $this->resetSearch();
     }
 
@@ -58,6 +59,22 @@ class NoteFilter extends Component
             $this->results = $this->results->merge($results2);
             $this->isVisible = true;
         }
+    }
+
+    public function updateOrder($order){
+        $this->order = $order;
+
+        if($this->order == 'ASC'){
+            $this->order = 'DESC';
+            $this->emit('updateNoteOrder',$this->order);
+        }elseif($this->order == 'DESC'){
+            $this->order = false;
+            $this->emit('updateNoteOrder',$this->order);
+        }else{
+            $this->order = 'ASC';
+            $this->emit('updateNoteOrder',$this->order);
+        }
+        
     }
 
     public function search(){
