@@ -77,6 +77,7 @@
             <label for="rate-1" class="fas fa-star"></label>
         </div>
         <div class="tags-all">
+            {{-- {{$bookmarks}} --}}
             <span class="tag">Demo</span>
             <span class="tag">Another Tag</span>
             <span class="tag">Another Tag</span>

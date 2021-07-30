@@ -15,12 +15,13 @@ class CreateBookMarksTable extends Migration
     {
         Schema::create('book_marks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('ka_id');
-            $table->foreign('ka_id')->references('id')->on('d_knowledge_assets');
             $table->string('title',191);
+            $table->text('description')->nullable();
+            $table->string('source',191)->nullable();
             $table->string('thumbnail',191)->nullable();
-            $table->string('url',191);
-            $table->text('note')->nullable();
+            $table->enum('visibility',['P','R','PR'])->nullable()->default('P');
+            $table->string('color',191)->nullable()->default('purple');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
             $table->unsignedBigInteger('updated_by')->nullable();
