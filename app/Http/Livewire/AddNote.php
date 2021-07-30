@@ -34,6 +34,7 @@ class AddNote extends Component
         $this->source = $source;
         $this->url = $url;
         $this->visibility = $visibility;
+        $this->dispatchBrowserEvent('updateTrixDesc1', ['description' => $description]);
     
     }
 

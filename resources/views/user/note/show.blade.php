@@ -56,12 +56,12 @@
                                             x-transition:leave-end="opacity-0 scale-75"
                                             class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
                                         >
-                                            {{-- <li>
-                                                <a href="#" class="dropdown-item">
+                                            <li>
+                                                <a href="{{route('notes',['m'=>'edit','id'=>$note->id])}}" class="dropdown-item">
                                                     <i class="fas fa-edit dropdown-item-icon"></i>
                                                     <span class="ml-2">Edit Note</span>
                                                 </a>
-                                            </li> --}}
+                                            </li>
                                             {{-- <li>
                                                 <a href="#" class="dropdown-item">
                                                     <i class="fas fa-share-alt dropdown-item-icon"></i>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="px-2 md:px-4 py-4">
                                     <p class="notes-detail text-gray-600">
-                                        {{$note->description}}
+                                        {!!$note->description!!}
                                     </p>
                                     <p class="notes-source pt-3"><span class="font-bold mr-2 ">Source:</span>{{$note->source}}</p>
                                     <p class="source-url pt-3"><span class="font-bold mr-2">Source URL:</span><a href="{{$note->source_url}}" class=" hover:text-green-550" target="_blank">{{$note->source_url}}</a></p>
@@ -127,7 +127,7 @@
                                                 @else
                                                 {{asset('user_profile_images/'.$note->owner->profile_img)}}
                                                 @endif
-                                                " class="mx-auto object-cover rounded-full h-8 w-8 "/>
+                                                " class="mx-auto object-cover rounded-full h-8 w-8 bg-white shadow-lg"/>
                                             </a>
                                             <div class="flex flex-col">
                                                 <a href="{{route('u.profile.detail',$note->owner)}}" class="font-bold link-hover">
