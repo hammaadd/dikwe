@@ -2,8 +2,8 @@
     <div class="flex flex-wrap lg:-mx-4 xl:-mx-4 bg-white rounded-xl py-2 md:py-4">
         <div class="w-full md:px-4 lg:px-4 lg:w-1/3 xl:px-4 xl:w-4/12">
             <div class="w-full px-2 md:px-0">
-                
-                    <div class="relative rounded-xl z-50" >
+
+                    <div class="relative rounded-xl" >
                         <input type="text" name="search" class="input-search" placeholder="Search Notes"
                         autocomplete="off"
                         wire:model.debounce.200ms="search"
@@ -16,7 +16,7 @@
                                 <i class="text-white fas fa-search"></i>
                             </span>
                         </button>
-                        
+
                         @if(!empty($search))
                         <div class="fixed top-0 bottom-0 left-0 right-0 z-20" wire:click="resetSearch"></div>
                             <div class="absolute bg-green-150 w-full h-100 z-50 top-full mt-2 rounded-xl shadow-md"  >
@@ -29,16 +29,16 @@
                                     @endif
                                 @empty
                                     <div class=" text-left p-3"><span class="font-light text-red-600">No result found!</span></div>
-                                    
+
                                 @endforelse
                                 <div class="p-3 text-right"><span class="font-light text-gray-500"><small>Press <kbd class="p-1 text-gray-600 bg-white rounded">ESC</kbd> or <kbd class="p-1 text-gray-600 bg-white rounded">TAB</kbd> to reset.</small></span></div>
-                               
+
                             </div>
                         @endif
-                       
+
 
                     </div>
-                
+
             </div>
         </div>
         <div class="w-full md:w-1/2 px-2 md:pl-4 md:pr-0 pt-2 md:pt-4 lg:pt-0 lg:px-0 xl:px-4 lg:w-1/3 xl:w-5/12 flex flex-wrap">
@@ -158,14 +158,54 @@
         </div>
         <div class="w-full md:w-1/2 md:pr-4 pt-2 md:pt-4 lg:pt-0 lg:px-4 lg:w-1/3 xl:px-4 xl:w-3/12">
             <div class="flex justify-center md:justify-end lg:justify-between xl:justify-end relative h-full" x-data="{ nColor: false, nForm: false }">
-                <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
-                    <div class="w-5 h-5 rounded-full @if($color=='purple' && $notes_set == 'M') bg-indigo-700 @endif
-                    @if($color=='green' && $notes_set == 'M') bg-green-550 @endif
-                    @if($color=='blue' && $notes_set == 'M') bg-purple-900 @endif
-                    @if($color=='yellow' && $notes_set == 'M') bg-yellow-400 @endif
-                    @if($color=='A' && $notes_set == 'M') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
-                    {{-- <i class="fas fa-angle-down float-right ml-2 align-middle"></i> --}}
-                </button>
+                <div class=" relative" x-data="{ nColor: false }">
+                    <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
+                        <div class="w-5 h-5 rounded-full @if($color=='purple' && $notes_set == 'M') bg-indigo-700 @endif
+                        @if($color=='green' && $notes_set == 'M') bg-green-550 @endif
+                        @if($color=='blue' && $notes_set == 'M') bg-purple-900 @endif
+                        @if($color=='yellow' && $notes_set == 'M') bg-yellow-400 @endif
+                        @if($color=='A' && $notes_set == 'M') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
+                        {{-- <i class="fas fa-angle-down float-right ml-2 align-middle"></i> --}}
+                    </button>
+                    <ul
+                        x-show="nColor"
+                        @click.away="nColor = false"
+                        x-transition:enter="transition transform origin-top ease-out duration-200"
+                        x-transition:enter-start="opacity-0 scale-75"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition transform origin-top ease-out duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-75"
+                        class="w-12 absolute text-center border border-gray-500 rounded-lg left-2 top-full bg-white px-1 z-20">
+                        <li class="border-b border-gray-400">
+                            <a href="javascript:void(0)" wire:click="updateColor('A')" @click="nColor = false">
+                                <span class="my-1">All</span>
+                            </a>
+                        </li>
+                        @if($notes_set == 'M')
+                        <li class="border-b border-gray-400">
+                            <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
+                                <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
+                            </a>
+                        </li>
+                        <li class="border-b border-gray-400">
+                            <a href="javascript:void(0)" wire:click="updateColor('green')" @click="nColor = false">
+                                <div class="w-5 h-5 rounded-full bg-green-550 inline-block my-1 align-middle"></div>
+                            </a>
+                        </li>
+                        <li class="border-b border-gray-400">
+                            <a href="javascript:void(0)" wire:click="updateColor('blue')" @click="nColor = false">
+                                <div class="w-5 h-5 rounded-full bg-purple-900 inline-block my-1 align-middle"></div>
+                            </a>
+                        </li>
+                        <li class="border-b border-gray-400">
+                            <a href="javascript:void(0)" wire:click="updateColor('yellow')" @click="nColor = false">
+                                <div class="w-5 h-5 rounded-full bg-yellow-400 inline-block my-1 align-middle"></div>
+                            </a>
+                        </li>
+                        @endif
+                    </ul>
+                </div>
                 <button @click=" nForm = !nForm " class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sliders-h text-xl align-middle"></i>
                 </button>
@@ -175,44 +215,7 @@
                 <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 md:ml-2 md:mr-0 lg:mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sort-numeric-down text-xl align-middle"></i>
                 </button>
-                <ul
-                    x-show="nColor"
-                    @click.away="nColor = false"
-                    x-transition:enter="transition transform origin-top ease-out duration-200"
-                    x-transition:enter-start="opacity-0 scale-75"
-                    x-transition:enter-end="opacity-100 scale-100"
-                    x-transition:leave="transition transform origin-top ease-out duration-200"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-75"
-                    class="w-12 absolute text-center border border-gray-500 rounded-lg left-0 top-full bg-white px-1 z-20">
-                    <li class="border-b border-gray-400">
-                        <a href="javascript:void(0)" wire:click="updateColor('A')" @click="nColor = false">
-                            <span class="my-1">All</span>
-                        </a>
-                    </li>
-                    @if($notes_set == 'M')
-                    <li class="border-b border-gray-400">
-                        <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
-                            <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
-                        </a>
-                    </li>
-                    <li class="border-b border-gray-400">
-                        <a href="javascript:void(0)" wire:click="updateColor('green')" @click="nColor = false">
-                            <div class="w-5 h-5 rounded-full bg-green-550 inline-block my-1 align-middle"></div>
-                        </a>
-                    </li>
-                    <li class="border-b border-gray-400">
-                        <a href="javascript:void(0)" wire:click="updateColor('blue')" @click="nColor = false">
-                            <div class="w-5 h-5 rounded-full bg-purple-900 inline-block my-1 align-middle"></div>
-                        </a>
-                    </li>
-                    <li class="border-b border-gray-400">
-                        <a href="javascript:void(0)" wire:click="updateColor('yellow')" @click="nColor = false">
-                            <div class="w-5 h-5 rounded-full bg-yellow-400 inline-block my-1 align-middle"></div>
-                        </a>
-                    </li>
-                    @endif
-                </ul>
+
                 {{-- <form action=""
                     x-show="nForm"
                     @click.away="nForm = false"

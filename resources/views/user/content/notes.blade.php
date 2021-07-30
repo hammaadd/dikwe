@@ -10,7 +10,7 @@
     @livewireStyles
 @endsection
 @section('bodyExtra')
-    
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 @section('content')
@@ -40,15 +40,15 @@
             @showsearchnote.window="nshowEdit=false , nshowAdd=false, nshowAddMore=false, noteSearch=true"
             @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
             @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false " @showViewNote.window="noteSearch = false , showViewNote = true" >
-                
-            
-                
+
+
+
 
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
-                    <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"">
+                    <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative">
                             <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left" >
                                 <label for="knowledge-assets">Notes</label>
@@ -63,10 +63,10 @@
                             </div>
                         </div>
                         {{-- <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
-                            
+
                         </div> --}}
-                        
-                        
+
+
                         <livewire:add-note/>
 
                         {{-- Notes Grid View --}}
@@ -77,12 +77,12 @@
                     </div>
                 </div>
 
-                
-                
-            
+
+
+
 
             @include('user.inc.notes-search')
-            
+
 
             {{-- Note More Info --}}
             <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAddMore">
@@ -114,9 +114,9 @@
                 </div>
 
 
-               
 
-                
+
+
 
             </div>
         </div>
@@ -147,13 +147,13 @@ function copyToClipBoard(text) {
 
         $('#tags1').select2();
         $('#workspaces1').select2();
-        
+
 //         var quill = new Quill('#editor', {
 //     theme: 'snow',
 //     placeholder: 'Note Body ...'
 //   });
     });
-    
+
 
 </script>
 @livewireScripts
