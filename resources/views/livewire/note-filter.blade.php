@@ -11,7 +11,7 @@
                         wire:keydown.tab="resetSearch"
                         wire:keydown.enter="search"
                         />
-                        <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl z-50" wire:click="search">
+                        <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl" wire:click="search">
                             <span class="text-xl">
                                 <i class="text-white fas fa-search"></i>
                             </span>
@@ -20,17 +20,22 @@
                         @if(!empty($search))
                         <div class="fixed top-0 bottom-0 left-0 right-0 z-20" wire:click="resetSearch"></div>
                             <div class="absolute bg-green-150 w-full h-100 z-50 top-full mt-2 rounded-xl shadow-md"  >
+                                <div class=" text-left p-3 flex flex-wrap">
                                 @forelse($results as $note)
-                                    <div class=" text-left p-3"><span class="font-light text-gray-600"><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{$note->title}}</a></span></div>
-                                    @if($loop->index == count($results)-1)
+                                    
+                                        {{-- <span class="font-light text-gray-600"><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{$note->title}}</a></span> --}}
+                                        <span class="font-light text-green-550 bg-white p-1 m-0.5 rounded-lg shadow-md hover:bg-green-550 text-white">{{$note->title}}</span>
+                                    
+                                    {{-- @if($loop->index == count($results)-1)
 
                                     @else
                                     <hr class="text-white">
-                                    @endif
+                                    @endif --}}
                                 @empty
                                     <div class=" text-left p-3"><span class="font-light text-red-600">No result found!</span></div>
 
                                 @endforelse
+                                </div>
                                 <div class="p-3 text-right"><span class="font-light text-gray-500"><small>Press <kbd class="p-1 text-gray-600 bg-white rounded">ESC</kbd> or <kbd class="p-1 text-gray-600 bg-white rounded">TAB</kbd> to reset.</small></span></div>
 
                             </div>
@@ -45,6 +50,7 @@
             <div class="w-1/2 pr-2">
                 <div class="relative h-full" x-data="{ nOpen: false }">
                     <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
+                        {{-- Show heading of the note type based on the condition --}}
                         @if($notes_set=='M')
                             My Notes
                         @elseif($notes_set=='S')
@@ -57,6 +63,8 @@
                             Liked Notes
                         @elseif($notes_set=='DN')
                             Disliked Notes
+                        @elseif($notes_set=='FN')
+                            Favorite Notes
                         @else
                             Notes
                         @endif <i class="fas fa-angle-down float-right mt-1"></i>
@@ -97,6 +105,11 @@
                             <span class="ml-2">Disliked Notes</span>
                         </a>
                     </li>
+                    <li class="border-b border-green-150 @if($notes_set=='FN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('FN')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Favorite Notes</span>
+                        </a>
+                    </li>
                     {{-- <li class="border-b border-green-150 @if($notes_set=='') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
                         <a href="javascript:void(0)" class="tag-filter-item">
                             <span class="ml-2">Rated Notes</span>
@@ -108,18 +121,19 @@
             <div class="w-1/2 pl-2">
                 <div class="relative h-full" x-data="{ nVisible: false }">
                     <button @click=" nVisible = !nVisible " class=" w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Visibility">
-                        @if($visi_type=='A' || $notes_set != 'M')
+                        @if($visi_type=='A')
                             All
-                        @elseif($visi_type=='P' && $notes_set == 'M')
+                        @elseif($visi_type=='P')
                             Public
-                        @elseif($visi_type=='PR' && $notes_set == 'M')
+                        @elseif($visi_type=='PR')
                             Private
-                        @elseif($visi_type=='R' && $notes_set == 'M')
+                        @elseif($visi_type=='R')
                             Restricted
                         @else
                             Visibility
                         @endif <i class="fas fa-angle-down float-right mt-1"></i>
                     </button>
+                    {{-- visibility selection dropdown list --}}
                     <ul x-show="nVisible"
                         @click.away="nVisible = false"
                         x-transition:enter="transition transform origin-top ease-out duration-200"
@@ -135,7 +149,7 @@
                                     <span class="ml-2">All</span>
                                 </a>
                             </li>
-                        @if($notes_set == 'M')
+                        
                             <li class="border-b border-green-150">
                                 <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="nVisible = false">
                                     <span class="ml-2">Public</span>
@@ -151,8 +165,8 @@
                                     <span class="ml-2">Restricted</span>
                                 </a>
                             </li>
-                        @endif
                     </ul>
+                    {{-- visibility selection dropdown list ends here --}}
                 </div>
             </div>
         </div>
@@ -160,13 +174,15 @@
             <div class="flex justify-center md:justify-end lg:justify-between xl:justify-end relative h-full" x-data="{ nColor: false, nForm: false }">
                 <div class=" relative" x-data="{ nColor: false }">
                     <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
-                        <div class="w-5 h-5 rounded-full @if($color=='purple' && $notes_set == 'M') bg-indigo-700 @endif
-                        @if($color=='green' && $notes_set == 'M') bg-green-550 @endif
-                        @if($color=='blue' && $notes_set == 'M') bg-purple-900 @endif
-                        @if($color=='yellow' && $notes_set == 'M') bg-yellow-400 @endif
-                        @if($color=='A' && $notes_set == 'M') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
-                        {{-- <i class="fas fa-angle-down float-right ml-2 align-middle"></i> --}}
+                        {{-- to display which color is selected --}}
+                        <div class="w-5 h-5 rounded-full @if($color=='purple') bg-indigo-700 @endif
+                        @if($color=='green') bg-green-550 @endif
+                        @if($color=='blue') bg-purple-900 @endif
+                        @if($color=='yellow') bg-yellow-400 @endif
+                        @if($color=='A') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
                     </button>
+
+                    {{-- dropdown list of the color selection in the filters --}}
                     <ul
                         x-show="nColor"
                         @click.away="nColor = false"
@@ -182,7 +198,6 @@
                                 <span class="my-1">All</span>
                             </a>
                         </li>
-                        @if($notes_set == 'M')
                         <li class="border-b border-gray-400">
                             <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
                                 <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
@@ -203,8 +218,9 @@
                                 <div class="w-5 h-5 rounded-full bg-yellow-400 inline-block my-1 align-middle"></div>
                             </a>
                         </li>
-                        @endif
                     </ul>
+                    {{-- color dropdown ends here --}}
+
                 </div>
                 <button @click=" nForm = !nForm " class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sliders-h text-xl align-middle"></i>
