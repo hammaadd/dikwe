@@ -19,42 +19,48 @@ class NoteSearchGrid extends Component
     
     public function render()
     {
+        /* 
+        ****Important****
+        M = My Notes
+        S = Subscribed notes
+        Q = Query
+        SR = Service notes
+        LN = Liked notes
+        DN = Disliked notes
+        FN = Favorite Notes
+
+        ****Global Variable used****
+        $noteHeading == This is used to store heading which is displayed on frontend to identify what type of note is selected
+        $notes == Contains all the results for notes
+        $note_set == Contains type of the note selected
+
+        */
+
+        //Check if selected is My Notes
         if($this->note_set == 'M'):
+            //Create note type query object
             $this->notes = Note::query();
+            //Fetch data by checking the conditions
             $this->notes->where('status','active')
                         ->where('created_by',Auth::id());
                         
-            
+            //Set Heading Variable to use for displaying heading
             $this->noteHeading = 'My Notes';
-            if($this->visibility=='A' || $this->visibility == null){
             
-            }else{
-                $this->notes->where('visibility','=',$this->visibility);
-            }
 
-            if($this->color == 'A' || $this->color == null){
-
-            }else{
-                $this->notes->where('color','=',$this->color);
-            }
-
+        //Check if selected is subscribed notes
         elseif($this->note_set == 'S'):
             $this->noteHeading = 'Subscribed Notes';
-        elseif($this->note_set == 'Q'):
+        //Check if its search query
+        // elseif($this->note_set == 'Q'):
             
-                $this->notes1 = Note::query();
-                $this->notes = Note::query();
+        //         $this->notes1 = Note::query();
+        //         $this->notes = Note::query();
 
-                $this->notes->where('title','like',$this->query.'%');
-                $this->notes1->where('title','like','%'.$this->query.'%');
-                $this->notes->union($this->notes1);
-                // $this->isVisible = true;
-          
-            // $this->notes = Note::query();
-            // $this->notes->where('status','active')
-            //             ->orderBy('created_at','DESC');
-            //dd($this->notes);
-            $this->noteHeading = 'Search Results For "'.$this->query.'"';
+        //         $this->notes->where('title','like',$this->query.'%');
+        //         $this->notes1->where('title','like','%'.$this->query.'%');
+        //         $this->notes->union($this->notes1);
+        //     $this->noteHeading = 'Search Results For "'.$this->query.'"';
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::query();
@@ -79,6 +85,15 @@ class NoteSearchGrid extends Component
                 });
                 $this->noteHeading = 'Disliked Notes';
 
+        // It'll filter favorite notes        
+        elseif($this->note_set == 'FN'):
+                $this->notes = Note::query();
+                $this->notes->whereHas('reactions',function ($query){
+                    return $query->where('reaction_type','favorite')->where('reacted_by',Auth::id());
+                });
+                   
+                $this->noteHeading = 'Favorite Notes';
+
         else:
             $this->notes = Note::query();
             $this->notes->where('status','active')
@@ -87,6 +102,32 @@ class NoteSearchGrid extends Component
 
         endif;
 
+        //Visibility fiters
+        if($this->visibility=='A' || $this->visibility == null){
+            
+        }else{
+            $this->notes->where('visibility','=',$this->visibility);
+        }
+
+        //Color filters
+        if($this->color == 'A' || $this->color == null){
+
+        }else{
+            $this->notes->where('color','=',$this->color);
+        }
+
+        if(!empty($this->query)):
+            //dd($this->notes);
+            // $this->notes1 = $this->notes;
+
+            // $this->notes->where('title','like',$this->query.'%');
+            $this->notes->where('title','like','%'.$this->query.'%');
+            //$this->notes->union($this->notes1);
+            $this->noteHeading = 'Search Results For "'.$this->query.'" in '.$this->noteHeading;
+
+        endif;
+
+        //ASC or DESC order codition
         if($this->order == 'ASC'){
             $this->notes->orderBy('title','ASC');
         }elseif($this->order == 'DESC'){
@@ -104,23 +145,26 @@ class NoteSearchGrid extends Component
 
     public function noteVisiblity($visib){
         $this->visibility = $visib;
+        $this->query = '';
         $this->render();
     }
 
     public function updateNoteOrder($order){
         $this->order = $order;
+        $this->query = '';
         $this->render();
     }
 
     public function updateColor($color){
         $this->color = $color;
+        $this->query = '';
         $this->render();
 
     }
 
-    public function updateQueryNoteSet($ns, $q){
+    public function updateQueryNoteSet($q){
         if(!empty($q)){
-            $this->note_set = $ns;
+            // $this->note_set = $ns;
             $this->query = $q;
             $this->render();
         }
@@ -143,12 +187,14 @@ class NoteSearchGrid extends Component
 
     public function updateSet($noteSet){
         $this->note_set = $noteSet;
+        $this->query = '';
         //dd($this->note_set);
         
     }
 
     public function setNoteStyle($style){
         $this->noteStyle = $style;
+        $this->query = '';
         //dd($style);
     }
 
@@ -166,20 +212,19 @@ class NoteSearchGrid extends Component
     }
 
     public function makeAllPublic(){
-        //dd($this->select_note);
         if(count($this->select_note) > 0){
             $res = Note::whereIn('id',$this->select_note)->update(['visibility'=>'P']);
+
+            // Checking the returned value and deciding the notification type, and dispatching
+            // the browser notification
             if($res){
-                session()->flash('success', 'Visibility Set To Public Successfully.');
+                $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Visibility Set To Public Successfully.']);
             }else{
-                session()->flash('error', 'Unable to set visibility. Try again later');
-            }
-            // foreach($this->select_note as $sn){
-            //     Note::where('id','=',$this->select_note)->update(['visibility'=>'P']);
-            // }
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Unable to set visibility. Try again later.']);
+            }    
             
         }else{
-            session()->flash('error', 'Please select notes to proceed');
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Please select notes to proceed']);
         }
 
         $this->mount();
@@ -188,14 +233,14 @@ class NoteSearchGrid extends Component
     public function deletAllSelectedNotes(){
         if(count($this->select_note) > 0){
             $res = Note::whereIn('id',[$this->select_note])->where('created_by',Auth::id())->delete();
-            // dd($this->select_note);
+            //Check returned response
             if($res){
-                session()->flash('success', 'Notes Deleted Successfully.');
+                $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Notes deleted successfully']);
             }else{
-                session()->flash('error', 'Unable to delete notes. Try again later');
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Unable to delete notes. Try later!']);
             }
         }else{
-            session()->flash('error', 'Please select notes to proceed');
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Please notes to proceed']);
         }
 
     }
@@ -205,12 +250,12 @@ class NoteSearchGrid extends Component
         if(count($this->select_note) > 0){
             $res = Note::whereIn('id',$this->select_note)->update(['visibility'=>'PR']);
             if($res){
-                session()->flash('success', 'Visibility Set To Private Successfully.');
+                $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Visibility set to private successfully.']);
             }else{
-                session()->flash('error', 'Unable to set visibility. Try again later');
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Unable to set visibility. Try again later']);
             }
         }else{
-            session()->flash('error', 'Please select notes to proceed');
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Please select notes to proceed']);
         }
 
         $this->mount();
@@ -221,9 +266,9 @@ class NoteSearchGrid extends Component
             $res = Note::where('id',$noteId)->where('created_by',Auth::id())->delete();
              
             if($res){
-                session()->flash('success', 'Note Deleted Successfully.');
+                $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Note deleted successfully.']);
             }else{
-                session()->flash('error', 'Unable to delete note. Try again later');
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Unable to delete note. Try again later']);
             }
         }
     }
