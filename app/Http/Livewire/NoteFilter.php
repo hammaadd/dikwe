@@ -78,8 +78,8 @@ class NoteFilter extends Component
     }
 
     public function search(){
-        $this->notes_set = 'Q';
-        $this->emit('updateQueryNoteSet',$this->notes_set,$this->search);
+        // $this->notes_set = 'Q';
+        $this->emit('updateQueryNoteSet',$this->search);
     }
 
     
