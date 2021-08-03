@@ -101,7 +101,7 @@
             
         </div>
     </div>
-    @include('user.sections.notification')
+    {{-- @include('user.sections.notification') --}}
     
 </div>
 
