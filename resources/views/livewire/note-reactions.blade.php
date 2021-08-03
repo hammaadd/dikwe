@@ -14,23 +14,23 @@
     </div>
     @endif
     <ul>
-    {{-- @if($note->upvotedBy(Auth::id()))
+    @if($note->likedBy(Auth::id()))
         <li class="inline-block text-center">
-            <a href="javascript:void(0)" wire:click="downvote({{$note->id}})" class=" cursor-pointer px-1 text-lg text-green-550">
-                <i class="fas fa-hand-point-up"></i>
+            <a href="javascript:void(0)" wire:click="unlikeKa({{$note->id}})" class=" cursor-pointer px-1 text-lg text-green-550">
+                <i class="fas fa-thumbs-up"></i>
             </a>
             <br>
-            <span class="count text-sm">{{$note->upvotes()->count()}}</span>
-        </li>
+            <span class="count text-sm">{{$note->likes()->count()}}</span>
+        </li>   
     @else
         <li class="inline-block text-center">
-            <a href="javascript:void(0)" wire:click="upvote({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400">
-                <i class="fas fa-hand-point-up"></i>
+            <a href="javascript:void(0)" wire:click="likeKa({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400" title="Like">
+                <i class="far fa-thumbs-up"></i>
             </a>
             <br>
-            <span class="count text-sm">{{$note->upvotes()->count()}}</span>
+            <span class="count text-sm">{{$note->likes()->count()}}</span>
         </li>
-    @endif --}}
+    @endif
 
     @if($note->dislikedBy(Auth::id()))
         <li class="inline-block text-center">
@@ -42,45 +42,46 @@
         </li>
     @else
         <li class="inline-block text-center">
-            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" wire:click="dislike({{$note->id}})">
-                <i class="fas fa-thumbs-down"></i>
+            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" wire:click="dislike({{$note->id}})" title="Dislike">
+                <i class="far fa-thumbs-down"></i>
             </a>
             <br>
             <span class="count text-sm">{{$note->dislikes()->count()}}</span>
         </li>
     @endif
     {{-- {{dd($note->likes())}} --}}
-    @if($note->likedBy(Auth::id()))
-        <li class="inline-block text-center">
-            <a href="javascript:void(0)" wire:click="unlikeKa({{$note->id}})" class=" cursor-pointer px-1 text-lg text-green-550" title="Unlike">
-                <i class="fas fa-thumbs-up"></i>
-            </a>
-            <br>
-            <span class="count text-sm">{{$note->likes()->count()}}</span>
-        </li>   
-    @else
-        <li class="inline-block text-center">
-            <a href="javascript:void(0)" wire:click="likeKa({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400" title="Like">
-                <i class="fas fa-thumbs-up"></i>
-            </a>
-            <br>
-            <span class="count text-sm">{{$note->likes()->count()}}</span>
-        </li>
-    @endif
+   
 
-        <li class="inline-block text-center">
+        {{-- <li class="inline-block text-center">
             @php 
                 $copyData = route('view.note',$note->id);
             @endphp
-            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')" wire:click="copyLink({{$note->id}})">
+            <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')" wire:click="copyLink({{$note->id}})" title="Copy to clipboard">
                 <i class="fas fa-copy"></i>
             </a>
             <br>
-            <span class="count text-sm">15</span>
+            <span class="count text-sm">0</span>
+        </li> --}}
+        @if($note->favoritedBy(Auth::id()))
+        <li class="inline-block text-center">
+            <a href="javascript:void(0)" wire:click="unFav({{$note->id}})" class=" cursor-pointer px-1 text-lg text-green-550">
+                <i class="fas fa-heart"></i>
+            </a>
+            <br>
+            <span class="count text-sm">{{$note->favorites()->count()}}</span>
         </li>
+        @else
+        <li class="inline-block text-center">
+            <a href="javascript:void(0)" wire:click="addToFav({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400" title="Add to favorite">
+                <i class="far fa-heart"></i>
+            </a>
+            <br>
+            <span class="count text-sm">{{$note->favorites()->count()}}</span>
+        </li>
+        @endif
     
         <li class="inline-block text-center">
-            <a href="#" class=" cursor-pointer px-1 text-lg text-gray-400">
+            <a href="#ex1" rel="modal:open" wire:click="showShareModal({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400">
                 <i class="fas fa-share-alt"></i>
             </a>
             <br>
