@@ -29,11 +29,11 @@
                     margin: inherit;
                     padding: inherit;
                 }
-                ul {
+                /* ul {
                     list-style: circle;
                     margin: inherit;
                     padding: inherit;
-                }
+                } */
                 .trix-button-group--file-tools {
                         display: none !important;
                     }
@@ -164,7 +164,7 @@
             </div>
         </div>
     </div>
-    @include('user.sections.notification')
+    {{-- @include('user.sections.notification') --}}
 </div>
 
 @push('script_s')
