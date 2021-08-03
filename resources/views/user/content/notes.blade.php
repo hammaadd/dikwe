@@ -13,6 +13,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
+@section('modal')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="{{asset('assets/jquery/jquery.modal.min.css')}}" />
+@endsection
 @section('content')
 @php
     if(isset($_GET['m'])):
@@ -38,6 +42,7 @@
     endif;
 
 @endphp
+
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <livewire:note-filter/>
@@ -47,8 +52,9 @@
             @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
             @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false " @showViewNote.window="noteSearch = false , showViewNote = true" >
 
-
-
+            <div id="ex1" class="modal">
+            <livewire:share-modal/>
+            </div>
 
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">
@@ -146,6 +152,7 @@ function copyToClipBoard(text) {
   document.execCommand("copy");
 
   /* Alert the copied text */
+  toastr['success']('Link copied successfully.');
 //   alert("Copied the text: " + copyText.value);
   document.body.removeChild(copyText);
 }
@@ -159,6 +166,12 @@ function copyToClipBoard(text) {
 //     placeholder: 'Note Body ...'
 //   });
     });
+
+    window.addEventListener('alert', param => {
+        toastr[param.detail.type](param.detail.message);
+    });
+
+    
 
 
 </script>
