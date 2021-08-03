@@ -21,7 +21,7 @@ class CreateReactionsTable extends Migration
             $table->unsignedBigInteger('reacted_by')->nullable();
             $table->foreign('reacted_by')->references('id')->on('users')->onDelete('set null');
             $table->enum('ka_type',['note','bookmark','tag','workspace','shorturl']);
-            $table->enum('reaction_type',['like','dislike','upvote','copied','shared']);
+            $table->enum('reaction_type',['like','dislike','upvote','copied','shared','favorite']);
             $table->timestamps();
         });
     }
