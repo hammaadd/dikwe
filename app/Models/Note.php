@@ -73,6 +73,14 @@ class Note extends Model
         return $this->reactions->where('reaction_type','like')->where('reacted_by',Auth::id());
     }
 
+    public function favorites(){
+        return $this->reactions->where('reaction_type','favorite');
+    }
+
+    public function favoritedBy($userId){
+        return $this->favorites()->contains('reacted_by',$userId);
+    }
+
 
 
     
