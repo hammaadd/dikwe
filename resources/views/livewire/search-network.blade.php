@@ -40,7 +40,7 @@
                         </div>
                         <div class="flex flex-wrap items-center">
                             <button class=" bg-green-150 text-gray-400 text-sm text-center rounded-full px-2 py-1 mx-3 lg:mx-0 xl:mx-3 hover:bg-green-550 hover:text-white">
-                                <livewire:follow-unfollow-user :user="$user" wire:key="fu-{{$user->id}}" />
+                                <livewire:follow-unfollow-user :user="$user" :key="$user->id" />
                             </button>
                         </div>
                     </div>
