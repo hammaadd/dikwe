@@ -19,5 +19,6 @@ class NoteTag extends Model
     public function taga(){
         return $this->belongsTo(Tag::class,'tag','id');
     }
+
     
 }

@@ -1,44 +1,60 @@
 <div class="lg:px-4 lg:mb-8">
     <div class="flex flex-wrap lg:-mx-4 xl:-mx-4 bg-white rounded-xl py-2 md:py-4">
         <div class="w-full md:px-4 lg:px-4 lg:w-1/3 xl:px-4 xl:w-4/12">
-            <div class="w-full px-2 md:px-0">
+            <div class="w-full px-2 md:px-0 ">
 
                     <div class="relative rounded-xl" >
-                        <input type="text" name="search" class="input-search" placeholder="Search Notes"
+                        <input type="text" name="search" class="input-search z-50" placeholder="Search Notes"
                         autocomplete="off"
                         wire:model.debounce.200ms="search"
                         wire:keydown.escape="resetSearch"
                         wire:keydown.tab="resetSearch"
                         wire:keydown.enter="search"
                         />
-                        <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl" wire:click="search">
+                        <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl z-50" wire:click="search">
                             <span class="text-xl">
                                 <i class="text-white fas fa-search"></i>
                             </span>
                         </button>
 
                         @if(!empty($search))
-                        <div class="fixed top-0 bottom-0 left-0 right-0 z-20" wire:click="resetSearch"></div>
+                        <div class="fixed top-0 bottom-0 left-0 right-0 z-10" wire:click="resetSearch"></div>
+                        {{-- Search droplist starts here --}}
                             <div class="absolute bg-green-150 w-full h-100 z-50 top-full mt-2 rounded-xl shadow-md"  >
-                                <div class=" text-left p-3 flex flex-wrap">
-                                @forelse($results as $note)
-                                    
-                                        {{-- <span class="font-light text-gray-600"><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{$note->title}}</a></span> --}}
-                                        <span class="font-light text-green-550 bg-white p-1 m-0.5 rounded-lg shadow-md hover:bg-green-550 text-white">{{$note->title}}</span>
-                                    
-                                    {{-- @if($loop->index == count($results)-1)
+                                {{-- Check if Tags existed based on the query --}}
+                                @isset($rTags)
+                                {{-- if the returned tags are more than 0 --}}
+                                    @if($rTags->count() > 0)
+                                    {{-- Heading for tags in the search results --}}
+                                        <h3 class="text-left pl-3 pt-3">Tags</h3>
+                                        <div class=" text-left p-3 flex flex-wrap">
+                                            @forelse($rTags as $rt)
+                                                    <span class="font-light text-green-550 bg-white p-1 m-0.5 rounded-lg shadow-md hover:bg-green-550 hover:text-white cursor-pointer"><a href="#">{{$rt->tag}}</a></span>
+                                            @empty
+                                                <div class=" text-left p-3"><span class="font-light text-red-600">No tag found!</span></div>
 
-                                    @else
-                                    <hr class="text-white">
-                                    @endif --}}
+                                            @endforelse
+                                        </div>
+                                    @endif
+                                @endisset
+
+                                @forelse($results as $note)
+                                    <div class=" text-left pl-3 pt-1 flex flex-wrap">
+                                        <span class="font-light text-gray-600"><a href="{{route('view.note',$note->id)}}" class="hover:text-green-550">{{$note->title}}</a></span>
+                                        @if($loop->index == count($results)-1)
+
+                                        @else
+                                        <hr class="text-white">
+                                        @endif
+                                    </div>
                                 @empty
                                     <div class=" text-left p-3"><span class="font-light text-red-600">No result found!</span></div>
-
                                 @endforelse
-                                </div>
+                                
                                 <div class="p-3 text-right"><span class="font-light text-gray-500"><small>Press <kbd class="p-1 text-gray-600 bg-white rounded">ESC</kbd> or <kbd class="p-1 text-gray-600 bg-white rounded">TAB</kbd> to reset.</small></span></div>
 
                             </div>
+                        {{-- Search droplist ends here --}}
                         @endif
 
 

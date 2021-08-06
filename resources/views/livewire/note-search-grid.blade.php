@@ -1,7 +1,19 @@
 <div class="relative mt-4">
+    
     <div class="mx-auto md:mx-0 mb-4">
         <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">@if($notes) {{$notes->count()}} @endif</span></span>
     </div>
+    <div class=" text-left p-3 flex flex-wrap">
+        {{-- @forelse($searches as $se)
+            <span class="font-light text-green-550 bg-white p-1 m-0.5 border-2 border-green-150 rounded-lg shadow-sm hover:bg-green-150 hover:text-gray-900 cursor-pointer">
+                <a href="#">{{$se}}</a>
+                <button class="text-red-500 hover:text-red-800 ml-2" wire:click="removeSearches({{$loop->index}})">X</button>
+            </span>
+        @empty
+
+        @endforelse --}}
+    </div>
+    
 @if(isset($notes))
 @if($noteStyle == 'list' && $notes->count() > 0)
 <div class="mt-4 md:mt-8 px-2">

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Note;
+use App\Models\NoteTag;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,7 +15,8 @@ class NoteSearchGrid extends Component
     protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'
     ,'updateQueryNoteSet'=>'updateQueryNoteSet','deletAllSelectedNotes'=>'deletAllSelectedNotes','setNotificationMessage'=>'setNotificationMessage',
     'updateNoteOrder'=>'updateNoteOrder'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query , $message = ' ' , $showNotification,$order;
+    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query , $message = ' ' , $showNotification,$order
+    ,$searches= [];
     private $notes;
     
     public function render()
@@ -51,16 +53,6 @@ class NoteSearchGrid extends Component
         //Check if selected is subscribed notes
         elseif($this->note_set == 'S'):
             $this->noteHeading = 'Subscribed Notes';
-        //Check if its search query
-        // elseif($this->note_set == 'Q'):
-            
-        //         $this->notes1 = Note::query();
-        //         $this->notes = Note::query();
-
-        //         $this->notes->where('title','like',$this->query.'%');
-        //         $this->notes1->where('title','like','%'.$this->query.'%');
-        //         $this->notes->union($this->notes1);
-        //     $this->noteHeading = 'Search Results For "'.$this->query.'"';
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::query();
@@ -119,6 +111,31 @@ class NoteSearchGrid extends Component
         if(!empty($this->query)):
             //dd($this->notes);
             // $this->notes1 = $this->notes;
+            // $notes = $this->notes;
+            // $notes = $notes->select('id')->get()->toArray();
+            // if(count($notes) > 0){
+            //     $n_notes = [];
+            //     foreach($notes as $nt){
+            //         array_push($n_notes,$nt['id']); 
+            //     }
+            //     $notes = $n_notes;
+                
+            // }
+
+            // $nnotes = new Note;
+            // $nnotes->whereIn('id',[$notes])->whereHas('tags',function($query){
+            //     return $query->whereHas('taga', function($query1){
+            //         return $query1->where('tag','like','%'.$this->query.'%');
+            //     });
+            // });
+            // $nnotes =  $nnotes->get();
+
+            // // $ttags = new NoteTag;\
+            
+            // NoteTag::whereIn('note',[$nnotes])->get();
+
+            // dd($nnotes);
+
 
             // $this->notes->where('title','like',$this->query.'%');
             $this->notes->where('title','like','%'.$this->query.'%');
@@ -162,9 +179,10 @@ class NoteSearchGrid extends Component
 
     }
 
-    public function updateQueryNoteSet($q){
+    public function updateQueryNoteSet($q,$searches){
         if(!empty($q)){
-            // $this->note_set = $ns;
+            //$this-searches is received array from NoteFilter
+            $this->searches = $searches;
             $this->query = $q;
             $this->render();
         }
@@ -276,6 +294,13 @@ class NoteSearchGrid extends Component
     public function setNotificationMessage($message){
         $this->message = $message;
         session()->flash('success', $message);
+    }
+
+    public function removeSearches($index){
+        //Remove searches from specific index in array
+        unset($this->searches[$index]);
+        //Fire Event to pass value and assign to the NoteFilter $searches variable
+        $this->emit('setSearchesEqual',$this->searches);
     }
 
 
