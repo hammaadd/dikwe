@@ -22,11 +22,11 @@
                         {{-- Search droplist starts here --}}
                             <div class="absolute bg-green-150 w-full h-100 z-50 top-full mt-2 rounded-xl shadow-md"  >
                                 {{-- Check if Tags existed based on the query --}}
-                                @isset($rTags)
+                                {{-- @isset($rTags) --}}
                                 {{-- if the returned tags are more than 0 --}}
-                                    @if($rTags->count() > 0)
+                                    {{-- @if($rTags->count() > 0) --}}
                                     {{-- Heading for tags in the search results --}}
-                                        <h3 class="text-left pl-3 pt-3">Tags</h3>
+                                        {{-- <h3 class="text-left pl-3 pt-3">Tags</h3>
                                         <div class=" text-left p-3 flex flex-wrap">
                                             @forelse($rTags as $rt)
                                                     <span class="font-light text-green-550 bg-white p-1 m-0.5 rounded-lg shadow-md hover:bg-green-550 hover:text-white cursor-pointer"><a href="#">{{$rt->tag}}</a></span>
@@ -36,7 +36,7 @@
                                             @endforelse
                                         </div>
                                     @endif
-                                @endisset
+                                @endisset --}}
 
                                 @forelse($results as $note)
                                     <div class=" text-left pl-3 pt-1 flex flex-wrap">
