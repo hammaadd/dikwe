@@ -28,8 +28,8 @@
 <meta property="og:description" content="{{Str::limit(strip_tags($note->description),80)}}"/>
 <meta property="og:image" content="{{$profile_image}}"/>
 <meta property="og:image:url" content="{{$profile_image}}"/>
-<meta propert="og:image:width" content="200"/>
-<meta propert="og:image:height" content="300"/>
+<meta property="og:image:width" content="200"/>
+<meta property="og:image:height" content="300"/>
 <meta property="article:author" content="{{$note->owner->name}}"/>
 <meta property="profile:username" content="{{$note->owner->name}}"/>
 <meta property="fb:app_id" content="995443947955637"/>
