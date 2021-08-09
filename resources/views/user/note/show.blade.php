@@ -33,6 +33,9 @@
 <meta property="article:author" content="{{$note->owner->name}}"/>
 <meta property="profile:username" content="{{$note->owner->name}}"/>
 <meta property="fb:app_id" content="995443947955637"/>
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@dikwe" />
+<meta name="twitter:creator" content="@dikwe" />
 @endsection
 @section('modal')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
