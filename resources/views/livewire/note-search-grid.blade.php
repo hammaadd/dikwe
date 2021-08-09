@@ -237,15 +237,15 @@
             <div class="self-end w-full">
                 <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
                 
-                <div title="Visibility" >
+                <div title="Visibility">
                     <small class="text-green-550" >@if($note->visibility =='P')
-                        Public
+                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
                     @elseif($note->visibility =='PR')
-                        Private
+                        Private <span title="Private"><i class="fas fa-lock"></i></span>
                     @elseif($note->visibility =='R')
-                        Restricted
+                        Restricted <span title="Restricted"><i class="fas fa-user-lock"></i></span>
                     @else
-                        Public
+                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
                     @endif</small>
                 </div>
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">

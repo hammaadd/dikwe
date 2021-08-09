@@ -143,7 +143,7 @@
                     @enderror
                 </div>
                 <div class="text-center md:text-right my-4">
-                    <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nshowEdit = false">Cancel</button>
+                    <button class="btn-gray" type="button" @click="$dispatch('showsearchnote')">Cancel</button>
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
@@ -156,19 +156,22 @@
     </div>
     {{-- @include('user.sections.notification') --}}
 </div>
-@once
 @push('script_s')
 <script>
-window.addEventListener('editNoteupdateTrixDesc', event => {
-    var element = document.querySelectorAll("trix-editor");
+    window.onload = function() {
+            @this.emit('getNoteDetails');
+    }   
+    window.addEventListener('editNoteupdateTrixDesc', event => {
+        var element = document.querySelectorAll("trix-editor");
         element = element[2];
         length = element.editor.getDocument().toString().length;
         element.editor.setSelectedRange([0, length + 1]);
         element.editor.insertHTML(event.detail.description);
         
 
-        console.log(event.detail.description);
-})
+        console.log(event.description);
+});
+
 
     $(document).ready(function() {
         $('#tags2').select2({
@@ -227,4 +230,3 @@ window.addEventListener('editNoteupdateTrixDesc', event => {
 
 
 @endpush
-@endonce

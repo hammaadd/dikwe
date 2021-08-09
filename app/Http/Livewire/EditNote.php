@@ -14,7 +14,7 @@ class EditNote extends Component
 {
 
     public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null;
-    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh','passNoteIdFromSearchGrid' => 'getData'];
+    protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh','passNoteIdFromSearchGrid' => 'getData','getNoteDetails'=>'getNoteDetails'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
@@ -34,10 +34,12 @@ class EditNote extends Component
             
 
             $note = Note::where('id',$this->noteId)->where('created_by','=',Auth::id())->with('tags')->first();
+            $this->dispatchBrowserEvent('editNoteupdateTrixDesc', ['description' => $note->description]);
+            session()->flash('descr',$note->description);
             $this->note = $note;
             $tags = [];
             $workspaces = [];
-            $this->dispatchBrowserEvent('editNoteupdateTrixDesc', ['description' => $note->description]);
+            
             $wrkspc = $note->workspace->toArray();
             $tag = $note->tags->toArray();
             for($i = 0; $i < count($tag) ; $i++){
@@ -66,6 +68,9 @@ class EditNote extends Component
         }
     }
 
+    public function getNoteDetails(){
+        $this->mount();
+    }
     public function getData($noteId){
         $this->noteId = $noteId;
         $this->mount();

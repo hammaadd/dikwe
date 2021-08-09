@@ -167,7 +167,7 @@
                                                 </a>
                                                 
                                             </div>
-                                            <small title="Visibility">(@if($note->visibility =='P')
+                                            {{-- <small title="Visibility">(@if($note->visibility =='P')
                                                 Public
                                             @elseif($note->visibility =='PR')
                                                 Private
@@ -175,10 +175,22 @@
                                                 Restricted
                                             @else
                                                 Public
-                                            @endif)</small>
+                                            @endif)</small> --}}
                                         </div>
                                     </div>
-                                    <span class="date" title="{{$note->created_at}}">{{$note->created_at->format('d M, Y')}}</span>
+                                    <span>
+                                        <span class="date" title="{{$note->created_at}}">{{$note->created_at->format('d M, Y')}}</span>
+                                        @if($note->visibility =='P')
+                                            <span title="Public"><i class="fas fa-lock-open"></i></span>
+                                        @elseif($note->visibility =='PR')
+                                            <span title="Private"><i class="fas fa-lock"></i></span>
+                                        @elseif($note->visibility =='R')
+                                            <span title="Restricted"><i class="fas fa-user-lock"></i></span>
+                                        @else
+                                            <span title="Public"><i class="fas fa-lock-open"></i></span>
+                                        @endif
+                                        
+                                    </span>
                                 </div>
                             </div>
                         </div>
