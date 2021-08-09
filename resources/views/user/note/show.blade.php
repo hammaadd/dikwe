@@ -6,7 +6,6 @@
     @livewireStyles
 @endsection
 @section('openGraph_fb')
-@auth
 @if($note->owner->profile_img == null)
 @php
     $profile_image = asset('images/logo-dikwe.png');
@@ -16,12 +15,6 @@
     $profile_image = asset('user_profile_images/'.$note->owner->profile_img);
 @endphp
 @endif
-@endauth
-@guest
-@php
-    $profile_image = asset('images/logo-dikwe.png');
-@endphp
-@endguest
 <meta property="og:url" content="{{route('view.note',$note->id)}}"/>
 <meta property="og:type" content="article"/>
 <meta property="og:title" content="{{$note->title}}"/>
