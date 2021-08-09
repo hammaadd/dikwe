@@ -17,6 +17,7 @@ class NoteReactions extends Component
 
     public function likeKa($id){
         // Check if already liked or not
+        if(Auth::check()):
         $ret = Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -46,6 +47,9 @@ class NoteReactions extends Component
         }
         //Refresh view to update like changes on the screen
         $this->emit('refreshNoteReactions');
+        else:
+            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+        endif;
     }
 
     public function mount($note,$type){
@@ -55,6 +59,7 @@ class NoteReactions extends Component
 
     public function unlikeKa($id){
         //Delete Like From like table this is called when already user liked the KA
+        if(Auth::check()):
         Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -64,10 +69,14 @@ class NoteReactions extends Component
         //Dipatch browser event for notification
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Like removed from "Liked Notes".']);
         $this->emit('refreshNoteReactions');
+        else:
+            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+        endif;
     }
 
     public function dislike($id){
         //Check if this KA is already disliked or not
+        if(Auth::check()):
         $ret = Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -95,11 +104,15 @@ class NoteReactions extends Component
             $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'You disliked a note.']);
         endif;
         $this->emit('refreshNoteReactions');
+    else:
+        $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+    endif;
 
     }
 
     public function undislike($id){
         //Delete the dislike entry it'll only happen when KA is disliked already
+        if(Auth::check()):
         Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -109,6 +122,9 @@ class NoteReactions extends Component
         //Dispatch notification
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Disliked note removed from']);
         $this->emit('refreshNoteReactions');
+        else:
+            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+        endif;
     }
 
     // public function upvote($id){
@@ -144,6 +160,7 @@ class NoteReactions extends Component
     public function addToFav($id){
         //Add to favourite functionality
         //Check if already added in favorites list
+        if(Auth::check()):
         $ret = Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -170,10 +187,14 @@ class NoteReactions extends Component
             $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Added to favorite successfully.']);
         endif;
         $this->emit('refreshNoteReactions');
+    else:
+        $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+    endif;
     }
 
     public function unFav($id){
         //This will un-favorite the already favorited by deleting the entry from database
+        if(Auth::check()):
         Reaction::where([
             'ka'=>$id,
             'reacted_by'=>Auth::id(),
@@ -183,6 +204,9 @@ class NoteReactions extends Component
         //Dispatch broser event for notification
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Removed from "Favorite Notes".']);
         $this->emit('refreshNoteReactions');
+        else:
+            $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'Login to perform this action']);
+        endif;
     }
 
     public function showShareModal($id){
