@@ -7,13 +7,13 @@
 @endsection
 @section('openGraph_fb')
 @auth
-@if(Auth::user()->profile_img == null)
+@if($note->owner->profile_img == null)
 @php
     $profile_image = asset('images/logo-dikwe.png');
 @endphp
 @else
 @php
-    $profile_image = asset('user_profile_images/'.Auth::user()->profile_img);
+    $profile_image = asset('user_profile_images/'.$note->owner->profile_img);
 @endphp
 @endif
 @endauth
