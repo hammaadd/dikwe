@@ -1,18 +1,18 @@
 <div class="relative mt-4">
     
+   <div class="flex flex-wrap justify-between items-center px-4">
     <div class="mx-auto md:mx-0 mb-4">
+        
         <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">@if($notes) {{$notes->count()}} @endif</span></span>
+        
     </div>
-    <div class=" text-left p-3 flex flex-wrap">
-        {{-- @forelse($searches as $se)
-            <span class="font-light text-green-550 bg-white p-1 m-0.5 border-2 border-green-150 rounded-lg shadow-sm hover:bg-green-150 hover:text-gray-900 cursor-pointer">
-                <a href="#">{{$se}}</a>
-                <button class="text-red-500 hover:text-red-800 ml-2" wire:click="removeSearches({{$loop->index}})">X</button>
-            </span>
-        @empty
-
-        @endforelse --}}
+    <div>
+        @if(count($select_note) > 0)
+        <span class="text-green-550 font-bold py-2 px-3 mx-2 rounded-xl focus:outline-none"><span class="counts md:ml-3">{{count($select_note)}}</span> <span> Notes Selected</span></span>
+        @endif
     </div>
+    </div>
+    
     
 @if(isset($notes))
 @if($noteStyle == 'list' && $notes->count() > 0)
@@ -251,7 +251,7 @@
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
                     <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i><a href="{{route('u.profile',$note->owner)}}">{{$note->owner->name}}</a></span>
                     <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
-                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model.defer="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
+                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
                 </div>
             </div>
         </div>
@@ -266,10 +266,10 @@
     @endif
 @endif
 
-    <div wire:loading>
+    {{-- <div wire:loading>
         <div class=" absolute w-full h-full bg-white bg-opacity-90 -top-2 grid place-items-center">
             <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
         </div>
-    </div>
+    </div> --}}
     {{-- @include('user.sections.notification') --}}
-    </div>
+</div>
