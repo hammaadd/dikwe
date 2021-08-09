@@ -1,4 +1,14 @@
 <div>
+@isset($note->id)
+@section('title','Working Notes ..')
+@section('openGraph_fb')
+<meta property="og:url" content="{{route('view.note',$note->id)}}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="{{$note->title}}"/>
+<meta property="og:description" content="{{Str::limit(strip_tags($note->description),50)}}"/>
+<meta property="article:author" content="{{$note->owner->name}}"/>
+@endsection
+@endisset
 
                                     <!-- Title / Close-->
                                     <div class="flex items-center justify-between p-2 md:px-4 md:mt-2">

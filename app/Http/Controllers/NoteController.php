@@ -30,6 +30,10 @@ class NoteController extends Controller
         
     }
 
+    public function share(){
+        
+    }
+
     // public function practice(Request $request){
     //    if($request){
 

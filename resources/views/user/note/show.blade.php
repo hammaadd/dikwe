@@ -5,8 +5,40 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     @livewireStyles
 @endsection
+@section('openGraph_fb')
+@auth
+@if(Auth::user()->profile_img == null)
+@php
+    $profile_image = asset('images/logo-dikwe.png');
+@endphp
+@else
+@php
+    $profile_image = asset('user_profile_images/'.Auth::user()->profile_img);
+@endphp
+@endif
+@endauth
+@guest
+@php
+    $profile_image = asset('images/logo-dikwe.png');
+@endphp
+@endguest
+<meta property="og:url" content="{{route('view.note',$note->id)}}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="{{$note->title}}"/>
+<meta property="og:description" content="{{Str::limit(strip_tags($note->description),80)}}"/>
+<meta property="og:image" content="{{$profile_image}}"/>
+<meta property="article:author" content="{{$note->owner->name}}"/>
+<meta property="profile:username" content="{{$note->owner->name}}"/>
+@endsection
+@section('modal')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="{{asset('assets/jquery/jquery.modal.min.css')}}" />
+@endsection
 @section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
+        <div id="ex1" class="modal">
+            <livewire:share-modal/>
+        </div>
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
            
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
@@ -44,7 +76,7 @@
                                         <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
                                         <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
                                             <i class="fas fa-ellipsis-v text-lg align-middle"></i>
-                                        </button>
+                                        </button> 
                                         <ul
                                             x-show="bShow"
                                             @click.away="bShow = false"

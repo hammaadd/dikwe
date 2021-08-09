@@ -113,20 +113,32 @@
                         <label class="cursor-pointer w-max flex flex-col align-items-center">
                             <span>Hello</span>
 
-                            <span class="font-bold ml-1 cursor-pointer" title="{{Auth::user()->name}}">
-                                {{-- {{Str::limit(Auth::user()->name,8)}} --}}
-                                {{Auth::user()->name}}
-                            </span>
+                            @guest
+                                <span class="font-bold ml-1 cursor-pointer" title="Guest">
+                                    Guest
+                                </span>
+                            @endguest
+                            {{-- Display name of Logged in person --}}
+                            @auth
+                                <span class="font-bold ml-1 cursor-pointer" title="{{Auth::user()->name}}">
+                                    {{Auth::user()->name}}
+                                </span>
+                            @endauth
                         </label>
                     </div>
                     <button class="block ml-2 flex-shrink-0 focus:outline-none" @click=" isOpen = !isOpen ">
                         <img alt="User Image"
                         src="
+                        @auth
                         @if(Auth::user()->profile_img == null)
-                        https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                            https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
                         @else
-                        {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                            {{asset('user_profile_images/'.Auth::user()->profile_img)}}
                         @endif
+                        @endauth
+                        @guest
+                            https://ui-avatars.com/api/?background=EAF7F0&name=Guest
+                        @endguest
                         " class="mx-auto object-cover rounded-full h-10 w-10 border-2 border-green-550"/>
                     </button>
                     <ul
@@ -421,11 +433,16 @@
                 <button class="block ml-2 focus:outline-none" @click=" pShow = !pShow ">
                     <img alt="User Image"
                     src="
+                    @auth
                     @if(Auth::user()->profile_img == null)
-                      https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
-                      @else
-                      {{asset('user_profile_images/'.Auth::user()->profile_img)}}
-                      @endif
+                        https://ui-avatars.com/api/?background=EAF7F0&name={{ str_replace(' ','+' ,Auth::user()->name) }}
+                    @else
+                        {{asset('user_profile_images/'.Auth::user()->profile_img)}}
+                    @endif
+                    @endauth
+                    @guest
+                        https://ui-avatars.com/api/?background=EAF7F0&name=Guest
+                    @endguest
                       " class="mx-auto object-cover rounded-full h-8 w-8 border-2 border-green-550"/>
                 </button>
                 <ul
