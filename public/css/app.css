@@ -2476,19 +2476,9 @@ select {
   color: rgba(31, 41, 55, var(--tw-text-opacity))
 }
 
-.hover\:text-gray-900:hover {
-  --tw-text-opacity: 1;
-  color: rgba(17, 24, 39, var(--tw-text-opacity))
-}
-
 .hover\:text-red-500:hover {
   --tw-text-opacity: 1;
   color: rgba(239, 68, 68, var(--tw-text-opacity))
-}
-
-.hover\:text-red-800:hover {
-  --tw-text-opacity: 1;
-  color: rgba(153, 27, 27, var(--tw-text-opacity))
 }
 
 .hover\:text-green-550:hover {
