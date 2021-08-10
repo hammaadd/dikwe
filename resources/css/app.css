@@ -25,6 +25,16 @@
         .max-w-120 {
             max-width:120px;
         }
+        .notes--description ul {
+            list-style: circle;
+            list-style-position: inside;
+        }
+        .overflow--anywhere {
+            overflow-wrap: anywhere;
+        }
+    }
+    body {
+        font-size: 15px;
     }
     .h--70 {
         height: 70vh;
@@ -106,11 +116,11 @@
         text-align: center !important;
         left: auto !important;
         right: 8px !important;
-        top: 7px !important;
+        top: 5px !important;
     }
 }
 body {
-    @apply font-roboto text-gray-900 text-sm
+    @apply font-roboto text-gray-900
 }
 ol {
     @apply list-inside

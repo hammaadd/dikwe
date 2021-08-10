@@ -1,13 +1,13 @@
-<div class="mt-2 mx-auto md:mx-0">                     
-    <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none @if($noteStyle=='list') text-green-550 @endif" 
-    
+<div class="mt-2 mx-auto md:mx-0 px-3">
+    <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none @if($noteStyle=='list') text-green-550 @endif"
+
     wire:click="updateNoteStyle('list')"
     x-on:click="noteStyle='list'"
     >
         <i class="fas fa-list-ul text-xl align-middle"></i>
     </button>
-    <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none @if($noteStyle=='grid') text-green-550 @endif" 
-    
+    <button class="text-gray-400 bg-green-150 rounded-xl mx-1 px-2 h-10 w-10 hover:text-green-550 focus:outline-none @if($noteStyle=='grid') text-green-550 @endif"
+
     wire:click="updateNoteStyle('grid')"
     x-on:click="noteStyle='grid'"
     >

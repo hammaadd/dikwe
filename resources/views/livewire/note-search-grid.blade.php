@@ -1,10 +1,10 @@
 <div class="relative mt-4">
-    
+
    <div class="flex flex-wrap justify-between items-center px-4">
     <div class="mx-auto md:mx-0 mb-4">
-        
+
         <span class="bg-green-550 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none"><i class="fas fa-clipboard mr-2"></i><span class="hidden xl:inline-block">{{$noteHeading}}</span> <span class="counts md:ml-3">@if($notes) {{$notes->count()}} @endif</span></span>
-        
+
     </div>
     <div>
         @if(count($select_note) > 0)
@@ -12,8 +12,8 @@
         @endif
     </div>
     </div>
-    
-    
+
+
 @if(isset($notes))
 @if($noteStyle == 'list' && $notes->count() > 0)
 <div class="mt-4 md:mt-8 px-2">
@@ -22,7 +22,7 @@
             <div class="flex flex-col-reverse sm:flex-row justify-between relative pt-2 px-2 md:px-4">
 
                 <span class="text-lg font-bold pt-2 sm:pt-0">
-                    <div class="w-4 h-4 rounded-full 
+                    <div class="w-4 h-4 rounded-full
                     @if($note->color == 'purple')
                         bg-purple-900
                     @elseif($note->color == 'yellow')
@@ -111,11 +111,11 @@
                         </div>
                     </div>
                 </div>
-                
-                    
+
+
                     <livewire:note-reactions :wire:key="'list-'.$note->id" :note="$note" :type="'list'"/>
-                    
-                
+
+
             </div>
             <div class="flex flex-col sm:flex-row justify-between items-center relative bg-green-150 px-2 md:px-4 py-2">
                 <div class="flex flex-row justify-between items-center">
@@ -149,20 +149,20 @@
         @endforelse
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
-   
+
     @endif
-    
+
     {{-- grid starts from here --}}
 
 @if($noteStyle =='grid' && $notes->count() > 0)
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
-          
+
     @forelse($notes as $note)
         <div class="p-3 rounded-xl shadow-md flex flex-wrap overflow-hidden w-full">
             <div class="self-start w-full">
                 <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
                     <span class="text-lg font-bold" title="{{$note->title}}">
-                    <div class="w-4 h-4 rounded-full 
+                    <div class="w-4 h-4 rounded-full
                         @if($note->color == 'purple')
                             bg-purple-900
                         @elseif($note->color == 'yellow')
@@ -217,7 +217,7 @@
                             </a>
                         </li>
                     @endif
-                    
+
                     <li>
                         <a href="{{route('view.note',$note->id)}}" target="_blank" class="dropdown-item">
                             <i class="fas fa-external-link-alt dropdown-item-icon"></i>
@@ -226,32 +226,34 @@
                     </li>
                     </ul>
                 </div>
-               
-                <p class="px-2 py-4 text-gray-600">
-                    {!!Str::limit($note->description,190)!!} 
-                    
-                </p>
-               
+
+                <div class="notes--description">
+                    <p class="px-3 text-gray-600 list-inside list-disc">
+                        {!!Str::limit($note->description,190)!!}
+                    </p>
+                </div>
+
             </div>
-           
-            <div class="self-end w-full">
-                <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
-                
-                <div title="Visibility">
-                    <small class="text-green-550" >@if($note->visibility =='P')
-                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
-                    @elseif($note->visibility =='PR')
-                        Private <span title="Private"><i class="fas fa-lock"></i></span>
-                    @elseif($note->visibility =='R')
-                        Restricted <span title="Restricted"><i class="fas fa-user-lock"></i></span>
-                    @else
-                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
-                    @endif</small>
+
+            <div class="self-end w-full pt-3">
+                <div class="flex flex-wrap justify-between items-center">
+                    <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
+                    <div title="Visibility">
+                        <span class="text-green-550 text-sm" >@if($note->visibility =='P')
+                            <span title="Public"><i class="fas fa-lock-open pr-1.5"></i></span> Public
+                        @elseif($note->visibility =='PR')
+                            <span title="Private"><i class="fas fa-lock pr-1.5"></i></span> Private
+                        @elseif($note->visibility =='R')
+                            <span title="Restricted"><i class="fas fa-user-lock pr-1.5"></i></span> Restricted
+                        @else
+                            <span title="Public"><i class="fas fa-lock-open pr-1.5"></i></span> Public
+                        @endif</span>
+                    </div>
                 </div>
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
                     <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i><a href="{{route('u.profile',$note->owner)}}">{{$note->owner->name}}</a></span>
-                    <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
-                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
+                    <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif
+                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0 ml-2" @if($note_selected) checked @endif></span>
                 </div>
             </div>
         </div>
@@ -260,7 +262,7 @@
         <span class="bg-red-600 font-bold py-2 px-3 mx-2 rounded-xl text-white focus:outline-none">Nothing found!</span>
     </div>
     @endforelse
-    
+
     </div>
     {{$notes->links('vendor.livewire.tailwind')}}
     @endif
