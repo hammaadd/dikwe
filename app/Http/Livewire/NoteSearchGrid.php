@@ -12,11 +12,11 @@ class NoteSearchGrid extends Component
 {
 
     use WithPagination;
-    protected $listeners = ['updateNoteSet'=> 'updateSet','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'
+    protected $listeners = ['updateNoteSet'=> 'updateSet','updateNoteSet2'=> 'updateSet2','setNoteStyle'=>'setNoteStyle','updateNoteGrid'=> 'render','updateNoteVisibility'=>'noteVisiblity','updateNoteColor'=>'updateColor','noteSelectAll'=>'noteSelectAll','makeAllPublic'=>'makeAllPublic','makeAllPrivate','makeAllPrivate'
     ,'updateQueryNoteSet'=>'updateQueryNoteSet','deletAllSelectedNotes'=>'deletAllSelectedNotes','setNotificationMessage'=>'setNotificationMessage',
     'updateNoteOrder'=>'updateNoteOrder'];
-    public  $note_set ='M', $noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query , $message = ' ' , $showNotification,$order
-    ,$searches= [];
+    public  $note_set ='M', $note_set2 ='N',$noteStyle , $noteHeading ,$noteId,$settings = 0 , $visibility = 'A',$color = 'A',$note_selected, $select_note = [],$query , $message = ' ' , $showNotification,$order
+    ,$searches= [],$noteHeading2 = '';
     private $notes;
     
     public function render()
@@ -59,33 +59,6 @@ class NoteSearchGrid extends Component
             $this->notes->where('status','active');
                        
             $this->noteHeading = 'Service Notes';
-        
-        elseif($this->note_set == 'LN'):
-            $this->notes = Note::query();
-            $this->notes->whereHas('reactions',function ($query){
-                return $query->where('reaction_type','like')->where('reacted_by',Auth::id());
-            });
-           
-            $this->noteHeading = 'Liked Notes';
-            // $this->settings = 1;
-
-            // dd($this->notes);
-        elseif($this->note_set == 'DN'):
-                $this->notes = Note::query();
-                $this->notes->whereHas('reactions',function ($query){
-                    return $query->where('reaction_type','dislike')->where('reacted_by',Auth::id());
-                });
-                $this->noteHeading = 'Disliked Notes';
-
-        // It'll filter favorite notes        
-        elseif($this->note_set == 'FN'):
-                $this->notes = Note::query();
-                $this->notes->whereHas('reactions',function ($query){
-                    return $query->where('reaction_type','favorite')->where('reacted_by',Auth::id());
-                });
-                   
-                $this->noteHeading = 'Favorite Notes';
-
         else:
             $this->notes = Note::query();
             $this->notes->where('status','active')
@@ -93,6 +66,7 @@ class NoteSearchGrid extends Component
             $this->noteHeading = 'My Notes';
 
         endif;
+        
 
         //Visibility fiters
         if($this->visibility=='A' || $this->visibility == null){
@@ -107,6 +81,34 @@ class NoteSearchGrid extends Component
         }else{
             $this->notes->where('color','=',$this->color);
         }
+
+        if($this->note_set2 == 'LN'):
+            $this->notes->whereHas('reactions',function ($query){
+                return $query->where('reaction_type','like')->where('reacted_by',Auth::id());
+            });
+           
+            $this->noteHeading2 = 'Liked Notes';
+            // $this->settings = 1;
+
+            // dd($this->notes);
+        elseif($this->note_set2 == 'DN'):
+                $this->notes->whereHas('reactions',function ($query){
+                    return $query->where('reaction_type','dislike')->where('reacted_by',Auth::id());
+                });
+                $this->noteHeading2 = 'Disliked Notes';
+
+        // It'll filter favorite notes        
+        elseif($this->note_set2 == 'FN'):
+                $this->notes->whereHas('reactions',function ($query){
+                    return $query->where('reaction_type','favorite')->where('reacted_by',Auth::id());
+                });
+                   
+                $this->noteHeading2 = 'Favorite Notes';
+
+        else:
+                $this->noteHeading2 = '';
+
+        endif;
 
         if(!empty($this->query)):
             //dd($this->notes);
@@ -208,6 +210,12 @@ class NoteSearchGrid extends Component
         $this->query = '';
         //dd($this->note_set);
         
+    }
+
+    public function updateSet2($noteSet){
+        $this->note_set2 = $noteSet;
+        $this->query = '';
+        //dd($this->note_set);
     }
 
     public function setNoteStyle($style){
