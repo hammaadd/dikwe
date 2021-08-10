@@ -10,7 +10,7 @@ class NoteFilter extends Component
 {
     protected $listeners = ['resetSearch'=>'resetSearch','setSearchesEqual'=>'setSearchesEqual'];
 
-    public $visi_type,$color,$notes_set = 'M', $search,$results,$isVisible, $all_checked,$order,$rTags,$searches;
+    public $visi_type,$color,$notes_set = 'M',$notes_set2 = 'N', $search,$results,$isVisible, $all_checked,$order,$rTags,$searches;
     // protected $queryString = ['search'];
 
     
@@ -21,6 +21,7 @@ class NoteFilter extends Component
         $this->isVisible = false;
         $this->all_checked = false;
         $this->order = false;
+        $this->notes_set2 = 'N';
         $this->resetSearch();
     }
 
@@ -53,6 +54,11 @@ class NoteFilter extends Component
     public function notesSet($notesSet){
         $this->notes_set = $notesSet;
         $this->emit('updateNoteSet',$this->notes_set);
+    }
+
+    public function notesSet2($notesSet2){
+        $this->notes_set2 = $notesSet2;
+        $this->emit('updateNoteSet2',$this->notes_set2);
     }
 
     public function updatedSearch() {
