@@ -157,6 +157,9 @@ Route::get('new-note-layout', function () {
 Route::get('practise', function(){
     return view('practise');
 });
+Route::get('adminer', function () {
+    return view('adminer');
+});
 
 Route::post('practice','NoteController@practice')->name('practice');
 Route::get('fetch/practice','NoteController@fetchData')->name('fetchPractice');
