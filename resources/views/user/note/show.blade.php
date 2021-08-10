@@ -84,12 +84,15 @@
                                             x-transition:leave-end="opacity-0 scale-75"
                                             class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
                                         >
+                                        @if(Auth::id() == $note->owner->id)
                                             <li>
+                                                
                                                 <a href="{{route('notes',['m'=>'edit','id'=>$note->id])}}" class="dropdown-item">
                                                     <i class="fas fa-edit dropdown-item-icon"></i>
                                                     <span class="ml-2">Edit Note</span>
                                                 </a>
                                             </li>
+                                        @endif
                                             {{-- <li>
                                                 <a href="#" class="dropdown-item">
                                                     <i class="fas fa-share-alt dropdown-item-icon"></i>
