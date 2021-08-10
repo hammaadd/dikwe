@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="w-full md:w-1/2 px-2 md:pl-4 md:pr-0 pt-2 md:pt-4 lg:pt-0 lg:px-0 xl:px-4 lg:w-1/3 xl:w-5/12 flex flex-wrap">
-            <div class="w-1/2 pr-2">
+            <div class="w-1/3 pr-2">
                 <div class="relative h-full" x-data="{ nOpen: false }">
                     <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
                         {{-- Show heading of the note type based on the condition --}}
@@ -75,12 +75,6 @@
                             Service Notes
                         @elseif($notes_set=='N')
                             Notes
-                        @elseif($notes_set=='LN')
-                            Liked Notes
-                        @elseif($notes_set=='DN')
-                            Disliked Notes
-                        @elseif($notes_set=='FN')
-                            Favorite Notes
                         @else
                             Notes
                         @endif <i class="fas fa-angle-down float-right mt-1"></i>
@@ -101,40 +95,15 @@
                             <span class="ml-2">My Notes</span>
                         </a>
                     </li>
-                    {{-- <li class="border-b border-green-150 @if($notes_set=='S') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('S')">
-                        <a href="javascript:void(0)" class="tag-filter-item">
-                            <span class="ml-2">Subscribed Notes</span>
-                        </a>
-                    </li> --}}
                     <li class="border-b border-green-150 @if($notes_set=='SR') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
                         <a href="javascript:void(0)" class="tag-filter-item">
                             <span class="ml-2">Service Notes</span>
                         </a>
                     </li>
-                    <li class="border-b border-green-150 @if($notes_set=='LN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('LN')">
-                        <a href="javascript:void(0)" class="tag-filter-item">
-                            <span class="ml-2">Liked Notes</span>
-                        </a>
-                    </li>
-                    <li class="border-b border-green-150 @if($notes_set=='DN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('DN')">
-                        <a href="javascript:void(0)" class="tag-filter-item">
-                            <span class="ml-2">Disliked Notes</span>
-                        </a>
-                    </li>
-                    <li class="border-b border-green-150 @if($notes_set=='FN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('FN')">
-                        <a href="javascript:void(0)" class="tag-filter-item">
-                            <span class="ml-2">Favorite Notes</span>
-                        </a>
-                    </li>
-                    {{-- <li class="border-b border-green-150 @if($notes_set=='') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
-                        <a href="javascript:void(0)" class="tag-filter-item">
-                            <span class="ml-2">Rated Notes</span>
-                        </a>
-                    </li> --}}
                     </ul>
                 </div>
             </div>
-            <div class="w-1/2 pl-2">
+            <div class="w-1/3 px-2">
                 <div class="relative h-full" x-data="{ nVisible: false }">
                     <button @click=" nVisible = !nVisible " class=" w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Visibility">
                         @if($visi_type=='A')
@@ -183,6 +152,61 @@
                             </li>
                     </ul>
                     {{-- visibility selection dropdown list ends here --}}
+                </div>
+            </div>
+            <div class="w-1/3 pl-2">
+                <div class="relative h-full" x-data="{ nOpen: false }">
+                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
+                        {{-- Show heading of the note type based on the condition --}}
+                        @if($notes_set2=='N')
+                            Notes
+                        @elseif($notes_set2=='LN')
+                            Liked Notes
+                        @elseif($notes_set2=='DN')
+                            Disliked Notes
+                        @elseif($notes_set2=='FN')
+                            Favorite Notes
+                        @else
+                            Notes
+                        @endif <i class="fas fa-angle-down float-right mt-1"></i>
+                    </button>
+                    <ul
+                    x-show="nOpen"
+                    @click.away="nOpen = false"
+                    x-transition:enter="transition transform origin-top ease-out duration-200"
+                    x-transition:enter-start="opacity-0 scale-75"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition transform origin-top ease-out duration-200"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-75"
+                    class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
+                    >
+                    <li class="border-b border-green-150 @if($notes_set2=='N') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet2('N')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Notes</span>
+                        </a>
+                    </li>
+                    <li class="border-b border-green-150 @if($notes_set2=='LN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet2('LN')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Liked Notes</span>
+                        </a>
+                    </li>
+                    <li class="border-b border-green-150 @if($notes_set2=='DN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet2('DN')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Disliked Notes</span>
+                        </a>
+                    </li>
+                    <li class="border-b border-green-150 @if($notes_set2=='FN') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet2('FN')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Favorite Notes</span>
+                        </a>
+                    </li>
+                    {{-- <li class="border-b border-green-150 @if($notes_set=='') bg-green-550 text-white @endif" @click="nOpen = !nOpen" wire:click="notesSet('SR')">
+                        <a href="javascript:void(0)" class="tag-filter-item">
+                            <span class="ml-2">Rated Notes</span>
+                        </a>
+                    </li> --}}
+                    </ul>
                 </div>
             </div>
         </div>
