@@ -25,6 +25,17 @@
         .max-w-120 {
             max-width:120px;
         }
+        .notes--description ul {
+            list-style: circle;
+            list-style-position: inside;
+        }
+        .overflow--anywhere {
+            overflow-wrap: anywhere;
+        }
+
+    }
+    body {
+        font-size: 15px;
     }
     .h--70 {
         height: 70vh;
@@ -110,7 +121,7 @@
     }
 }
 body {
-    @apply font-roboto text-gray-900 text-sm
+    @apply font-roboto text-gray-900
 }
 ol {
     @apply list-inside
@@ -279,7 +290,7 @@ ol {
     @apply inline-block border-b pb-3 border-green-150 w-2/5 px-2 text-center font-bold cursor-pointer overflow-hidden overflow-ellipsis whitespace-nowrap
 }
 .active-network {
-    @apply border-green-550 border-b-4 w-48
+    @apply border-green-550 border-b-4 w-full
 }
 .stat-count {
     @apply py-2 px-2 font-bold text-base bg-white rounded-2xl mr-2
