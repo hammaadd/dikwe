@@ -4,9 +4,9 @@
         <div class="flex flex-row items-center relative" x-data="{ nColor: false , trix: @entangle('description').defer}">
             <button @click=" nColor = !nColor "  type="button" class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8">
                 <div class="w-4 h-4 rounded-full
-                @if($color=='purple') bg-indigo-700
+                @if($color=='purple') bg-purple-900
                 @elseif($color=='green') bg-green-550
-                @elseif($color=='blue') bg-purple-900
+                @elseif($color=='blue') bg-indigo-700
                 @elseif($color=='yellow') bg-yellow-400
                 @else bg-indigo-700 @endif
                  inline-block"></div>
@@ -22,7 +22,7 @@
                 x-transition:leave-end="opacity-0 scale-75"
                 class="w-12 absolute text-center border border-gray-400 rounded-lg bg-white px-1 top-10 z-50">
                 <li class="my-1 border-b border-gray-400">
-                    <input type="radio" wire:model="color" value="purple" name="color" class="h-4 w-4 text-purple-800 bg-purple-800 focus:ring-0 border-0"/>
+                    <input type="radio" wire:model="color" value="purple" name="color" class="h-4 w-4 text-purple-900 bg-purple-900 focus:ring-0 border-0"/>
                 </li>
                 <li class="my-1 border-b border-gray-400">
                     <input type="radio" wire:model="color" value="yellow" name="color" class="h-4 w-4 text-yellow-500 bg-yellow-500 focus:ring-0 border-0"/>
@@ -31,7 +31,7 @@
                     <input type="radio" wire:model="color" value="green" name="color" class="h-4 w-4 text-green-550 bg-green-550 focus:ring-0 border-0"/>
                 </li>
                 <li class="my-1">
-                    <input type="radio" wire:model="color" value="blue" name="color" class="h-4 w-4 text-indigo-900 bg-indigo-900 focus:ring-0 border-0"/>
+                    <input type="radio" wire:model="color" value="blue" name="color" class="h-4 w-4 text-indigo-700 bg-indigo-700 focus:ring-0 border-0"/>
                 </li>
             </ul>
             <input type="text" name="title" wire:model.defer="title" class="border-0 border-b-2 mx-3 border-gray-400 font-bold flex-grow ring-0 focus:border-green-550 focus:ring-0" placeholder="Note Title">
