@@ -227,31 +227,34 @@
                     </ul>
                 </div>
                
-                <p class="px-2 py-4 text-gray-600">
-                    {!!Str::limit($note->description,190)!!} 
-                    
-                </p>
+                <div class="notes--description">
+                    <p class="px-3 text-gray-600 list-inside list-disc">
+                        {!!Str::limit($note->description,190)!!}
+                    </p>
+                </div>
                
             </div>
            
-            <div class="self-end w-full">
+            <div class="self-end w-full pt-3">
+                <div class="flex flex-wrap justify-between items-center">
                 <livewire:note-reactions :wire:key="'grid-'.$note->id" :note="$note" :type="'grid'"/>
                 
                 <div title="Visibility">
-                    <small class="text-green-550" >@if($note->visibility =='P')
-                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
+                    <span class="text-green-550 text-sm" >@if($note->visibility =='P')
+                        <span title="Public"><i class="fas fa-lock-open pr-1.5"></i></span> Public
                     @elseif($note->visibility =='PR')
-                        Private <span title="Private"><i class="fas fa-lock"></i></span>
+                        <span title="Private"><i class="fas fa-lock pr-1.5"></i></span> Private
                     @elseif($note->visibility =='R')
-                        Restricted <span title="Restricted"><i class="fas fa-user-lock"></i></span>
+                        <span title="Restricted"><i class="fas fa-user-lock pr-1.5"></i></span> Restricted
                     @else
-                        Public <span title="Public"><i class="fas fa-lock-open"></i></span>
-                    @endif</small>
+                        <span title="Public"><i class="fas fa-lock-open pr-1.5"></i></span> Public
+                    @endif</span>
                 </div>
+            </div>
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
                     <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i><a href="{{route('u.profile',$note->owner)}}">{{$note->owner->name}}</a></span>
                     <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
-                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif></span>
+                        <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0 ml-2" @if($note_selected) checked @endif></span>
                 </div>
             </div>
         </div>
