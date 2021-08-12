@@ -215,9 +215,9 @@
                 <div class=" relative" x-data="{ nColor: false }">
                     <button @click=" nColor = !nColor " class=" bg-green-150 focus:outline-none rounded-lg p-1 mx-2 h-12 w-12 flex items-center" title="Filter By Color">
                         {{-- to display which color is selected --}}
-                        <div class="w-5 h-5 rounded-full @if($color=='purple') bg-indigo-700 @endif
+                        <div class="w-5 h-5 rounded-full @if($color=='purple') bg-purple-900 @endif
                         @if($color=='green') bg-green-550 @endif
-                        @if($color=='blue') bg-purple-900 @endif
+                        @if($color=='blue') bg-indigo-700 @endif
                         @if($color=='yellow') bg-yellow-400 @endif
                         @if($color=='A') @endif inline-block mx-auto">@if($color=='A') All @endif</div>
                     </button>
@@ -239,7 +239,7 @@
                             </a>
                         </li>
                         <li class="border-b border-gray-400">
-                            <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
+                            <a href="javascript:void(0)" wire:click="updateColor('blue')" @click="nColor = false">
                                 <div class="w-5 h-5 rounded-full bg-indigo-700 inline-block my-1 align-middle"></div>
                             </a>
                         </li>
@@ -249,7 +249,7 @@
                             </a>
                         </li>
                         <li class="border-b border-gray-400">
-                            <a href="javascript:void(0)" wire:click="updateColor('blue')" @click="nColor = false">
+                            <a href="javascript:void(0)" wire:click="updateColor('purple')" @click="nColor = false">
                                 <div class="w-5 h-5 rounded-full bg-purple-900 inline-block my-1 align-middle"></div>
                             </a>
                         </li>
