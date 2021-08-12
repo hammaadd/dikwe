@@ -53,20 +53,25 @@
             @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false " @showViewNote.window="noteSearch = false , showViewNote = true" >
 
             <div id="ex1" class="modal">
-            <livewire:share-modal/>
+                <livewire:share-modal/>
             </div>
-
+            <div id="rmn1" class="modal">
+                <livewire:restricted-note-modal/>
+            </div>
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">
                     <!-- Column Content -->
                     {{-- Tag Section --}}
                     <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
                         <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left" >
-                                <label for="knowledge-assets">Notes</label>
-                                <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add Note" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-plus-circle"></i>
-                                </a>
+                            <div class="flex flex-wrap items-center">
+                                <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left" >
+                                    <label for="knowledge-assets">Notes</label>
+                                </div>
+                                {{-- <button x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add Note" class="text-green-550 bg-green-150 rounded-xl mx-2 px-2 h-10 w-10 hover:text-green-150 hover:bg-green-550 focus:outline-none">
+                                    <i class="fas fa-plus-circle text-xl align-middle"></i>
+                                </button> --}}
+                                
                             </div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
                                 <a href="javascript:void(0)" x-on:click="$dispatch('showsearchnote')" class="link-hover text-green-550 font-bold">
@@ -170,6 +175,14 @@ function copyToClipBoard(text) {
     window.addEventListener('alert', param => {
         toastr[param.detail.type](param.detail.message);
     });
+
+    $('input[name="visibility"]').on('click',function() {
+        
+   if($(this).val() == 'R') {
+    console.log('working R');
+        $('#rmn1').modal();
+   }
+});
 
     
 
