@@ -11,20 +11,21 @@
                     {{-- Tag Section --}}
             <div class="bg-white pb-5 rounded-xl h-full mt-4 lg:mt-0">
                 <div class="flex flex-wrap justify-between relative">
-                            <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">Notes</label>
-                                <a  href="javascript:void(0)" x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add note" class="bg-green-550 text-white font-bold py-2 px-3 mx-2 rounded-xl border-2 border-green-550 hover:bg-white hover:text-green-550 focus:outline-none">
-                                    <i class="fas fa-plus-circle"></i>
-                                </a>
-                            </div>
+                    <div class="flex flex-wrap items-center">
+                        <div class="bg-green-550 text-white font-bold px-2 md:px-8 lg:px-2 xl:px-8 py-3 br-top-left"><label for="knowledge-assets">Notes</label></div>
+                            <button x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add Note" class="text-green-550 bg-green-150 rounded-xl mx-2 px-2 h-10 w-10 hover:text-green-150 hover:bg-green-550 focus:outline-none">
+                                <i class="fas fa-plus-circle text-xl align-middle"></i>
+                            </button>
+                        </div>
                             <livewire:note-search-grid-buttons/>
                             <livewire:note-select/>
-                </div>
-                <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
+                    </div>
+                {{-- <div class="w-full px-2 md:px-5 flex flex-wrap justify-between items-center relative mt-5">
                     
                 
                     
                     
-                </div>
+                </div> --}}
                         
                 <livewire:note-search-grid :key="rand()"/>
             </div>
