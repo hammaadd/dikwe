@@ -12,8 +12,8 @@
 <div class="bg-white rounded-xl py-5" x-data="{ tab:'following' }">
     <ul class="w-full flex overflow-y-hidden mb-3">
         <li class="tab-item" :class="{'active-network':tab==='following'}" @click="tab='following'" wire:click="refereshFollowing"><span class="total-count mr-2">{{Auth::user()->totalFollowing()}}</span>Following</li>
-        <li class="tab-item" :class="{'active-network':tab==='followers'}" @click="tab='followers'"><span class="total-count mr-2">10</span>Followers</li>
-        <li class="tab-item" :class="{'active-network':tab==='service'}" @click="tab='service'"><span class="total-count mr-2">60</span>Service Users</li>
+        <li class="tab-item" :class="{'active-network':tab==='followers'}" @click="tab='followers'"><span class="total-count mr-2">{{Auth::user()->totalFollower()}}</span>Followers</li>
+        <li class="tab-item" :class="{'active-network':tab==='service'}" @click="tab='service'"><span class="total-count mr-2">{{\App\Models\User::count()}}</span>Service Users</li>
     </ul>
 
     {{-- This is the list of the users who is following the logged in user
@@ -24,15 +24,11 @@
     </div>
 
     <div class="w-full px-2 md:px-5" x-show="tab==='followers'">
-        @for($i=0;$i<5;$i++)
-            <x-followers-list followname="Martin Wood" followcount="120"/>
-        @endfor
+        <livewire:follower-list-note :wire:key="'user-followerlist-2x4fred'"/>
     </div>
 
     <div class="w-full px-2 md:px-5" x-show="tab==='service'">
-        @for($i=0;$i<5;$i++)
-            <x-followers-list followname="Martin Wood" followcount="120"/>
-        @endfor
+        <livewire:service-list-note :wire:key="'user-servicelist-2x6fred'"/>
     </div>
 
     <div class=" text-center md:text-right px-4 pt-4">
