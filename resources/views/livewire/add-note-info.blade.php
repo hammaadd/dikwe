@@ -11,7 +11,7 @@
     <div class="p-2 md:p-8">
         <div class="relative">
             
-            <form wire:submit.prevent="store">
+            <form wire:submit.prevent="store" x-data="{visibility: ' '}">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
                 @error('title')
                     <small class="field-error-message">
@@ -127,19 +127,19 @@
                 <div class="input--field">
                     <div class="flex flex-row justify-around">
                         <label class="items-center">
-                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='P') checked @endif value="P" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='P') checked @endif value="P" class="h-4 w-4 text-green-550 focus:ring-0" @click="visibility = 'P'"/>
                             <span class="sm:ml-2">
                                 Public
                             </span>
                         </label>
                         <label class="items-center ml-1 sm:ml-4">
-                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='R') checked @endif value="R" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='R') checked @endif value="R" class="h-4 w-4 text-green-550 focus:ring-0" @click="visibility = 'R'"/>
                             <span class="sm:ml-2">
                                 Restricted
                             </span>
                         </label>
                         <label class="items-center ml-1 sm:ml-4">
-                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='PR') checked @endif value="PR" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                            <input type="radio" name="visibility" wire:model.defer="visibility" @if($visibility=='PR') checked @endif value="PR" class="h-4 w-4 text-green-550 focus:ring-0" @click="visibility = 'PR'"/>
                             <span class="sm:ml-2">
                                 Private
                             </span>
@@ -151,6 +151,16 @@
                         </small>
                     @enderror
                 </div>
+                <div class="workspaces pt-2 sm:pt-6" x-show="visibility === 'R'">
+                            <label for="users-selected" class="font-bold inline-block">Restricted Users</label>
+                            <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
+                            @forelse($users as $user)
+                                <a class="tag-item">{{$user->name}}</a>
+                            @empty
+
+                            @endforelse
+                            </div>
+                        </div>
                 <div class="text-center md:text-right my-4">
                     <button class="btn-gray" type="button" @click="nshowAddMore = false , nshowAdd = true ,nShowEdit = false"  wire:click="moreAddInfo"><i class="fas fa-arrow-left"></i> Back</button>
                     <button type="button" class="bg-red-500 text-white font-bold border-2 border-red-500 px-4 py-1 mx-2 rounded-xl focus:outline-none hover:bg-white hover:text-red-500">Cancel</button>
