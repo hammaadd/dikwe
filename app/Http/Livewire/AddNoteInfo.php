@@ -5,16 +5,18 @@ namespace App\Http\Livewire;
 use App\Models\Note;
 use App\Models\NoteTag;
 use App\Models\NoteWorkspace;
+use App\Models\RestrictedUser;
 use App\Models\Tag;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use App\Models\User;
 
 class AddNoteInfo extends Component
 {
-    public $color,$title, $description,$source,$url,$visibility = 'P',$tagsG,$wrkspcs, $workspaces = [], $tags = [];
-    protected $listeners = ['showMoreInfo'=> 'showMoreInfo','setWorkspaces'=> 'setWorkspaces','setTags'=>'setTags','cancelFormInfo'=>'resetCreateForm'];
+    public $color,$title, $description,$source,$url,$visibility = 'P',$tagsG,$wrkspcs, $workspaces = [], $tags = [],$users = [],$restricted = [];
+    protected $listeners = ['showMoreInfo'=> 'showMoreInfo','setWorkspaces'=> 'setWorkspaces','setTags'=>'setTags','cancelFormInfo'=>'resetCreateForm','update-restricted-user-list-notes'=>'updateList'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
@@ -111,6 +113,17 @@ class AddNoteInfo extends Component
                     $nw->save();
                     $nsRes++;
                 }
+
+                if(isset($this->restricted)){
+                    if(count($this->restricted)>0){
+                        foreach($this->restricted as $rest){
+                            $res_user = new RestrictedUser;
+                            $res_user->user_id="";
+                            $res_user->restricted_id="";
+                            
+                        }
+                    }
+                }
             endif;
 
             // Add tags of notes using the method below
@@ -149,6 +162,11 @@ class AddNoteInfo extends Component
         // $this->emit('updateNoteGrid');
         // $this->emit('updateNotes');
         return redirect()->route('notes');
+    }
+
+    public function updateList($list){
+        $this->restricted = $list;
+        $this->users = User::whereIn('id',$this->restricted)->get();
     }
 
 
