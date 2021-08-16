@@ -11,11 +11,13 @@ class FollowUser extends Model
     protected $guarded = [];
 
     public function follower(){
-        return $this->hasMany(User::class,'id');
+        return $this->belongsTo(User::class,'follower_id','id');
     }
 
     public function follow(){
         return $this->belongsTo(User::class,'follow_id','id');
     }
+
+
 
 }
