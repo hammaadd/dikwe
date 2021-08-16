@@ -89,6 +89,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function totalFollowing(){
         return $this->following->count();
     }
+
+    public function follower(){
+        return $this->hasMany(FollowUser::class, 'follow_id');
+    }
+
+    public function totalFollower(){
+        return $this->follower->count();
+    }
+
 }
 
 
