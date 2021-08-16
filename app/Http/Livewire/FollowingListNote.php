@@ -9,14 +9,15 @@ use Livewire\WithPagination;
 class FollowingListNote extends Component
 {
     use WithPagination;
-    protected $listeners =['refereshNoteFollowing'=>'refereshNoteFollowing'];
+    protected $listeners =['refereshNoteFollowing'=>'refereshNoteFollowing','followingNoteSet'=>'followingNoteSet'];
     private $users;
     public $addedUsers = [];
     public function render()
     {
+        
         $this->users = FollowUser::where('follower_id',Auth::id())->paginate(5);
         return view('livewire.following-list-note',['users'=>$this->users]);
-    }
+    } 
 
     // public function mount(){
     //     $this->users = FollowUser::where('follower_id',Auth::id())->paginate(1);
@@ -33,7 +34,10 @@ class FollowingListNote extends Component
         }else{
             $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'Unable to add to list.']);
         }
-
+        //Call to follower component for syncing the selected users
+        $this->emit('followerNoteSet',$this->addedUsers);
+        //Call to service component for syncing the selected users
+        $this->emit('serviceNoteSet',$this->addedUsers);
 
     }
 
@@ -49,7 +53,19 @@ class FollowingListNote extends Component
         }else{
             $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'No such user existed in list.']);
         }
+        //Call to follower component for syncing the selected users
+        $this->emit('followerNoteSet',$this->addedUsers);
+        //Call to service component for syncing the selected users
+        $this->emit('serviceNoteSet',$this->addedUsers);
+
     }
+
+    public function followingNoteSet($val){
+        $this->addedUsers = $val;
+        $this->emit('update-restricted-user-list-notes',$this->addedUsers);
+    }
+
+
 
 
 
