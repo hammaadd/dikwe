@@ -1,4 +1,4 @@
-<div>
+<div class="relative">
 @forelse($users as $user)
         {{-- Single view for listing users --}}
         <div class="w-full py-2 flex flex-wrap items-center justify-between rounded-xl">
@@ -42,4 +42,9 @@
 
 @endforelse
 {{$users->links('vendor.livewire.tailwind')}}
+<div wire:loading>
+        <div class=" absolute w-full h-full bg-green-250 bg-opacity-90 top-0 grid place-items-center">
+            <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
+        </div>
+    </div>
 </div>
