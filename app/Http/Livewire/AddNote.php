@@ -185,4 +185,6 @@ class AddNote extends Component
         $this->tags = $tgs;
         
     }
+
+    
 }
