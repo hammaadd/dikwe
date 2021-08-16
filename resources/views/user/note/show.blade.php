@@ -119,7 +119,7 @@
                                         {!!$note->description!!}
                                     </p>
                                     <p class="notes-source pt-3"><span class="font-bold mr-2 ">Source:</span>{{$note->source}}</p>
-                                    <p class="source-url pt-3"><span class="font-bold mr-2">Source URL:</span><a href="{{$note->source_url}}" class=" hover:text-green-550" target="_blank">{{$note->source_url}}</a></p>
+                                    <p class="source-url pt-3 overflow--anywhere"><span class="font-bold mr-2">Source URL:</span><a href="{{$note->source_url}}" class=" hover:text-green-550" target="_blank">{{$note->source_url}}</a></p>
                                 </div>
                                 <div class="w-full flex flex-wrap justify-between items-start px-2 md:px-4 py-2">
                                     <div class="flex flex-col">
