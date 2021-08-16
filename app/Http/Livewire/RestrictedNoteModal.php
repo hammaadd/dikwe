@@ -9,17 +9,16 @@ use Livewire\WithPagination;
 
 class RestrictedNoteModal extends Component
 {
-    use WithPagination;
-    private $users;
+    public $users;
     public function render()
     {
-        return view('livewire.restricted-note-modal',['users'=>$this->users]);
+        return view('livewire.restricted-note-modal');
     }
 
     public function mount(){
         // $this->users = Auth::user()->following;
         //dd($this->users[0]->follow);
-        $this->users = FollowUser::where('follower_id',Auth::id())->paginate(4);
+        //$this->users = FollowUser::where('follower_id',Auth::id())->paginate(4);
         //dd($this->users[0]->follow);
     }
 
@@ -27,6 +26,9 @@ class RestrictedNoteModal extends Component
         $this->emit('refereshNoteFollowing');
         
     }
+
+    
+
 
 
 
