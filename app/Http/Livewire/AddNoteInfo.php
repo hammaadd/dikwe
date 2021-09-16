@@ -47,7 +47,7 @@ class AddNoteInfo extends Component
 
     public function moreAddInfo(){
         
-        $this->emit('passMoreInfo',$this->title, $this->description,$this->color,$this->tags,$this->workspaces,$this->source,$this->url,$this->visibility);
+        $this->emit('passMoreInfo',$this->title, $this->description,$this->color,$this->tags,$this->workspaces,$this->source,$this->url,$this->visibility,$this->restricted,$this->users);
         
     }
 
@@ -147,6 +147,20 @@ class AddNoteInfo extends Component
                     $nsRes++;
                 }
             endif;
+            //Restricted users in database one by one
+            if($this->visibility == 'R'){
+                //Check if the restricted users are selected
+                if(count($this->restricted) > 0){
+                    foreach($this->restricted as $rest){
+                        RestrictedUser::create([
+                            'user_id'   =>  Auth::id(),
+                            'restricted_id' =>  $rest,
+                            'ka_id' => $note->id,
+                            'type'  => 'Note'
+                        ]);
+                    }
+                }
+            }
 
         }
 

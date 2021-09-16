@@ -155,7 +155,7 @@
                             <label for="users-selected" class="font-bold inline-block">Restricted Users</label>
                             <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
                             @forelse($users as $user)
-                                <a class="tag-item">{{$user->name}}</a>
+                                <a class="tag-item" href="{{route('u.profile',$user->id)}}" target="_blank">{{$user->name}}</a>
                             @empty
 
                             @endforelse

@@ -4,9 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\Note;
 use App\Models\NoteTag;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Livewire\Component;
 use Livewire\WithPagination;
+use SimpleXMLElement;
 
 class NoteSearchGrid extends Component
 {
@@ -56,7 +59,7 @@ class NoteSearchGrid extends Component
         
         elseif($this->note_set == 'SR'):
             $this->notes = Note::query();
-            $this->notes->where('status','active');
+            $this->notes->where('status','active')->where('visibility','P');
                        
             $this->noteHeading = 'Service Notes';
         else:
@@ -309,6 +312,26 @@ class NoteSearchGrid extends Component
         unset($this->searches[$index]);
         //Fire Event to pass value and assign to the NoteFilter $searches variable
         $this->emit('setSearchesEqual',$this->searches);
+    }
+
+    public function downloadFile(){
+        $xmlFile = array(
+            'name'=>'Rafay',
+            'age'=>25,
+        );
+        $xml = new SimpleXMLElement('<root/>');
+        array_walk_recursive($xmlFile, array ($xml, 'addChild'));
+        //$output = View::make('export.notexmlfile')->render();
+        $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \n <Document xmlns=\"urn:iso:std:iso:20022:tech:xsd:pain.008.001.02\">" .$xml->asXML();
+
+        $response = Response::create($xml, 200);
+        $response->header('Content-Type', 'text/xml');
+        $response->header('Cache-Control', 'public');
+        $response->header('Content-Description', 'File Transfer');
+        $response->header('Content-Disposition', 'attachment; filename=noteexport');
+        $response->header('Content-Transfer-Encoding', 'binary');
+        return $response;
+        //return Response::download($xml->asXML(), 'export.xml', ['Content-Type: text/xml']);
     }
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Note;
 use App\Models\NoteTag;
 use App\Models\NoteWorkspace;
+use App\Models\RestrictedUser;
 use App\Models\Tag;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,7 @@ use Livewire\Component;
 
 class AddNote extends Component
 {
-    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [];
+    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [], $users = [],$restricted = [];
     protected $listeners = ['passMoreInfo'=> 'passMoreInfo','setWorkspaces3'=> 'setWorkspaces','setTags3'=>'setTags'];
     public function render()
     {
@@ -123,6 +124,21 @@ class AddNote extends Component
             else:
                 $nsRes++;
             endif;
+
+            //Restricted users in database one by one
+            if($this->visibility == 'R'){
+                //Check if the restricted users are selected
+                if(count($this->restricted) > 0){
+                    foreach($this->restricted as $rest){
+                        RestrictedUser::create([
+                            'user_id'   =>  Auth::id(),
+                            'restricted_id' =>  $rest,
+                            'ka_id' => $note->id,
+                            'type'  => 'Note'
+                        ]);
+                    }
+                }
+            }
 
             
             #Add workspaces of notes using loop

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
 {
@@ -24,5 +26,16 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function viewImport(){
+        return view('test.index');
+    }
+
+    public function import() 
+    {
+        Excel::import(new UsersImport, request()->file('file'));
+        
+        return back();
     }
 }

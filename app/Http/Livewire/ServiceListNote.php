@@ -11,17 +11,22 @@ class ServiceListNote extends Component
     use WithPagination;
     protected $listeners =['serviceNoteSet'=>'serviceNoteSet'];
     private $users;
-    public $addedUsers = [];
+    public $addedUsers = [],$search;
     public function render()
     {
         
-        $this->users = User::paginate(5);
+        if(empty($this->search)){
+            $this->users = User::paginate(5);
+        }elseif(!empty($this->search)){
+            $this->updatedSearch();
+            
+        }
         return view('livewire.service-list-note',['users'=>$this->users]);
     } 
 
-    // public function mount(){
-    //     $this->users = FollowUser::where('follower_id',Auth::id())->paginate(1);
-    // }
+    public function mount(){
+        $this->users = User::paginate(5);
+    }
 
     public function addUser($id){
         if(!in_array($id, $this->addedUsers, true)){
@@ -53,5 +58,21 @@ class ServiceListNote extends Component
     public function serviceNoteSet($val){
         $this->addedUsers = $val;
         $this->emit('update-restricted-user-list-notes',$this->addedUsers);
+    }
+
+    public function resetSearch() {  
+        $this->search = '';
+        $this->results = [];
+}
+
+    public function updatedSearch(){
+        if(!empty($this->search)){
+            $this->users = User::where('name','like',$this->search.'%')->take(5)->get();
+            $results2 = User::where('name','like','%'.$this->search.'%')->take(5)->get();
+            $this->users = $this->users->merge($results2);
+            
+        }else{
+            $this->mount();
+        }
     }
 }

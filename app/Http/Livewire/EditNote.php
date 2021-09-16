@@ -5,7 +5,9 @@ namespace App\Http\Livewire;
 use App\Models\Note;
 use App\Models\NoteTag;
 use App\Models\NoteWorkspace;
+use App\Models\RestrictedUser;
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Workspace;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -13,12 +15,14 @@ use Livewire\Component;
 class EditNote extends Component
 {
 
-    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null;
+    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [],$noteId , $note, $created_at = null , $updated_at = null, $users= [], $restricted = [];
     protected $listeners = ['getNoteData'=>'getData','setWorkspaces2'=> 'setWorkspaces','setTags2'=>'setTags','editNote'=> 'getData', 'refreshEditNote' => '$refresh','passNoteIdFromSearchGrid' => 'getData','getNoteDetails'=>'getNoteDetails'];
     public function render()
     {
         $this->tagsG = Tag::where('user_id',Auth::id())->where('status','active')->get();
         $this->wrkspcs = Workspace::where('created_by',Auth::id())->where('status','active')->get();
+        
+        
         return view('livewire.edit-note');
     }
 
@@ -64,8 +68,24 @@ class EditNote extends Component
             }else{
                 
             }
+            if($this->note->visibility == 'R' || $this->visibility == 'R'){
+                $res = RestrictedUser::select('restricted_id')->where('ka_id',$this->note->id)->where('type','note')->get()->toArray();
+                foreach($res as $re){
+                    array_push($this->restricted,$re['restricted_id']);
+                }
+                $this->users = User::whereIn('id',$this->restricted)->get();
+            }
+           
+
+            
             
         }
+
+        
+    }
+
+    public function updateNoteList(){
+        
     }
 
     public function getNoteDetails(){

@@ -138,7 +138,10 @@
                 </div>
                 <div>
                     <a href="{{route('view.note',$note->id)}}" class="btn-read-more">View Details</a>
-                <input type="checkbox" value="{{$note->id}}" name="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif>
+                {{-- Check if note is owned by the user --}}
+                @if($note->owner->id == Auth::id())
+                    <input type="checkbox" value="{{$note->id}}" name="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0" @if($note_selected) checked @endif>
+                @endif
                 </div>
             </div>
         </div>
@@ -158,7 +161,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
           
     @forelse($notes as $note)
-        <div class="p-3 rounded-xl shadow-md flex flex-wrap overflow-hidden w-full">
+        <div class="p-3 rounded-xl shadow-md flex flex-wrap w-full">
             <div class="self-start w-full">
                 <div class="flex flex-row justify-between relative" x-data="{ bShow: false }">
                     <span class="text-lg font-bold" title="{{$note->title}}">
@@ -187,7 +190,7 @@
                         x-transition:leave="transition transform origin-top-right ease-out duration-200"
                         x-transition:leave-start="opacity-100 scale-100"
                         x-transition:leave-end="opacity-0 scale-75"
-                        class="absolute bg-white shadow-md overflow-hidden rounded-xl w-48 mt-2 py-1 right-0 top-10 z-20"
+                        class="absolute bg-green-150 shadow-md rounded-xl w-48 mt-2 overflow-hidden py-1 right-0 top-10 z-50"
                     >
                     @if($note->owner->id == Auth::id())
                         <li>
@@ -217,7 +220,12 @@
                             </a>
                         </li>
                     @endif
-                    
+                    <li title="On Click Export File will be downloaded.">
+                        <a href="javascript:void(0)" wire:click="downloadFile" class="dropdown-item">
+                            <i class="fas fa-file-export dropdown-item-icon"></i>
+                            <span class="ml-2">Export Note</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="{{route('view.note',$note->id)}}" target="_blank" class="dropdown-item">
                             <i class="fas fa-external-link-alt dropdown-item-icon"></i>
@@ -254,7 +262,10 @@
                 <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-2">
                     <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i><a href="{{route('u.profile',$note->owner)}}">{{$note->owner->name}}</a></span>
                     <span class="date text-sm" title="{{$note->created_at}}">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif 
+                    {{-- Check if note is owned by the user --}}
+                    @if($note->owner->id == Auth::id())
                         <input type="checkbox" name="select_none" value="{{$note->id}}" wire:model="select_note" id="note-{{$note->id}}" class="form-checkbox text-green-550 border-green-550 focus:ring-0 ml-2" @if($note_selected) checked @endif></span>
+                    @endif
                 </div>
             </div>
         </div>

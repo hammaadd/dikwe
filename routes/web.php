@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('u/reload-captcha', 'UserController@reloadCaptcha');
+Route::get('import-users','HomeController@viewImport');
+Route::post('import-users','HomeController@import')->name('import');
 
 Route::get('/', 'VisitorController@homePage')->name('home');
 Route::post('/subscribe', 'VisitorController@subscribe')->name('subscribe');

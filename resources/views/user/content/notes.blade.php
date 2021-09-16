@@ -58,6 +58,9 @@
             <div id="rmn1" class="modal">
                 <livewire:restricted-note-modal/>
             </div>
+            <div id="urmn1" class="modal">
+                <livewire:update-restriced-note-modal/>
+            </div>
                 {{-- Add Section --}}
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3" x-show="nshowAdd">
                     <!-- Column Content -->
@@ -179,6 +182,11 @@ function copyToClipBoard(text) {
     $('input[name="visibility"]').on('click',function() {
         
    if($(this).val() == 'R') {
+    console.log('working R');
+        $('#rmn1').modal();
+   }
+
+   if($(this).val() == 'RU') {
     console.log('working R');
         $('#rmn1').modal();
    }

@@ -1,4 +1,18 @@
 <div class="relative">
+<form action=""  class="flex flex-col text-center">
+        <div class="relative rounded-xl">
+            <input type="text" name="search" class="input-search" placeholder="Search and add people to restricted users"
+                autocomplete="off"
+                wire:model.debounce.200ms="search"
+            />
+            <button class="absolute inset-y-0 right-0 px-5 flex items-center bg-green-550 rounded-xl" type="button">
+                <span class="text-xl">
+                    <i class="text-white fas fa-search"></i>
+                </span>
+            </button>
+
+        </div>
+    </form>
 @forelse($users as $user)
         {{-- Single view for listing users --}}
         <div class="w-full py-2 flex flex-wrap items-center justify-between rounded-xl">
@@ -41,7 +55,9 @@
 @empty
 
 @endforelse
+@if(empty($this->search))
 {{$users->links('vendor.livewire.tailwind')}}
+@endif
 <div wire:loading>
         <div class=" absolute w-full h-full bg-green-250 bg-opacity-90 top-0 grid place-items-center">
             <img src="{{ asset('assets/loader/three-dots.svg') }}" class="">
