@@ -26,9 +26,9 @@
                     {{-- Filter Section --}}
                     <div class="bg-white p-2 md:px-6 md:py-5 lg:p-2 xl:px-6 xl:py-5 rounded-xl h-full">
                         <livewire:workspace-filters />
-                       
+
                         <livewire:workspace-list />
-                       
+
                         <div class="text-center pt-5">
                             <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
                         </div>
@@ -82,7 +82,7 @@
                 x-transition:enter-end="opacity-100 scale-100"
                 x-transition:leave="transition transform origin-top-right ease-out duration-200"
                 x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-75"              
+                x-transition:leave-end="opacity-0 scale-75"
                 >
                     <!-- Column Content -->
                     {{-- Tag Section --}}
@@ -331,9 +331,10 @@
                             </form>
                         </div>
                         <div class="mt-4 md:mt-8 px-2">
-                            @for($i=0;$i<2;$i++)
-                                <x-bookmarks-list />
-                            @endfor
+                            <livewire:bookmarks-list/>
+                            {{-- @for($i=0;$i<1;$i++)
+                                <livewire:bookmarks-list/>
+                            @endfor --}}
                         </div>
                     </div>
                 </div>

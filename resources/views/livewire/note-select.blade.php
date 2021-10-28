@@ -1,7 +1,7 @@
 
-   
-        <ul x-show="isOpen"
-            @click.away="isOpen = false"
+
+                               <ul x-show="isOpen"
+                               @click.away="isOpen = false"
                                 x-transition:enter="transition transform origin-top-right ease-out duration-200"
                                 x-transition:enter-start="opacity-0 scale-75"
                                 x-transition:enter-end="opacity-100 scale-100"
@@ -23,8 +23,8 @@
                                         </a>
                                     </li>    --}}
                                     <li>
-                                        <a href="javascript:void(0)" class="dropdown-item" wire:click="deleteNotes">
-                                            <i class="fas fa-trash dropdown-item-icon"></i>
+                                        <a href="javascript:void(0)" class="dropdown-item"    wire:click="deleteNotes" >
+                                            <i class="fas fa-trash dropdown-item-icon" ></i>
                                             <span class="ml-2">Delete Selected</span>
                                         </a>
                                     </li>
@@ -35,12 +35,12 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="javascript:void(0)" class="dropdown-item" wire:click="makePublic">
+                                        <a href="javascript:void(0)" class="dropdown-item" wire:click="makePublic" >
                                             <i class="fas fa-globe-asia dropdown-item-icon"></i>
                                             <span class="ml-2">Make Selected Public</span>
                                         </a>
                                     </li>
-                                   
+
                             </ul>
                             {{-- <form action=""
                                 x-show="fOpen"
@@ -139,4 +139,3 @@
                                 </div>
                             </form> --}}
 
-                        

@@ -16,10 +16,10 @@ class Note extends Model
 
     // protected $fillable = [
     //     'title','source','source_url','visibility','color', 'created_at','updated_at'
-        
+
     // ];
     protected $guarded = [];
-    
+
 
     public function sluggable(): array
     {
@@ -30,62 +30,67 @@ class Note extends Model
         ];
     }
 
-    public function owner(){
-        return $this->belongsTo(User::class,'created_by','id');
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function tags(){
-        return $this->hasMany(NoteTag::class,'note');
+    public function tags()
+    {
+        return $this->hasMany(NoteTag::class, 'note');
     }
-    public function workspace(){
-        return $this->hasMany(NoteWorkspace::class,'note');
-    }
-
-    public function reactions(){
-        return $this->hasMany(Reaction::class,'ka','id');
+    public function workspace()
+    {
+        return $this->hasMany(NoteWorkspace::class, 'note');
     }
 
-    public function likes(){
-        return $this->reactions->where('reaction_type','like');
+    public function reactions()
+    {
+        return $this->hasMany(Reaction::class, 'ka', 'id');
     }
 
-    public function likedBy($userId){
-        return $this->likes()->contains('reacted_by',$userId);
+    public function likes()
+    {
+        return $this->reactions->where('reaction_type', 'like');
     }
 
-    public function dislikes(){
-        return $this->reactions->where('reaction_type','dislike');
+    public function likedBy($userId)
+    {
+        return $this->likes()->contains('reacted_by', $userId);
     }
 
-    public function dislikedBy($userId){
-        return $this->dislikes()->contains('reacted_by',$userId);
+    public function dislikes()
+    {
+        return $this->reactions->where('reaction_type', 'dislike');
     }
 
-    public function upvotes(){
-        return $this->reactions->where('reaction_type','upvote');
+    public function dislikedBy($userId)
+    {
+        return $this->dislikes()->contains('reacted_by', $userId);
     }
 
-    public function upvotedBy($userId){
-        return $this->upvotes()->contains('reacted_by',$userId);
+    public function upvotes()
+    {
+        return $this->reactions->where('reaction_type', 'upvote');
     }
 
-    public function userLikes(){
-        return $this->reactions->where('reaction_type','like')->where('reacted_by',Auth::id());
+    public function upvotedBy($userId)
+    {
+        return $this->upvotes()->contains('reacted_by', $userId);
     }
 
-    public function favorites(){
-        return $this->reactions->where('reaction_type','favorite');
+    public function userLikes()
+    {
+        return $this->reactions->where('reaction_type', 'like')->where('reacted_by', Auth::id());
     }
 
-    public function favoritedBy($userId){
-        return $this->favorites()->contains('reacted_by',$userId);
+    public function favorites()
+    {
+        return $this->reactions->where('reaction_type', 'favorite');
     }
 
-
-
-    
-
-    
-
-    
+    public function favoritedBy($userId)
+    {
+        return $this->favorites()->contains('reacted_by', $userId);
+    }
 }

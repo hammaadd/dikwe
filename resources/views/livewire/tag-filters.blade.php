@@ -1,7 +1,15 @@
 <div>
     <div class="relative" x-data="{ tagOpen: false }">
         <button @click=" tagOpen = !tagOpen " class="w-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550">
-            Tags <i class="fas fa-angle-down float-right mt-1"></i>
+            @if ($visi_tag=="MT")
+            My Tags
+            @elseif ($visi_tag=="SB")
+            Subscribed Tags
+            @elseif ($visi_tag="SR")
+            Service Tags
+            @else
+            Tags
+            @endif <i class="fas fa-angle-down float-right mt-1"></i>
         </button>
         <ul
         x-show="tagOpen"
@@ -15,17 +23,17 @@
         class="absolute bg-white shadow overflow-hidden rounded-xl mt-2 py-1 left-0 right-0 top-0 z-20"
         >
             <li class="border-b border-green-150">
-                <a href="javascript:void(0)" class="tag-filter-item">
+                <a href="javascript:void(0)" class="tag-filter-item" @click=" tagOpen = !tagOpen" wire:click="updateTags('MT')">
                     <span class="ml-2">My Tags</span>
                 </a>
             </li>
             <li class="border-b border-green-150">
-                <a href="javascript:void(0)" class="tag-filter-item">
+                <a href="javascript:void(0)" class="tag-filter-item" @click=" tagOpen = !tagOpen" wire:click="updateTags('SB')">
                     <span class="ml-2">Subscribed Tags</span>
                 </a>
             </li>
             <li class="border-b border-green-150">
-                <a href="javascript:void(0)" class="tag-filter-item">
+                <a href="javascript:void(0)" class="tag-filter-item" @click=" tagOpen = !tagOpen" wire:click="updateTags('SR')">
                     <span class="ml-2">Service Tags</span>
                 </a>
             </li>
@@ -93,9 +101,26 @@
             <button @click=" tagForm = !tagForm " class="border border-gray-400 text-gray-500 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:text-green-550">
                 <i class="fas fa-sliders-h text-xl align-middle"></i>
             </button>
-            <button class="border border-gray-400 text-gray-500 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:text-green-550">
+            @if($order == false)
+            <button class="border border-gray-400 text-gray-500 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:text-green-550" wire:click="updateOrder('f')">
                 <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
             </button>
+        @elseif($order == 'DESC')
+            <button class="border border-gray-400 bg-green-550 text-white focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:bg-green-150 hover:text-green-550" wire:click="updateOrder('DESC')">
+                <i class="fas fa-sort-alpha-up text-xl align-middle"></i>
+            </button>
+        @elseif($order == 'ASC')
+            <button class="border border-gray-400 bg-green-550 text-white focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:bg-green-150 hover:text-green-550" wire:click="updateOrder('ASC')">
+                <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+            </button>
+        @else
+            <button class="border border-gray-400 bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:bg-green-550 hover:text-white" wire:click="updateOrder('f')">
+                <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+            </button>
+        @endif
+            {{-- <button class="border border-gray-400 text-gray-500 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:text-green-550">
+                <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
+            </button> --}}
             <button class="border border-gray-400 text-gray-500 focus:outline-none rounded-lg mx-2 px-2 h-8 w-10 hover:text-green-550">
                 <i class="fas fa-sort-numeric-down text-xl align-middle"></i>
             </button>
@@ -136,7 +161,7 @@
                 </a>
             </li>
         </ul>
-        <form action=""
+        <form wire:submit.prevent="submit" method="POST"
             x-show="tagForm"
             @click.away="tagForm = false"
             x-transition:enter="transition transform origin-top ease-out duration-200"
@@ -149,19 +174,19 @@
             <p class="font-bold text-center">Filter By</p>
             <div class="flex items-center justify-around border-b border-gray-500 py-6">
                 <label class="inline-flex items-center">
-                    <input type="radio" name="tagfilter" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                    <input type="radio" name="status" wire:model="status"  value="used" class="h-4 w-4 text-green-550 focus:ring-0"/>
                     <span class="ml-2">
                         Used
                     </span>
                 </label>
                 <label class="inline-flex items-center">
-                    <input type="radio" name="tagfilter" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                    <input type="radio" name="status" wire:model="status" value="unused" class="h-4 w-4 text-green-550 focus:ring-0"/>
                     <span class="ml-2">
                         Unused
                     </span>
                 </label>
                 <label class="inline-flex items-center">
-                    <input type="radio" name="tagfilter" class="h-4 w-4 text-green-550 focus:ring-0"/>
+                    <input type="radio" name="status" wire:model="status" value="all" class="h-4 w-4 text-green-550 focus:ring-0"/>
                     <span class="ml-2">
                         All
                     </span>
@@ -169,14 +194,14 @@
             </div>
             <div class="py-6 border-b border-gray-500">
                 <p class="pb-3">Colors</p>
-                <input type="checkbox" class="form-checkbox text-purple-900 border-purple-900 bg-purple-900 rounded-full focus:ring-0" />
-                <input type="checkbox" class="form-checkbox text-yellow-400 border-yellow-400 bg-yellow-400 rounded-full focus:ring-0" />
-                <input type="checkbox" class="form-checkbox text-indigo-700 border-indigo-700 bg-indigo-700 rounded-full focus:ring-0" />
-                <input type="checkbox" class="form-checkbox text-green-550 border-green-550 bg-green-550 rounded-full focus:ring-0" />
+                <input type="checkbox" wire:model="colors" name="colors[]" value="purple" @if($colors) checked @endif class="form-checkbox text-purple-900 border-purple-900 bg-purple-900 rounded-full focus:ring-0" />
+                <input type="checkbox" wire:model="colors" name="colors[]" value="yellow" @if($colors) checked @endif class="form-checkbox text-yellow-400 border-yellow-400 bg-yellow-400 rounded-full focus:ring-0" />
+                <input type="checkbox" wire:model="colors" name="colors[]" value="blue" @if($colors) checked @endif class="form-checkbox text-indigo-700 border-indigo-700 bg-indigo-700 rounded-full focus:ring-0" />
+                <input type="checkbox" wire:model="colors" name="colors[]" value="green" @if($colors) checked @endif class="form-checkbox text-green-550 border-green-550 bg-green-550 rounded-full focus:ring-0" />
             </div>
             <div class="py-6">
                 <label class="flex items-center">
-                    <input type="checkbox" class="form-checkbox text-green-550 border-green-550 focus:ring-0" />
+                    <input type="checkbox" name="fav" value="true" wire:model="fav" class="form-checkbox text-green-550 border-green-550 focus:ring-0" />
                     <span class="block ml-2 cursor-pointer">Favourite Tags</span>
                 </label>
             </div>
@@ -186,5 +211,5 @@
             </div>
         </form>
     </div>
-    
+
 </div>

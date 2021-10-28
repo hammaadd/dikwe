@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookMark extends Model
 {
-    use HasFactory,SoftDeletes;
-    public function tags(){
-        return $this->hasMany(BookmarkTag::class,'tag');
+    use HasFactory, SoftDeletes;
+    public function tags()
+    {
+        return $this->hasMany(BookmarkTag::class, 'bookmark');
     }
-    public function workspace(){
-        return $this->hasMany(BookmarkWorkspace::class,'bookmark');
+    public function workspace()
+    {
+        return $this->hasMany(BookmarkWorkspace::class, 'bookmark');
     }
 }

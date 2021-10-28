@@ -63,7 +63,7 @@
             <div class="workspaces pt-2 sm:pt-6">
                 <label for="workspaces" class="font-bold inline-block">Workspaces</label>
                 <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
-                
+
                     <span class="tag-item">Root WS</span>
                     <span class="tag-item">Demo WS</span>
                     <span class="tag-item">Workspace</span>
@@ -122,7 +122,7 @@
 
 <template x-if="noteStyle === 'grid'">
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 w-full md:w-10/12 mx-auto">
-      
+
 @forelse($notes as $note)
     <div class="p-3 rounded-xl shadow-md flex flex-wrap overflow-hidden w-full">
         <div class="self-start w-full">
@@ -194,6 +194,7 @@
                     <input type="radio" name="rate" id="rate-1">
                     <label for="rate-1" class="fas fa-star"></label>
                 </div>
+
             </div>
             <div class="flex flex-row justify-between items-center lg:flex-col xl:flex-row relative mt-5">
                 <span class="font-bold lg:mb-4 xl:mb-0"><i class="fas fa-users-cog mr-1 text-gray-400"></i>Owned By You</span>
@@ -204,7 +205,7 @@
 @empty
 
 @endforelse
-    
+
 
 </div>
 </template>

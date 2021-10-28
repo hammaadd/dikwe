@@ -12,7 +12,7 @@
         <div>
             <form wire:submit.prevent="store" >
                 <input type="text" placeholder="Tag Name" class="input--field" wire:model.defer="name" name="name">
-                
+
                 @error('name')
                     <small class="field-error-message">
                         <span>{{$message}}</span>
@@ -34,7 +34,7 @@
                                 <input type="radio" wire:model.defer="color" name="color" class="form-checkbox text-indigo-700 border-indigo-700 bg-indigo-700 rounded-full focus:ring-0" value="blue"/>
                                 <input type="radio" wire:model.defer="color" name="color" class="form-checkbox text-green-550 border-green-550 bg-green-550 rounded-full focus:ring-0" value="green"/>
                             </div>
-                            
+
                         </div>
                         @error('color')
                                 <small class="field-error-message">
@@ -46,7 +46,7 @@
                         <i class="fas fa-thumbs-up text-green-550 text-2xl mx-2"></i>
                         <i class="fas fa-thumbs-down text-green-550 text-2xl mx-2"></i>
                     </div> --}}
-   
+
                 </div>
                 <div class="input--field">
                     <div class="flex flex-row justify-around xl:justify-center">

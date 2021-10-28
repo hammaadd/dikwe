@@ -50,7 +50,7 @@
                                 @empty
                                     <div class=" text-left p-3"><span class="font-light text-red-600">No result found!</span></div>
                                 @endforelse
-                                
+
                                 <div class="p-3 text-right"><span class="font-light text-gray-500"><small>Press <kbd class="p-1 text-gray-600 bg-white rounded">ESC</kbd> or <kbd class="p-1 text-gray-600 bg-white rounded">TAB</kbd> to reset.</small></span></div>
 
                             </div>
@@ -65,7 +65,7 @@
         <div class="w-full md:w-1/2 px-2 md:pl-4 md:pr-0 pt-2 md:pt-4 lg:pt-0 lg:px-0 xl:px-4 lg:w-1/3 xl:w-5/12 flex flex-wrap">
             <div class="w-1/3 pr-2">
                 <div class="relative h-full" x-data="{ nOpen: false }">
-                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
+                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-4 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
                         {{-- Show heading of the note type based on the condition --}}
                         @if($notes_set=='M')
                             My Notes
@@ -134,7 +134,7 @@
                                     <span class="ml-2">All</span>
                                 </a>
                             </li>
-                        
+
                             <li class="border-b border-green-150">
                                 <a href="javascript:void(0)" class="tag-filter-item @if($visi_type=='P') bg-green-550 text-white @endif" wire:click="updateVisib('P')" @click="nVisible = false">
                                     <span class="ml-2">Public</span>
@@ -156,7 +156,7 @@
             </div>
             <div class="w-1/3 pl-2">
                 <div class="relative h-full" x-data="{ nOpen: false }">
-                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-5 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
+                    <button @click=" nOpen = !nOpen " class="w-full h-full bg-green-150 px-3 py-2 rounded-xl font-bold text-left focus:outline-none hover:text-white hover:bg-green-550" title="Filter By Note Type">
                         {{-- Show heading of the note type based on the condition --}}
                         @if($notes_set2=='N')
                             Notes
@@ -282,7 +282,7 @@
                         <i class="fas fa-sort-alpha-down text-xl align-middle"></i>
                     </button>
                 @endif
-                
+
                 <button class="bg-green-150 text-green-550 focus:outline-none rounded-lg mx-2 md:ml-2 md:mr-0 lg:mx-2 px-2 h-12 w-12 hover:bg-green-550 hover:text-white">
                     <i class="fas fa-sort-numeric-down text-xl align-middle"></i>
                 </button>

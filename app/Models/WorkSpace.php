@@ -14,20 +14,21 @@ class Workspace extends Model
     use Sluggable;
 
     protected $fillable = [
-        'title','description','parent','visibility','color','created_by','status','slug'	
+        'title', 'description', 'parent', 'visibility', 'color', 'created_by', 'status', 'slug'
     ];
 
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => ['owner.firstname','title']
+                'source' => ['owner.firstname', 'title']
             ]
         ];
     }
 
-    public function owner(){
-        return $this->belongsTo(User::class,'created_by','id');
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
     public function parent()
@@ -37,15 +38,15 @@ class Workspace extends Model
 
     public function children()
     {
-        return $this->hasMany(WorkSpace::class,'parent');
+        return $this->hasMany(WorkSpace::class, 'parent');
     }
 
-    public function notes(){
-        return $this->hasMany(Note::class,'id','note');
+    public function notes()
+    {
+        return $this->hasMany(Note::class, 'id', 'note');
     }
-    public function bookmark(){
-        return $this->hasMany(bookmarkWorkspace::class,'workspace');
+    public function bookmark()
+    {
+        return $this->hasMany(BookmarkWorkspace::class, 'id', 'workspace');
     }
-
-
 }

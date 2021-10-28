@@ -8,10 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class BookmarkTag extends Model
 {
     use HasFactory;
-    public function bookmark(){
-        return $this->belongsTo(BookMark::class,'bookmark');
+
+    protected $table = 'bookmark_tags';
+    protected $guarded = [];
+
+    public function bookmark()
+    {
+        return $this->belongsTo(BookMark::class, 'bookmark');
     }
-    public function tag_name(){
-        return $this->belongsTo(Tag::class,'tag');
+    public function tag_name()
+    {
+        return $this->belongsTo(Tag::class, 'tag', 'id');
+    }
+    public function tname()
+    {
+        return $this->belongsTo(Tag::class, 'tag');
     }
 }

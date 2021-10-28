@@ -19,7 +19,7 @@ class Tag extends Model
         'visibility',
         'color',
         'slug'
-        
+
     ];
 
     public function sluggable(): array
@@ -31,14 +31,17 @@ class Tag extends Model
         ];
     }
 
-    public function owner(){
-        return $this->belongsTo(User::class,'user_id','id');
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function notes(){
-        return $this->hasMany(NoteTag::class,'id','tag');
+    public function notes()
+    {
+        return $this->hasMany(NoteTag::class, 'id', 'tag');
     }
-    public function bookmark(){
-        return $this->hasMany(BookmarkTag::class,'tag');
+    public function bookmark()
+    {
+        return $this->hasMany(BookmarkTag::class, 'id', 'tag');
     }
 }

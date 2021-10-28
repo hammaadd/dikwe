@@ -6,17 +6,17 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('bodyExtra')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
             $('.multiple-select').select2({
                 tags: true,
-   
+
             });
         });
     </script>
 @endsection
-@section('content') 
+@section('content')
     <div class="p-2 md:p-5 lg:p-2 xl:p-5">
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
             <div class="w-full lg:w-2/3 xl:w-1/2 mx-auto md:px-0 bg-white rounded-xl">
@@ -44,7 +44,7 @@
                                         <img id="profileImage" alt="profil" src="{{ asset('images/Ellipse 1792x.png') }}" class="object-cover rounded-xl border border-gray-400 w-full h-full"/>
                                     </div>
                                 </div>
-                                <div class=" overflow-hidden flex-wrap w-full md:w-4/6 xl:w-3/4 px-1 md:px-0 text-center md:text-left mt-2 md:mt-0">
+                                 <div class=" overflow-hidden flex-wrap w-full md:w-4/6 xl:w-3/4 px-1 md:px-0 text-center md:text-left mt-2 md:mt-0">
                                     <button class="bg-gray-400 px-2 py-1 text-white m-1 rounded-xl hover:bg-green-550 focus:outline-none" type="button" onclick="showimage()">Upload From Device</button>
                                     {{-- <button class="bg-gray-400 px-2 py-1 text-white m-1 rounded-xl hover:bg-green-550 focus:outline-none">Upload From Dkiwe</button>
                                     <button class="bg-gray-400 px-2 py-1 text-white m-1 rounded-xl hover:bg-green-550 focus:outline-none">Upload From Google Drive</button>
@@ -69,7 +69,7 @@
                                     @foreach ($workspaces as $workspace)
                                         <option value="{{$workspace->id}}">{{$workspace->title}}</option>
                                     @endforeach
-                                   
+
                                 </select>
                             </div>
                             <div class="flex flex-wrap overflow-hidden flex-row items-center justify-between">
@@ -113,10 +113,10 @@
                                 </div>
                                 <div class="input--field">
                                     <select class="multiple-select" name="status" >
-                                        
+
                                         <option value="active">Active</option>
                                         <option value="inactive"> In Active</option>
-                                       
+
                                     </select>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@
     $(document).ready(function() {
         $('#tags1').select2();
         $('#workspaces1').select2();
-        
+
 //         var quill = new Quill('#editor', {
 //     theme: 'snow',
 //     placeholder: 'Note Body ...'

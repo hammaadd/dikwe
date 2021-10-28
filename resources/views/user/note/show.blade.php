@@ -36,7 +36,7 @@
             <livewire:share-modal/>
         </div>
         <div class="bg-green-150 rounded-xl p-2 md:p-8 lg:p-2 xl:p-8">
-           
+
             <div class="flex flex-wrap overflow-hidden lg:-mx-4 xl:-mx-4">
 
                 <div class="w-full overflow-hidden lg:px-4 lg:w-2/3 xl:px-4 xl:w-2/3">
@@ -51,12 +51,12 @@
                                 </a>
                             </div>
                         </div>
-                        
+
                         <div class="mt-4 md:mt-8 px-2">
                             <div class="w-full md:w-11/12 mx-auto rounded-lg shadow-md mb-4 md:mb-8">
                                 <div class="flex flex-col-reverse sm:flex-row justify-between relative pt-2 px-2 md:px-4">
                                     <span class="text-lg font-bold pt-2 sm:pt-0">
-                                        <div class="w-4 h-4 rounded-full 
+                                        <div class="w-4 h-4 rounded-full
                                         @if($note->color == 'purple')
                                          bg-purple-900
                                         @elseif($note->color == 'yellow')
@@ -72,7 +72,7 @@
                                         <span class="text-sm">Last Updated <span class="time text-green-550">@if($note->updated_at == null) {{($note->created_at)->diffForHumans()}} @else {{($note->updated_at)->diffForHumans()}} @endif</span> </span>
                                         <button @click=" bShow = !bShow " class="text-green-550 sm:text-gray-400 sm:bg-green-150 sm:rounded-xl ml-2 px-2 sm:h-10 sm:w-10 float-right hover:text-green-550 focus:outline-none">
                                             <i class="fas fa-ellipsis-v text-lg align-middle"></i>
-                                        </button> 
+                                        </button>
                                         <ul
                                             x-show="bShow"
                                             @click.away="bShow = false"
@@ -86,7 +86,7 @@
                                         >
                                         @if(Auth::id() == $note->owner->id)
                                             <li>
-                                                
+
                                                 <a href="{{route('notes',['m'=>'edit','id'=>$note->id])}}" class="dropdown-item">
                                                     <i class="fas fa-edit dropdown-item-icon"></i>
                                                     <span class="ml-2">Edit Note</span>
@@ -135,7 +135,7 @@
                                         </div>
                                         <div class="workspaces pt-2 sm:pt-6">
                                             <label for="workspaces" class="font-bold inline-block">Workspaces</label>
-                                           
+
                                             <div class="sm:inline-block sm:ml-2 pt-1 sm:pt-0">
                                                 @forelse($note->workspace as $ws)
                                                 {{-- {{print_r($ws->workspacea)}} --}}
@@ -162,9 +162,9 @@
                                             </a>
                                             <div class="flex flex-col">
                                                 <a href="{{route('u.profile.detail',$note->owner)}}" class="font-bold link-hover">
-                                                    {{$note->owner->name}} 
+                                                    {{$note->owner->name}}
                                                 </a>
-                                                
+
                                             </div>
                                             {{-- <small title="Visibility">(@if($note->visibility =='P')
                                                 Public
@@ -188,7 +188,7 @@
                                         @else
                                             <span title="Public"><i class="fas fa-lock-open"></i></span>
                                         @endif
-                                        
+
                                     </span>
                                 </div>
                             </div>

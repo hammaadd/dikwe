@@ -12,13 +12,13 @@ class NoteTag extends Model
     protected $table = 'notes_tags';
     protected $guarded = [];
 
-    public function notes(){
-        return $this->belongsTo(Note::class,'note');
+    public function notes()
+    {
+        return $this->belongsTo(Note::class, 'note');
     }
 
-    public function taga(){
-        return $this->belongsTo(Tag::class,'tag','id');
+    public function taga()
+    {
+        return $this->belongsTo(Tag::class, 'tag', 'id');
     }
-
-    
 }

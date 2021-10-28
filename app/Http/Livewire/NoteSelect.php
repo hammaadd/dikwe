@@ -11,23 +11,25 @@ class NoteSelect extends Component
         return view('livewire.note-select');
     }
 
-    public function selectAll(){
+    public function selectAll()
+    {
         $this->emit('noteSelectAll');
     }
 
-    public function makePublic(){
+    public function makePublic()
+    {
         $this->emit('makeAllPublic');
     }
 
-    public function makePrivate(){
+    public function makePrivate()
+    {
         $this->emit('makeAllPrivate');
     }
 
-    public function deleteNotes(){
+    public function deleteNotes()
+    {
+
+
         $this->emit('deletAllSelectedNotes');
     }
-
-
-
-
 }

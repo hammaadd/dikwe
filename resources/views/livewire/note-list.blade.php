@@ -1,8 +1,8 @@
 <div>
-   
+
     <div class="w-full pt-3 relative">
     @forelse($notes as $note)
-        <div class="w-full bg-white py-2 px-5 flex flex-wrap items-center justify-between my-2 rounded-xl shadow-md">
+        <div class="w-full bg-white py-2 px-5 flex flex-wrap  items-center justify-between my-2 rounded-xl shadow-md">
             <div class="flex flex-wrap items-center">
             @php
                 $clr = $note->color;
@@ -30,7 +30,7 @@
     @endforelse
 
     </div>
-    
+
     <div class="text-center pt-5">
         <a href="#" class="link-hover text-green-550 font-bold">Open More</a>
     </div>

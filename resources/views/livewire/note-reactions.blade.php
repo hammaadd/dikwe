@@ -21,7 +21,7 @@
             </a>
             <br>
             <span class="count text-sm">{{$note->likes()->count()}}</span>
-        </li>   
+        </li>
     @else
         <li class="inline-block text-center">
             <a href="javascript:void(0)" wire:click="likeKa({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400" title="Like">
@@ -50,10 +50,10 @@
         </li>
     @endif
     {{-- {{dd($note->likes())}} --}}
-   
+
 
         {{-- <li class="inline-block text-center">
-            @php 
+            @php
                 $copyData = route('view.note',$note->id);
             @endphp
             <a href="javascript:void(0)" class=" cursor-pointer px-1 text-lg text-gray-400" onclick="copyToClipBoard('{{$copyData}}')" wire:click="copyLink({{$note->id}})" title="Copy to clipboard">
@@ -79,9 +79,9 @@
             <span class="count text-sm">{{$note->favorites()->count()}}</span>
         </li>
         @endif
-    
+
         <li class="inline-block text-center">
-            <a href="#ex1" rel="modal:open" wire:click="showShareModal({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400">
+            <a href="#ex1"  rel="modal:open" wire:click="showShareModal({{$note->id}})" class=" cursor-pointer px-1 text-lg text-gray-400">
                 <i class="fas fa-share-alt"></i>
             </a>
             <br>
@@ -105,6 +105,6 @@
     </div>
 
     @endif
-    
+
 
 </div>

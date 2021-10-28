@@ -1,5 +1,5 @@
 <div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
-@section('title','Add Workspace') 
+@section('title','Add Workspace')
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="knowledge-assets">Adding Workspace</label></div>
         <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
@@ -24,7 +24,7 @@
                                 </small>
                     @enderror
                 <div class="input--field" >
-                    
+
                     <div wire:ignore>
                         <label for="workspace">Select Workspace</label>
                         <select class="multiple-select" id="selectWorkspace" multiple="multiple" name="workspace" placeholder="Select Parent Workspace">
@@ -32,18 +32,18 @@
                             @forelse ($workspaces as $wrk)
                             <option value="{{$wrk->id}}">{{$wrk->title}}</option>
                             @empty
-                                
+
                             @endforelse
                         </select>
                     </div>
-                    
+
                     @error('workspace')
                                 <small class="field-error-message">
                                     <span>{{$message}}</span>
                                 </small>
                     @enderror
                 </div>
-                
+
                 <div class="flex flex-wrap overflow-hidden flex-row items-center justify-between">
                     <div class="input--f">
                         <div class=" mx-auto">
@@ -98,11 +98,11 @@
                     <button type="submit" class="btn-green">Save</button>
                 </div>
             </form>
-            
+
         </div>
     </div>
     {{-- @include('user.sections.notification') --}}
-    
+
 </div>
 
 @push('script_s')

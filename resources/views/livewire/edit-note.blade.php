@@ -1,4 +1,4 @@
-<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0" wire:init="render"> 
+<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0" wire:init="render">
 
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-cog mr-2"></i>Edit Note Info</label></div>
@@ -29,13 +29,13 @@
                         display: none !important;
                     }
             </style>
-                
-           
+
+
            <input x-ref="editor"
                   id="editor-x3"
                   type="hidden"
                   name="description">
-           
+
            <trix-editor  input="editor-x3"
                         x-on:trix-change="textEditor=$refs.editor.value;" class="h-50"></trix-editor>
            </div>
@@ -56,7 +56,7 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-               
+
                 <div class="input--field">
                     <label for="tags2">Tags</label>
                     <div wire:ignore>
@@ -65,7 +65,7 @@
                             <option value="{{$tg->id}}" @if(in_array($tg->id,$tags)) selected @endif>{{$tg->tag}}</option>
                             @empty
                             <option>No tag added</option>
-                            @endforelse 
+                            @endforelse
                         </select>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                 @enderror
                 {{-- @php print_r($workspaces); @endphp --}}
                 <div class="input--field">
-                    
+
                     <label for="workspaces2">Workspaces</label>
                     <div wire:ignore wire:key="workspaces-drop">
                     <select class="multiple-select" id="workspaces2" multiple="multiple" name="workspaces">
@@ -170,14 +170,14 @@
 <script>
     window.onload = function() {
             @this.emit('getNoteDetails');
-    }   
+    }
     window.addEventListener('editNoteupdateTrixDesc', event => {
         var element = document.querySelectorAll("trix-editor");
         element = element[2];
         length = element.editor.getDocument().toString().length;
         element.editor.setSelectedRange([0, length + 1]);
         element.editor.insertHTML(event.detail.description);
-        
+
 
         console.log(event.description);
 });
@@ -201,7 +201,7 @@
             tags:true
         });
         $('#workspaces2').val(@this.get('workspaces')).trigger('change');
-        
+
 })
         document.addEventListener('livewire:load', function () {
             $('#tags2').select2({
@@ -211,7 +211,7 @@
                 tags:true
             });
             // $('#tags2').val(@this.get('tags')).trigger('change');
-            
+
         $('#workspaces2').on('select2:select', (e) => {
             @this.emit('setWorkspaces2', $('#workspaces2').select2('val'));
         });

@@ -12,11 +12,13 @@ class NoteWorkspace extends Model
     protected $table = 'notes_workspaces';
     protected $guarded = [];
 
-    public function notes(){
-        return $this->belongsTo(Note::class,'note');
+    public function notes()
+    {
+        return $this->belongsTo(Note::class, 'note');
     }
 
-    public function workspacea(){
-        return $this->belongsTo(Workspace::class,'workspace');
+    public function workspacea()
+    {
+        return $this->belongsTo(Workspace::class, 'workspace');
     }
 }

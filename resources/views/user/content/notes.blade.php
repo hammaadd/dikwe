@@ -50,7 +50,8 @@
             @shownoteedit.window="nshowEdit=true , nshowAdd=false, nshowAddMore=false, noteSearch=false"
             @showsearchnote.window="nshowEdit=false , nshowAdd=false, nshowAddMore=false, noteSearch=true"
             @shownoteadd.window="nshowAddMore = true , nshowAdd = false , nShowEdit = false"
-            @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false " @showViewNote.window="noteSearch = false , showViewNote = true" >
+            @showaddform.window="showAddForm  = true, nshowAdd = true, noteSearch = false "
+            @showViewNote.window="noteSearch = false , showViewNote = true" >
 
             <div id="ex1" class="modal">
                 <livewire:share-modal/>
@@ -74,7 +75,7 @@
                                 {{-- <button x-on:click="$dispatch('showaddform')" wire:click="moreInfo" title="Add Note" class="text-green-550 bg-green-150 rounded-xl mx-2 px-2 h-10 w-10 hover:text-green-150 hover:bg-green-550 focus:outline-none">
                                     <i class="fas fa-plus-circle text-xl align-middle"></i>
                                 </button> --}}
-                                
+
                             </div>
                             <div class="py-3 px-2 md:px-8 lg:px-2 xl:px-8 hidden sm:block">
                                 <a href="javascript:void(0)" x-on:click="$dispatch('showsearchnote')" class="link-hover text-green-550 font-bold">
@@ -180,7 +181,7 @@ function copyToClipBoard(text) {
     });
 
     $('input[name="visibility"]').on('click',function() {
-        
+
    if($(this).val() == 'R') {
     console.log('working R');
         $('#rmn1').modal();
@@ -192,7 +193,7 @@ function copyToClipBoard(text) {
    }
 });
 
-    
+
 
 
 </script>

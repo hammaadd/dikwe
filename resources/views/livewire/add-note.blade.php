@@ -4,7 +4,7 @@
         <div class="flex flex-row items-center relative" x-data="{ nColor: false , trix: @entangle('description').defer}">
             <button @click=" nColor = !nColor "  type="button" class="flex-none focus:outline-none rounded-lg p-1 h-8 w-8">
                 <div class="w-4 h-4 rounded-full
-                @if($color=='purple') bg-purple-900
+                 @if($color=='purple') bg-purple-900
                 @elseif($color=='green') bg-green-550
                 @elseif($color=='blue') bg-indigo-700
                 @elseif($color=='yellow') bg-yellow-400
@@ -106,7 +106,7 @@ window.addEventListener('addDescription', event => {
         length = element.editor.getDocument().toString().length;
         element.editor.setSelectedRange([0, length + 1]);
         element.editor.insertHTML(event.detail.description);
-        
+
 
         console.log(event.detail.description);
 })

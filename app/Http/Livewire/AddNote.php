@@ -13,33 +13,35 @@ use Livewire\Component;
 
 class AddNote extends Component
 {
-    public $color,$title, $description,$source,$url,$visibility,$tagsG,$wrkspcs, $workspaces = [], $tags = [], $users = [],$restricted = [];
-    protected $listeners = ['passMoreInfo'=> 'passMoreInfo','setWorkspaces3'=> 'setWorkspaces','setTags3'=>'setTags'];
+    public $color, $title, $description, $source, $url, $visibility, $tagsG, $wrkspcs, $workspaces = [], $tags = [], $users = [], $restricted = [];
+    protected $listeners = ['passMoreInfo' => 'passMoreInfo', 'setWorkspaces3' => 'setWorkspaces', 'setTags3' => 'setTags'];
     public function render()
     {
         return view('livewire.add-note');
     }
 
-    public function moreInfo(){
+    public function moreInfo()
+    {
         //$this->emit('getQuillValue');
-        $this->emit('showMoreInfo',$this->title, $this->description,$this->color);
+        $this->emit('showMoreInfo', $this->title, $this->description, $this->color);
     }
 
-    public function passMoreInfo( $title,$description,$color,$tags,$workspaces,$source,$url,$visibility){
-        
+    public function passMoreInfo($title, $description, $color, $tags, $workspaces, $source, $url, $visibility)
+    {
+
         $this->title = $title;
         $this->description = $description;
-        $this->color = $color; 
+        $this->color = $color;
         $this->tags = $tags;
         $this->workspaces = $workspaces;
         $this->source = $source;
         $this->url = $url;
         $this->visibility = $visibility;
         $this->dispatchBrowserEvent('updateTrixDesc1', ['description' => $description]);
-    
     }
 
-    public function resetCreateForm(){
+    public function resetCreateForm()
+    {
         $this->title = '';
         $this->description = '';
         $this->color = '';
@@ -48,36 +50,43 @@ class AddNote extends Component
         $this->url = '';
         $this->tags = [];
         $this->workspaces = [];
-
-
-
     }
 
-    public function store(){
+    public function store()
+    {
         $pretty_names = [
             'title'  =>  'note title',
             'description'  => 'description'
         ];
-        
+
         $this->validate([
             'title' => 'required',
             'description' => 'required|max:50000',
-        ],[],$pretty_names);
+        ], [], $pretty_names);
         $note = new Note;
         $note->title = $this->title;
         $note->description = nl2br($this->description);
         $note->source = $this->source;
         $note->source_url = $this->url;
-        $note->visibility = $this->visibility;
-        $note->color = $this->color;
+        if ($this->visibility == null) {
+            $note->visibility = "P";
+        } else {
+            $note->visibility = $this->visibility;
+        }
+
+        if ($this->color == null) {
+            $note->color = "purple";
+        } else {
+            $note->color = $this->color;
+        }
         $note->created_by = Auth::id();
         $nRes = $note->save();
-        if($nRes){
+        if ($nRes) {
             $nsRes = 0;
-            if(count($this->workspaces) > 0):
-            foreach($this->workspaces as $ws){
-                $nws = Workspace::find($ws);
-                    if(!$nws){
+            if (count($this->workspaces) > 0) :
+                foreach ($this->workspaces as $ws) {
+                    $nws = Workspace::find($ws);
+                    if (!$nws) {
                         $nws = new Workspace;
                         // $nws->user_id = Auth::id() ;
                         // $nws->tag = $tg;
@@ -97,21 +106,21 @@ class AddNote extends Component
                     $nw->save();
                     $nsRes++;
                 }
-            else:
+            else :
                 $nsRes++;
             endif;
 
             // Add tags of notes using the method below
-            if(count($this->tags) > 0):
-                $nts = NoteTag::select('id')->where('note',$this->note->id)->get()->toArray();
+            if (count($this->tags) > 0) :
+                $nts = NoteTag::select('id')->where('note', $this->note->id)->get()->toArray();
                 NoteTag::destroy($nts);
-                foreach($this->tags as $tg){
+                foreach ($this->tags as $tg) {
                     $taags = Tag::find($tg);
-                    if(!$taags){
+                    if (!$taags) {
                         $taags = new Tag;
-                        $taags->user_id = Auth::id() ;
+                        $taags->user_id = Auth::id();
                         $taags->tag = $tg;
-                        $taags->visibility = 'PR' ;
+                        $taags->visibility = 'PR';
                         $taags->color = 'purple';
                         $taags->save();
                     }
@@ -121,15 +130,15 @@ class AddNote extends Component
                     $nt->save();
                     $nsRes++;
                 }
-            else:
+            else :
                 $nsRes++;
             endif;
 
             //Restricted users in database one by one
-            if($this->visibility == 'R'){
+            if ($this->visibility == 'R') {
                 //Check if the restricted users are selected
-                if(count($this->restricted) > 0){
-                    foreach($this->restricted as $rest){
+                if (count($this->restricted) > 0) {
+                    foreach ($this->restricted as $rest) {
                         RestrictedUser::create([
                             'user_id'   =>  Auth::id(),
                             'restricted_id' =>  $rest,
@@ -140,7 +149,7 @@ class AddNote extends Component
                 }
             }
 
-            
+
             #Add workspaces of notes using loop
             // if(count($this->workspaces) > 0):
             //     foreach($this->workspaces as $ws){
@@ -167,17 +176,17 @@ class AddNote extends Component
             //     $nsRes++;
             // endif;
 
-            
-            
+
+
         }
-        
-        if($nsRes){
+
+        if ($nsRes) {
             session()->flash('success', 'Note Added Successfully.');
-        }else{
+        } else {
             session()->flash('error', 'Unable to add note. Try again later');
         }
 
-        
+
 
         // $this->resetCreateForm();
         // $this->emit('updateNoteGrid');
@@ -186,21 +195,20 @@ class AddNote extends Component
         return redirect()->route('notes');
     }
 
-    public function cancelForm(){
+    public function cancelForm()
+    {
         $this->resetCreateForm();
         $this->emit('cancelFormInfo');
         return redirect()->route('notes');
     }
 
-    public function setWorkspaces($wkspcs){
+    public function setWorkspaces($wkspcs)
+    {
         $this->workspaces = $wkspcs;
-        
     }
 
-    public function setTags($tgs){
+    public function setTags($tgs)
+    {
         $this->tags = $tgs;
-        
     }
-
-    
 }

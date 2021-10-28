@@ -8,10 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class BookmarkWorkspace extends Model
 {
     use HasFactory;
-    public function bookmark(){
-        return $this->belongsTo(BookMark::class,'bookmark');
+
+
+    protected $table = 'bookmark_workspaces';
+    protected $guarded = [];
+
+
+
+    public function bookmark()
+    {
+        return $this->belongsTo(BookMark::class, 'bookmark');
     }
-    public function workspace_name(){
-        return $this->belongsTo(Workspace::class,'workspace');
+    public function workspace_name()
+    {
+        return $this->belongsTo(Workspace::class, 'workspace');
     }
 }

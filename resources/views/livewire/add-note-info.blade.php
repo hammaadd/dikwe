@@ -1,4 +1,4 @@
-<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0"> 
+<div class="bg-white pb-5 rounded-xl lg:h-full mt-4 lg:mt-0">
 
     <div class="flex flex-wrap justify-between relative">
         <div class="bg-green-550 text-white font-bold px-2 md:px-8 py-1 md:py-3 br-top-left"><label for="note"> <i class="fas fa-clipboard mr-2"></i> Note Info</label></div>
@@ -10,7 +10,7 @@
     </div>
     <div class="p-2 md:p-8">
         <div class="relative">
-            
+
             <form wire:submit.prevent="store" x-data="{visibility: ' '}">
                 <input type="text" placeholder="Title" class="input--field" name="title" wire:model.lazy="title">
                 @error('title')
@@ -18,7 +18,7 @@
                         <span>{{$message}}</span>
                     </small>
                 @enderror
-                
+
                 {{-- <textarea rows="5" class="input--field" placeholder="Note body" name="description" wire:model.defer="description"></textarea> --}}
                 <div x-data="{textEditor:@entangle('description').defer}"
                 wire:ignore
@@ -38,13 +38,13 @@
                         display: none !important;
                     }
             </style>
-                
-           
+
+
            <input x-ref="editor2"
                   id="editor-x2"
                   type="hidden"
                   name="description">
-           
+
            <trix-editor  input="editor-x2"
                         x-on:trix-change="textEditor=$refs.editor2.value;"></trix-editor>
            </div>
@@ -85,7 +85,7 @@
                 @enderror
                 {{-- @php print_r($workspaces); @endphp --}}
                 <div class="input--field">
-                    
+
                     <label for="workspaces1">Workspaces</label>
                     <div wire:ignore wire:key="workspaces-drop">
                     <select class="multiple-select" id="workspaces1" multiple="multiple" name="workspaces">
@@ -192,7 +192,7 @@ window.addEventListener('updateTrixDesc', event => {
         length = element.editor.getDocument().toString().length;
         element.editor.setSelectedRange([0, length + 1]);
         element.editor.insertHTML(event.detail.description);
-        
+
 
         console.log(event.detail.description);
 })
